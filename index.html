@@ -11,33 +11,30 @@
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         header {
             background-color: #fff;
-            padding: 30px 40px; /* Increased padding for taller header */
+            padding: 30px 40px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 100%;
         }
         .header-container {
             display: flex;
-            justify-content: flex-start; /* Align items to the left */
+            justify-content: flex-start;
             align-items: center;
         }
         .logo img {
-            height: 90px; /* Adjust this value as needed for larger logo */
+            height: 90px;
         }
         nav {
-            margin-left: 20px; /* Add some space between the logo and nav */
+            margin-left: 20px;
         }
         .nav-links {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
-            gap: 30px; /* Adjust the gap between links */
+            gap: 30px;
         }
         .nav-links li {
             display: inline;
@@ -46,21 +43,17 @@
             text-decoration: none;
             font-weight: bold;
             color: #000;
-            font-size: 1.2em; /* Increase font size */
+            font-size: 1.2em;
         }
         .nav-links a:hover {
             text-decoration: underline;
         }
-        .container {
-            text-align: center;
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%; /* Ensure container spans the full width */
+        .full-width-container {
+            width: 100vw;
+            overflow: hidden;
         }
-        img {
-            width: 100%; /* Make image span the full width */
+        .full-width-container img {
+            width: 100%;
             height: auto;
         }
     </style>
@@ -80,11 +73,12 @@
             </nav>
         </div>
     </header>
-    <div class="container">
+    <div class="full-width-container">
         <figure class="wp-block-image alignfull size-large">
             <img src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Untitled-21-19-1-2048x1365.png" alt="" class="wp-image-70"/>
         </figure>
     </div>
 </body>
 </html>
+
 
