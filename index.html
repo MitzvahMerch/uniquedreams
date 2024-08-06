@@ -12,12 +12,53 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
         }
+        header {
+            background-color: #fff;
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 60px; /* Adjust this value as needed */
+        }
+        nav {
+            flex: 1;
+            text-align: center;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Adjust the gap between links */
+        }
+        .nav-links li {
+            display: inline;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #000;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
         .container {
             text-align: center;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         img {
             max-width: 100%;
@@ -26,6 +67,20 @@
     </style>
 </head>
 <body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo-placeholder.png" alt="Logo" id="logo-image">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Create Your Logo</a></li>
+                    <li><a href="#">Apparel Options</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <div class="container">
         <figure class="wp-block-image alignfull size-large">
             <img src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Untitled-21-19-1-2048x1365.png" alt="" class="wp-image-70"/>
