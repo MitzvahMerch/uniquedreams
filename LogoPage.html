@@ -54,6 +54,8 @@
             background-color: #9715D3;
             width: 300px;
             border-radius: 8px;
+            z-index: 1;
+            position: relative;
         }
         .box-container h1 {
             margin: 0 0 10px;
@@ -72,7 +74,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -136,6 +138,8 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-start;
+            z-index: 1;
+            position: relative;
         }
         .footer-columns {
             display: flex;
