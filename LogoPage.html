@@ -80,6 +80,17 @@
             max-width: 100%;
             display: none;
         }
+        .box-container button {
+            display: none;
+            margin-top: 20px;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
         .feedback-message {
             display: none;
             margin-top: 20px;
@@ -180,8 +191,25 @@
         const storage = getStorage(app);
 
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('fileInput').addEventListener('change', async function(event) {
+            const fileInput = document.getElementById('fileInput');
+            const submitButton = document.getElementById('submitButton');
+            const fileDisplay = document.getElementById('fileDisplay');
+
+            fileInput.addEventListener('change', function(event) {
                 const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        fileDisplay.src = e.target.result;
+                        fileDisplay.style.display = 'block';
+                        submitButton.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            submitButton.addEventListener('click', async function() {
+                const file = fileInput.files[0];
                 if (!file) {
                     alert('Please select a file.');
                     return;
@@ -192,10 +220,6 @@
                     const snapshot = await uploadBytes(storageRef, file);
                     const downloadURL = await getDownloadURL(snapshot.ref);
 
-                    const fileDisplay = document.getElementById('fileDisplay');
-                    fileDisplay.src = downloadURL;
-                    fileDisplay.style.display = 'block';
-
                     await addDoc(collection(db, 'UserUploads'), {
                         fileName: file.name,
                         fileUrl: downloadURL,
@@ -203,6 +227,7 @@
                     });
 
                     document.getElementById('feedback-message').style.display = 'block';
+                    submitButton.style.display = 'none';
                 } catch (error) {
                     console.error('Error: ', error);
                     document.getElementById('error-message').style.display = 'block';
@@ -214,7 +239,7 @@
 <body>
     <header class="header-container">
         <div class="logo">
-            <img src="your-logo-url.png" alt="Logo">
+            <img src="https://github.com/MitzvahMerch/WriteOcassio/raw/gh-pages/WRITE%20OCCASION%20LOGO.png" alt="Logo" id="logo-image">
         </div>
         <nav>
             <ul class="nav-links">
@@ -230,6 +255,7 @@
         <input type="file" id="fileInput">
         <label for="fileInput">Upload Your Logo</label>
         <img id="fileDisplay" alt="Uploaded Logo">
+        <button id="submitButton">Submit</button>
         <div class="feedback-message" id="feedback-message">Submission successful!</div>
         <div class="error-message" id="error-message">Submission failed. Please try again.</div>
     </div>
