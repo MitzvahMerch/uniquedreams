@@ -145,7 +145,62 @@
         .footer-bottom a:hover {
             text-decoration: underline;
         }
+        .upload-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .upload-container input {
+            margin: 10px 0;
+        }
     </style>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
+            authDomain: "mitzvahmerch-ac346.firebaseapp.com",
+            projectId: "mitzvahmerch-ac346",
+            storageBucket: "mitzvahmerch-ac346.appspot.com",
+            messagingSenderId: "232131426361",
+            appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
+            measurementId: "G-XXFM5DPRZ6"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        // Function to handle file upload
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const storageRef = ref(storage, 'logos/' + file.name);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on('state_changed', 
+                (snapshot) => {
+                    // Handle progress
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                }, 
+                (error) => {
+                    // Handle error
+                    console.error('Upload failed', error);
+                }, 
+                () => {
+                    // Handle successful upload
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        document.getElementById('uploadedImage').src = downloadURL;
+                    });
+                }
+            );
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -156,12 +211,19 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Upload Your Logo</a></li>
-                    <li><a href="#">Select Your Apparel</a></li>
+                    <li><a href="LogoPage.html">Upload Your Logo</a></li>
+                    <li><a href="ApparelPage.html">Select Your Apparel</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    <div class="upload-container">
+        <h2>Upload Your Logo</h2>
+        <input type="file" accept="image/*" onchange="handleFileUpload(event)">
+        <div>
+            <img id="uploadedImage" src="" alt="Uploaded Image" style="max-width: 100%; margin-top: 20px;">
+        </div>
+    </div>
     <div class="button-container">
         <div class="is-style-fill wp-block-button has-custom-width wp-block-button__width-50 has-custom-font-size">
             <a class="wp-block-button__link" style="margin: 15px 0;">
@@ -253,5 +315,6 @@
     </div>
 </body>
 </html>
+
 
 
