@@ -1,22 +1,21 @@
 // Import the required Firebase modules
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"; 
-import { getStorage } from "firebase/storage";
+// firebase-config.js
+import { initializeApp } from 'firebase/app';
+import { getStorage } from 'firebase/storage';
+import { getFirestore } from 'firebase/firestore';
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
+  apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
+  authDomain: "mitzvahmerch-ac346.firebaseapp.com",
   projectId: "mitzvahmerch-ac346",
   storageBucket: "mitzvahmerch-ac346.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  messagingSenderId: "232131426361",
+  appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
+  measurementId: "G-XXFM5DPRZ6"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const storage = getStorage(app);
+const db = getFirestore(app);
 
-export { db, storage };
+export { storage, db };
