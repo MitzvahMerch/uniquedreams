@@ -85,10 +85,10 @@
             margin-top: 20px;
             background-color: black;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 24px;
             cursor: pointer;
         }
         .feedback-message {
@@ -173,7 +173,6 @@
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
         const firebaseConfig = {
@@ -187,7 +186,6 @@
         };
 
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
         const storage = getStorage(app);
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -219,12 +217,6 @@
                 try {
                     const snapshot = await uploadBytes(storageRef, file);
                     const downloadURL = await getDownloadURL(snapshot.ref);
-
-                    await addDoc(collection(db, 'UserUploads'), {
-                        fileName: file.name,
-                        fileUrl: downloadURL,
-                        uploadedAt: new Date()
-                    });
 
                     document.getElementById('feedback-message').style.display = 'block';
                     submitButton.style.display = 'none';
@@ -285,5 +277,4 @@
     </footer>
 </body>
 </html>
-
 
