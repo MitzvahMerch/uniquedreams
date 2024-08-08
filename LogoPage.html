@@ -47,61 +47,6 @@
         .nav-links a:hover {
             text-decoration: underline;
         }
-        .box-container {
-            text-align: center;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #9715D3;
-            width: 300px;
-            border-radius: 8px;
-        }
-        .box-container h1 {
-            margin: 0 0 10px;
-            font-size: 24px;
-            color: white;
-        }
-        .box-container button {
-            background-color: black;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
         footer {
             background-color: #0C3A92;
             color: white;
@@ -166,6 +111,83 @@
         .footer-bottom a:hover {
             text-decoration: underline;
         }
+        .box-container {
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #9715D3;
+            width: 300px;
+            border-radius: 8px;
+        }
+        .box-container h1 {
+            margin: 0 0 10px;
+            font-size: 24px;
+            color: white;
+        }
+        .box-container button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #0C3A92;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+            color: white;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-container input,
+        .form-container button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        .form-container button {
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -179,72 +201,29 @@
     <div id="uploadModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <form id="uploadForm">
-                <label for="name"><b>Name</b></label>
-                <input type="text" id="name" name="name" required><br><br>
-                <label for="email"><b>Email</b></label>
-                <input type="email" id="email" name="email" required><br><br>
-                <label for="date"><b>When's your party?</b></label>
-                <input type="date" id="date" name="date" required><br><br>
-                <label for="file"><b>Upload File</b></label>
-                <input type="file" id="file" name="file" required><br><br>
+            <form id="uploadForm" class="form-container">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="date" name="date" placeholder="When's your party" required>
+                <input type="file" name="file" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-columns">
-            <div class="footer-column">
-                <h3>NAVIGATION</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Product Catalog</a></li>
-                    <li><a href="#">Apparel Options</a></li>
-                    <li><a href="#">Create your logo</a></li>
-                    <li><a href="#">T-shirts</a></li>
-                    <li><a href="#">sweatpants</a></li>
-                    <li><a href="#">Long Sleeve</a></li>
-                    <li><a href="#">sweatshirt</a></li>
-                    <li><a href="#">towels</a></li>
-                    <li><a href="#">bags</a></li>
-                    <li><a href="#">tanktops</a></li>
-                    <li><a href="#">other</a></li>
-                    <li><a href="#">Hat</a></li>
-                    <li><a href="#">Logo Submission</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>ACCOUNT</h3>
-                <ul>
-                    <li><a href="#">Store Performance</a></li>
-                    <li><a href="#">Quotes & Invoices</a></li>
-                    <li><a href="#">Orders</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Address Book</a></li>
-                    <li><a href="#">Payment Methods</a></li>
-                    <li><a href="#">Sign Out</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>CONTACT US</h3>
-                <div class="contact-info">
-                    <span>apparel@writeoccasionmd.com</span>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>
-                <a href="#">Terms of Use</a> |
-                <a href="#">Privacy Policy</a> |
-                <a href="#">Refund Policy</a> |
-                <a href="#">Delivery Policy</a> |
-                <a href="#">Color Disclaimer</a> |
-                <a href="#">Report a Problem</a>
-            </p>
-            <p>© 2024 TheWriteOcassionApparel</p>
-        </div>
-    </footer>
+    <footer id="footer"></footer>
+
+    <div class="footer-bottom">
+        <p>
+            <a href="#">Terms of Use</a> |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Refund Policy</a> |
+            <a href="#">Delivery Policy</a> |
+            <a href="#">Color Disclaimer</a> |
+            <a href="#">Report a Problem</a>
+        </p>
+        <p>© 2024 TheWriteOcassionApparel</p>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -252,6 +231,9 @@
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => document.getElementById('header').innerHTML = data);
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('footer').innerHTML = data);
 
             // Get the modal
             var modal = document.getElementById("uploadModal");
@@ -288,6 +270,7 @@
     </script>
 </body>
 </html>
+
 
 
 
