@@ -284,7 +284,7 @@
                 const snapshot = await uploadBytes(storageRef, file);
                 const downloadURL = await getDownloadURL(snapshot.ref);
 
-                await addDoc(collection(db, 'submissions'), {
+                await addDoc(collection(db, 'Users Data'), { // Collection name updated
                     name: name,
                     email: email,
                     date: date,
@@ -337,3 +337,4 @@
     <footer id="footer"></footer>
 </body>
 </html>
+
