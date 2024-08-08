@@ -133,6 +133,18 @@
             font-size: 14px;
             color: #000;
         }
+        .feedback-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: green;
+        }
+        .error-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: red;
+        }
         footer {
             background-color: #0C3A92;
             color: white;
@@ -227,6 +239,8 @@
                 <span id="file-name"></span>
                 
                 <button type="submit">Submit</button>
+                <div class="feedback-message" id="feedback-message">Submission successful!</div>
+                <div class="error-message" id="error-message">Submission failed. Please try again.</div>
             </form>
         </div>
     </div>
@@ -262,55 +276,58 @@
         });
 
         // Handle form submission
-        document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
             event.preventDefault();
-            
+
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const date = document.getElementById('date').value;
             const file = document.getElementById('file').files[0];
 
-            if (file) {
-                const storageRef = ref(storage, 'logos/' + file.name);
-                const uploadTask = uploadBytesResumable(storageRef, file);
-
-                uploadTask.on('state_changed', 
-                    (snapshot) => {
-                        // Handle progress
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                    }, 
-                    (error) => {
-                        // Handle error
-                        console.error('Upload failed', error);
-                        alert('Upload failed. Please try again.');
-                    }, 
-                    () => {
-                        // Handle successful uploads on complete
-                        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                            console.log('File available at', downloadURL);
-                            // Save data to Firestore
-                            try {
-                                await addDoc(collection(db, 'uploads'), {
-                                    name: name,
-                                    email: email,
-                                    date: date,
-                                    fileUrl: downloadURL
-                                });
-                                alert('Submission successful!');
-                                // Clear the form
-                                document.getElementById('uploadForm').reset();
-                                document.getElementById('file-name').textContent = '';
-                                // Close the modal
-                                document.getElementById('uploadModal').style.display = 'none';
-                            } catch (error) {
-                                console.error('Error saving document: ', error);
-                                alert('Submission failed. Please try again.');
-                            }
-                        });
-                    }
-                );
+            if (!file) {
+                alert('Please select a file.');
+                return;
             }
+
+            const storageRef = ref(storage, 'logos/' + file.name);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on('state_changed', 
+                (snapshot) => {
+                    // Handle progress
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                }, 
+                (error) => {
+                    // Handle error
+                    console.error('Upload failed', error);
+                    document.getElementById('error-message').style.display = 'block';
+                }, 
+                () => {
+                    // Handle successful uploads on complete
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        // Save data to Firestore
+                        try {
+                            await addDoc(collection(db, 'uploads'), {
+                                name: name,
+                                email: email,
+                                date: date,
+                                fileUrl: downloadURL
+                            });
+                            document.getElementById('feedback-message').style.display = 'block';
+                            // Clear the form
+                            document.getElementById('uploadForm').reset();
+                            document.getElementById('file-name').textContent = '';
+                            // Close the modal
+                            document.getElementById('uploadModal').style.display = 'none';
+                        } catch (error) {
+                            console.error('Error saving document: ', error);
+                            document.getElementById('error-message').style.display = 'block';
+                        }
+                    });
+                }
+            );
         });
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -352,6 +369,7 @@
     </script>
 </body>
 </html>
+
 
 
 
