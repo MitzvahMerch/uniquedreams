@@ -7,11 +7,11 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #0C3A92; /* Changed background color */
-            color: #fff; /* Changed text color to white for better contrast */
+            background-color: #0C3A92;
+            color: #fff;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
         header {
             background-color: #fff;
@@ -25,10 +25,10 @@
             align-items: center;
         }
         .logo img {
-            height: 60px; /* Adjust this value to shrink the logo */
+            height: 60px;
         }
         nav {
-            margin-left: 40px; /* Add margin to shift the labels to the right */
+            margin-left: 40px;
         }
         .nav-links {
             list-style: none;
@@ -50,7 +50,7 @@
             text-decoration: underline;
         }
         .button-container {
-            text-align: center; /* Center the buttons within the parent container */
+            text-align: center;
             margin: 20px 0;
         }
         .wp-block-button {
@@ -61,13 +61,13 @@
             background-color: #000;
             border: 2px solid #fff;
             padding: 15px 25px;
-            border-radius: 100px;
-            font-size: 54px; /* Increased font size by 35% */
+            border-radius: 0;
+            font-size: 54px;
             font-weight: bold;
         }
         .outlined-text-container {
-            text-align: center; /* Center the text within the parent container */
-            margin: 20px 0; /* Add margin for spacing */
+            text-align: center;
+            margin: 20px 0;
         }
         .outlined-text {
             padding: 25px;
@@ -80,7 +80,7 @@
                 2px 0px 0 #000,
                 0px -2px 0 #000,
                 0px 2px 0 #000;
-            font-size: 33px; /* Decreased font size by 33% */
+            font-size: 33px;
             font-weight: 800;
             color: white;
             text-align: center;
@@ -88,7 +88,7 @@
             background-color: #0b3a92;
         }
         .art-portal-embed-container {
-            margin: 0 30px; /* Add 30px margin for width */
+            margin: 0 30px;
         }
         footer {
             background-color: #0C3A92;
@@ -106,6 +106,7 @@
             margin-bottom: 10px;
             font-size: 18px;
             font-weight: bold;
+            color: #fff;
         }
         .footer-column ul {
             list-style: none;
@@ -117,7 +118,7 @@
         }
         .footer-column ul li a {
             text-decoration: none;
-            color: #333;
+            color: #fff;
             font-size: 14px;
         }
         .footer-column ul li a:hover {
@@ -129,44 +130,42 @@
         }
         .footer-column .contact-info span {
             font-size: 14px;
-            color: #333;
+            color: #fff;
         }
         .footer-bottom {
             text-align: center;
             margin-top: 20px;
             font-size: 12px;
-            color: #777;
+            color: #fff;
         }
         .footer-bottom a {
             text-decoration: none;
-            color: #777;
+            color: #fff;
             margin: 0 5px;
         }
         .footer-bottom a:hover {
             text-decoration: underline;
         }
-        /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 1;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0); /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-            padding-top: 60px;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
         }
         .modal-content {
             background-color: #0C3A92;
-            margin: 5% auto; /* 5% from the top and centered */
+            margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 10px;
+            width: 50%;
+            height: 50%; /* Adjusted height */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+            color: white;
         }
         .close {
             color: #aaa;
@@ -176,26 +175,32 @@
         }
         .close:hover,
         .close:focus {
-            color: #000;
+            color: black;
             text-decoration: none;
             cursor: pointer;
         }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .form-group {
+            margin-bottom: 20px;
         }
-        .form-container input,
-        .form-container button {
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
             padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-        .form-container button {
+        .form-group button {
             background-color: #000;
             color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
         }
@@ -218,58 +223,42 @@
     </header>
     <div class="button-container">
         <div class="is-style-fill wp-block-button has-custom-width wp-block-button__width-50 has-custom-font-size">
-            <button class="wp-block-button__link" id="uploadButton" style="margin: 15px 0;">
+            <a class="wp-block-button__link" id="openModalBtn" style="margin: 15px 0;">
                 <strong>Upload Here</strong>
-            </button>
+            </a>
         </div>
         <div class="outlined-text-container">
             <p class="has-text-align-center has-base-color has-text-color has-background has-link-color outlined-text" style="margin: 15px 0;">
                 <strong>Submit Your Logo Here!</strong>
             </p>
         </div>
-        <div class="art-portal-embed-container">
-            <div id="artPortalEmbed" style="width: 100%; height: 720px; padding: 0; margin: 0; border: 0; max-height: 100%; width: 100%;"></div>
-        </div>
-        <script type="text/javascript">
-            (function() {
-                function init() {
-                    var scriptElement = document.createElement("script");
-                    scriptElement.type = "text/javascript";
-                    scriptElement.async = true;
-                    scriptElement.src = "https://app.graphicsflow.com/assets/scripts/art-portal-embed.js";
-                    scriptElement.onload = function() { launchArtPortal() };
-                    document.getElementsByTagName("body")[0].appendChild(scriptElement);
-                }
-                function launchArtPortal() {
-                    window.gfApi.launchEmbeddedArtPortal({
-                        targetElementId: "artPortalEmbed",
-                        artPortalUrl: "https://app.graphicsflow.com/art-portal/potomac_imprints/a9bf5d36-97df-437b-9518-acd671a013f1?view=embed",
-                    });
-                }
-                init();
-            })();
-        </script>
-        <div class="wp-block-button has-custom-width wp-block-button__width-75 has-custom-font-size">
-            <a class="wp-block-button__link" style="margin: 20px 0;">
-                <strong>Continue to Select Your Apparel!</strong>
-            </a>
-        </div>
     </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="uploadModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <form id="uploadForm" action="https://formspree.io/f/manwqbpv" method="POST" class="form-container" enctype="multipart/form-data">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="date" name="date" placeholder="When's your party" required>
-                <input type="file" name="file" required>
-                <button type="submit">Submit</button>
+            <form id="uploadForm" action="https://formspree.io/f/manwqbpv" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name"><strong>Name</strong></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><strong>Email</strong></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="date"><strong>When's your party</strong></label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="file"><strong>Upload Logo</strong></label>
+                    <input type="file" id="file" name="file" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit"><strong>Submit</strong></button>
+                </div>
             </form>
         </div>
     </div>
-
     <footer>
         <div class="footer-column">
             <h3>NAVIGATION</h3>
@@ -321,26 +310,18 @@
         <p>© 2024 TheWriteOcassionApparel</p>
     </div>
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
+        const modal = document.getElementById("uploadModal");
+        const btn = document.getElementById("openModalBtn");
+        const span = document.getElementsByClassName("close")[0];
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("uploadButton");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
         btn.onclick = function() {
             modal.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
@@ -349,5 +330,6 @@
     </script>
 </body>
 </html>
+
 
 
