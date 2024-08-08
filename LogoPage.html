@@ -128,6 +128,11 @@
             cursor: pointer;
             font-weight: bold;
         }
+        .form-container #file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
         footer {
             background-color: #0C3A92;
             color: white;
@@ -218,7 +223,8 @@
                 <input type="date" id="date" name="date" required>
                 
                 <label for="file">Upload Your Logo</label>
-                <input type="file" id="file" name="file" required>
+                <input type="file" id="file" name="file" accept=".png,.jpg,.jpeg,.gif,.tiff,.ai,.svg,.pdf" required>
+                <span id="file-name"></span>
                 
                 <button type="submit">Submit</button>
             </form>
@@ -230,6 +236,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
         import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
         // Your web app's Firebase configuration
@@ -245,10 +252,17 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
         const storage = getStorage(app);
 
+        // Display the selected file name
+        document.getElementById('file').addEventListener('change', function(event) {
+            const fileName = event.target.files[0].name;
+            document.getElementById('file-name').textContent = `Selected file: ${fileName}`;
+        });
+
         // Handle form submission
-        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+        document.getElementById('uploadForm').addEventListener('submit', async function (event) {
             event.preventDefault();
             
             const name = document.getElementById('name').value;
@@ -269,12 +283,30 @@
                     (error) => {
                         // Handle error
                         console.error('Upload failed', error);
+                        alert('Upload failed. Please try again.');
                     }, 
                     () => {
                         // Handle successful uploads on complete
-                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                             console.log('File available at', downloadURL);
-                            // You can also send the downloadURL to your server to save the file URL
+                            // Save data to Firestore
+                            try {
+                                await addDoc(collection(db, 'uploads'), {
+                                    name: name,
+                                    email: email,
+                                    date: date,
+                                    fileUrl: downloadURL
+                                });
+                                alert('Submission successful!');
+                                // Clear the form
+                                document.getElementById('uploadForm').reset();
+                                document.getElementById('file-name').textContent = '';
+                                // Close the modal
+                                document.getElementById('uploadModal').style.display = 'none';
+                            } catch (error) {
+                                console.error('Error saving document: ', error);
+                                alert('Submission failed. Please try again.');
+                            }
                         });
                     }
                 );
@@ -322,5 +354,6 @@
     </script>
 </body>
 </html>
+
 
 
