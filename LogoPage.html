@@ -80,7 +80,6 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
             padding-top: 60px;
         }
@@ -213,11 +212,12 @@
         }
     </style>
     <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js"></script>
-    <script>
-        // Firebase configuration
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
             authDomain: "mitzvahmerch-ac346.firebaseapp.com",
@@ -229,9 +229,77 @@
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const storage = firebase.storage();
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('header').innerHTML = data);
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('footer').innerHTML = data);
+
+            const modal = document.getElementById("uploadModal");
+            const btn = document.getElementById("uploadBtn");
+            const span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+
+        document.getElementById('file').addEventListener('change', function(event) {
+            const fileName = event.target.files[0].name;
+            document.getElementById('file-name').textContent = `Selected file: ${fileName}`;
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const file = document.getElementById('file').files[0];
+
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const storageRef = ref(storage, 'logos/' + file.name);
+            try {
+                const snapshot = await uploadBytes(storageRef, file);
+                const downloadURL = await getDownloadURL(snapshot.ref);
+
+                await addDoc(collection(db, 'submissions'), {
+                    name: name,
+                    email: email,
+                    date: date,
+                    fileUrl: downloadURL
+                });
+
+                document.getElementById('feedback-message').style.display = 'block';
+                document.getElementById('uploadForm').reset();
+                document.getElementById('file-name').textContent = '';
+                document.getElementById('uploadModal').style.display = 'none';
+            } catch (error) {
+                console.error('Error: ', error);
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
     </script>
 </head>
 <body>
@@ -267,107 +335,5 @@
     </div>
 
     <footer id="footer"></footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Load header and footer
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => document.getElementById('header').innerHTML = data);
-
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => document.getElementById('footer').innerHTML = data);
-
-            // Get the modal
-            var modal = document.getElementById("uploadModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("uploadBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        });
-
-        // Display the selected file name
-        document.getElementById('file').addEventListener('change', function(event) {
-            const fileName = event.target.files[0].name;
-            document.getElementById('file-name').textContent = `Selected file: ${fileName}`;
-        });
-
-        // Handle form submission
-        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const date = document.getElementById('date').value;
-            const file = document.getElementById('file').files[0];
-
-            if (!file) {
-                alert('Please select a file.');
-                return;
-            }
-
-            const storageRef = storage.ref('logos/' + file.name);
-            const uploadTask = storageRef.put(file);
-
-            uploadTask.on('state_changed', 
-                (snapshot) => {
-                    // Handle progress
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                }, 
-                (error) => {
-                    // Handle error
-                    console.error('Upload failed', error);
-                    document.getElementById('error-message').style.display = 'block';
-                }, 
-                async () => {
-                    // Handle successful uploads on complete
-                    const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-                    console.log('File available at', downloadURL);
-
-                    // Save data to Firestore
-                    try {
-                        const docRef = await db.collection('submissions').add({
-                            name: name,
-                            email: email,
-                            date: date,
-                            fileUrl: downloadURL
-                        });
-                        console.log("Document written with ID: ", docRef.id);
-                        document.getElementById('feedback-message').style.display = 'block';
-                        // Clear the form
-                        document.getElementById('uploadForm').reset();
-                        document.getElementById('file-name').textContent = '';
-                        // Close the modal
-                        document.getElementById('uploadModal').style.display = 'none';
-                    } catch (error) {
-                        console.error('Error saving document: ', error);
-                        document.getElementById('error-message').style.display = 'block';
-                    }
-                }
-            );
-        });
-    </script>
 </body>
 </html>
-
