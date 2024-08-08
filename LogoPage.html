@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Your Design</title>
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,32 +13,118 @@
             padding: 0;
             overflow-x: hidden;
         }
+        /* Styles for the header and footer included here */
+        .header-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #fff;
+            padding: 30px 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .logo img {
+            height: 60px;
+        }
+        nav {
+            margin-left: 40px;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links li {
+            display: inline;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #0C3A92;
+            color: white;
+            padding: 20px 40px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .footer-column {
+            flex: 1;
+        }
+        .footer-column h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 5px;
+        }
+        .footer-column ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+        .footer-column ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-column .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        .footer-column .contact-info span {
+            font-size: 14px;
+            color: white;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+        .footer-bottom a {
+            text-decoration: none;
+            color: white;
+            margin: 0 5px;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
         .box-container {
             text-align: center;
+            margin: 20px auto;
+            padding: 20px;
             background-color: #9715D3;
-            padding: 40px;
-            margin: 50px auto;
-            width: 80%;
-            max-width: 600px;
+            width: 300px;
             border-radius: 8px;
         }
         .box-container h1 {
-            margin-bottom: 20px;
-            font-size: 32px;
-            font-weight: bold;
+            margin: 0 0 10px;
+            font-size: 24px;
+            color: white;
         }
         .box-container button {
-            background-color: #000;
-            color: #fff;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
             border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 8px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            margin-top: 20px;
-        }
-        .box-container button:hover {
-            background-color: #444;
         }
         .modal {
             display: none;
@@ -51,20 +135,17 @@
             width: 100%;
             height: 100%;
             overflow: auto;
+            background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
         }
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-            color: #000;
-        }
-        .modal-content h2 {
-            margin-top: 0;
+            max-width: 500px;
         }
         .close {
             color: #aaa;
@@ -78,15 +159,10 @@
             text-decoration: none;
             cursor: pointer;
         }
-        footer {
-            color: white;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div w3-include-html="header.html"></div>
-    </header>
+    <header id="header"></header>
 
     <div class="box-container">
         <h1>Submit Your Design Here!</h1>
@@ -96,56 +172,66 @@
     <div id="uploadModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Submit Your Logo Here!</h2>
-            <form action="https://formspree.io/f/manwqbpv" method="POST" enctype="multipart/form-data">
-                <label for="name">Name</label><br>
+            <form id="uploadForm">
+                <label for="name"><b>Name</b></label>
                 <input type="text" id="name" name="name" required><br><br>
-                <label for="email">Email</label><br>
+                <label for="email"><b>Email</b></label>
                 <input type="email" id="email" name="email" required><br><br>
-                <label for="partyDate">When's your party?</label><br>
-                <input type="date" id="partyDate" name="partyDate" required><br><br>
-                <label for="file">Upload your logo</label><br>
+                <label for="date"><b>When's your party?</b></label>
+                <input type="date" id="date" name="date" required><br><br>
+                <label for="file"><b>Upload File</b></label>
                 <input type="file" id="file" name="file" required><br><br>
                 <button type="submit">Submit</button>
             </form>
         </div>
     </div>
 
-    <footer>
-        <div w3-include-html="footer.html"></div>
-    </footer>
+    <footer id="footer"></footer>
 
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script>
-        // Include external HTML
-        w3.includeHTML();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load header and footer
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('header').innerHTML = data);
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('footer').innerHTML = data);
 
-        // Get the modal
-        var modal = document.getElementById("uploadModal");
+            // Get the modal
+            var modal = document.getElementById("uploadModal");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("uploadBtn");
+            // Get the button that opens the modal
+            var btn = document.getElementById("uploadBtn");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
+            // When the user clicks the button, open the modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
                 modal.style.display = "none";
             }
-        }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Handle form submission
+            document.getElementById('uploadForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                // Your form submission logic here
+            });
+        });
     </script>
 </body>
 </html>
+
 
