@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Your Logo</title>
+    <title>Home Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #0C3A92; /* Background color */
-            color: #fff; /* Text color */
+            background-color: #0C3A92; /* Changed background color */
+            color: #fff; /* Changed text color to white for better contrast */
             margin: 0;
             padding: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -25,10 +25,10 @@
             align-items: center;
         }
         .logo img {
-            height: 60px;
+            height: 60px; /* Adjust this value to shrink the logo */
         }
         nav {
-            margin-left: 40px;
+            margin-left: 40px; /* Add margin to shift the labels to the right */
         }
         .nav-links {
             list-style: none;
@@ -49,54 +49,46 @@
         .nav-links a:hover {
             text-decoration: underline;
         }
-        .form-container {
-            background-color: #000; /* Background color for the container */
-            padding: 20px;
-            border-radius: 10px;
-            margin: 40px auto;
-            text-align: center;
-            width: 80%;
+        .button-container {
+            text-align: center; /* Center the buttons within the parent container */
+            margin: 20px 0;
         }
-        .form-container h2 {
-            margin: 0 0 20px 0;
-        }
-        .form-container button {
-            background-color: #0C3A92;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-        .form-container button:hover {
-            background-color: #005bb5;
-        }
-        .form-container form {
-            display: none; /* Hide the form initially */
-            margin-top: 20px;
-        }
-        .form-container input, .form-container textarea {
-            width: 100%;
-            padding: 10px;
+        .wp-block-button {
             margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
         }
-        .form-container input[type="file"] {
-            padding: 0;
-        }
-        .form-container .submit-btn {
-            background-color: #0C3A92;
+        .wp-block-button__link {
             color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
+            background-color: #000;
+            border: 2px solid #fff;
+            padding: 15px 25px;
+            border-radius: 100px;
+            font-size: 54px; /* Increased font size by 35% */
+            font-weight: bold;
         }
-        .form-container .submit-btn:hover {
-            background-color: #005bb5;
+        .outlined-text-container {
+            text-align: center; /* Center the text within the parent container */
+            margin: 20px 0; /* Add margin for spacing */
+        }
+        .outlined-text {
+            padding: 25px;
+            text-shadow:
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                -2px 0px 0 #000,
+                2px 0px 0 #000,
+                0px -2px 0 #000,
+                0px 2px 0 #000;
+            font-size: 33px; /* Decreased font size by 33% */
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            display: inline-block;
+            background-color: #0b3a92;
+        }
+        .art-portal-embed-container {
+            margin: 0 30px; /* Add 30px margin for width */
         }
         footer {
             background-color: #0C3A92;
@@ -125,7 +117,7 @@
         }
         .footer-column ul li a {
             text-decoration: none;
-            color: #fff;
+            color: #333;
             font-size: 14px;
         }
         .footer-column ul li a:hover {
@@ -137,21 +129,75 @@
         }
         .footer-column .contact-info span {
             font-size: 14px;
-            color: #fff;
+            color: #333;
         }
         .footer-bottom {
             text-align: center;
             margin-top: 20px;
             font-size: 12px;
-            color: #fff;
+            color: #777;
         }
         .footer-bottom a {
             text-decoration: none;
-            color: #fff;
+            color: #777;
             margin: 0 5px;
         }
         .footer-bottom a:hover {
             text-decoration: underline;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #0C3A92;
+            margin: 5% auto; /* 5% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-container input,
+        .form-container button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        .form-container button {
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -164,23 +210,66 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Upload Your Logo</a></li>
-                    <li><a href="#">Select Your Apparel</a></li>
+                    <li><a href="https://mitzvahmerch.github.io/WriteOcassio/LogoPage.html">Upload Your Logo</a></li>
+                    <li><a href="https://mitzvahmerch.github.io/WriteOcassio/ApparelPage.html">Select Your Apparel</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <div class="form-container">
-        <h2>Submit Your Logo Here!</h2>
-        <button onclick="showForm()">Upload Here</button>
-        <form id="uploadForm" action="https://formspree.io/f/manwqbpv" method="POST">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="date" name="date" placeholder="When's your party?" required>
-            <input type="file" name="file" id="fileInput" accept="image/*" required>
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
+    <div class="button-container">
+        <div class="is-style-fill wp-block-button has-custom-width wp-block-button__width-50 has-custom-font-size">
+            <button class="wp-block-button__link" id="uploadButton" style="margin: 15px 0;">
+                <strong>Upload Here</strong>
+            </button>
+        </div>
+        <div class="outlined-text-container">
+            <p class="has-text-align-center has-base-color has-text-color has-background has-link-color outlined-text" style="margin: 15px 0;">
+                <strong>Submit Your Logo Here!</strong>
+            </p>
+        </div>
+        <div class="art-portal-embed-container">
+            <div id="artPortalEmbed" style="width: 100%; height: 720px; padding: 0; margin: 0; border: 0; max-height: 100%; width: 100%;"></div>
+        </div>
+        <script type="text/javascript">
+            (function() {
+                function init() {
+                    var scriptElement = document.createElement("script");
+                    scriptElement.type = "text/javascript";
+                    scriptElement.async = true;
+                    scriptElement.src = "https://app.graphicsflow.com/assets/scripts/art-portal-embed.js";
+                    scriptElement.onload = function() { launchArtPortal() };
+                    document.getElementsByTagName("body")[0].appendChild(scriptElement);
+                }
+                function launchArtPortal() {
+                    window.gfApi.launchEmbeddedArtPortal({
+                        targetElementId: "artPortalEmbed",
+                        artPortalUrl: "https://app.graphicsflow.com/art-portal/potomac_imprints/a9bf5d36-97df-437b-9518-acd671a013f1?view=embed",
+                    });
+                }
+                init();
+            })();
+        </script>
+        <div class="wp-block-button has-custom-width wp-block-button__width-75 has-custom-font-size">
+            <a class="wp-block-button__link" style="margin: 20px 0;">
+                <strong>Continue to Select Your Apparel!</strong>
+            </a>
+        </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="uploadForm" action="https://formspree.io/f/manwqbpv" method="POST" class="form-container" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="date" name="date" placeholder="When's your party" required>
+                <input type="file" name="file" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-column">
             <h3>NAVIGATION</h3>
@@ -231,10 +320,31 @@
         </p>
         <p>© 2024 TheWriteOcassionApparel</p>
     </div>
-
     <script>
-        function showForm() {
-            document.getElementById('uploadForm').style.display = 'block';
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("uploadButton");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
 </body>
