@@ -80,6 +80,11 @@
             max-width: 100%;
             display: none;
         }
+        .box-container canvas {
+            margin-top: 20px;
+            max-width: 100%;
+            display: none;
+        }
         .box-container button {
             display: none;
             margin-top: 20px;
@@ -172,63 +177,8 @@
             text-decoration: underline;
         }
     </style>
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
-            authDomain: "mitzvahmerch-ac346.firebaseapp.com",
-            projectId: "mitzvahmerch-ac346",
-            storageBucket: "mitzvahmerch-ac346.appspot.com",
-            messagingSenderId: "232131426361",
-            appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
-            measurementId: "G-XXFM5DPRZ6"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const storage = getStorage(app);
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const fileInput = document.getElementById('fileInput');
-            const submitButton = document.getElementById('submitButton');
-            const fileDisplay = document.getElementById('fileDisplay');
-
-            fileInput.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        fileDisplay.src = e.target.result;
-                        fileDisplay.style.display = 'block';
-                        submitButton.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            submitButton.addEventListener('click', async function() {
-                const file = fileInput.files[0];
-                if (!file) {
-                    alert('Please select a file.');
-                    return;
-                }
-
-                const storageRef = ref(storage, 'logos/' + file.name);
-                try {
-                    const snapshot = await uploadBytes(storageRef, file);
-                    const downloadURL = await getDownloadURL(snapshot.ref);
-
-                    document.getElementById('feedback-message').style.display = 'block';
-                    submitButton.style.display = 'none';
-                } catch (error) {
-                    console.error('Error: ', error);
-                    document.getElementById('error-message').style.display = 'block';
-                }
-            });
-        });
-    </script>
+    <!-- Include PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
 </head>
 <body>
     <header class="header-container">
@@ -249,6 +199,7 @@
         <input type="file" id="fileInput">
         <label for="fileInput">Upload Your Logo</label>
         <img id="fileDisplay" alt="Uploaded Logo">
+        <canvas id="pdfCanvas"></canvas>
         <button id="submitButton">Submit</button>
         <div class="feedback-message" id="feedback-message">Submission successful!</div>
         <div class="error-message" id="error-message">Submission failed. Please try again.</div>
@@ -277,5 +228,93 @@
             <span>&copy; 2024 Your Company. All rights reserved.</span>
         </div>
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
+            authDomain: "mitzvahmerch-ac346.firebaseapp.com",
+            projectId: "mitzvahmerch-ac346",
+            storageBucket: "mitzvahmerch-ac346.appspot.com",
+            messagingSenderId: "232131426361",
+            appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
+            measurementId: "G-XXFM5DPRZ6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileInput = document.getElementById('fileInput');
+            const submitButton = document.getElementById('submitButton');
+            const fileDisplay = document.getElementById('fileDisplay');
+            const pdfCanvas = document.getElementById('pdfCanvas');
+
+            fileInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const fileType = file.type;
+                    if (fileType === 'application/pdf') {
+                        // Handle PDF
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const pdfData = new Uint8Array(e.target.result);
+                            pdfCanvas.style.display = 'block';
+                            fileDisplay.style.display = 'none';
+                            displayPDF(pdfData, pdfCanvas);
+                            submitButton.style.display = 'block';
+                        };
+                        reader.readAsArrayBuffer(file);
+                    } else {
+                        // Handle other image types
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            fileDisplay.src = e.target.result;
+                            fileDisplay.style.display = 'block';
+                            pdfCanvas.style.display = 'none';
+                            submitButton.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+
+            async function displayPDF(pdfData, canvas) {
+                const pdfjsLib = window['pdfjs-dist/build/pdf'];
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.worker.min.js';
+
+                const pdf = await pdfjsLib.getDocument({data: pdfData}).promise;
+                const page = await pdf.getPage(1);
+                const viewport = page.getViewport({scale: 1.5});
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                await page.render({canvasContext: context, viewport: viewport}).promise;
+            }
+
+            submitButton.addEventListener('click', async function() {
+                const file = fileInput.files[0];
+                if (!file) {
+                    alert('Please select a file.');
+                    return;
+                }
+
+                const storageRef = ref(storage, 'logos/' + file.name);
+                try {
+                    const snapshot = await uploadBytes(storageRef, file);
+                    const downloadURL = await getDownloadURL(snapshot.ref);
+
+                    document.getElementById('feedback-message').style.display = 'block';
+                    submitButton.style.display = 'none';
+                } catch (error) {
+                    console.error('Error: ', error);
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
