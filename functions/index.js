@@ -5,6 +5,7 @@ const sharp = require("sharp");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+const { exec } = require("child_process");
 
 admin.initializeApp();
 
