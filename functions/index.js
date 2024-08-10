@@ -5,6 +5,7 @@ const sharp = require("sharp");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+const { exec } = require("child_process");
 
 admin.initializeApp();
 
@@ -23,21 +24,15 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
     const fileExt = path.extname(filePath).toLowerCase();
 
-    // Convert file types if necessary
+    // Convert PDF/AI files using ImageMagick
     if (fileExt === ".pdf" || fileExt === ".ai") {
-      convertedFilePath = path.join(
-        os.tmpdir(), 
-        fileName.replace(fileExt, ".png")
-      );
-      await sharp(tempFilePath).png().toFile(convertedFilePath);
-      console.log(`${fileExt} file converted to PNG`);
+      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, ".png"));
+      await convertToPng(tempFilePath, convertedFilePath);
+      console.log(`${fileExt} file converted to PNG using ImageMagick`);
     } else if (fileExt === ".webp") {
-      convertedFilePath = path.join(
-        os.tmpdir(), 
-        fileName.replace(fileExt, ".png")
-      );
+      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, ".png"));
       await sharp(tempFilePath).png().toFile(convertedFilePath);
-      console.log(`WEBP file converted to PNG`);
+      console.log(`WEBP file converted to PNG using Sharp`);
     }
 
     const img = await loadImage(convertedFilePath);
@@ -75,3 +70,16 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
   return null;
 });
+
+// Function to convert PDF/AI to PNG using ImageMagick
+async function convertToPng(inputFilePath, outputFilePath) {
+  return new Promise((resolve, reject) => {
+    exec(`magick convert -density 300 -quality 100 -background white -flatten "${inputFilePath}" "${outputFilePath}"`, 
+      (error, stdout, stderr) => {
+        if (error) {
+          return reject(`Error converting file: ${stderr}`);
+        }
+        resolve(outputFilePath);
+      });
+  });
+}
