@@ -14,12 +14,13 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
   const tempFilePath = path.join(os.tmpdir(), fileName);
   const bucket = admin.storage().bucket();
 
+  let convertedFilePath = tempFilePath;
+
   try {
     // Download file from bucket
     await bucket.file(filePath).download({destination: tempFilePath});
     console.log("File downloaded locally to", tempFilePath);
 
-    let convertedFilePath = tempFilePath;
     const fileExt = path.extname(filePath).toLowerCase();
 
     // Convert file types if necessary
@@ -74,4 +75,3 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
   return null;
 });
-
