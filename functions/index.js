@@ -1,7 +1,9 @@
 // Switching to 1st generation functions
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const {createCanvas, loadImage} = require("canvas");
+const { createCanvas, loadImage } = require("canvas");
+const sharp = require("sharp");
+const { exec } = require("child_process");
 
 admin.initializeApp();
 
@@ -16,8 +18,19 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
     const [fileContent] = await file.download();
     console.log("File downloaded successfully");
 
-    const img = await loadImage(fileContent);
-    console.log("Image loaded successfully");
+    const fileExtension = filePath.split('.').pop().toLowerCase();
+    let img;
+
+    if (fileExtension === 'pdf' || fileExtension === 'ai') {
+      console.log("Converting PDF/AI to PNG using ImageMagick");
+      img = await convertToPng(fileContent);
+    } else if (fileExtension === 'webp') {
+      console.log("Converting WebP to PNG using sharp");
+      img = await sharp(fileContent).png().toBuffer();
+    } else {
+      console.log("Loading image directly");
+      img = await loadImage(fileContent);
+    }
 
     const canvas = createCanvas(img.width, img.height);
     const ctx = canvas.getContext("2d");
@@ -52,10 +65,23 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
   return null;
 });
 
+// Function to convert PDF/AI to PNG using ImageMagick
+async function convertToPng(buffer) {
+  return new Promise((resolve, reject) => {
+    exec(`convert -density 300 -quality 100 -background white -flatten - ${buffer}`, (error, stdout, stderr) => {
+      if (error) {
+        return reject(`Error converting file: ${stderr}`);
+      }
+      resolve(Buffer.from(stdout));
+    });
+  });
+}
+
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
+  functions.logger.info("Hello logs!", { structuredData: true });
   response.send("Hello from Firebase!");
 });
+
