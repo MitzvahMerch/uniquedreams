@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment only on pushes to the main branch
 
 permissions:
   contents: write
@@ -17,9 +17,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install Dependencies
+        run: |
+          # Install dependencies if your project requires it
+          npm install
+
+      - name: Build the Project
+        run: |
+          # Run the build script to generate the production-ready files
+          npm run build  # Adjust this based on your build process
+          # Ensure the build output is placed in a specific directory (e.g., ./build)
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./
+          publish_dir: ./build  # Deploy only the contents of the build directory
+          keep_files: true  # Prevents deletion of existing files in gh-pages that are not in the build directory
+
+
