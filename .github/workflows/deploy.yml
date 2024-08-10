@@ -25,5 +25,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./  # Directly deploy the root directory for debugging
-          keep_files: true  # Prevent deletion of existing files
+          publish_dir: ./  # Deploy the root directory
+          keep_files: true  # Keep existing files in gh-pages
+
