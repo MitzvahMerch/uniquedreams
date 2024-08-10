@@ -1,37 +1,39 @@
-// Switching to 1st generation functions
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { createCanvas, loadImage } = require("canvas");
 const sharp = require("sharp");
-const { exec } = require("child_process");
+const path = require('path');
+const os = require('os');
+const fs = require('fs');
 
 admin.initializeApp();
 
-// Function to process the uploaded logo and count the number of colors
 exports.processLogo = functions.storage.object().onFinalize(async (object) => {
   const filePath = object.name;
+  const fileName = path.basename(filePath);
+  const tempFilePath = path.join(os.tmpdir(), fileName);
   const bucket = admin.storage().bucket();
 
   try {
-    console.log("Attempting to download file from bucket:", filePath);
-    const file = bucket.file(filePath);
-    const [fileContent] = await file.download();
-    console.log("File downloaded successfully");
+    // Download file from bucket
+    await bucket.file(filePath).download({ destination: tempFilePath });
+    console.log("File downloaded locally to", tempFilePath);
 
-    const fileExtension = filePath.split('.').pop().toLowerCase();
-    let img;
+    let convertedFilePath = tempFilePath;
+    let fileExt = path.extname(filePath).toLowerCase();
 
-    if (fileExtension === 'pdf' || fileExtension === 'ai') {
-      console.log("Converting PDF/AI to PNG using ImageMagick");
-      img = await convertToPng(fileContent);
-    } else if (fileExtension === 'webp') {
-      console.log("Converting WebP to PNG using sharp");
-      img = await sharp(fileContent).png().toBuffer();
-    } else {
-      console.log("Loading image directly");
-      img = await loadImage(fileContent);
+    // Convert file types if necessary
+    if (fileExt === '.pdf' || fileExt === '.ai') {
+      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, '.png'));
+      await sharp(tempFilePath).png().toFile(convertedFilePath);
+      console.log(`${fileExt} file converted to PNG`);
+    } else if (fileExt === '.webp') {
+      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, '.png'));
+      await sharp(tempFilePath).png().toFile(convertedFilePath);
+      console.log(`WEBP file converted to PNG`);
     }
 
+    const img = await loadImage(convertedFilePath);
     const canvas = createCanvas(img.width, img.height);
     const ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
@@ -49,9 +51,6 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
     const numColors = colorSet.size;
     console.log(`Number of colors detected: ${numColors}`);
 
-    const fileName = filePath.split("/").pop(); // Extracts the file name
-    console.log("Storing color information in Firestore for:", fileName);
-
     await admin.firestore().collection("logos").doc(fileName).set({
       numColors: numColors,
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
@@ -60,28 +59,13 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
     console.log("Color information stored successfully in Firestore.");
   } catch (error) {
     console.error("Error processing the logo:", error);
+  } finally {
+    fs.unlinkSync(tempFilePath); // Clean up the temp file
+    if (tempFilePath !== convertedFilePath) {
+      fs.unlinkSync(convertedFilePath); // Clean up the converted file
+    }
   }
 
   return null;
-});
-
-// Function to convert PDF/AI to PNG using ImageMagick
-async function convertToPng(buffer) {
-  return new Promise((resolve, reject) => {
-    exec(`convert -density 300 -quality 100 -background white -flatten - ${buffer}`, (error, stdout, stderr) => {
-      if (error) {
-        return reject(`Error converting file: ${stderr}`);
-      }
-      resolve(Buffer.from(stdout));
-    });
-  });
-}
-
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", { structuredData: true });
-  response.send("Hello from Firebase!");
 });
 
