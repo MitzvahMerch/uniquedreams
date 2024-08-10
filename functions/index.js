@@ -1,10 +1,10 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const { createCanvas, loadImage } = require("canvas");
+const {createCanvas, loadImage} = require("canvas");
 const sharp = require("sharp");
-const path = require('path');
-const os = require('os');
-const fs = require('fs');
+const path = require("path");
+const os = require("os");
+const fs = require("fs");
 
 admin.initializeApp();
 
@@ -16,19 +16,25 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
   try {
     // Download file from bucket
-    await bucket.file(filePath).download({ destination: tempFilePath });
+    await bucket.file(filePath).download({destination: tempFilePath});
     console.log("File downloaded locally to", tempFilePath);
 
     let convertedFilePath = tempFilePath;
-    let fileExt = path.extname(filePath).toLowerCase();
+    const fileExt = path.extname(filePath).toLowerCase();
 
     // Convert file types if necessary
-    if (fileExt === '.pdf' || fileExt === '.ai') {
-      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, '.png'));
+    if (fileExt === ".pdf" || fileExt === ".ai") {
+      convertedFilePath = path.join(
+        os.tmpdir(), 
+        fileName.replace(fileExt, ".png")
+      );
       await sharp(tempFilePath).png().toFile(convertedFilePath);
       console.log(`${fileExt} file converted to PNG`);
-    } else if (fileExt === '.webp') {
-      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, '.png'));
+    } else if (fileExt === ".webp") {
+      convertedFilePath = path.join(
+        os.tmpdir(), 
+        fileName.replace(fileExt, ".png")
+      );
       await sharp(tempFilePath).png().toFile(convertedFilePath);
       console.log(`WEBP file converted to PNG`);
     }
