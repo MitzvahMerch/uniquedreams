@@ -1,11 +1,10 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const {createCanvas, loadImage} = require("canvas");
+const { createCanvas, loadImage } = require("canvas");
 const sharp = require("sharp");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
-const { exec } = require("child_process");
 
 admin.initializeApp();
 
@@ -19,20 +18,26 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
   try {
     // Download file from bucket
-    await bucket.file(filePath).download({destination: tempFilePath});
+    await bucket.file(filePath).download({ destination: tempFilePath });
     console.log("File downloaded locally to", tempFilePath);
 
     const fileExt = path.extname(filePath).toLowerCase();
 
-    // Convert PDF/AI files using ImageMagick
+    // Convert file types if necessary
     if (fileExt === ".pdf" || fileExt === ".ai") {
-      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, ".png"));
-      await convertToPng(tempFilePath, convertedFilePath);
-      console.log(`${fileExt} file converted to PNG using ImageMagick`);
-    } else if (fileExt === ".webp") {
-      convertedFilePath = path.join(os.tmpdir(), fileName.replace(fileExt, ".png"));
+      convertedFilePath = path.join(
+        os.tmpdir(),
+        fileName.replace(fileExt, ".png")
+      );
       await sharp(tempFilePath).png().toFile(convertedFilePath);
-      console.log(`WEBP file converted to PNG using Sharp`);
+      console.log(`${fileExt} file converted to PNG`);
+    } else if (fileExt === ".webp") {
+      convertedFilePath = path.join(
+        os.tmpdir(),
+        fileName.replace(fileExt, ".png")
+      );
+      await sharp(tempFilePath).png().toFile(convertedFilePath);
+      console.log(`WEBP file converted to PNG`);
     }
 
     const img = await loadImage(convertedFilePath);
@@ -71,15 +76,22 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
   return null;
 });
 
-// Function to convert PDF/AI to PNG using ImageMagick
-async function convertToPng(inputFilePath, outputFilePath) {
+/**
+ * Converts a buffer to a PNG image using ImageMagick.
+ *
+ * @param {Buffer} buffer - The buffer containing the image data.
+ * @return {Promise<Buffer>} A promise that resolves to a PNG buffer.
+ */
+async function convertToPng(buffer) {
   return new Promise((resolve, reject) => {
-    exec(`magick convert -density 300 -quality 100 -background white -flatten "${inputFilePath}" "${outputFilePath}"`, 
+    exec(
+      `magick convert -density 300 -quality 100 -background white -flatten - ${buffer}`,
       (error, stdout, stderr) => {
         if (error) {
-          return reject(`Error converting file: ${stderr}`);
+          return reject(new Error(`Error converting file: ${stderr}`));
         }
-        resolve(outputFilePath);
-      });
+        resolve(Buffer.from(stdout));
+      }
+    );
   });
 }
