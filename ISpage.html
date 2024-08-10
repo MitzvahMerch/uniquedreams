@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0B3A92;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .product-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #0B3A92;
+            gap: 20px;
+        }
+        .product-image-container {
+            flex: 1;
+            text-align: center;
+            background-color: #f0f0f0; /* Light grey background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-image {
+            background-color: #fff; /* White background for the image */
+            padding: 20px;
+            border-radius: 10px;
+            border: 5px solid #fff; /* White border around the image */
+        }
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .back-image {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-image img {
+            max-width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+        .product-details {
+            flex: 0 0 400px; /* Adjusted width */
+            background-color: #f0f0f0; /* Light grey background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-brand {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-form {
+            margin-bottom: 20px;
+        }
+        .product-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .product-form select,
+        .product-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .product-form button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .product-form button:hover {
+            background-color: #0056b3;
+        }
+        .radio-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three columns */
+            gap: 10px;
+        }
+        .radio-container label {
+            text-align: center;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+            pointer-events: none; /* Disable click events */
+        }
+        .radio-container input {
+            display: none;
+        }
+        .radio-container input:checked + label {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .radio-container label:not(:last-child) {
+            margin-bottom: 10px; /* Spacing between sizes and submit button */
+        }
+        .product-form .submit-button {
+            margin-top: 10px; /* Add space between sizes and submit button */
+        }
+    </style>
+</head>
+<body>
+
+<div class="product-container">
+    <div class="product-image-container">
+        <div class="product-image">
+            <img id="main-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png" alt="Ringspun Super Soft Tee">
+        </div>
+        <div class="back-image">
+            <img id="back-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Sweatshirt6.png" alt="Back Image" onclick="changeImage()">
+        </div>
+    </div>
+    <div class="product-details">
+        <div class="product-title">Ringspun Super Soft Tee</div>
+        <div class="product-brand">Bella Canvas | BC3001C1</div>
+        <div class="product-price">$6.21</div>
+        <form class="product-form">
+            <label for="color">Color</label>
+            <select id="color" onchange="updateImages()">
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="white">White</option>
+                <option value="blue">Blue</option>
+                <option value="yellow">Yellow</option>
+            </select>
+            <div class="radio-container">
+                <input type="radio" id="size-ys" name="size" value="YS">
+                <label for="size-ys">YS</label>
+                <input type="radio" id="size-ym" name="size" value="YM">
+                <label for="size-ym">YM</label>
+                <input type="radio" id="size-yl" name="size" value="YL">
+                <label for="size-yl">YL</label>
+                <input type="radio" id="size-s" name="size" value="S">
+                <label for="size-s">S</label>
+                <input type="radio" id="size-m" name="size" value="M">
+                <label for="size-m">M</label>
+                <input type="radio" id="size-l" name="size" value="L">
+                <label for="size-l">L</label>
+                <input type="radio" id="size-xl" name="size" value="XL">
+                <label for="size-xl">XL</label>
+                <input type="radio" id="size-3xl" name="size" value="3XL">
+                <label for="size-3xl">3XL</label>
+            </div>
+            <button type="submit" class="submit-button">Submit Item</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function changeImage() {
+        const mainImage = document.getElementById('main-image');
+        const backImage = document.getElementById('back-image');
+
+        const currentMainSrc = mainImage.src;
+        mainImage.src = backImage.src;
+        backImage.src = currentMainSrc;
+    }
+
+    function updateImages() {
+        const color = document.getElementById('color').value;
+        const mainImage = document.getElementById('main-image');
+        const backImage = document.getElementById('back-image');
+
+        if (color === 'red') {
+            mainImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png";
+            backImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Sweatshirt6.png";
+        } else if (color === 'green') {
+            mainImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/LongSleeve.png";
+            backImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Hat.png";
+        }
+        // Add more conditions for other colors if needed
+    }
+</script>
+
+</body>
+</html>
