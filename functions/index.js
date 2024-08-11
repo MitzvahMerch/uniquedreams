@@ -33,7 +33,8 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
       await new Promise((resolve, reject) => {
         exec(
-          `magick -density 300 ${tempFilePath} -quality 100 ${convertedFilePath}`,
+          `magick -density 300 ${tempFilePath} -quality 100 ` +
+          `${convertedFilePath}`,
           (error, stdout, stderr) => {
             if (error) {
               console.error(`Error converting ${fileExt} to PNG:`, stderr);
