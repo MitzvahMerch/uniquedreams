@@ -1,11 +1,11 @@
-\const functions = require("firebase-functions");
+const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { createCanvas, loadImage } = require("canvas");
 const sharp = require("sharp");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
-// Removed unused `exec` since it's not utilized anymore
+const { exec } = require("child_process");
 
 admin.initializeApp();
 
@@ -24,15 +24,28 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
     const fileExt = path.extname(filePath).toLowerCase();
 
-    // Convert file types if necessary
+    // Convert AI or PDF files to PNG using ImageMagick
     if (fileExt === ".pdf" || fileExt === ".ai") {
       convertedFilePath = path.join(
         os.tmpdir(),
         fileName.replace(fileExt, ".png")
       );
-      await sharp(tempFilePath).png().toFile(convertedFilePath);
-      console.log(`${fileExt} file converted to PNG`);
+
+      await new Promise((resolve, reject) => {
+        exec(
+          `magick -density 300 ${tempFilePath} -quality 100 ${convertedFilePath}`,
+          (error, stdout, stderr) => {
+            if (error) {
+              console.error(`Error converting ${fileExt} to PNG:`, stderr);
+              return reject(error);
+            }
+            console.log(`${fileExt.toUpperCase()} file converted to PNG`);
+            resolve();
+          }
+        );
+      });
     } else if (fileExt === ".webp") {
+      // Handle WEBP files with sharp
       convertedFilePath = path.join(
         os.tmpdir(),
         fileName.replace(fileExt, ".png")
