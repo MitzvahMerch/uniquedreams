@@ -1,11 +1,11 @@
-const functions = require("firebase-functions");
+\const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { createCanvas, loadImage } = require("canvas");
 const sharp = require("sharp");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
-const { exec } = require("child_process");
+// Removed unused `exec` since it's not utilized anymore
 
 admin.initializeApp();
 
@@ -76,23 +76,3 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
   return null;
 });
-
-/**
- * Converts a buffer to a PNG image using ImageMagick.
- *
- * @param {Buffer} buffer - The buffer containing the image data.
- * @return {Promise<Buffer>} A promise that resolves to a PNG buffer.
- */
-async function convertToPng(buffer) {
-  return new Promise((resolve, reject) => {
-    exec(
-      `magick convert -density 300 -quality 100 -background white -flatten - ${buffer}`,
-      (error, stdout, stderr) => {
-        if (error) {
-          return reject(new Error(`Error converting file: ${stderr}`));
-        }
-        resolve(Buffer.from(stdout));
-      }
-    );
-  });
-}
