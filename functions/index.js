@@ -1,4 +1,4 @@
-\const functions = require("firebase-functions");
+const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { createCanvas, loadImage } = require("canvas");
 const sharp = require("sharp");
@@ -76,3 +76,4 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
   return null;
 });
+
