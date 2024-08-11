@@ -89,3 +89,4 @@ exports.processLogo = functions.storage.object().onFinalize(async (object) => {
 
   return null;
 });
+
