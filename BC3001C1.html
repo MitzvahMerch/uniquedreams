@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0B3A92;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header, footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 1000;
+        }
+        header {
+            top: 0;
+        }
+        footer {
+            bottom: 0;
+        }
+        .main-content {
+            margin-top: 60px; /* Ensure the content is below the fixed header */
+            margin-bottom: 60px; /* Ensure the content is above the fixed footer */
+        }
+        .product-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #0B3A92;
+            gap: 20px;
+        }
+        .product-image-container {
+            flex: 1;
+            text-align: center;
+            background-color: #f0f0f0; /* Light grey background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-image {
+            background-color: #fff; /* White background for the image */
+            padding: 20px;
+            border-radius: 10px;
+            border: 5px solid #fff; /* White border around the image */
+        }
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .back-image {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-image img {
+            max-width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+        .product-details {
+            flex: 0 0 400px; /* Adjusted width */
+            background-color: #f0f0f0; /* Light grey background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-brand {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-form {
+            margin-bottom: 20px;
+        }
+        .product-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .product-form select,
+        .product-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .product-form button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .product-form button:hover {
+            background-color: #0056b3;
+        }
+        .size-table {
+            width: 100%;
+            border-spacing: 10px;
+        }
+        .size-table td {
+            vertical-align: middle;
+        }
+        .size-input {
+            width: 60px;
+            padding: 5px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Your Website Name</h1>
+</header>
+
+<div class="main-content">
+    <div class="product-container">
+        <div class="product-image-container">
+            <div class="product-image">
+                <img id="main-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png" alt="Ringspun Super Soft Tee">
+            </div>
+            <div class="back-image">
+                <img id="back-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Sweatshirt6.png" alt="Back Image" onclick="changeImage()">
+            </div>
+        </div>
+        <div class="product-details">
+            <div class="product-title">Ringspun Super Soft Tee</div>
+            <div class="product-brand">Bella Canvas | BC3001C1</div>
+            <div class="product-price">$6.21</div>
+            <form class="product-form" onsubmit="calculateQuantity(event)">
+                <label for="color">Color</label>
+                <select id="color" onchange="updateImages()">
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="white">White</option>
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                </select>
+
+                <table class="size-table">
+                    <tr>
+                        <td>
+                            <label for="size-ym">YM</label>
+                            <input type="number" id="size-ym" class="size-input" min="0" placeholder="0">
+                        </td>
+                        <td>
+                            <label for="size-yl">YL</label>
+                            <input type="number" id="size-yl" class="size-input" min="0" placeholder="0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="size-s">S</label>
+                            <input type="number" id="size-s" class="size-input" min="0" placeholder="0">
+                        </td>
+                        <td>
+                            <label for="size-m">M</label>
+                            <input type="number" id="size-m" class="size-input" min="0" placeholder="0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="size-l">L</label>
+                            <input type="number" id="size-l" class="size-input" min="0" placeholder="0">
+                        </td>
+                        <td>
+                            <label for="size-xl">XL</label>
+                            <input type="number" id="size-xl" class="size-input" min="0" placeholder="0">
+                        </td>
+                    </tr>
+                </table>
+
+                <button type="submit" class="submit-button">Submit Item</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+</footer>
+
+<script>
+    function changeImage() {
+        const mainImage = document.getElementById('main-image');
+        const backImage = document.getElementById('back-image');
+
+        const currentMainSrc = mainImage.src;
+        mainImage.src = backImage.src;
+        backImage.src = currentMainSrc;
+    }
+
+    function updateImages() {
+        const color = document.getElementById('color').value;
+        const mainImage = document.getElementById('main-image');
+        const backImage = document.getElementById('back-image');
+
+        if (color === 'red') {
+            mainImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png";
+            backImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Sweatshirt6.png";
+        } else if (color === 'green') {
+            mainImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/LongSleeve.png";
+            backImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Hat.png";
+        }
+        // Add more conditions for other colors if needed
+    }
+
+    function calculateQuantity(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        const sizes = ['size-ym', 'size-yl', 'size-s', 'size-m', 'size-l', 'size-xl'];
+        let totalQuantity = 0;
+
+        sizes.forEach(size => {
+            const sizeInput = document.getElementById(size);
+            const sizeValue = parseInt(sizeInput.value) || 0;
+            totalQuantity += sizeValue;
+        });
+
+        alert(`Total quantity: ${totalQuantity}`);
+        // You can then proceed with further processing, e.g., calculating price, submitting the form, etc.
+    }
+</script>
+
+</body>
+</html>
