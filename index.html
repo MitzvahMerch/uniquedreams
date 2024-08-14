@@ -113,6 +113,75 @@
             text-decoration: underline;
         }
     </style>
+    <!-- Firebase Configuration -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
+            authDomain: "mitzvahmerch-ac346.firebaseapp.com",
+            projectId: "mitzvahmerch-ac346",
+            storageBucket: "mitzvahmerch-ac346.appspot.com",
+            messagingSenderId: "232131426361",
+            appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
+            measurementId: "G-XXFM5DPRZ6"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        function generateSessionId() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0,
+                      v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function getSessionId() {
+            const currentTimestamp = new Date().getTime(); // Current time in milliseconds
+            const sessionData = JSON.parse(localStorage.getItem('sessionData'));
+
+            if (sessionData) {
+                const { sessionId, timestamp } = sessionData;
+                
+                // Check if 72 hours have passed (72 hours * 60 minutes * 60 seconds * 1000 milliseconds)
+                const expirationTime = 72 * 60 * 60 * 1000;
+
+                if (currentTimestamp - timestamp < expirationTime) {
+                    // Session is still valid
+                    return sessionId;
+                }
+            }
+
+            // Session is expired or does not exist, generate a new one
+            const newSessionId = generateSessionId();
+            localStorage.setItem('sessionData', JSON.stringify({
+                sessionId: newSessionId,
+                timestamp: currentTimestamp
+            }));
+            
+            return newSessionId;
+        }
+
+        async function saveSessionToFirestore(sessionId) {
+            try {
+                await db.collection("sessions").doc(sessionId).set({
+                    sessionId: sessionId,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                console.log("Session ID saved to Firestore:", sessionId);
+            } catch (error) {
+                console.error("Error saving session to Firestore:", error);
+            }
+        }
+
+        // Generate or retrieve the session ID when the page loads
+        const sessionId = getSessionId();
+        console.log("Session ID:", sessionId);
+
+        // Save the session ID to Firestore
+        saveSessionToFirestore(sessionId);
+    </script>
 </head>
 <body>
     <header>
@@ -184,4 +253,3 @@
     </div>
 </body>
 </html>
-
