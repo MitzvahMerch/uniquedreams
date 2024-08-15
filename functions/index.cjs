@@ -122,12 +122,16 @@ exports.convertAndProcessLogo = functions.storage.object().onFinalize(async (obj
     const numColors = colorSet.size;
     console.log(`Number of colors detected (excluding background): ${numColors}`);
 
-    await firestore.collection("logos").doc(fileName).set({
-      numColors: numColors,
-      timestamp: new Date().toISOString(),
-    });
+    // Retrieve sessionId from metadata
+    const sessionId = object.metadata.sessionId || "unknown";
 
-    console.log("Color information stored successfully in Firestore.");
+    // Store in Firestore using sessionId as the document ID
+    await firestore.collection("logos").doc(sessionId).update({
+      numColors: numColors,
+      timestamp: new Date().toISOString()
+  });  
+
+    console.log("Color information stored successfully in Firestore with session ID:", sessionId);
   } catch (error) {
     console.error("Error processing the logo:", error);
   } finally {
