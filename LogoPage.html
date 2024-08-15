@@ -262,7 +262,6 @@
                 if (file) {
                     const fileType = file.type;
                     if (fileType === 'application/pdf') {
-                        // Handle PDF
                         const reader = new FileReader();
                         reader.onload = function(e) {
                             const pdfData = new Uint8Array(e.target.result);
@@ -273,7 +272,6 @@
                         };
                         reader.readAsArrayBuffer(file);
                     } else {
-                        // Handle other image types
                         const reader = new FileReader();
                         reader.onload = function(e) {
                             fileDisplay.src = e.target.result;
@@ -307,9 +305,16 @@
                     return;
                 }
 
+                // Include session ID in metadata
+                const metadata = {
+                    customMetadata: {
+                        sessionId: sessionId
+                    }
+                };
+
                 const storageRef = ref(storage, 'logos/' + file.name);
                 try {
-                    const snapshot = await uploadBytes(storageRef, file);
+                    const snapshot = await uploadBytes(storageRef, file, metadata);
                     const downloadURL = await getDownloadURL(snapshot.ref);
 
                     // Save logo data to Firestore under the session ID
