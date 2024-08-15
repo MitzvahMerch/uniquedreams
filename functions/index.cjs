@@ -129,7 +129,7 @@ exports.convertAndProcessLogo = functions.storage.object().onFinalize(async (obj
     await firestore.collection("logos").doc(sessionId).update({
       numColors: numColors,
       timestamp: new Date().toISOString()
-  });  
+    });  
 
     console.log("Color information stored successfully in Firestore with session ID:", sessionId);
   } catch (error) {
@@ -177,3 +177,47 @@ function convertAiToImage(aiPath, outputPath) {
     });
   });
 }
+
+// New Cloud Function to calculate price based on sessionId, quantity, and SKU
+exports.calculatePrice = functions.https.onRequest(async (req, res) => {
+    const { sessionId, quantity, sku } = req.query;
+
+    if (!sessionId || !quantity || !sku) {
+        res.status(400).send('Missing sessionId, quantity, or SKU');
+        return;
+    }
+
+    try {
+        // Retrieve numColors from the logos collection using the sessionId
+        const logoDoc = await firestore.collection("logos").doc(sessionId).get();
+        if (!logoDoc.exists) {
+            res.status(404).send('Session not found');
+            return;
+        }
+
+        const numColors = logoDoc.data().numColors;
+
+        // Retrieve pricing chart from the pricing collection using the SKU
+        const pricingDoc = await firestore.collection("pricing").doc(sku).get();
+        if (!pricingDoc.exists) {
+            res.status(404).send('SKU not found');
+            return;
+        }
+
+        const pricingChart = pricingDoc.data().pricingChart;
+
+        // Determine the price based on numColors and quantity
+        const quantityRange = Object.keys(pricingChart[numColors]).find(range => {
+            const [min, max] = range.split('-').map(Number);
+            return quantity >= min && quantity <= max;
+        });
+
+        const price = pricingChart[numColors][quantityRange];
+
+        // Send the price back to the client
+        res.status(200).send({ price });
+    } catch (error) {
+        console.error("Error calculating price:", error);
+        res.status(500).send('Internal Server Error');
+    }
+});

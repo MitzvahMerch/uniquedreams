@@ -125,6 +125,11 @@
             padding: 5px;
             margin-left: 10px;
         }
+        #priceDisplay {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -192,6 +197,7 @@
 
                 <button type="submit" class="submit-button">Submit Item</button>
             </form>
+            <p id="priceDisplay">Total Price: </p>
         </div>
     </div>
 </div>
@@ -225,7 +231,7 @@
         // Add more conditions for other colors if needed
     }
 
-    function calculateQuantity(event) {
+    async function calculateQuantity(event) {
         event.preventDefault(); // Prevent the form from submitting
 
         const sizes = ['size-ym', 'size-yl', 'size-s', 'size-m', 'size-l', 'size-xl'];
@@ -237,8 +243,23 @@
             totalQuantity += sizeValue;
         });
 
-        alert(`Total quantity: ${totalQuantity}`);
-        // You can then proceed with further processing, e.g., calculating price, submitting the form, etc.
+        // Retrieve the session ID from local storage
+        const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
+        const sku = 'BC3001C1'; // SKU for this product
+
+        try {
+            const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=${totalQuantity}&sku=${sku}`);
+            const result = await response.json();
+
+            if (result.price) {
+                document.getElementById('priceDisplay').innerText = `Total Price: $${result.price}`;
+            } else {
+                document.getElementById('priceDisplay').innerText = 'Could not calculate price. Please try again.';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('priceDisplay').innerText = 'There was an error calculating the price.';
+        }
     }
 </script>
 
