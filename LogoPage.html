@@ -100,7 +100,7 @@
         .feedback-message {
             display: none;
             margin-top: 20px;
-            font-size: 22.4px; /* 40% larger than 16px */
+            font-size: 22.4px;
             color: #0C3A92;
             font-weight: bold;
         }
@@ -232,6 +232,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
@@ -245,12 +246,16 @@
 
         const app = initializeApp(firebaseConfig);
         const storage = getStorage(app);
+        const db = getFirestore(app);
 
         document.addEventListener('DOMContentLoaded', function () {
             const fileInput = document.getElementById('fileInput');
             const submitButton = document.getElementById('submitButton');
             const fileDisplay = document.getElementById('fileDisplay');
             const pdfCanvas = document.getElementById('pdfCanvas');
+
+            // Retrieve the session ID from local storage
+            const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
 
             fileInput.addEventListener('change', function(event) {
                 const file = event.target.files[0];
@@ -306,6 +311,14 @@
                 try {
                     const snapshot = await uploadBytes(storageRef, file);
                     const downloadURL = await getDownloadURL(snapshot.ref);
+
+                    // Save logo data to Firestore under the session ID
+                    await setDoc(doc(db, "logos", sessionId), {
+                        sessionId: sessionId,
+                        logoName: file.name,
+                        downloadURL: downloadURL,
+                        timestamp: new Date().toISOString()
+                    });
 
                     document.getElementById('feedback-message').style.display = 'block';
                     submitButton.style.display = 'none';
