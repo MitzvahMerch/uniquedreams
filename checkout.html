@@ -12,17 +12,33 @@
     <div id="paypal-button-container"></div>
 
     <script>
-        let totalPrice = 0; // Variable to store the fetched price
-
-        // Fetch the price from your Firebase Function or Firestore
         async function fetchPrice() {
+            // Retrieve the session ID and SKU from local storage
+            const sessionData = JSON.parse(localStorage.getItem('sessionData'));
+            const sessionId = sessionData ? sessionData.sessionId : null;
+            const sku = 'BC3001C1'; // SKU for this product
+            
+            if (!sessionId) {
+                document.getElementById('priceDisplay').innerText = 'Session ID not found.';
+                return;
+            }
+            
             try {
-                const response = await fetch('https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=YOUR_SESSION_ID&quantity=10&sku=BC3001C1');
+                const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=10&sku=${sku}`);
+                
+                if (!response.ok) {
+                    // Handle response as plain text
+                    const errorText = await response.text();
+                    console.error('Error:', errorText);
+                    document.getElementById('priceDisplay').innerText = 'There was an error calculating the price.';
+                    return;
+                }
+
                 const result = await response.json();
 
                 if (result.price) {
                     totalPrice = result.price;
-                    document.getElementById('priceDisplay').innerText = `Total Price: $${totalPrice}`;
+                    document.getElementById('priceDisplay').innerText = `Total Price: $${totalPrice.toFixed(2)}`;
                 } else {
                     document.getElementById('priceDisplay').innerText = 'Could not calculate price. Please try again.';
                 }
