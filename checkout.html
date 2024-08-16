@@ -8,30 +8,51 @@
 </head>
 <body>
     <h1>Checkout Page</h1>
+    <div id="orderDetailsDisplay">Loading Order Details...</div>
     <div id="priceDisplay">Total Price: Calculating...</div>
     <div id="paypal-button-container"></div>
 
     <script>
-        // Retrieve the price from local storage
-        function getStoredPrice() {
+        // Retrieve the price and order details from local storage
+        function getStoredData() {
             const storedPrice = localStorage.getItem('totalPrice');
-            return storedPrice ? parseFloat(storedPrice) : 0;
+            const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+            return {
+                price: storedPrice ? parseFloat(storedPrice) : 0,
+                orderDetails: orderDetails || {}
+            };
         }
 
-        // Update the price display and PayPal button
-        function updatePriceDisplayAndPayPal() {
-            const totalPrice = getStoredPrice();
-            if (totalPrice > 0) {
-                document.getElementById('priceDisplay').innerText = `Total Price: $${totalPrice.toFixed(2)}`;
+        // Update the order details and price display
+        function updateDisplay() {
+            const { price, orderDetails } = getStoredData();
+
+            // Display order details
+            const orderDetailsDisplay = document.getElementById('orderDetailsDisplay');
+            if (orderDetails && orderDetails.sku) {
+                orderDetailsDisplay.innerHTML = `
+                    <p>Product SKU: ${orderDetails.sku}</p>
+                    <p>Color: ${orderDetails.color}</p>
+                    <p>Sizes Ordered: ${JSON.stringify(orderDetails.sizes)}</p>
+                `;
+            } else {
+                orderDetailsDisplay.innerText = 'Order details not available.';
+            }
+
+            // Display total price
+            const priceDisplay = document.getElementById('priceDisplay');
+            if (price > 0) {
+                priceDisplay.innerText = `Total Price: $${price.toFixed(2)}`;
                 
-                // Render the PayPal button with the correct price
+                // Render the PayPal button with the correct price and order details
                 paypal.Buttons({
                     createOrder: function(data, actions) {
                         return actions.order.create({
                             purchase_units: [{
                                 amount: {
-                                    value: totalPrice.toFixed(2) // Use the fetched price for PayPal
-                                }
+                                    value: price.toFixed(2)
+                                },
+                                description: `Order for SKU: ${orderDetails.sku}, Color: ${orderDetails.color}, Sizes: ${JSON.stringify(orderDetails.sizes)}`
                             }]
                         });
                     },
@@ -42,12 +63,12 @@
                     }
                 }).render('#paypal-button-container');
             } else {
-                document.getElementById('priceDisplay').innerText = 'Price data not available.';
+                priceDisplay.innerText = 'Price data not available.';
             }
         }
 
         // Call the function to update the display on page load
-        updatePriceDisplayAndPayPal();
+        updateDisplay();
     </script>
 </body>
 </html>
