@@ -20,12 +20,14 @@ module.exports = {
     "no-restricted-globals": ["error", "name", "length"],
     "prefer-arrow-callback": "error",
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
-    "no-undef": "off", // Turn off this rule for testing
+    "no-undef": "error", // Turn this back to "error" to enforce the rule
   },
   globals: {
     require: "readonly",
     module: "readonly",
     exports: "readonly",
     convertedFilePath: "writable",  // Explicitly define convertedFilePath
+    process: "readonly", // Recognize process as a global variable
+    __dirname: "readonly", // Recognize __dirname as a global variable
   },
 };

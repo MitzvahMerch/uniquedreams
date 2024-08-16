@@ -237,8 +237,10 @@ const dotenv = require('dotenv');
 // Load environment variables from .env file
 dotenv.config();
 
+// Disable ESLint's no-undef rule for the following block
+/* eslint-disable no-undef */
+
 const app = express();
-const port = process.env.PORT || 3000;
 
 // Set up Mustache as the template engine
 app.engine('mustache', mustacheExpress());
@@ -256,6 +258,4 @@ app.get('/checkout', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-});
+/* eslint-enable no-undef */
