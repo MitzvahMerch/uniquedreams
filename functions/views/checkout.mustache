@@ -4,29 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <!-- Directly embedding the client ID for testing -->
+    <!-- PayPal SDK Script -->
     <script src="https://www.paypal.com/sdk/js?client-id=AZzLQop9vrKuZKKoH5kjjdUW5bti6eMFwBePvUDXA2lYYZG73hHo3LFKSULAJfg84qHWdbqbDsio8C4p&vault=true&intent=authorize"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        .checkout-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .checkout-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .price-display {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        #paypal-button-container {
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Checkout Page</h1>
-    <div id="paypal-button-container"></div>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>Checkout Page</h1>
+        </div>
+        <div class="price-display">
+            <!-- Price will be displayed here -->
+            Total Amount: $<span id="total-price">0.00</span>
+        </div>
+        <div id="paypal-button-container"></div>
+        <div class="error-message" id="error-message"></div>
+    </div>
+
     <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '100.00' // Replace with actual price if dynamic
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve the total price from localStorage
+            let totalPrice = localStorage.getItem('totalPrice');
+
+            // Reference to the price display and error message elements
+            const priceDisplay = document.getElementById('total-price');
+            const errorMessage = document.getElementById('error-message');
+
+            // Function to format the price to two decimal places
+            function formatPrice(price) {
+                return parseFloat(price).toFixed(2);
             }
-        }).render('#paypal-button-container');
+
+            // Check if totalPrice exists and is a valid number
+            if (totalPrice && !isNaN(totalPrice) && parseFloat(totalPrice) > 0) {
+                totalPrice = formatPrice(totalPrice);
+                priceDisplay.textContent = totalPrice;
+
+                // Initialize PayPal Buttons
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: totalPrice
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            alert('Transaction completed by ' + details.payer.name.given_name);
+                            // Optionally, redirect the user to a confirmation page
+                            window.location.href = '/order-confirmation'; // Update the path as needed
+                        });
+                    },
+                    onError: function(err) {
+                        console.error('PayPal Checkout Error:', err);
+                        errorMessage.textContent = 'An error occurred during the transaction. Please try again.';
+                    }
+                }).render('#paypal-button-container');
+            } else {
+                // If totalPrice is invalid, display an error message
+                priceDisplay.textContent = '0.00';
+                errorMessage.textContent = 'Invalid total amount. Please return to the product page and try again.';
+                
+                // Optionally, redirect the user back to the product page after a delay
+                setTimeout(function() {
+                    window.location.href = '/product-page'; // Update the path to your product page
+                }, 5000); // Redirect after 5 seconds
+            }
+        });
     </script>
 </body>
 </html>
