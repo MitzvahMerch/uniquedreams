@@ -198,6 +198,7 @@
                 <button type="submit" class="submit-button">Submit Item</button>
             </form>
             <p id="priceDisplay">Total Price: </p>
+            <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
     </div>
 </div>
@@ -253,13 +254,24 @@
 
             if (result.price) {
                 document.getElementById('priceDisplay').innerText = `Total Price: $${result.price}`;
+                document.getElementById('checkoutButton').style.display = 'block';
+
+                // Save the price in localStorage to use it in the checkout page
+                localStorage.setItem('totalPrice', result.price);
             } else {
                 document.getElementById('priceDisplay').innerText = 'Could not calculate price. Please try again.';
+                document.getElementById('checkoutButton').style.display = 'none';
             }
         } catch (error) {
             console.error('Error:', error);
             document.getElementById('priceDisplay').innerText = 'There was an error calculating the price.';
+            document.getElementById('checkoutButton').style.display = 'none';
         }
+    }
+
+    function proceedToCheckout() {
+        // Navigate to the checkout page
+        window.location.href = '/checkout'; // Update the path as needed based on your setup
     }
 </script>
 
