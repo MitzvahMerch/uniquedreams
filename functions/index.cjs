@@ -5,7 +5,8 @@ const os = require('os');
 const fs = require('fs');
 const { createCanvas, loadImage } = require('canvas');
 const { exec } = require('child_process');
-const sharp = require('sharp'); 
+const sharp = require('sharp');
+const cors = require('cors')({ origin: true }); // Import and configure CORS
 
 admin.initializeApp();
 
@@ -179,45 +180,82 @@ function convertAiToImage(aiPath, outputPath) {
 }
 
 // New Cloud Function to calculate price based on sessionId, quantity, and SKU
-exports.calculatePrice = functions.https.onRequest(async (req, res) => {
-    const { sessionId, quantity, sku } = req.query;
+exports.calculatePrice = functions.https.onRequest((req, res) => {
+  cors(req, res, async () => {
+      const { sessionId, quantity, sku } = req.query;
 
-    if (!sessionId || !quantity || !sku) {
-        res.status(400).send('Missing sessionId, quantity, or SKU');
-        return;
-    }
+      if (!sessionId || !quantity || !sku) {
+          res.status(400).send('Missing sessionId, quantity, or SKU');
+          return;
+      }
 
-    try {
-        // Retrieve numColors from the logos collection using the sessionId
-        const logoDoc = await firestore.collection("logos").doc(sessionId).get();
-        if (!logoDoc.exists) {
-            res.status(404).send('Session not found');
-            return;
-        }
+      try {
+          // Retrieve numColors from the logos collection using the sessionId
+          const logoDoc = await firestore.collection("logos").doc(sessionId).get();
+          if (!logoDoc.exists) {
+              res.status(404).send('Session not found');
+              return;
+          }
 
-        const numColors = logoDoc.data().numColors;
+          const numColors = logoDoc.data().numColors;
 
-        // Retrieve pricing chart from the pricing collection using the SKU
-        const pricingDoc = await firestore.collection("pricing").doc(sku).get();
-        if (!pricingDoc.exists) {
-            res.status(404).send('SKU not found');
-            return;
-        }
+          // Retrieve pricing chart from the pricing collection using the SKU
+          const pricingDoc = await firestore.collection("pricing").doc(sku).get();
+          if (!pricingDoc.exists) {
+              res.status(404).send('SKU not found');
+              return;
+          }
 
-        const pricingChart = pricingDoc.data().pricingChart;
+          const pricingChart = pricingDoc.data().pricingChart;
 
-        // Determine the price based on numColors and quantity
-        const quantityRange = Object.keys(pricingChart[numColors]).find(range => {
-            const [min, max] = range.split('-').map(Number);
-            return quantity >= min && quantity <= max;
-        });
+          // Determine the price based on numColors and quantity
+          const quantityRange = Object.keys(pricingChart[numColors]).find(range => {
+              const [min, max] = range.split('-').map(Number);
+              return quantity >= min && quantity <= max;
+          });
 
-        const price = pricingChart[numColors][quantityRange];
+          const pricePerItem = pricingChart[numColors][quantityRange];
 
-        // Send the price back to the client
-        res.status(200).send({ price });
-    } catch (error) {
-        console.error("Error calculating price:", error);
-        res.status(500).send('Internal Server Error');
-    }
+          // Calculate total price
+          const totalPrice = pricePerItem * quantity;
+
+          // Send the total price back to the client
+          res.status(200).send({ price: totalPrice });
+      } catch (error) {
+          console.error("Error calculating price:", error);
+          res.status(500).send('Internal Server Error');
+      }
+  });
+});
+
+// Add PayPal Fastlane Integration
+
+const express = require('express');
+const mustacheExpress = require('mustache-express');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Set up Mustache as the template engine
+app.engine('mustache', mustacheExpress());
+app.set('view engine', 'mustache');
+app.set('views', path.join(__dirname, 'views'));
+
+// Serve static files from the "public" directory
+app.use(express.static('public'));
+
+// Serve the checkout page
+app.get('/checkout', (req, res) => {
+    res.render('checkout', {
+        clientId: process.env.PAYPAL_CLIENT_ID,
+        domains: process.env.DOMAINS
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });
