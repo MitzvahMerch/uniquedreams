@@ -79,12 +79,25 @@
 
         .size-table td {
             vertical-align: middle;
+            width: 50%; /* Make sure each cell takes up half the row */
         }
 
         .size-input {
-            width: 60px;
+            width: 100%; /* Make the input take up the full width of the cell */
             padding: 5px;
-            margin-left: 10px;
+            margin-left: 0;
+            box-sizing: border-box;
+        }
+
+        .total-input {
+            width: 100%;
+            padding: 5px;
+            margin-left: 0;
+            box-sizing: border-box;
+            background-color: #e0e0e0; /* Light gray background for non-editable field */
+            border: 1px solid #ccc;
+            text-align: center;
+            cursor: not-allowed;
         }
 
         .submit-button {
@@ -146,27 +159,33 @@
             <table class="size-table">
                 <tr>
                     <td><label for="size-ym">YM</label></td>
-                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
+                    <td><label for="size-yl">YL</label></td>
                 </tr>
                 <tr>
-                    <td><label for="size-yl">YL</label></td>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
                     <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
                 </tr>
                 <tr>
                     <td><label for="size-s">S</label></td>
-                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
+                    <td><label for="size-m">M</label></td>
                 </tr>
                 <tr>
-                    <td><label for="size-m">M</label></td>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
                     <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
                 </tr>
                 <tr>
                     <td><label for="size-l">L</label></td>
-                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
+                    <td><label for="size-xl">XL</label></td>
                 </tr>
                 <tr>
-                    <td><label for="size-xl">XL</label></td>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
                     <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="total">Total</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="number" id="total" class="total-input" value="0" readonly></td>
                 </tr>
             </table>
 
