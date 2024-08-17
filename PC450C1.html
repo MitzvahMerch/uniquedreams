@@ -21,15 +21,15 @@
             margin-top: 50px;
         }
 
-        .image-container {
-            position: relative;
-            width: 352px;
-            height: 470px;
-            border: 2px solid #ccc;
-            background-color: #add8e6;
+        .image-container, .controls-container {
+            flex: 1; /* Make both containers equal in width */
+            height: 100%; /* Ensure they stretch to the full height of their content */
+            max-width: 50%; /* Ensure they occupy half the width of the product-container */
+            background-color: #add8e6; /* Light blue for image container */
             display: flex;
             justify-content: center;
             align-items: center;
+            border: 2px solid #ccc;
         }
 
         .image-container img {
@@ -60,8 +60,7 @@
         }
 
         .controls-container {
-            flex: 1; /* Make this container match the image container's height */
-            background-color: #f0f0f0;
+            background-color: #f0f0f0; /* Light gray for controls container */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -174,3 +173,4 @@
 
 </body>
 </html>
+
