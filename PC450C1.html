@@ -120,7 +120,7 @@
                 <label for="logo-placement">Select Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
                     <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-                    <option value="right-chest">Right Chest</option>
+                    <option value="left-chest">Left Chest</option>
                     <option value="full-front">Full Front</option>
                     <option value="half-front">Half Front</option>
                     <option value="center-back">Center Back</option>
@@ -182,17 +182,17 @@
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'half-front':
-                    logo.style.width = '145px';  // 45% bigger
-                    logo.style.height = '145px';
-                    logo.style.top = '40%'; // Same midpoint as full front
+                    logo.style.width = '174px';  // 20% bigger than previous 145px
+                    logo.style.height = '174px';
+                    logo.style.top = '36%'; // Moved up by 4%
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
-                case 'right-chest':
+                case 'left-chest':
                     logo.style.width = '68px';  // 15% smaller
                     logo.style.height = '68px';
                     logo.style.top = '30%';
-                    logo.style.left = '70%'; // Shifted to the right chest
+                    logo.style.left = '60%'; // Shifted more inward
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'center-back':
