@@ -37,10 +37,8 @@
         }
 
         .image-container img.back-image {
-    transform: scale(1.32); /* Scale the back image by 20% */
-    transform-origin: 50% 28%; /* Custom percentages for finer control */
-
-
+            transform: scale(1.32); /* Scale the back image by 20% */
+            transform-origin: 50% 28%; /* Custom percentages for finer control */
         }
 
         .logo-placeholder {
@@ -125,6 +123,16 @@
         
         <div class="controls-container">
             <div class="controls">
+                <label for="color-selection">Select Color:</label>
+                <select id="color-selection" onchange="updateColor()">
+                    <option value="BrightGold" selected>BrightGold</option>
+                    <option value="AthleticHthr">Athletic Hthr</option>
+                    <option value="AthleticKelly">Athletic Kelly</option>
+                    <option value="AthleticMaroon">Athletic Maroon</option>
+                    <option value="BrightRed">Bright Red</option>
+                </select>
+            </div>
+            <div class="controls">
                 <label for="logo-placement">Select Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
                     <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
@@ -170,6 +178,35 @@
     </div>
 
     <script>
+        function updateColor() {
+            const color = document.getElementById('color-selection').value;
+            const image = document.getElementById('product-image');
+
+            switch (color) {
+                case 'BrightGold':
+                    image.src = 'PC450C1/BrightGoldFront.png';
+                    break;
+                case 'AthleticHthr':
+                    image.src = 'PC450C1/AthleticHthrFront.png';
+                    break;
+                case 'AthleticKelly':
+                    image.src = 'PC450C1/AthleticKellyFront.png';
+                    break;
+                case 'AthleticMaroon':
+                    image.src = 'PC450C1/AthleticMaroonFront.png';
+                    break;
+                case 'BrightRed':
+                    image.src = 'PC450C1/BrightRedFront.png';
+                    break;
+                default:
+                    image.src = 'PC450C1/BrightGoldFront.png';
+                    break;
+            }
+
+            // Ensure any logo placement changes are reset when color changes
+            updateLogoPlacement();
+        }
+
         function updateLogoPlacement() {
             const logo = document.getElementById('logo-placeholder');
             const placement = document.getElementById('logo-placement').value;
@@ -191,7 +228,7 @@
                     logo.style.top = '40%'; // Moved up slightly
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = 'PC450C1/BrightGoldFront.png'; // Show front image
+                    image.src = image.src.replace('Front', 'Front'); // Show front image
                     break;
                 case 'half-front':
                     logo.style.width = '116px';  // 20% smaller than previous 145px
@@ -199,7 +236,7 @@
                     logo.style.top = '37%'; // Moved up by 3%
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = 'PC450C1/BrightGoldFront.png'; // Show front image
+                    image.src = image.src.replace('Front', 'Front'); // Show front image
                     break;
                 case 'left-chest':
                     logo.style.width = '68px';  // 15% smaller
@@ -207,7 +244,7 @@
                     logo.style.top = '30%';
                     logo.style.left = '60%'; // Shifted more inward
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = 'PC450C1/BrightGoldFront.png'; // Show front image
+                    image.src = image.src.replace('Front', 'Front'); // Show front image
                     break;
                 case 'center-back':
                     logo.style.width = '135px';
@@ -215,7 +252,7 @@
                     logo.style.top = '28%';
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = 'PC450C1/BrightGoldBack.png'; // Show back image
+                    image.src = image.src.replace('Front', 'Back'); // Show back image
                     image.classList.add('back-image'); // Apply scaling
                     break;
                 default:
