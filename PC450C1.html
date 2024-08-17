@@ -177,7 +177,34 @@
                 logo.style.transform = 'translate(-50%, -50%)';
             } else {
                 image.src = 'PC450C1/BrightGoldFront.png'; // Show front image by default
-                logo.style.display = 'none';
+                logo.style.display = 'block';
+
+                switch (placement) {
+                    case 'full-front':
+                        logo.style.width = '200px';  // Adjust size for full front
+                        logo.style.height = '200px';
+                        logo.style.top = '50%'; // Centered vertically
+                        logo.style.left = '50%';
+                        logo.style.transform = 'translate(-50%, -50%)';
+                        break;
+                    case 'half-front':
+                        logo.style.width = '145px';  // Adjust size for half front
+                        logo.style.height = '145px';
+                        logo.style.top = '40%'; // Moved up slightly
+                        logo.style.left = '50%';
+                        logo.style.transform = 'translate(-50%, -50%)';
+                        break;
+                    case 'left-chest':
+                        logo.style.width = '85px';  // Adjust size for left chest
+                        logo.style.height = '85px';
+                        logo.style.top = '30%'; // Positioned higher on the chest
+                        logo.style.left = '25%'; // Positioned more to the left
+                        logo.style.transform = 'translate(-50%, -50%)';
+                        break;
+                    default:
+                        logo.style.display = 'none';
+                        break;
+                }
             }
         }
 
@@ -194,4 +221,3 @@
 
 </body>
 </html>
-
