@@ -27,12 +27,24 @@
             height: 470px; /* Increased height to match the controls container */
             border: 2px solid #ccc;
             background-color: #add8e6; /* Light blue background */
+            text-align: center;
+            line-height: 470px; /* Vertically center the text */
         }
 
         .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .back-text {
+            position: absolute;
+            width: 100%;
+            bottom: 10px;
+            left: 0;
+            color: black;
+            text-decoration: underline;
+            cursor: pointer;
         }
 
         .logo-placeholder {
@@ -113,6 +125,7 @@
             <div id="logo-placeholder" class="logo-placeholder">
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
+            <div class="back-text" onclick="switchToBack()">Back</div>
         </div>
         
         <div class="controls-container">
@@ -162,9 +175,25 @@
     </div>
 
     <script>
+        function switchToBack() {
+            const image = document.getElementById('product-image');
+            const logo = document.getElementById('logo-placeholder');
+
+            image.src = 'PC450C1/BrightGoldBack.png'; // Change to back image
+            logo.style.display = 'none'; // Hide the logo placeholder
+            document.getElementById('logo-placement').value = 'center-back'; // Automatically select "Center Back"
+            updateLogoPlacement();
+        }
+
         function updateLogoPlacement() {
             const logo = document.getElementById('logo-placeholder');
             const placement = document.getElementById('logo-placement').value;
+            const image = document.getElementById('product-image');
+
+            // Reset the image to front if back is not selected
+            if (placement !== 'center-back') {
+                image.src = 'PC450C1/BrightGoldFront.png';
+            }
 
             if (placement) {
                 logo.style.display = 'block';
