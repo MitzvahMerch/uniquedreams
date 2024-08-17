@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #0B3A92; /* Dark blue background */
             color: #333;
             margin: 0;
             padding: 20px;
@@ -37,8 +37,6 @@
 
         .logo-placeholder {
             position: absolute;
-            width: 100px;
-            height: 100px;
             display: none;
         }
 
@@ -117,7 +115,6 @@
             </div>
         </div>
         
-
         <div class="controls-container">
             <div class="controls">
                 <label for="logo-placement">Select Logo Placement:</label>
@@ -172,24 +169,24 @@
 
             switch (placement) {
                 case 'full-front':
-                    logo.style.width = '200px';
-                    logo.style.height = '200px';
-                    logo.style.top = '50%';
+                    logo.style.width = '130px';  // 35% smaller
+                    logo.style.height = '130px';
+                    logo.style.top = '40%'; // Moved up
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'right-chest':
-                    logo.style.width = '80px';
-                    logo.style.height = '80px';
+                    logo.style.width = '60px';  // 25% smaller
+                    logo.style.height = '60px';
                     logo.style.top = '30%';
-                    logo.style.left = '70%';
+                    logo.style.left = '60%'; // Moved closer to the center
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'left-chest':
-                    logo.style.width = '80px';
-                    logo.style.height = '80px';
+                    logo.style.width = '60px';  // 25% smaller
+                    logo.style.height = '60px';
                     logo.style.top = '30%';
-                    logo.style.left = '30%';
+                    logo.style.left = '40%'; // Moved closer to the center
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'center-back':
