@@ -62,6 +62,7 @@
 
         .controls label {
             margin-right: 10px;
+            font-weight: bold; /* Make labels bold */
         }
 
         .controls select {
@@ -80,6 +81,7 @@
         .size-table td {
             vertical-align: middle;
             width: 50%; /* Make sure each cell takes up half the row */
+            font-weight: bold; /* Make size labels bold */
         }
 
         .size-input {
@@ -115,13 +117,6 @@
         .submit-button:hover {
             background-color: #0056b3;
         }
-
-        #priceDisplay {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -136,7 +131,7 @@
         
         <div class="controls-container">
             <div class="controls">
-                <label for="color-selection">Select Color:</label>
+                <label for="color-selection">Color:</label>
                 <select id="color-selection" onchange="updateColor()">
                     <option value="BrightGold" selected>BrightGold</option>
                     <option value="AthleticHthr">Athletic Hthr</option>
@@ -146,7 +141,7 @@
                 </select>
             </div>
             <div class="controls">
-                <label for="logo-placement">Select Logo Placement:</label>
+                <label for="logo-placement">Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
                     <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
                     <option value="left-chest">Left Chest</option>
@@ -190,9 +185,6 @@
             </table>
 
             <button class="submit-button" onclick="calculateQuantity()">Submit Item</button>
-
-            <div id="priceDisplay">Total Price: </div>
-            <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
     </div>
 
