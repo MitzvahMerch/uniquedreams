@@ -21,31 +21,18 @@
             margin-top: 50px;
         }
 
-        figure {
+        .image-container {
             position: relative;
-            margin: 0;
-            padding: 0;
             width: 352px; /* Adjusted width for the new aspect ratio */
             height: 470px; /* Increased height to match the controls container */
             border: 2px solid #ccc;
             background-color: #add8e6; /* Light blue background */
         }
 
-        figure img {
+        .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        figcaption {
-            position: absolute;
-            top: 50%;
-            left: -30px; /* Adjust this value to move the text closer to the image */
-            transform: translateY(-50%);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            white-space: nowrap; /* Ensure the text doesn't wrap */
         }
 
         .logo-placeholder {
@@ -121,13 +108,12 @@
 <body>
 
     <div class="product-container">
-        <figure>
+        <div class="image-container">
             <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
-            <figcaption onclick="switchToBack()">Back</figcaption> <!-- Figcaption for Back text -->
             <div id="logo-placeholder" class="logo-placeholder">
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
-        </figure>
+        </div>
 
         <div class="controls-container">
             <div class="controls">
@@ -176,65 +162,22 @@
     </div>
 
     <script>
-        function switchToBack() {
-            const image = document.getElementById('product-image');
-            const logo = document.getElementById('logo-placeholder');
-
-            image.src = 'PC450C1/BrightGoldBack.png'; // Change to back image
-            logo.style.display = 'none'; // Hide the logo placeholder
-            document.getElementById('logo-placement').value = 'center-back'; // Automatically select "Center Back"
-            updateLogoPlacement();
-        }
-
         function updateLogoPlacement() {
             const logo = document.getElementById('logo-placeholder');
             const placement = document.getElementById('logo-placement').value;
             const image = document.getElementById('product-image');
 
-            // Reset the image to front if back is not selected
-            if (placement !== 'center-back') {
-                image.src = 'PC450C1/BrightGoldFront.png';
-            }
-
-            if (placement) {
+            if (placement === 'center-back') {
+                image.src = 'PC450C1/BrightGoldBack.png'; // Show back image with logo
                 logo.style.display = 'block';
+                logo.style.width = '150px';
+                logo.style.height = '150px';
+                logo.style.top = '60%';
+                logo.style.left = '50%';
+                logo.style.transform = 'translate(-50%, -50%)';
             } else {
+                image.src = 'PC450C1/BrightGoldFront.png'; // Show front image by default
                 logo.style.display = 'none';
-                return;
-            }
-
-            switch (placement) {
-                case 'full-front':
-                    logo.style.width = '150px';  // 25% smaller
-                    logo.style.height = '150px';
-                    logo.style.top = '40%'; // Moved up slightly
-                    logo.style.left = '50%';
-                    logo.style.transform = 'translate(-50%, -50%)';
-                    break;
-                case 'half-front':
-                    logo.style.width = '116px';  // 20% smaller than previous 145px
-                    logo.style.height = '116px';
-                    logo.style.top = '37%'; // Moved up by 3%
-                    logo.style.left = '50%';
-                    logo.style.transform = 'translate(-50%, -50%)';
-                    break;
-                case 'left-chest':
-                    logo.style.width = '68px';  // 15% smaller
-                    logo.style.height = '68px';
-                    logo.style.top = '30%';
-                    logo.style.left = '60%'; // Shifted more inward
-                    logo.style.transform = 'translate(-50%, -50%)';
-                    break;
-                case 'center-back':
-                    logo.style.width = '150px';
-                    logo.style.height = '150px';
-                    logo.style.top = '60%';
-                    logo.style.left = '50%';
-                    logo.style.transform = 'translate(-50%, -50%)';
-                    break;
-                default:
-                    logo.style.display = 'none';
-                    break;
             }
         }
 
@@ -251,3 +194,4 @@
 
 </body>
 </html>
+
