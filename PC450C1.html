@@ -19,21 +19,33 @@
             align-items: flex-start;
             gap: 20px;
             margin-top: 50px;
-            position: relative; /* To position back-text properly */
         }
 
-        .image-container {
+        figure {
+            position: relative;
+            margin: 0;
+            padding: 0;
             width: 352px; /* Adjusted width for the new aspect ratio */
             height: 470px; /* Increased height to match the controls container */
             border: 2px solid #ccc;
             background-color: #add8e6; /* Light blue background */
-            position: relative;
         }
 
-        .image-container img {
+        figure img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        figcaption {
+            position: absolute;
+            top: 50%;
+            left: -30px; /* Adjust this value to move the text closer to the image */
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap; /* Ensure the text doesn't wrap */
         }
 
         .logo-placeholder {
@@ -45,17 +57,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
-
-        .back-text {
-            position: absolute;
-            top: 50%;
-            left: -50px; /* Adjust to move it out of the image container */
-            transform: translateY(-50%);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            white-space: nowrap; /* Ensure the text doesn't wrap */
         }
 
         .controls-container {
@@ -120,13 +121,13 @@
 <body>
 
     <div class="product-container">
-        <div class="image-container">
+        <figure>
             <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
+            <figcaption onclick="switchToBack()">Back</figcaption> <!-- Figcaption for Back text -->
             <div id="logo-placeholder" class="logo-placeholder">
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
-        </div>
-        <div class="back-text" onclick="switchToBack()">Back</div> <!-- Positioned outside the image-container -->
+        </figure>
 
         <div class="controls-container">
             <div class="controls">
@@ -250,4 +251,3 @@
 
 </body>
 </html>
-
