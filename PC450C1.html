@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #0B3A92; /* Dark blue background */
             color: #333;
             margin: 0;
             padding: 20px;
@@ -23,10 +23,10 @@
 
         .image-container {
             position: relative;
-            width: 300px;
-            height: 400px;
+            width: 352px; /* Adjusted width for the new aspect ratio */
+            height: 470px; /* Increased height to match the controls container */
             border: 2px solid #ccc;
-            background-color: #fff;
+            background-color: #ADD8E6; /* Light blue background */
         }
 
         .image-container img {
@@ -37,8 +37,6 @@
 
         .logo-placeholder {
             position: absolute;
-            width: 100px;
-            height: 100px;
             display: none;
         }
 
@@ -109,111 +107,122 @@
 </head>
 <body>
 
-<div class="product-container">
-    <div class="image-container">
-        <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
-        <div id="logo-placeholder" class="logo-placeholder">
-            <img class="logo-image" src="Logos/ChessTest.png" alt="Logo">
+    <div class="product-container">
+        <div class="image-container">
+            <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
+            <div id="logo-placeholder" class="logo-placeholder">
+                <img src="Logos/ChessTest.png" alt="Logo">
+            </div>
+        </div>
+        
+        <div class="controls-container">
+            <div class="controls">
+                <label for="logo-placement">Select Logo Placement:</label>
+                <select id="logo-placement" onchange="updateLogoPlacement()">
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="left-chest">Left Chest</option>
+                    <option value="full-front">Full Front</option>
+                    <option value="half-front">Half Front</option>
+                    <option value="center-back">Center Back</option>
+                </select>
+            </div>
+
+            <table class="size-table">
+                <tr>
+                    <td><label for="size-ym">YM</label></td>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-yl">YL</label></td>
+                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-s">S</label></td>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-m">M</label></td>
+                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-l">L</label></td>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-xl">XL</label></td>
+                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+            </table>
+
+            <button class="submit-button" onclick="calculateQuantity()">Submit Item</button>
+
+            <div id="priceDisplay">Total Price: </div>
+            <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
     </div>
 
-    <div class="controls-container">
-        <div class="controls">
-            <label for="logo-placement">Select Logo Placement:</label>
-            <select id="logo-placement" onchange="updateLogoPlacement()">
-                <option value="none">None</option>
-                <option value="full-front">Full Front</option>
-                <option value="right-chest">Right Chest</option>
-                <option value="left-chest">Left Chest</option>
-                <option value="center-back">Center Back</option>
-            </select>
-        </div>
+    <script>
+        function updateLogoPlacement() {
+            const logo = document.getElementById('logo-placeholder');
+            const placement = document.getElementById('logo-placement').value;
+            const image = document.getElementById('product-image');
 
-        <table class="size-table">
-            <tr>
-                <td><label for="size-ym">YM</label></td>
-                <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
-            </tr>
-            <tr>
-                <td><label for="size-yl">YL</label></td>
-                <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
-            </tr>
-            <tr>
-                <td><label for="size-s">S</label></td>
-                <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
-            </tr>
-            <tr>
-                <td><label for="size-m">M</label></td>
-                <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
-            </tr>
-            <tr>
-                <td><label for="size-l">L</label></td>
-                <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
-            </tr>
-            <tr>
-                <td><label for="size-xl">XL</label></td>
-                <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
-            </tr>
-        </table>
-
-        <button class="submit-button" onclick="calculateQuantity()">Submit Item</button>
-
-        <div id="priceDisplay">Total Price: </div>
-        <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
-    </div>
-</div>
-
-<script>
-    function updateLogoPlacement() {
-        const logo = document.getElementById('logo-placeholder');
-        const placement = document.getElementById('logo-placement').value;
-        logo.style.display = 'block';
-
-        switch (placement) {
-            case 'full-front':
-                logo.style.width = '200px';
-                logo.style.height = '200px';
-                logo.style.top = '50%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'right-chest':
-                logo.style.width = '80px';
-                logo.style.height = '80px';
-                logo.style.top = '30%';
-                logo.style.left = '70%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'left-chest':
-                logo.style.width = '80px';
-                logo.style.height = '80px';
-                logo.style.top = '30%';
-                logo.style.left = '30%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'center-back':
-                logo.style.width = '150px';
-                logo.style.height = '150px';
-                logo.style.top = '60%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            default:
+            if (placement) {
+                logo.style.display = 'block';
+            } else {
                 logo.style.display = 'none';
-                break;
+                return;
+            }
+
+            switch (placement) {
+                case 'full-front':
+                    logo.style.width = '150px';  // 25% smaller
+                    logo.style.height = '150px';
+                    logo.style.top = '40%'; // Moved up slightly
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    image.src = 'PC450C1/BrightGoldFront.png'; // Show front image
+                    break;
+                case 'half-front':
+                    logo.style.width = '116px';  // 20% smaller than previous 145px
+                    logo.style.height = '116px';
+                    logo.style.top = '37%'; // Moved up by 3%
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    image.src = 'PC450C1/BrightGoldFront.png'; // Show front image
+                    break;
+                case 'left-chest':
+                    logo.style.width = '68px';  // 15% smaller
+                    logo.style.height = '68px';
+                    logo.style.top = '30%';
+                    logo.style.left = '60%'; // Shifted more inward
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    image.src = 'PC450C1/BrightGoldFront.png'; // Show front image
+                    break;
+                case 'center-back':
+                    logo.style.width = '150px';
+                    logo.style.height = '150px';
+                    logo.style.top = '60%';
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    image.src = 'PC450C1/BrightGoldBack.png'; // Show back image
+                    break;
+                default:
+                    logo.style.display = 'none';
+                    break;
+            }
         }
-    }
 
-    function calculateQuantity() {
-        // Functionality to calculate total quantity and handle form submission
-        // This is just a placeholder for now
-    }
+        function calculateQuantity() {
+            // Functionality to calculate total quantity and handle form submission
+            // This is just a placeholder for now
+        }
 
-    function proceedToCheckout() {
-        // Functionality to proceed to checkout
-        window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
-    }
-</script>
+        function proceedToCheckout() {
+            // Functionality to proceed to checkout
+            window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
+        }
+    </script>
 
 </body>
 </html>
