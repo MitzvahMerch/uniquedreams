@@ -117,20 +117,6 @@
         .submit-button:hover {
             background-color: #0056b3;
         }
-
-        .color-box {
-            width: 30px; /* Increased width */
-            height: 30px; /* Increased height */
-            border-radius: 0px; /* Sharp 90-degree corners */
-            border: 1px solid #ccc;
-            margin-right: 10px;
-            display: inline-block; /* Ensure the color box and text align horizontally */
-        }
-
-        .color-select {
-            padding-left: 5px; /* Padding to match other controls */
-        }
-
     </style>
 </head>
 <body>
@@ -146,12 +132,12 @@
         <div class="controls-container">
             <div class="controls">
                 <label for="color-selection">Color:</label>
-                <select id="color-selection" class="color-select" onchange="updateColor()">
-                    <option value="BrightGold" selected><span class="color-box" style="background-color: #FFC142;"></span> BrightGold</option>
-                    <option value="AthleticHthr"><span class="color-box" style="background-color: #A9A9A9;"></span> Athletic Hthr</option>
-                    <option value="AthleticKelly"><span class="color-box" style="background-color: #00A550;"></span> Athletic Kelly</option>
-                    <option value="AthleticMaroon"><span class="color-box" style="background-color: #800000;"></span> Athletic Maroon</option>
-                    <option value="BrightRed"><span class="color-box" style="background-color: #FF0000;"></span> Bright Red</option>
+                <select id="color-selection" onchange="updateColor()">
+                    <option value="BrightGold" selected>🟨 BrightGold</option>
+                    <option value="AthleticHthr">⬜ Athletic Hthr</option>
+                    <option value="AthleticKelly">🟩 Athletic Kelly</option>
+                    <option value="AthleticMaroon">🟥 Athletic Maroon</option>
+                    <option value="BrightRed">🟥 Bright Red</option>
                 </select>
             </div>
             <div class="controls">
@@ -299,3 +285,4 @@
 
 </body>
 </html>
+
