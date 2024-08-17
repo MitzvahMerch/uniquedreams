@@ -16,36 +16,23 @@
         .product-container {
             display: flex;
             justify-content: center;
-            align-items: stretch; /* Ensure both blocks have the same height */
+            align-items: flex-start;
             gap: 20px;
             margin-top: 50px;
         }
 
-        .image-container, .controls-container {
-            flex: 1; /* Make both containers equal in width */
-            height: 100%; /* Ensure they stretch to the full height of their content */
-            max-width: 50%; /* Ensure they occupy half the width of the product-container */
-            background-color: #add8e6; /* Light blue for image container */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .image-container {
+            position: relative;
+            width: 352px; /* Adjusted width for the new aspect ratio */
+            height: 470px; /* Increased height to match the controls container */
             border: 2px solid #ccc;
+            background-color: #add8e6; /* Light blue background */
         }
 
         .image-container img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
-        }
-
-        .back-link {
-            display: block;
-            margin: 10px 0 0 20px; /* Move the link towards the left */
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            text-align: left;
         }
 
         .logo-placeholder {
@@ -59,14 +46,20 @@
             object-fit: contain;
         }
 
+        .back-text {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
         .controls-container {
-            background-color: #f0f0f0; /* Light gray for controls container */
+            flex: 0 0 400px; /* Fixed width for the controls container */
+            background-color: #f0f0f0;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .controls label {
@@ -78,6 +71,45 @@
             font-size: 16px;
             width: 100%;
             margin-bottom: 20px;
+        }
+
+        .size-table {
+            width: 100%;
+            border-spacing: 10px;
+            margin-bottom: 20px;
+        }
+
+        .size-table td {
+            vertical-align: middle;
+        }
+
+        .size-input {
+            width: 60px;
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        #priceDisplay {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -102,11 +134,42 @@
                     <option value="center-back">Center Back</option>
                 </select>
             </div>
+
+            <table class="size-table">
+                <tr>
+                    <td><label for="size-ym">YM</label></td>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-yl">YL</label></td>
+                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-s">S</label></td>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-m">M</label></td>
+                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-l">L</label></td>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-xl">XL</label></td>
+                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
+                </tr>
+            </table>
+
+            <button class="submit-button" onclick="calculateQuantity()">Submit Item</button>
+
+            <div id="priceDisplay">Total Price: </div>
+            <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
     </div>
 
-    <!-- Back link section -->
-    <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
+    <div class="back-text" onclick="switchToBack()">Back</div>
 
     <script>
         function switchToBack() {
@@ -115,7 +178,8 @@
 
             image.src = 'PC450C1/BrightGoldBack.png'; // Change to back image
             logo.style.display = 'none'; // Hide the logo placeholder
-            document.getElementById('logo-placement').value = ''; // Clear logo placement selection
+            document.getElementById('logo-placement').value = 'center-back'; // Automatically select "Center Back"
+            updateLogoPlacement();
         }
 
         function updateLogoPlacement() {
@@ -137,24 +201,24 @@
 
             switch (placement) {
                 case 'full-front':
-                    logo.style.width = '150px';
+                    logo.style.width = '150px';  // 25% smaller
                     logo.style.height = '150px';
-                    logo.style.top = '40%';
+                    logo.style.top = '40%'; // Moved up slightly
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'half-front':
-                    logo.style.width = '116px';
+                    logo.style.width = '116px';  // 20% smaller than previous 145px
                     logo.style.height = '116px';
-                    logo.style.top = '37%';
+                    logo.style.top = '37%'; // Moved up by 3%
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'left-chest':
-                    logo.style.width = '68px';
+                    logo.style.width = '68px';  // 15% smaller
                     logo.style.height = '68px';
                     logo.style.top = '30%';
-                    logo.style.left = '60%';
+                    logo.style.left = '60%'; // Shifted more inward
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'center-back':
@@ -169,8 +233,19 @@
                     break;
             }
         }
+
+        function calculateQuantity() {
+            // Functionality to calculate total quantity and handle form submission
+            // This is just a placeholder for now
+        }
+
+        function proceedToCheckout() {
+            // Functionality to proceed to checkout
+            window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
+        }
     </script>
 
 </body>
 </html>
+
 
