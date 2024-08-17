@@ -16,7 +16,7 @@
         .product-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: stretch; /* Ensure both blocks have the same height */
             gap: 20px;
             margin-top: 50px;
         }
@@ -60,11 +60,14 @@
         }
 
         .controls-container {
-            flex: 0 0 400px;
+            flex: 1; /* Make this container match the image container's height */
             background-color: #f0f0f0;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .controls label {
@@ -88,23 +91,23 @@
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
         </div>
-        <!-- Back link section -->
-    </div>
-    
-    <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
 
-    <div class="controls-container">
-        <div class="controls">
-            <label for="logo-placement">Select Logo Placement:</label>
-            <select id="logo-placement" onchange="updateLogoPlacement()">
-                <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-                <option value="left-chest">Left Chest</option>
-                <option value="full-front">Full Front</option>
-                <option value="half-front">Half Front</option>
-                <option value="center-back">Center Back</option>
-            </select>
+        <div class="controls-container">
+            <div class="controls">
+                <label for="logo-placement">Select Logo Placement:</label>
+                <select id="logo-placement" onchange="updateLogoPlacement()">
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="left-chest">Left Chest</option>
+                    <option value="full-front">Full Front</option>
+                    <option value="half-front">Half Front</option>
+                    <option value="center-back">Center Back</option>
+                </select>
+            </div>
         </div>
     </div>
+
+    <!-- Back link section -->
+    <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
 
     <script>
         function switchToBack() {
