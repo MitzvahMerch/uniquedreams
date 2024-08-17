@@ -27,13 +27,24 @@
             height: 470px; /* Increased height to match the controls container */
             border: 2px solid #ccc;
             background-color: #add8e6; /* Light blue background */
+            text-align: center;
+            line-height: 470px; /* Vertically center the text */
         }
 
         .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transform: scale(1.2); /* Magnify the image by 20% */
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
         }
 
         .logo-placeholder {
@@ -45,14 +56,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
-
-        .back-text {
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
         }
 
         .controls-container {
@@ -123,6 +126,7 @@
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
         </div>
+        <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
 
         <div class="controls-container">
             <div class="controls">
@@ -170,8 +174,6 @@
         </div>
     </div>
 
-    <div class="back-text" onclick="switchToBack()">Back</div>
-
     <script>
         function switchToBack() {
             const image = document.getElementById('product-image');
@@ -179,8 +181,7 @@
 
             image.src = 'PC450C1/BrightGoldBack.png'; // Change to back image
             logo.style.display = 'none'; // Hide the logo placeholder
-            document.getElementById('logo-placement').value = 'center-back'; // Automatically select "Center Back"
-            updateLogoPlacement();
+            document.getElementById('logo-placement').value = ''; // Clear logo placement selection
         }
 
         function updateLogoPlacement() {
@@ -202,24 +203,24 @@
 
             switch (placement) {
                 case 'full-front':
-                    logo.style.width = '150px';  // 25% smaller
+                    logo.style.width = '150px';
                     logo.style.height = '150px';
-                    logo.style.top = '40%'; // Moved up slightly
+                    logo.style.top = '40%';
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'half-front':
-                    logo.style.width = '116px';  // 20% smaller than previous 145px
+                    logo.style.width = '116px';
                     logo.style.height = '116px';
-                    logo.style.top = '37%'; // Moved up by 3%
+                    logo.style.top = '37%';
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'left-chest':
-                    logo.style.width = '68px';  // 15% smaller
+                    logo.style.width = '68px';
                     logo.style.height = '68px';
                     logo.style.top = '30%';
-                    logo.style.left = '60%'; // Shifted more inward
+                    logo.style.left = '60%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'center-back':
