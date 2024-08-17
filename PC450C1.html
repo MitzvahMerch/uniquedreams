@@ -114,13 +114,13 @@
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
         </div>
-
+        
         <div class="controls-container">
             <div class="controls">
                 <label for="logo-placement">Select Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
-                    <option value="none">None</option>
-                    <option value="left-chest">Left Chest</option>
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="right-chest">Right Chest</option>
                     <option value="full-front">Full Front</option>
                     <option value="half-front">Half Front</option>
                     <option value="center-back">Center Back</option>
@@ -161,58 +161,65 @@
         </div>
     </div>
 
-<script>
-    function updateLogoPlacement() {
-        const logo = document.getElementById('logo-placeholder');
-        const placement = document.getElementById('logo-placement').value;
-        logo.style.display = 'block';
+    <script>
+        function updateLogoPlacement() {
+            const logo = document.getElementById('logo-placeholder');
+            const placement = document.getElementById('logo-placement').value;
 
-        switch (placement) {
-            case 'full-front':
-                logo.style.width = '150px'; // 25% smaller
-                logo.style.height = '150px'; // 25% smaller
-                logo.style.top = '45%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'half-front':
-                logo.style.width = '120px'; // 20% smaller
-                logo.style.height = '120px'; // 20% smaller
-                logo.style.top = '43%'; // Moved up 2%
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'left-chest':
-                logo.style.width = '80px';
-                logo.style.height = '80px';
-                logo.style.top = '30%';
-                logo.style.left = '30%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'center-back':
-                logo.style.width = '150px';
-                logo.style.height = '150px';
-                logo.style.top = '60%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            default:
+            if (placement) {
+                logo.style.display = 'block';
+            } else {
                 logo.style.display = 'none';
-                break;
+                return;
+            }
+
+            switch (placement) {
+                case 'full-front':
+                    logo.style.width = '150px';  // 25% smaller
+                    logo.style.height = '150px';
+                    logo.style.top = '40%'; // Moved up slightly
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    break;
+                case 'half-front':
+                    logo.style.width = '145px';  // 45% bigger
+                    logo.style.height = '145px';
+                    logo.style.top = '40%'; // Same midpoint as full front
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    break;
+                case 'right-chest':
+                    logo.style.width = '68px';  // 15% smaller
+                    logo.style.height = '68px';
+                    logo.style.top = '30%';
+                    logo.style.left = '70%'; // Shifted to the right chest
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    break;
+                case 'center-back':
+                    logo.style.width = '150px';
+                    logo.style.height = '150px';
+                    logo.style.top = '60%';
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    break;
+                default:
+                    logo.style.display = 'none';
+                    break;
+            }
         }
-    }
 
-    function calculateQuantity() {
-        // Functionality to calculate total quantity and handle form submission
-        // This is just a placeholder for now
-    }
+        function calculateQuantity() {
+            // Functionality to calculate total quantity and handle form submission
+            // This is just a placeholder for now
+        }
 
-    function proceedToCheckout() {
-        // Functionality to proceed to checkout
-        window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
-    }
-</script>
+        function proceedToCheckout() {
+            // Functionality to proceed to checkout
+            window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
+        }
+    </script>
 
 </body>
 </html>
+
 
