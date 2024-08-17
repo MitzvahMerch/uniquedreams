@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page with Color Boxes</title>
+    <title>Product Page with Logo Placement</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -72,44 +72,6 @@
             margin-bottom: 20px;
         }
 
-        .color-select-wrapper {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .color-select {
-            appearance: none;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-            width: 100%;
-            font-size: 16px;
-            cursor: pointer;
-            position: relative;
-            text-align: left;
-            display: flex;
-            align-items: center;
-        }
-
-        .color-box {
-            width: 20px;
-            height: 20px;
-            border-radius: 3px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-        }
-
-        .color-select-wrapper::after {
-            content: '▼';
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
         .size-table {
             width: 100%;
             border-spacing: 10px;
@@ -170,25 +132,13 @@
         <div class="controls-container">
             <div class="controls">
                 <label for="color-selection">Color:</label>
-                <div class="color-select-wrapper">
-                    <select id="color-selection" class="color-select" onchange="updateColor()">
-                        <option value="BrightGold" data-color="#FFC142" selected>
-                            <span class="color-box" style="background-color: #FFC142;"></span> Bright Gold
-                        </option>
-                        <option value="AthleticHthr" data-color="#A9A9A9">
-                            <span class="color-box" style="background-color: #A9A9A9;"></span> Athletic Hthr
-                        </option>
-                        <option value="AthleticKelly" data-color="#00A550">
-                            <span class="color-box" style="background-color: #00A550;"></span> Athletic Kelly
-                        </option>
-                        <option value="AthleticMaroon" data-color="#800000">
-                            <span class="color-box" style="background-color: #800000;"></span> Athletic Maroon
-                        </option>
-                        <option value="BrightRed" data-color="#FF0000">
-                            <span class="color-box" style="background-color: #FF0000;"></span> Bright Red
-                        </option>
-                    </select>
-                </div>
+                <select id="color-selection" onchange="updateColor()">
+                    <option value="BrightGold" selected>🟨 BrightGold</option>
+                    <option value="AthleticHthr">⬜ Athletic Hthr</option>
+                    <option value="AthleticKelly">🟩 Athletic Kelly</option>
+                    <option value="AthleticMaroon">🟥 Athletic Maroon</option>
+                    <option value="BrightRed">🟥 Bright Red</option>
+                </select>
             </div>
             <div class="controls">
                 <label for="logo-placement">Logo Placement:</label>
@@ -335,3 +285,4 @@
 
 </body>
 </html>
+
