@@ -19,14 +19,15 @@
             align-items: flex-start;
             gap: 20px;
             margin-top: 50px;
+            position: relative; /* To position back-text properly */
         }
 
         .image-container {
-            position: relative;
             width: 352px; /* Adjusted width for the new aspect ratio */
             height: 470px; /* Increased height to match the controls container */
             border: 2px solid #ccc;
             background-color: #add8e6; /* Light blue background */
+            position: relative;
         }
 
         .image-container img {
@@ -47,11 +48,14 @@
         }
 
         .back-text {
-            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: -50px; /* Adjust to move it out of the image container */
+            transform: translateY(-50%);
             color: white;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            white-space: nowrap; /* Ensure the text doesn't wrap */
         }
 
         .controls-container {
@@ -122,6 +126,7 @@
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
         </div>
+        <div class="back-text" onclick="switchToBack()">Back</div> <!-- Positioned outside the image-container -->
 
         <div class="controls-container">
             <div class="controls">
@@ -168,8 +173,6 @@
             <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
     </div>
-
-    <div class="back-text" onclick="switchToBack()">Back</div>
 
     <script>
         function switchToBack() {
@@ -247,5 +250,4 @@
 
 </body>
 </html>
-
 
