@@ -23,28 +23,16 @@
 
         .image-container {
             position: relative;
-            width: 352px; /* Adjusted width for the new aspect ratio */
-            height: 470px; /* Increased height to match the controls container */
+            width: 352px;
+            height: 470px;
             border: 2px solid #ccc;
-            background-color: #add8e6; /* Light blue background */
-            text-align: center;
-            line-height: 470px; /* Vertically center the text */
+            background-color: #add8e6;
         }
 
         .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
         }
 
         .logo-placeholder {
@@ -59,7 +47,7 @@
         }
 
         .controls-container {
-            flex: 0 0 400px; /* Fixed width for the controls container */
+            flex: 0 0 400px;
             background-color: #f0f0f0;
             padding: 20px;
             border-radius: 10px;
@@ -77,43 +65,16 @@
             margin-bottom: 20px;
         }
 
-        .size-table {
-            width: 100%;
-            border-spacing: 10px;
-            margin-bottom: 20px;
+        .back-link-container {
+            margin-top: 20px; /* Space between product area and back link */
+            text-align: left; /* Align the text to the left */
         }
 
-        .size-table td {
-            vertical-align: middle;
-        }
-
-        .size-input {
-            width: 60px;
-            padding: 5px;
-            margin-left: 10px;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .submit-button:hover {
-            background-color: #0056b3;
-        }
-
-        #priceDisplay {
+        .back-link {
             font-size: 18px;
             font-weight: bold;
-            margin-top: 20px;
-            text-align: center;
+            color: white;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -126,52 +87,24 @@
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
         </div>
-        <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
 
         <div class="controls-container">
             <div class="controls">
                 <label for="logo-placement">Select Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
-                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="" selected disabled>Select Placement</option>
                     <option value="left-chest">Left Chest</option>
                     <option value="full-front">Full Front</option>
                     <option value="half-front">Half Front</option>
                     <option value="center-back">Center Back</option>
                 </select>
             </div>
-
-            <table class="size-table">
-                <tr>
-                    <td><label for="size-ym">YM</label></td>
-                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
-                </tr>
-                <tr>
-                    <td><label for="size-yl">YL</label></td>
-                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
-                </tr>
-                <tr>
-                    <td><label for="size-s">S</label></td>
-                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
-                </tr>
-                <tr>
-                    <td><label for="size-m">M</label></td>
-                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
-                </tr>
-                <tr>
-                    <td><label for="size-l">L</label></td>
-                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
-                </tr>
-                <tr>
-                    <td><label for="size-xl">XL</label></td>
-                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
-                </tr>
-            </table>
-
-            <button class="submit-button" onclick="calculateQuantity()">Submit Item</button>
-
-            <div id="priceDisplay">Total Price: </div>
-            <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
+    </div>
+
+    <!-- Back link section -->
+    <div class="back-link-container">
+        <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
     </div>
 
     <script>
@@ -234,16 +167,6 @@
                     logo.style.display = 'none';
                     break;
             }
-        }
-
-        function calculateQuantity() {
-            // Functionality to calculate total quantity and handle form submission
-            // This is just a placeholder for now
-        }
-
-        function proceedToCheckout() {
-            // Functionality to proceed to checkout
-            window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
         }
     </script>
 
