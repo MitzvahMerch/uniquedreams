@@ -22,16 +22,19 @@
         }
 
         .image-container {
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align content horizontally */
             width: 352px;
             height: 470px;
             border: 2px solid #ccc;
             background-color: #add8e6;
+            position: relative;
         }
 
         .image-container img {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
         }
 
@@ -65,16 +68,12 @@
             margin-bottom: 20px;
         }
 
-        .back-link-container {
-            margin-top: 20px; /* Space between product area and back link */
-            text-align: left; /* Align the text to the left */
-        }
-
         .back-link {
             font-size: 18px;
             font-weight: bold;
             color: white;
             text-decoration: none;
+            margin-top: 10px; /* Add some space between the image and the link */
         }
     </style>
 </head>
@@ -86,6 +85,7 @@
             <div id="logo-placeholder" class="logo-placeholder">
                 <img src="Logos/ChessTest.png" alt="Logo">
             </div>
+            <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
         </div>
 
         <div class="controls-container">
@@ -100,11 +100,6 @@
                 </select>
             </div>
         </div>
-    </div>
-
-    <!-- Back link section -->
-    <div class="back-link-container">
-        <a href="#" class="back-link" onclick="switchToBack(); return false;">Back</a>
     </div>
 
     <script>
