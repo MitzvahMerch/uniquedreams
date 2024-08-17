@@ -119,6 +119,7 @@
             <div class="controls">
                 <label for="logo-placement">Select Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
                     <option value="left-chest">Left Chest</option>
                     <option value="full-front">Full Front</option>
                     <option value="half-front">Half Front</option>
@@ -164,7 +165,13 @@
         function updateLogoPlacement() {
             const logo = document.getElementById('logo-placeholder');
             const placement = document.getElementById('logo-placement').value;
-            logo.style.display = 'block';
+
+            if (placement) {
+                logo.style.display = 'block';
+            } else {
+                logo.style.display = 'none';
+                return;
+            }
 
             switch (placement) {
                 case 'full-front':
@@ -175,8 +182,8 @@
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'half-front':
-                    logo.style.width = '100px';  // 45% bigger than the original half front
-                    logo.style.height = '100px';
+                    logo.style.width = '145px';  // 45% bigger
+                    logo.style.height = '145px';
                     logo.style.top = '40%'; // Same midpoint as full front
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
@@ -185,7 +192,7 @@
                     logo.style.width = '68px';  // 15% smaller
                     logo.style.height = '68px';
                     logo.style.top = '30%';
-                    logo.style.left = '65%'; // Shifted back inward
+                    logo.style.left = '60%'; // Shifted more inward
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'center-back':
