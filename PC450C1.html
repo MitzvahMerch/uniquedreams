@@ -65,57 +65,57 @@
             font-weight: bold; /* Make labels bold */
         }
 
-        .controls select {
-            padding: 5px;
-            font-size: 16px;
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
             width: 100%;
             margin-bottom: 20px;
         }
 
-        .size-table {
-            width: 100%;
-            border-spacing: 10px;
-            margin-bottom: 20px;
+        .custom-dropdown select {
+            display: none; /* Hide the original select element */
         }
 
-        .size-table td {
-            vertical-align: middle;
-            width: 50%; /* Make sure each cell takes up half the row */
-            font-weight: bold; /* Make size labels bold */
-        }
-
-        .size-input {
-            width: 100%; /* Make the input take up the full width of the cell */
-            padding: 5px;
-            margin-left: 0;
-            box-sizing: border-box;
-        }
-
-        .total-input {
-            width: 100%;
-            padding: 5px;
-            margin-left: 0;
-            box-sizing: border-box;
-            background-color: #e0e0e0; /* Light gray background for non-editable field */
-            border: 1px solid #ccc;
-            text-align: center;
-            cursor: not-allowed;
-        }
-
-        .submit-button {
-            width: 100%;
+        .custom-dropdown .dropdown-selected {
+            background-color: #fff;
             padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
-            text-align: center;
+            text-align: left;
+            font-size: 16px;
         }
 
-        .submit-button:hover {
-            background-color: #0056b3;
+        .custom-dropdown .dropdown-items {
+            position: absolute;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 99;
+            width: 100%;
+            display: none;
+            flex-direction: column;
+        }
+
+        .custom-dropdown .dropdown-items div {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .custom-dropdown .dropdown-items div:hover {
+            background-color: #ddd;
+        }
+
+        .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
@@ -132,13 +132,26 @@
         <div class="controls-container">
             <div class="controls">
                 <label for="color-selection">Color:</label>
-                <select id="color-selection" onchange="updateColor()">
-                    <option value="BrightGold" selected>BrightGold</option>
-                    <option value="AthleticHthr">Athletic Hthr</option>
-                    <option value="AthleticKelly">Athletic Kelly</option>
-                    <option value="AthleticMaroon">Athletic Maroon</option>
-                    <option value="BrightRed">Bright Red</option>
-                </select>
+                <div class="custom-dropdown">
+                    <div class="dropdown-selected" onclick="toggleDropdown()">Select Color</div>
+                    <div class="dropdown-items">
+                        <div onclick="selectColor('BrightGold', '#FFD700')">
+                            <div class="color-box" style="background-color: #FFD700;"></div>BrightGold
+                        </div>
+                        <div onclick="selectColor('Athletic Hthr', '#A9A9A9')">
+                            <div class="color-box" style="background-color: #A9A9A9;"></div>Athletic Hthr
+                        </div>
+                        <div onclick="selectColor('Athletic Kelly', '#00A550')">
+                            <div class="color-box" style="background-color: #00A550;"></div>Athletic Kelly
+                        </div>
+                        <div onclick="selectColor('Athletic Maroon', '#800000')">
+                            <div class="color-box" style="background-color: #800000;"></div>Athletic Maroon
+                        </div>
+                        <div onclick="selectColor('Bright Red', '#FF0000')">
+                            <div class="color-box" style="background-color: #FF0000;"></div>Bright Red
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="controls">
                 <label for="logo-placement">Logo Placement:</label>
@@ -189,24 +202,34 @@
     </div>
 
     <script>
-        function updateColor() {
-            const color = document.getElementById('color-selection').value;
-            const image = document.getElementById('product-image');
+        function toggleDropdown() {
+            document.querySelector('.custom-dropdown .dropdown-items').classList.toggle('show');
+        }
 
-            switch (color) {
+        function selectColor(colorName, hex) {
+            document.querySelector('.custom-dropdown .dropdown-selected').textContent = colorName;
+            updateColor(hex);
+            toggleDropdown(); // Close dropdown after selection
+        }
+
+        function updateColor(hex) {
+            const image = document.getElementById('product-image');
+            const colorName = document.querySelector('.custom-dropdown .dropdown-selected').textContent;
+
+            switch (colorName) {
                 case 'BrightGold':
                     image.src = 'PC450C1/BrightGoldFront.png';
                     break;
-                case 'AthleticHthr':
+                case 'Athletic Hthr':
                     image.src = 'PC450C1/AthleticHthrFront.png';
                     break;
-                case 'AthleticKelly':
+                case 'Athletic Kelly':
                     image.src = 'PC450C1/AthleticKellyFront.png';
                     break;
-                case 'AthleticMaroon':
+                case 'Athletic Maroon':
                     image.src = 'PC450C1/AthleticMaroonFront.png';
                     break;
-                case 'BrightRed':
+                case 'Bright Red':
                     image.src = 'PC450C1/BrightRedFront.png';
                     break;
                 default:
