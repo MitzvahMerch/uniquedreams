@@ -119,10 +119,9 @@
             <div class="controls">
                 <label for="logo-placement">Select Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
-                    <option value="none">None</option>
+                    <option value="left-chest">Left Chest</option>
                     <option value="full-front">Full Front</option>
                     <option value="half-front">Half Front</option>
-                    <option value="right-chest">Right Chest</option>
                     <option value="center-back">Center Back</option>
                 </select>
             </div>
@@ -182,11 +181,11 @@
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
-                case 'right-chest':
+                case 'left-chest':
                     logo.style.width = '68px';  // 15% smaller
                     logo.style.height = '68px';
                     logo.style.top = '30%';
-                    logo.style.left = '75%'; // Shifted back inward
+                    logo.style.left = '65%'; // Shifted back inward
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'center-back':
@@ -215,3 +214,4 @@
 
 </body>
 </html>
+
