@@ -54,7 +54,7 @@
 
         .controls-container {
             flex: 0 0 400px; /* Fixed width for the controls container */
-            background-color: #f0f0f0;
+            background-color: #FFFFFF; /* Changed to white */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -118,10 +118,16 @@
             background-color: #0056b3;
         }
 
-        .product-title {
+        h1.product-title {
             font-size: 32px; /* Twice the size of the "Color" label */
             font-weight: bold;
             color: black;
+            margin-bottom: 5px;
+        }
+
+        .sku-text {
+            font-size: 16px; /* Half the size of the header */
+            color: gray;
             margin-bottom: 20px;
         }
 
@@ -138,7 +144,8 @@
         </div>
         
         <div class="controls-container">
-            <div class="product-title">Exceptional Tee</div> <!-- Product Title Added -->
+            <h1 class="product-title">Exceptional Tee</h1> <!-- Product Title Changed to Header -->
+            <div class="sku-text">PC450C1</div> <!-- SKU Text Added -->
             <div class="controls">
                 <label for="color-selection">Color:</label>
                 <select id="color-selection" onchange="updateColor()">
