@@ -3,60 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page with Logo Placement</title>
+    <title>Product Image Experiment</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            margin: 0;
+            text-align: center;
             padding: 20px;
         }
-
         .product-container {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            margin-top: 50px;
         }
-
-        .image-container {
-            position: relative;
-            width: 300px;
-            height: 400px;
-            border: 2px solid #ccc;
-            background-color: #fff;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .logo-placeholder {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
+        .product-images {
+            display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-size: 12px;
-            text-align: center;
+            margin-bottom: 20px;
         }
-
+        .product-images img {
+            max-width: 300px;
+            max-height: 300px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .logo-container {
+            position: relative;
+            display: inline-block;
+        }
+        .logo-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: 100%;
+            max-height: 100%;
+            pointer-events: none;
+        }
         .controls {
             margin-top: 20px;
-            text-align: center;
         }
-
         .controls label {
+            font-weight: bold;
             margin-right: 10px;
         }
-
         .controls select {
             padding: 5px;
             font-size: 16px;
@@ -66,61 +59,49 @@
 <body>
 
 <div class="product-container">
-    <div class="image-container">
-        <img id="product-image" src="https://via.placeholder.com/300x400.png" alt="Product Image">
-        <div id="logo-placeholder" class="logo-placeholder">Your Logo</div>
+    <div class="product-images">
+        <div class="logo-container" id="frontImageContainer">
+            <img src="PC450C1/BrightGoldFront.png" alt="Front Image">
+            <img id="logoOverlay" src="" alt="Logo" style="display: none;">
+        </div>
     </div>
 
     <div class="controls">
-        <label for="logo-placement">Select Logo Placement:</label>
-        <select id="logo-placement" onchange="updateLogoPlacement()">
-            <option value="none">None</option>
-            <option value="full-front">Full Front</option>
-            <option value="right-chest">Right Chest</option>
-            <option value="left-chest">Left Chest</option>
-            <option value="center-back">Center Back</option>
+        <label for="logoPosition">Logo Position:</label>
+        <select id="logoPosition" onchange="updateLogoPosition()">
+            <option value="">Select Position</option>
+            <option value="fullFront">Full Front</option>
+            <option value="leftChest">Left Chest</option>
+            <option value="rightChest">Right Chest</option>
         </select>
     </div>
 </div>
 
 <script>
-    function updateLogoPlacement() {
-        const logo = document.getElementById('logo-placeholder');
-        const placement = document.getElementById('logo-placement').value;
-        logo.style.display = 'block';
+    function updateLogoPosition() {
+        const logoOverlay = document.getElementById('logoOverlay');
+        const logoPosition = document.getElementById('logoPosition').value;
+        
+        if (!logoOverlay.src) {
+            logoOverlay.src = 'path/to/your/logo.png';  // Replace with your logo image path
+            logoOverlay.style.display = 'block';
+        }
 
-        switch (placement) {
-            case 'full-front':
-                logo.style.width = '200px';
-                logo.style.height = '200px';
-                logo.style.top = '50%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'right-chest':
-                logo.style.width = '80px';
-                logo.style.height = '80px';
-                logo.style.top = '30%';
-                logo.style.left = '70%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'left-chest':
-                logo.style.width = '80px';
-                logo.style.height = '80px';
-                logo.style.top = '30%';
-                logo.style.left = '30%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'center-back':
-                logo.style.width = '150px';
-                logo.style.height = '150px';
-                logo.style.top = '60%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            default:
-                logo.style.display = 'none';
-                break;
+        if (logoPosition === 'fullFront') {
+            logoOverlay.style.width = '80%';
+            logoOverlay.style.top = '10%';
+            logoOverlay.style.left = '10%';
+        } else if (logoPosition === 'leftChest') {
+            logoOverlay.style.width = '30%';
+            logoOverlay.style.top = '20%';
+            logoOverlay.style.left = '5%';
+        } else if (logoPosition === 'rightChest') {
+            logoOverlay.style.width = '30%';
+            logoOverlay.style.top = '20%';
+            logoOverlay.style.right = '5%';
+            logoOverlay.style.left = 'auto';
+        } else {
+            logoOverlay.style.display = 'none';
         }
     }
 </script>
