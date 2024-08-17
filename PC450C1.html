@@ -121,8 +121,8 @@
                 <select id="logo-placement" onchange="updateLogoPlacement()">
                     <option value="none">None</option>
                     <option value="full-front">Full Front</option>
+                    <option value="half-front">Half Front</option>
                     <option value="right-chest">Right Chest</option>
-                    <option value="left-chest">Left Chest</option>
                     <option value="center-back">Center Back</option>
                 </select>
             </div>
@@ -175,18 +175,18 @@
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
-                case 'right-chest':
-                    logo.style.width = '70px';  // Slightly larger than before
-                    logo.style.height = '70px';
-                    logo.style.top = '30%';
-                    logo.style.left = '65%'; // Moved slightly away from the center
+                case 'half-front':
+                    logo.style.width = '65px';  // 50% smaller than full front
+                    logo.style.height = '65px';
+                    logo.style.top = '28%'; // Positioned higher on the chest
+                    logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
-                case 'left-chest':
-                    logo.style.width = '70px';  // Slightly larger than before
-                    logo.style.height = '70px';
+                case 'right-chest':
+                    logo.style.width = '80px';  // Original size and placement
+                    logo.style.height = '80px';
                     logo.style.top = '30%';
-                    logo.style.left = '35%'; // Moved slightly away from the center
+                    logo.style.left = '70%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     break;
                 case 'center-back':
@@ -215,3 +215,4 @@
 
 </body>
 </html>
+
