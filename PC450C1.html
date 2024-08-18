@@ -258,36 +258,47 @@ h1.product-title {
 <body>
 
     <div class="product-container">
-        <div class="image-container">
-            <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
-            <div id="logo-placeholder" class="logo-placeholder">
-                <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
-            </div>
+    <div class="image-container">
+        <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
+        <div id="logo-placeholder" class="logo-placeholder">
+            <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
         </div>
-        
-        <div class="controls-container">
-            <h1 class="product-title">Exceptional Tee</h1> <!-- Product Title Changed to Header -->
-            <div class="sku-text">PC450C1</div> <!-- SKU Text Added -->
-            <div class="controls">
-                <label for="color-selection">Color:</label>
-                <select id="color-selection" onchange="updateColor()">
-                    <option value="BrightGold" selected>🟨 BrightGold</option>
-                    <option value="AthleticHthr">⬜ Athletic Hthr</option>
-                    <option value="AthleticKelly">🟩 Athletic Kelly</option>
-                    <option value="AthleticMaroon">🟥 Athletic Maroon</option>
-                    <option value="BrightRed">🟥 Bright Red</option>
-                </select>
-            </div>
-            <div class="controls">
-                <label for="logo-placement">Logo Placement:</label>
-                <select id="logo-placement" onchange="updateLogoPlacement()">
-                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-                    <option value="left-chest">Left Chest</option>
-                    <option value="full-front">Full Front</option>
-                    <option value="half-front">Half Front</option>
-                    <option value="center-back">Center Back</option>
-                </select>
-            </div>
+    </div>
+
+    <div class="controls-container">
+        <h1 class="product-title">Exceptional Tee</h1> <!-- Product Title Changed to Header -->
+        <div class="sku-text">PC450C1</div> <!-- SKU Text Added -->
+
+        <div class="controls">
+            <label for="color-selection">Color:</label>
+            <select id="color-selection" onchange="updateColor()">
+                <option value="BrightGold" selected>🟨 BrightGold</option>
+                <option value="AthleticHthr">⬜ Athletic Hthr</option>
+                <option value="AthleticKelly">🟩 Athletic Kelly</option>
+                <option value="AthleticMaroon">🟥 Athletic Maroon</option>
+                <option value="BrightRed">🟥 Bright Red</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <label for="front-logo-placement">Front Logo Placement:</label>
+            <select id="front-logo-placement" onchange="updateLogoPlacement()">
+                <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                <option value="left-chest">Left Chest</option>
+                <option value="full-front">Full Front</option>
+                <option value="half-front">Half Front</option>
+                <option value="none-front">None</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <label for="back-logo-placement">Back Logo Placement:</label>
+            <select id="back-logo-placement" onchange="updateLogoPlacement()">
+                <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                <option value="center-back">Center Back</option>
+                <option value="none-back">None</option>
+            </select>
+        </div>
 
             <table class="size-table">
                 <tr>
@@ -437,55 +448,60 @@ function updateColor() {
 
 function updateLogoPlacement() {
     const logo = document.getElementById('logo-placeholder');
-    const placement = document.getElementById('logo-placement').value;
+    const frontPlacement = document.getElementById('front-logo-placement').value;
+    const backPlacement = document.getElementById('back-logo-placement').value;
     const image = document.getElementById('product-image');
 
-    if (placement) {
-        logo.style.display = 'block';
-    } else {
-        logo.style.display = 'none';
-        return;
-    }
+    // Default to hiding the logo
+    logo.style.display = 'none';
 
-    image.classList.remove('back-image'); // Reset any scaling
+    if (backPlacement !== 'none-back') {
+        // Show the back image
+        image.src = 'PC450C1/BrightGoldBack.png';
 
-    switch (placement) {
-        case 'full-front':
-            logo.style.width = '200px';
-            logo.style.height = '200px';
-            logo.style.top = '38%';
-            logo.style.left = '50%';
-            logo.style.transform = 'translate(-50%, -50%)';
-            image.src = image.src.replace('Back', 'Front');
-            break;
-        case 'half-front':
-            logo.style.width = '154px';
-            logo.style.height = '154px';
-            logo.style.top = '35%';
-            logo.style.left = '50%';
-            logo.style.transform = 'translate(-50%, -50%)';
-            image.src = image.src.replace('Back', 'Front');
-            break;
-        case 'left-chest':
-            logo.style.width = '90px';
-            logo.style.height = '90px';
-            logo.style.top = '30%';
-            logo.style.left = '62%';
-            logo.style.transform = 'translate(-50%, -50%)';
-            image.src = image.src.replace('Back', 'Front');
-            break;
-        case 'center-back':
+        if (backPlacement === 'center-back') {
+            // Show the logo centered on the back
+            logo.style.display = 'block';
             logo.style.width = '180px';
             logo.style.height = '180px';
             logo.style.top = '28%';
             logo.style.left = '50%';
             logo.style.transform = 'translate(-50%, -50%)';
-            image.src = image.src.replace('Front', 'Back');
             image.classList.add('back-image');
-            break;
-        default:
-            logo.style.display = 'none';
-            break;
+        }
+    } else if (frontPlacement !== 'none-front') {
+        // Show the front image
+        image.src = 'PC450C1/BrightGoldFront.png';
+
+        switch (frontPlacement) {
+            case 'full-front':
+                logo.style.width = '200px';
+                logo.style.height = '200px';
+                logo.style.top = '38%';
+                logo.style.left = '50%';
+                logo.style.transform = 'translate(-50%, -50%)';
+                break;
+            case 'half-front':
+                logo.style.width = '154px';
+                logo.style.height = '154px';
+                logo.style.top = '35%';
+                logo.style.left = '50%';
+                logo.style.transform = 'translate(-50%, -50%)';
+                break;
+            case 'left-chest':
+                logo.style.width = '90px';
+                logo.style.height = '90px';
+                logo.style.top = '30%';
+                logo.style.left = '62%';
+                logo.style.transform = 'translate(-50%, -50%)';
+                break;
+        }
+
+        logo.style.display = 'block'; // Show the logo if there's a front placement
+        image.classList.remove('back-image'); // Reset any scaling for the front image
+    } else {
+        // No logo placement selected, hide the logo
+        logo.style.display = 'none';
     }
 }
 
