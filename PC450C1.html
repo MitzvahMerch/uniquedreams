@@ -498,7 +498,7 @@ function updateLogoPlacement() {
 
     if (backDropdown.dataset.lastChanged && (!frontDropdown.dataset.lastChanged || backDropdown.dataset.lastChanged > frontDropdown.dataset.lastChanged)) {
         // The back placement was the most recent change
-        if (backPlacement === 'center-back') {
+        if (backPlacement === 'centerBack') { // Updated to match Firestore field
             // Show the back image with the Center Back logo
             image.src = 'PC450C1/BrightGoldBack.png';
             logo.style.display = 'block';
@@ -517,8 +517,8 @@ function updateLogoPlacement() {
         updateFrontLogo(frontPlacement, logo, image);
     }
 
-    // New condition to handle switching from front placement to none when back is set to center-back
-    if (frontPlacement === 'none-front' && backPlacement === 'center-back') {
+    // New condition to handle switching from front placement to none when back is set to centerBack
+    if (frontPlacement === 'none-front' && backPlacement === 'centerBack') { // Updated to match Firestore field
         image.src = 'PC450C1/BrightGoldBack.png';
         logo.style.display = 'block';
         logo.style.width = '180px';
@@ -532,25 +532,24 @@ function updateLogoPlacement() {
 
 function updateFrontLogo(frontPlacement, logo, image) {
     if (frontPlacement !== 'none-front' && frontPlacement !== '') {
-        // Show the front image with the selected front logo
         image.src = 'PC450C1/BrightGoldFront.png';
 
         switch (frontPlacement) {
-            case 'full-front':
+            case 'fullFront':  // Match HTML value
                 logo.style.width = '200px';
                 logo.style.height = '200px';
                 logo.style.top = '38%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
-            case 'half-front':
+            case 'centerChest':  // Match HTML value
                 logo.style.width = '154px';
                 logo.style.height = '154px';
                 logo.style.top = '35%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
-            case 'left-chest':
+            case 'leftChest':  // Match HTML value
                 logo.style.width = '90px';
                 logo.style.height = '90px';
                 logo.style.top = '30%';
@@ -562,7 +561,6 @@ function updateFrontLogo(frontPlacement, logo, image) {
         logo.style.display = 'block'; // Show the logo if a front placement is selected
         image.classList.remove('back-image'); // Ensure no back-image scaling for front view
     } else {
-        // If "None" is selected for both placements, show the front image without any logo
         image.src = 'PC450C1/BrightGoldFront.png';
         logo.style.display = 'none';
     }
