@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #0B3A92; /* Dark blue background */
+            background-color: #0137B7; /* Dark blue background */
             color: #333;
             margin: 0;
             padding: 20px;
@@ -133,14 +133,13 @@
             color: gray;
             margin-bottom: 20px;
         }
-        
+
         .product-description {
             margin-top: 50px; /* Increase space between the disclaimer and the product description */
             font-size: 14px;
             color: #FFFFFF;
             max-width: 500px; /* Restrict width to match image container */
             padding-left: 16%; /* Use percentage for padding */
-
         }
 
         .disclaimer-container {
@@ -151,8 +150,73 @@
             max-width: 500px; /* Restrict width to match image container */
             padding-left: 16%; /* Use percentage for padding */
         }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .submit-modal-button {
+            background-color: #1493E9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-modal-button:hover {
+            background-color: #1177C3;
+        }
     </style>
- 
 </head>
 <body>
 
@@ -231,6 +295,24 @@
 
     <div class="product-description">
         Port and Company's tee that genuinely matches your favorite collegiate and professional sports team colors.| 4.5-ounce, 100% ring spun cotton
+    </div>
+
+    <!-- Modal for additional information -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Enter Your Details</h2>
+            <label class="modal-label" for="name">Name:</label>
+            <input type="text" id="name" class="modal-input" placeholder="Enter your name">
+
+            <label class="modal-label" for="email">Email:</label>
+            <input type="email" id="email" class="modal-input" placeholder="Enter your email">
+
+            <label class="modal-label" for="date">Date of Party:</label>
+            <input type="date" id="date" class="modal-input">
+
+            <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+        </div>
     </div>
 
     <script>
@@ -361,10 +443,38 @@
             };
 
             localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+            // Show the modal form after calculating quantity
+            openModal();
         }
 
-        function proceedToCheckout() {
-            window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
+        function openModal() {
+            document.getElementById("infoModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("infoModal").style.display = "none";
+        }
+
+        function submitDetails() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const date = document.getElementById("date").value;
+
+            if (name && email && date) {
+                const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+                orderDetails.name = name;
+                orderDetails.email = email;
+                orderDetails.date = date;
+
+                localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+                closeModal();
+
+                // You can now proceed to the next step, e.g., showing the price or proceeding to checkout
+            } else {
+                alert('Please fill in all fields.');
+            }
         }
     </script>
 
