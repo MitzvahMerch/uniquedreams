@@ -245,6 +245,14 @@ h1.product-title {
     margin: 5px 0;
     font-weight: bold;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Optional: add some space above the button */
+}
+
     </style>
 </head>
 <body>
@@ -371,7 +379,10 @@ h1.product-title {
             </div>
         </div>
 
-        <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+        <!-- Center the submit button -->
+        <div class="button-container">
+            <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+        </div>
     </div>
 </div>
 
