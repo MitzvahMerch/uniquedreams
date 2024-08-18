@@ -687,7 +687,12 @@ function submitDetails() {
         orderDetails.name = name;
         orderDetails.email = email;
         orderDetails.date = date;
-        orderDetails.rollTag = rollTag;
+
+        // Save the roll tag selection properly
+        orderDetails.rollTagSelection = rollTag === "yes" ? "yes" : "none";
+
+        // Save the selected roll tag style, if applicable
+        orderDetails.selectedStyle = document.querySelector('.image-options img.selected')?.id || "none";
 
         localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 
