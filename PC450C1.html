@@ -455,40 +455,9 @@ function updateLogoPlacement() {
     // Default to hiding the logo
     logo.style.display = 'none';
 
-    if (frontPlacement !== 'none-front') {
-        // Show the front image with the selected front logo
-        image.src = 'PC450C1/BrightGoldFront.png';
-
-        switch (frontPlacement) {
-            case 'full-front':
-                logo.style.width = '200px';
-                logo.style.height = '200px';
-                logo.style.top = '38%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'half-front':
-                logo.style.width = '154px';
-                logo.style.height = '154px';
-                logo.style.top = '35%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-            case 'left-chest':
-                logo.style.width = '90px';
-                logo.style.height = '90px';
-                logo.style.top = '30%';
-                logo.style.left = '62%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                break;
-        }
-
-        logo.style.display = 'block'; // Show the logo if there's a front placement
-        image.classList.remove('back-image'); // Reset any scaling for the front image
-    } else if (backPlacement === 'center-back') {
-        // Show the back image with the selected back logo
+    if (backPlacement === 'center-back') {
+        // Show the back image with the Center Back logo
         image.src = 'PC450C1/BrightGoldBack.png';
-
         logo.style.display = 'block';
         logo.style.width = '180px';
         logo.style.height = '180px';
@@ -496,18 +465,44 @@ function updateLogoPlacement() {
         logo.style.left = '50%';
         logo.style.transform = 'translate(-50%, -50%)';
         image.classList.add('back-image');
-    } else if (backPlacement === 'none-back') {
-        // Show the back image with no logo
-        image.src = 'PC450C1/BrightGoldBack.png';
-        logo.style.display = 'none';
-        image.classList.add('back-image');
-    } else {
-        // Default to showing the front view without a logo
-        image.src = 'PC450C1/BrightGoldFront.png';
-        logo.style.display = 'none';
+    } else if (backPlacement === 'none-back' || backPlacement === '') {
+        if (frontPlacement !== 'none-front' && frontPlacement !== '') {
+            // Show the front image with the selected front logo
+            image.src = 'PC450C1/BrightGoldFront.png';
+
+            switch (frontPlacement) {
+                case 'full-front':
+                    logo.style.width = '200px';
+                    logo.style.height = '200px';
+                    logo.style.top = '38%';
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    break;
+                case 'half-front':
+                    logo.style.width = '154px';
+                    logo.style.height = '154px';
+                    logo.style.top = '35%';
+                    logo.style.left = '50%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    break;
+                case 'left-chest':
+                    logo.style.width = '90px';
+                    logo.style.height = '90px';
+                    logo.style.top = '30%';
+                    logo.style.left = '62%';
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    break;
+            }
+
+            logo.style.display = 'block'; // Show the logo if a front placement is selected
+            image.classList.remove('back-image'); // Ensure no back-image scaling for front view
+        } else {
+            // If both placements are "None" or unselected, show the front image without any logo
+            image.src = 'PC450C1/BrightGoldFront.png';
+            logo.style.display = 'none';
+        }
     }
 }
-
 
 function updateTotal() {
     const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
