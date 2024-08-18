@@ -25,7 +25,7 @@
             position: relative;
             width: 499px; /* New width based on aspect ratio */
             height: 673px; /* Increased height */
-            border: 6px solid white; /* White border */
+            border: 6px solid black; /* Black border */
             background-color: #1493E9; /* Changed to blue */
             overflow: hidden;
         }
@@ -133,6 +133,13 @@
             margin-bottom: 20px;
         }
 
+        .product-description {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+            max-width: 500px; /* Restrict width to match image container */
+        }
+
     </style>
 </head>
 <body>
@@ -206,6 +213,10 @@
         </div>
     </div>
 
+    <div class="product-description">
+        Port and Company's tee that genuinely matches your favorite collegiate and professional sports team colors.| 4.5-ounce, 100% ring spun cotton
+    </div>
+
     <script>
         function updateColor() {
             const color = document.getElementById('color-selection').value;
@@ -252,32 +263,32 @@
 
             switch (placement) {
                 case 'full-front':
-                    logo.style.width = '210px';  // Adjusted for larger container
-                    logo.style.height = '210px';
+                    logo.style.width = '200px';  // Adjusted for larger container
+                    logo.style.height = '200px';
                     logo.style.top = '38%'; // Moved up slightly
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     image.src = image.src.replace('Back', 'Front'); // Show front image
                     break;
                 case 'half-front':
-                    logo.style.width = '161px';  // Adjusted for larger container
-                    logo.style.height = '161px';
+                    logo.style.width = '154px';  // Adjusted for larger container
+                    logo.style.height = '154px';
                     logo.style.top = '35%'; // Moved up by 3%
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
                     image.src = image.src.replace('Back', 'Front'); // Show front image
                     break;
                 case 'left-chest':
-                    logo.style.width = '94px';  // Adjusted for larger container
-                    logo.style.height = '94px';
+                    logo.style.width = '90px';  // Adjusted for larger container
+                    logo.style.height = '90px';
                     logo.style.top = '30%';
                     logo.style.left = '62%'; // Shifted more inward
                     logo.style.transform = 'translate(-50%, -50%)';
                     image.src = image.src.replace('Back', 'Front'); // Show front image
                     break;
                 case 'center-back':
-                    logo.style.width = '188px';  // Adjusted for larger container
-                    logo.style.height = '188px';
+                    logo.style.width = '180px';  // Adjusted for larger container
+                    logo.style.height = '180px';
                     logo.style.top = '28%';
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
@@ -303,6 +314,4 @@
 
 </body>
 </html>
-
-
 
