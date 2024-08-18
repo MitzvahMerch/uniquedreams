@@ -152,6 +152,11 @@
             padding-left: 16%; /* Use percentage for padding */
         }
     </style>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js"></script>
 </head>
 <body>
 
@@ -233,8 +238,6 @@
     </div>
 
     <script>
-        // Firestore initialization (assumed to be already done elsewhere in your project)
-
         async function updateLogo() {
             const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
             const logoUrl = await getLogoUrl(sessionId);
