@@ -570,7 +570,38 @@ function updateTotal() {
 }
 
 function getPrice() {
-    // Show the modal form
+    // Ensure the total quantity is up to date
+    updateTotal();
+
+    // Retrieve the existing order details, including the quantity
+    let orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+
+    // Retrieve the SKU
+    const sku = document.querySelector('.sku-text').textContent;
+
+    // Retrieve the selected front logo placement
+    const frontPlacement = document.getElementById('front-logo-placement').value;
+
+    // Retrieve the selected back logo placement
+    const backPlacement = document.getElementById('back-logo-placement').value;
+
+    // Retrieve the selected roll tag option
+    const rollTagSelection = document.getElementById('roll-tag').value;
+
+    // Retrieve the selected roll tag style, if applicable
+    const selectedStyle = document.querySelector('.image-options img.selected')?.id || null;
+
+    // Update the orderDetails object with the latest selections
+    orderDetails.sku = sku;
+    orderDetails.frontPlacement = frontPlacement;
+    orderDetails.backPlacement = backPlacement;
+    orderDetails.rollTagSelection = rollTagSelection;
+    orderDetails.selectedStyle = selectedStyle;
+
+    // Save the updated order details to localStorage
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+    // Show the modal form for the next steps
     openModal();
 }
 
