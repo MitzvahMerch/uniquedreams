@@ -152,12 +152,7 @@
             padding-left: 16%; /* Use percentage for padding */
         }
     </style>
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+ 
 </head>
 <body>
 
@@ -185,7 +180,7 @@
             <div class="controls">
                 <label for="logo-placement">Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
-                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="" selected disabled>Select Placement</option>
                     <option value="left-chest">Left Chest</option>
                     <option value="full-front">Full Front</option>
                     <option value="half-front">Half Front</option>
@@ -226,7 +221,7 @@
                 </tr>
             </table>
 
-            <button class="submit-button" onclick="calculateQuantity()">Get Price</button> <!-- "Get Price" button text made bold -->
+            <button class="submit-button" onclick="calculateQuantity()">Get Price</button>
         </div>
     </div>
 
@@ -239,38 +234,20 @@
     </div>
 
     <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
-            authDomain: "mitzvahmerch-ac346.firebaseapp.com",
-            projectId: "mitzvahmerch-ac346",
-            storageBucket: "mitzvahmerch-ac346.appspot.com",
-            messagingSenderId: "232131426361",
-            appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
-            measurementId: "G-XXFM5DPRZ6"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const storage = firebase.storage();
-
         async function updateLogo() {
             const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
-            const logoUrl = await getLogoUrl(sessionId);
 
-            if (logoUrl) {
-                document.getElementById('logo-image').src = logoUrl;
-            }
-        }
+            try {
+                const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/getLogoUrl?sessionId=${sessionId}`);
+                const result = await response.json();
 
-        async function getLogoUrl(sessionId) {
-            const doc = await db.collection('logos').doc(sessionId).get();
-            if (doc.exists) {
-                return doc.data().downloadURL;
-            } else {
-                console.error("No logo found for this session ID");
-                return null;
+                if (result.downloadURL) {
+                    document.getElementById('logo-image').src = result.downloadURL;
+                } else {
+                    console.error('Logo URL not found');
+                }
+            } catch (error) {
+                console.error('Error fetching logo URL:', error);
             }
         }
 
@@ -321,37 +298,37 @@
 
             switch (placement) {
                 case 'full-front':
-                    logo.style.width = '200px';  // Adjusted for larger container
+                    logo.style.width = '200px';
                     logo.style.height = '200px';
-                    logo.style.top = '38%'; // Moved up slightly
+                    logo.style.top = '38%';
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = image.src.replace('Back', 'Front'); // Show front image
+                    image.src = image.src.replace('Back', 'Front');
                     break;
                 case 'half-front':
-                    logo.style.width = '154px';  // Adjusted for larger container
+                    logo.style.width = '154px';
                     logo.style.height = '154px';
-                    logo.style.top = '35%'; // Moved up by 3%
+                    logo.style.top = '35%';
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = image.src.replace('Back', 'Front'); // Show front image
+                    image.src = image.src.replace('Back', 'Front');
                     break;
                 case 'left-chest':
-                    logo.style.width = '90px';  // Adjusted for larger container
+                    logo.style.width = '90px';
                     logo.style.height = '90px';
                     logo.style.top = '30%';
-                    logo.style.left = '62%'; // Shifted more inward
+                    logo.style.left = '62%';
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = image.src.replace('Back', 'Front'); // Show front image
+                    image.src = image.src.replace('Back', 'Front');
                     break;
                 case 'center-back':
-                    logo.style.width = '180px';  // Adjusted for larger container
+                    logo.style.width = '180px';
                     logo.style.height = '180px';
                     logo.style.top = '28%';
                     logo.style.left = '50%';
                     logo.style.transform = 'translate(-50%, -50%)';
-                    image.src = image.src.replace('Front', 'Back'); // Show back image
-                    image.classList.add('back-image'); // Apply scaling
+                    image.src = image.src.replace('Front', 'Back');
+                    image.classList.add('back-image');
                     break;
                 default:
                     logo.style.display = 'none';
@@ -373,7 +350,6 @@
 
             document.getElementById('total').value = total;
 
-            // Save details to localStorage
             const color = document.getElementById('color-selection').value;
             const sku = document.querySelector('.sku-text').textContent;
 
@@ -388,7 +364,6 @@
         }
 
         function proceedToCheckout() {
-            // Functionality to proceed to checkout
             window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
         }
     </script>
