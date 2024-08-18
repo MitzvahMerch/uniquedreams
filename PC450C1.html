@@ -258,24 +258,24 @@
                     <td><label for="size-yl">YL</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
-                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
                 </tr>
                 <tr>
                     <td><label for="size-s">S</label></td>
                     <td><label for="size-m">M</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
-                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
                 </tr>
                 <tr>
                     <td><label for="size-l">L</label></td>
                     <td><label for="size-xl">XL</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
-                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><label for="total">Total</label></td>
@@ -285,7 +285,7 @@
                 </tr>
             </table>
 
-            <button class="submit-button" onclick="calculateQuantity()">Get Price</button>
+            <button class="submit-button" onclick="getPrice()">Get Price</button>
         </div>
     </div>
 
@@ -443,8 +443,13 @@
             };
 
             localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+        }
 
-            // Show the modal form after calculating quantity
+        function getPrice() {
+            // First calculate the quantity and store details
+            calculateQuantity();
+
+            // Then show the modal form
             openModal();
         }
 
