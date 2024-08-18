@@ -301,15 +301,22 @@
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Enter Your Details</h2>
+            <h2>Almost There!</h2>
             <label class="modal-label" for="name">Name:</label>
             <input type="text" id="name" class="modal-input" placeholder="Enter your name">
 
             <label class="modal-label" for="email">Email:</label>
             <input type="email" id="email" class="modal-input" placeholder="Enter your email">
 
-            <label class="modal-label" for="date">Date of Party:</label>
+            <label class="modal-label" for="date">When's the Special Day:</label>
             <input type="date" id="date" class="modal-input">
+
+            <label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
+            <select id="roll-tag" class="modal-input">
+                <option value="" selected disabled>Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
 
             <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
         </div>
@@ -462,12 +469,14 @@
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
             const date = document.getElementById("date").value;
+            const rollTag = document.getElementById("roll-tag").value;
 
-            if (name && email && date) {
+            if (name && email && date && rollTag) {
                 const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
                 orderDetails.name = name;
                 orderDetails.email = email;
                 orderDetails.date = date;
+                orderDetails.rollTag = rollTag;
 
                 localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 
