@@ -366,8 +366,8 @@ h1.product-title {
             <option value="no">No</option>
         </select>
 
-<div class="image-options" id="image-options">
-    <p style="font-weight: bold;">Select Your Preferred Style:</p>
+        <div class="image-options" id="image-options">
+            <p style="font-weight: bold;">Select Your Preferred Style:</p>
             <div class="image-option">
                 <img src="RollDisplayImages/RollTag1.jpg" alt="Option 1" id="option1" onclick="selectImage('option1')">
                 <p>Standard Roll and Tag</p>
@@ -393,6 +393,18 @@ h1.product-title {
         <!-- Center the submit button -->
         <div class="button-container">
             <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for displaying price -->
+<div id="priceModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePriceModal()">&times;</span>
+        <h2>Your Price</h2>
+        <p id="price-display"></p>
+        <div class="button-container">
+            <button class="submit-modal-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
     </div>
 </div>
