@@ -693,10 +693,46 @@ function submitDetails() {
 
         closeModal();
 
-        // You can now proceed to the next step, e.g., showing the price or proceeding to checkout
+        // Proceed to calculate the price and show it in the price modal
+        calculatePrice();
     } else {
         alert('Please fill in all fields.');
     }
+}
+
+// Function to calculate the price
+async function calculatePrice() {
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+    try {
+        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=${orderDetails.totalQuantity}&sku=${orderDetails.sku}&frontPlacement=${orderDetails.frontPlacement}&backPlacement=${orderDetails.backPlacement}&rollTagSelection=${orderDetails.rollTagSelection}&selectedStyle=${orderDetails.selectedStyle}`);
+        const result = await response.json();
+
+        if (result.price) {
+            document.getElementById('price-display').innerText = `Total Price: $${result.price.toFixed(2)}`;
+            openPriceModal();
+        } else {
+            console.error('Price not returned');
+        }
+    } catch (error) {
+        console.error('Error calculating price:', error);
+    }
+}
+
+// Function to open the price modal
+function openPriceModal() {
+    document.getElementById("priceModal").style.display = "block";
+}
+
+// Function to close the price modal
+function closePriceModal() {
+    document.getElementById("priceModal").style.display = "none";
+}
+
+// Function to proceed to checkout
+function proceedToCheckout() {
+    // Redirect to the checkout page or handle the checkout process
+    window.location.href = 'checkout.html';
 }
 </script>
 
