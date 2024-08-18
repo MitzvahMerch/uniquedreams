@@ -319,13 +319,29 @@
         function calculateQuantity() {
             const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
             let total = 0;
+            let sizeDetails = {};
 
             sizes.forEach(size => {
                 const input = document.getElementById(`size-${size}`);
-                total += parseInt(input.value) || 0; // Add the value or 0 if empty
+                const quantity = parseInt(input.value) || 0;
+                total += quantity;
+                sizeDetails[size] = quantity;
             });
 
             document.getElementById('total').value = total;
+
+            // Save details to localStorage
+            const color = document.getElementById('color-selection').value;
+            const sku = document.querySelector('.sku-text').textContent;
+
+            const orderDetails = {
+                totalQuantity: total,
+                sizes: sizeDetails,
+                sku: sku,
+                color: color
+            };
+
+            localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
         }
 
         function proceedToCheckout() {
@@ -336,4 +352,3 @@
 
 </body>
 </html>
-
