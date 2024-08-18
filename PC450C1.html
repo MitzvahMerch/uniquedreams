@@ -6,233 +6,245 @@
     <title>Product Page with Logo Placement</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #0137B7; /* Dark blue background */
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
+    font-family: Arial, sans-serif;
+    background-color: #0137B7; /* Dark blue background */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
 
-        .product-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 20px;
-            margin-top: 50px;
-        }
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 50px;
+}
 
-        .image-container {
-            position: relative;
-            width: 499px; /* New width based on aspect ratio */
-            height: 673px; /* Increased height */
-            border: 6px solid white; /* Black border */
-            background-color: #1493E9; /* Changed to blue */
-            overflow: hidden;
-        }
+.image-container {
+    position: relative;
+    width: 499px; /* New width based on aspect ratio */
+    height: 673px; /* Increased height */
+    border: 6px solid white; /* Black border */
+    background-color: #1493E9; /* Changed to blue */
+    overflow: hidden;
+}
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        .image-container img.back-image {
-            transform: scale(1.32); /* Scale the back image by 20% */
-            transform-origin: 50% 28%; /* Custom percentages for finer control */
-        }
+.image-container img.back-image {
+    transform: scale(1.32); /* Scale the back image by 20% */
+    transform-origin: 50% 28%; /* Custom percentages for finer control */
+}
 
-        .logo-placeholder {
-            position: absolute;
-            display: none;
-        }
+.logo-placeholder {
+    position: absolute;
+    display: none;
+}
 
-        .logo-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+.logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-        .controls-container {
-            flex: 0 0 400px; /* Fixed width for the controls container */
-            height: 643px; /* Shortened by 30px to match image container */
-            background-color: #FFFFFF; /* Changed to white */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+.controls-container {
+    flex: 0 0 400px; /* Fixed width for the controls container */
+    height: 643px; /* Shortened by 30px to match image container */
+    background-color: #FFFFFF; /* Changed to white */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        .controls label {
-            margin-right: 10px;
-            font-weight: bold; /* Make labels bold */
-        }
+.controls label {
+    margin-right: 10px;
+    font-weight: bold; /* Make labels bold */
+}
 
-        .controls select {
-            padding: 5px;
-            font-size: 16px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
+.controls select {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 20px;
+}
 
-        .size-table {
-            width: 100%;
-            border-spacing: 10px;
-            margin-bottom: 20px;
-        }
+.size-table {
+    width: 100%;
+    border-spacing: 10px;
+    margin-bottom: 20px;
+}
 
-        .size-table td {
-            vertical-align: middle;
-            width: 50%; /* Make sure each cell takes up half the row */
-            font-weight: bold; /* Make size labels bold */
-        }
+.size-table td {
+    vertical-align: middle;
+    width: 50%; /* Make sure each cell takes up half the row */
+    font-weight: bold; /* Make size labels bold */
+}
 
-        .size-input {
-            width: 100%; /* Make the input take up the full width of the cell */
-            padding: 5px;
-            margin-left: 0;
-            box-sizing: border-box;
-        }
+.size-input {
+    width: 100%; /* Make the input take up the full width of the cell */
+    padding: 5px;
+    margin-left: 0;
+    box-sizing: border-box;
+}
 
-        .total-input {
-            width: 100%;
-            padding: 5px;
-            margin-left: 0;
-            box-sizing: border-box;
-            background-color: #e0e0e0; /* Light gray background for non-editable field */
-            border: 1px solid #ccc;
-            text-align: center;
-            cursor: not-allowed;
-        }
+.total-input {
+    width: 100%;
+    padding: 5px;
+    margin-left: 0;
+    box-sizing: border-box;
+    background-color: #e0e0e0; /* Light gray background for non-editable field */
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: not-allowed;
+}
 
-        .submit-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #1493E9; /* Changed to blue */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold; /* Made text bold */
-            cursor: pointer;
-            text-align: center;
-        }
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1493E9; /* Changed to blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold; /* Made text bold */
+    cursor: pointer;
+    text-align: center;
+}
 
-        .submit-button:hover {
-            background-color: #1177C3; /* Slightly darker shade for hover effect */
-        }
+.submit-button:hover {
+    background-color: #1177C3; /* Slightly darker shade for hover effect */
+}
 
-        h1.product-title {
-            font-size: 32px; /* Twice the size of the "Color" label */
-            font-weight: bold;
-            color: black;
-            margin-bottom: 5px;
-        }
+h1.product-title {
+    font-size: 32px; /* Twice the size of the "Color" label */
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+}
 
-        .sku-text {
-            font-size: 16px; /* Half the size of the header */
-            font-weight: bold;
-            color: gray;
-            margin-bottom: 20px;
-        }
+.sku-text {
+    font-size: 16px; /* Half the size of the header */
+    font-weight: bold;
+    color: gray;
+    margin-bottom: 20px;
+}
 
-        .product-description {
-            margin-top: 50px; /* Increase space between the disclaimer and the product description */
-            font-size: 14px;
-            color: #FFFFFF;
-            max-width: 500px; /* Restrict width to match image container */
-            padding-left: 16%; /* Use percentage for padding */
-        }
+.product-description {
+    margin-top: 50px; /* Increase space between the disclaimer and the product description */
+    font-size: 14px;
+    color: #FFFFFF;
+    max-width: 500px; /* Restrict width to match image container */
+    padding-left: 16%; /* Use percentage for padding */
+}
 
-        .disclaimer-container {
-            margin-top: 10px; /* Adjust the margin as needed */
-            font-size: 14px;
-            font-weight: bold;
-            color: gray;
-            max-width: 500px; /* Restrict width to match image container */
-            padding-left: 16%; /* Use percentage for padding */
-        }
+.disclaimer-container {
+    margin-top: 10px; /* Adjust the margin as needed */
+    font-size: 14px;
+    font-weight: bold;
+    color: gray;
+    max-width: 500px; /* Restrict width to match image container */
+    padding-left: 16%; /* Use percentage for padding */
+}
 
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 500px;
-            border-radius: 10px;
-        }
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    border-radius: 10px;
+}
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
-        .modal-label {
-            font-weight: bold;
-            margin-top: 10px;
-        }
+.modal-label {
+    font-weight: bold;
+    margin-top: 10px;
+}
 
-        .modal-input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+.modal-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-        .submit-modal-button {
-            background-color: #1493E9;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+.submit-modal-button {
+    background-color: #1493E9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-        .submit-modal-button:hover {
-            background-color: #1177C3;
-        }
-    .image-options {
-            display: none;
-            margin-top: 20px;
-            text-align: center;
-        }
+.submit-modal-button:hover {
+    background-color: #1177C3;
+}
 
-        .image-options img {
-            width: 100px;
-            height: 100px;
-            margin: 10px;
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
+.image-options {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+}
 
-        .image-options img.selected {
-            border-color: #1493E9; /* Highlight the selected image with a blue border */
-        }
+.image-option {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.image-options img {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.image-options img.selected {
+    border-color: #1493E9; /* Highlight the selected image with a blue border */
+}
+
+.image-option p {
+    margin: 5px 0;
+    font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -314,230 +326,246 @@
         Port and Company's tee that genuinely matches your favorite collegiate and professional sports team colors.| 4.5-ounce, 100% ring spun cotton
     </div>
 
-    <!-- Modal for additional information -->
-     <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Almost There!</h2>
-            <label class="modal-label" for="name">Name:</label>
-            <input type="text" id="name" class="modal-input" placeholder="Enter your name">
+<!-- Modal for additional information -->
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Almost There!</h2>
+        <label class="modal-label" for="name">Name:</label>
+        <input type="text" id="name" class="modal-input" placeholder="Enter your name">
 
-            <label class="modal-label" for="email">Email:</label>
-            <input type="email" id="email" class="modal-input" placeholder="Enter your email">
+        <label class="modal-label" for="email">Email:</label>
+        <input type="email" id="email" class="modal-input" placeholder="Enter your email">
 
-            <label class="modal-label" for="date">When's the Special Day:</label>
-            <input type="date" id="date" class="modal-input">
+        <label class="modal-label" for="date">When's the Special Day:</label>
+        <input type="date" id="date" class="modal-input">
 
-            <label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
-            <select id="roll-tag" class="modal-input" onchange="toggleImageOptions()">
-                <option value="" selected disabled>Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
+        <label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
+        <select id="roll-tag" class="modal-input" onchange="toggleImageOptions()">
+            <option value="" selected disabled>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
 
-            <div class="image-options" id="image-options">
-                <p>Select Your Preferred Style:</p>
-                <img src="" alt="Option 1" id="option1" onclick="selectImage('option1')">
-                <img src="" alt="Option 2" id="option2" onclick="selectImage('option2')">
-                <img src="" alt="Option 3" id="option3" onclick="selectImage('option3')">
-                <img src="" alt="Option 4" id="option4" onclick="selectImage('option4')">
+        <div class="image-options" id="image-options">
+            <p>Select Your Preferred Style:</p>
+            <div class="image-option">
+                <img src="RollDisplayImages/RollTag1.png" alt="Option 1" id="option1" onclick="selectImage('option1')">
+                <p>Standard Roll and Tag</p>
+                <p>$2.50 (per item)</p>
             </div>
-
-            <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+            <div class="image-option">
+                <img src="RollDisplayImages/RollTag2.png" alt="Option 2" id="option2" onclick="selectImage('option2')">
+                <p>Deluxe Roll and Tag</p>
+                <p>$3.00 (per item)</p>
+            </div>
+            <div class="image-option">
+                <img src="RollDisplayImages/RollTag3.png" alt="Option 3" id="option3" onclick="selectImage('option3')">
+                <p>Premium Roll and Tag</p>
+                <p>$3.50 (per item)</p>
+            </div>
+            <div class="image-option">
+                <img src="RollDisplayImages/RollTag4.png" alt="Option 4" id="option4" onclick="selectImage('option4')">
+                <p>Exclusive Roll and Tag</p>
+                <p>$4.00 (per item)</p>
+            </div>
         </div>
+
+        <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
     </div>
+</div>
 
     <script>
-    async function updateLogo() {
-        const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
+async function updateLogo() {
+    const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
 
-        try {
-            const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/getLogoUrl?sessionId=${sessionId}`);
-            const result = await response.json();
+    try {
+        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/getLogoUrl?sessionId=${sessionId}`);
+        const result = await response.json();
 
-            if (result.downloadURL) {
-                document.getElementById('logo-image').src = result.downloadURL;
-            } else {
-                console.error('Logo URL not found');
-            }
-        } catch (error) {
-            console.error('Error fetching logo URL:', error);
-        }
-    }
-
-    window.onload = updateLogo;
-
-    function updateColor() {
-        const color = document.getElementById('color-selection').value;
-        const image = document.getElementById('product-image');
-
-        switch (color) {
-            case 'BrightGold':
-                image.src = 'PC450C1/BrightGoldFront.png';
-                break;
-            case 'AthleticHthr':
-                image.src = 'PC450C1/AthleticHthrFront.png';
-                break;
-            case 'AthleticKelly':
-                image.src = 'PC450C1/AthleticKellyFront.png';
-                break;
-            case 'AthleticMaroon':
-                image.src = 'PC450C1/AthleticMaroonFront.png';
-                break;
-            case 'BrightRed':
-                image.src = 'PC450C1/BrightRedFront.png';
-                break;
-            default:
-                image.src = 'PC450C1/BrightGoldFront.png';
-                break;
-        }
-
-        // Ensure any logo placement changes are reset when color changes
-        updateLogoPlacement();
-    }
-
-    function updateLogoPlacement() {
-        const logo = document.getElementById('logo-placeholder');
-        const placement = document.getElementById('logo-placement').value;
-        const image = document.getElementById('product-image');
-
-        if (placement) {
-            logo.style.display = 'block';
+        if (result.downloadURL) {
+            document.getElementById('logo-image').src = result.downloadURL;
         } else {
+            console.error('Logo URL not found');
+        }
+    } catch (error) {
+        console.error('Error fetching logo URL:', error);
+    }
+}
+
+window.onload = updateLogo;
+
+function updateColor() {
+    const color = document.getElementById('color-selection').value;
+    const image = document.getElementById('product-image');
+
+    switch (color) {
+        case 'BrightGold':
+            image.src = 'PC450C1/BrightGoldFront.png';
+            break;
+        case 'AthleticHthr':
+            image.src = 'PC450C1/AthleticHthrFront.png';
+            break;
+        case 'AthleticKelly':
+            image.src = 'PC450C1/AthleticKellyFront.png';
+            break;
+        case 'AthleticMaroon':
+            image.src = 'PC450C1/AthleticMaroonFront.png';
+            break;
+        case 'BrightRed':
+            image.src = 'PC450C1/BrightRedFront.png';
+            break;
+        default:
+            image.src = 'PC450C1/BrightGoldFront.png';
+            break;
+    }
+
+    // Ensure any logo placement changes are reset when color changes
+    updateLogoPlacement();
+}
+
+function updateLogoPlacement() {
+    const logo = document.getElementById('logo-placeholder');
+    const placement = document.getElementById('logo-placement').value;
+    const image = document.getElementById('product-image');
+
+    if (placement) {
+        logo.style.display = 'block';
+    } else {
+        logo.style.display = 'none';
+        return;
+    }
+
+    image.classList.remove('back-image'); // Reset any scaling
+
+    switch (placement) {
+        case 'full-front':
+            logo.style.width = '200px';
+            logo.style.height = '200px';
+            logo.style.top = '38%';
+            logo.style.left = '50%';
+            logo.style.transform = 'translate(-50%, -50%)';
+            image.src = image.src.replace('Back', 'Front');
+            break;
+        case 'half-front':
+            logo.style.width = '154px';
+            logo.style.height = '154px';
+            logo.style.top = '35%';
+            logo.style.left = '50%';
+            logo.style.transform = 'translate(-50%, -50%)';
+            image.src = image.src.replace('Back', 'Front');
+            break;
+        case 'left-chest':
+            logo.style.width = '90px';
+            logo.style.height = '90px';
+            logo.style.top = '30%';
+            logo.style.left = '62%';
+            logo.style.transform = 'translate(-50%, -50%)';
+            image.src = image.src.replace('Back', 'Front');
+            break;
+        case 'center-back':
+            logo.style.width = '180px';
+            logo.style.height = '180px';
+            logo.style.top = '28%';
+            logo.style.left = '50%';
+            logo.style.transform = 'translate(-50%, -50%)';
+            image.src = image.src.replace('Front', 'Back');
+            image.classList.add('back-image');
+            break;
+        default:
             logo.style.display = 'none';
-            return;
-        }
-
-        image.classList.remove('back-image'); // Reset any scaling
-
-        switch (placement) {
-            case 'full-front':
-                logo.style.width = '200px';
-                logo.style.height = '200px';
-                logo.style.top = '38%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                image.src = image.src.replace('Back', 'Front');
-                break;
-            case 'half-front':
-                logo.style.width = '154px';
-                logo.style.height = '154px';
-                logo.style.top = '35%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                image.src = image.src.replace('Back', 'Front');
-                break;
-            case 'left-chest':
-                logo.style.width = '90px';
-                logo.style.height = '90px';
-                logo.style.top = '30%';
-                logo.style.left = '62%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                image.src = image.src.replace('Back', 'Front');
-                break;
-            case 'center-back':
-                logo.style.width = '180px';
-                logo.style.height = '180px';
-                logo.style.top = '28%';
-                logo.style.left = '50%';
-                logo.style.transform = 'translate(-50%, -50%)';
-                image.src = image.src.replace('Front', 'Back');
-                image.classList.add('back-image');
-                break;
-            default:
-                logo.style.display = 'none';
-                break;
-        }
+            break;
     }
+}
 
-    function updateTotal() {
-        const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
-        let total = 0;
-        let sizeDetails = {};
+function updateTotal() {
+    const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
+    let total = 0;
+    let sizeDetails = {};
 
-        sizes.forEach(size => {
-            const input = document.getElementById(`size-${size}`);
-            const quantity = parseInt(input.value) || 0;
-            total += quantity;
-            sizeDetails[size] = quantity;
-        });
+    sizes.forEach(size => {
+        const input = document.getElementById(`size-${size}`);
+        const quantity = parseInt(input.value) || 0;
+        total += quantity;
+        sizeDetails[size] = quantity;
+    });
 
-        document.getElementById('total').value = total;
+    document.getElementById('total').value = total;
 
-        const color = document.getElementById('color-selection').value;
-        const sku = document.querySelector('.sku-text').textContent;
+    const color = document.getElementById('color-selection').value;
+    const sku = document.querySelector('.sku-text').textContent;
 
-        const orderDetails = {
-            totalQuantity: total,
-            sizes: sizeDetails,
-            sku: sku,
-            color: color
-        };
+    const orderDetails = {
+        totalQuantity: total,
+        sizes: sizeDetails,
+        sku: sku,
+        color: color
+    };
 
-        localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+}
+
+function getPrice() {
+    // Show the modal form
+    openModal();
+}
+
+function openModal() {
+    document.getElementById("infoModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("infoModal").style.display = "none";
+}
+
+function toggleImageOptions() {
+    const rollTag = document.getElementById("roll-tag").value;
+    const imageOptions = document.getElementById("image-options");
+
+    if (rollTag === "yes") {
+        imageOptions.style.display = "block";
+    } else {
+        imageOptions.style.display = "none";
     }
+}
 
-    function getPrice() {
-        // Show the modal form
-        openModal();
-    }
+function selectImage(optionId) {
+    // Deselect any previously selected images
+    const images = document.querySelectorAll('.image-options img');
+    images.forEach(img => img.classList.remove('selected'));
 
-    function openModal() {
-        document.getElementById("infoModal").style.display = "block";
-    }
+    // Select the clicked image
+    const selectedImage = document.getElementById(optionId);
+    selectedImage.classList.add('selected');
 
-    function closeModal() {
-        document.getElementById("infoModal").style.display = "none";
-    }
+    // Save the selected option to localStorage or for further processing
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+    orderDetails.selectedStyle = optionId;
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+}
 
-    function toggleImageOptions() {
-        const rollTag = document.getElementById("roll-tag").value;
-        const imageOptions = document.getElementById("image-options");
+function submitDetails() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const date = document.getElementById("date").value;
+    const rollTag = document.getElementById("roll-tag").value;
 
-        if (rollTag === "yes") {
-            imageOptions.style.display = "block";
-        } else {
-            imageOptions.style.display = "none";
-        }
-    }
-
-    function selectImage(optionId) {
-        // Deselect any previously selected images
-        const images = document.querySelectorAll('.image-options img');
-        images.forEach(img => img.classList.remove('selected'));
-
-        // Select the clicked image
-        const selectedImage = document.getElementById(optionId);
-        selectedImage.classList.add('selected');
-
-        // Save the selected option to localStorage or for further processing
+    if (name && email && date && rollTag) {
         const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
-        orderDetails.selectedStyle = optionId;
+        orderDetails.name = name;
+        orderDetails.email = email;
+        orderDetails.date = date;
+        orderDetails.rollTag = rollTag;
+
         localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+        closeModal();
+
+        // You can now proceed to the next step, e.g., showing the price or proceeding to checkout
+    } else {
+        alert('Please fill in all fields.');
     }
-
-    function submitDetails() {
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const date = document.getElementById("date").value;
-        const rollTag = document.getElementById("roll-tag").value;
-
-        if (name && email && date && rollTag) {
-            const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
-            orderDetails.name = name;
-            orderDetails.email = email;
-            orderDetails.date = date;
-            orderDetails.rollTag = rollTag;
-
-            localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
-
-            closeModal();
-
-            // You can now proceed to the next step, e.g., showing the price or proceeding to checkout
-        } else {
-            alert('Please fill in all fields.');
-        }
-    }
+}
 </script>
 
 </body>
