@@ -672,7 +672,7 @@ function selectImage(optionId) {
 
     // Save the selected option to localStorage or for further processing
     const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
-    orderDetails.selectedStyle = optionId;
+    orderDetails.selectedStyle = optionId; // This will be one of CircleTag, SquareTag, ScallopedTag, or Sticker
     localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 }
 
@@ -688,11 +688,18 @@ function submitDetails() {
         orderDetails.email = email;
         orderDetails.date = date;
 
-        // Save the roll tag selection properly
-        orderDetails.rollTagSelection = rollTag === "yes" ? "yes" : "none";
-
-        // Save the selected roll tag style, if applicable
-        orderDetails.selectedStyle = document.querySelector('.image-options img.selected')?.id || "none";
+        // If the user selected "Yes" for roll tagging, save the selected style
+        if (rollTag === "yes") {
+            const selectedStyle = document.querySelector('.image-options img.selected')?.id;
+            if (selectedStyle) {
+                orderDetails.rollTagSelection = selectedStyle; // Use the style ID directly
+            } else {
+                alert('Please select a roll tag style.');
+                return; // Prevent submission if a style is not selected
+            }
+        } else {
+            orderDetails.rollTagSelection = "none"; // No roll tag selected
+        }
 
         localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 
