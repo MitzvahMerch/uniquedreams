@@ -6,135 +6,133 @@
     <title>Product Page with Logo Placement</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    background-color: #0B3A92; /* Dark blue background */
-    color: #333;
-    margin: 0;
-    padding: 20px;
-}
+            font-family: Arial, sans-serif;
+            background-color: #0B3A92; /* Dark blue background */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
 
-.product-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    margin-top: 50px;
-}
+        .product-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 50px;
+        }
 
-.image-container {
-    position: relative;
-    width: 499px; /* New width based on aspect ratio */
-    height: 673px; /* Increased height */
-    border: 6px solid white; /* Black border */
-    background-color: #1493E9; /* Changed to blue */
-    overflow: hidden;
-    margin-left: 16%; /* Align the image container to 16% from the left */
-}
+        .image-container {
+            position: relative;
+            width: 499px; /* New width based on aspect ratio */
+            height: 673px; /* Increased height */
+            border: 6px solid white; /* Black border */
+            background-color: #1493E9; /* Changed to blue */
+            overflow: hidden;
+        }
 
-.image-container img {
-    width: 100%;
-    height: 100%; /* Ensure the image takes up the full height of the container */
-    object-fit: cover;
-}
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.image-container img.back-image {
-    transform: scale(1.32); /* Scale the back image by 20% */
-    transform-origin: 50% 28%; /* Custom percentages for finer control */
-}
+        .image-container img.back-image {
+            transform: scale(1.32); /* Scale the back image by 20% */
+            transform-origin: 50% 28%; /* Custom percentages for finer control */
+        }
 
-.logo-placeholder {
-    position: absolute;
-    display: none;
-}
+        .logo-placeholder {
+            position: absolute;
+            display: none;
+        }
 
-.logo-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
-.controls-container {
-    flex: 0 0 400px; /* Fixed width for the controls container */
-    height: 643px; /* Shortened by 30px to match image container */
-    background-color: #FFFFFF; /* Changed to white */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-left: 66%; /* Align the controls container to 66% from the left */
-}
+        .controls-container {
+            flex: 0 0 400px; /* Fixed width for the controls container */
+            height: 643px; /* Shortened by 30px to match image container */
+            background-color: #FFFFFF; /* Changed to white */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-.controls label {
-    margin-right: 10px;
-    font-weight: bold; /* Make labels bold */
-}
+        .controls label {
+            margin-right: 10px;
+            font-weight: bold; /* Make labels bold */
+        }
 
-.controls select {
-    padding: 5px;
-    font-size: 16px;
-    width: 100%;
-    margin-bottom: 20px;
-}
+        .controls select {
+            padding: 5px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
 
-.size-table {
-    width: 100%;
-    border-spacing: 10px;
-    margin-bottom: 20px;
-}
+        .size-table {
+            width: 100%;
+            border-spacing: 10px;
+            margin-bottom: 20px;
+        }
 
-.size-table td {
-    vertical-align: middle;
-    width: 50%; /* Make sure each cell takes up half the row */
-    font-weight: bold; /* Make size labels bold */
-}
+        .size-table td {
+            vertical-align: middle;
+            width: 50%; /* Make sure each cell takes up half the row */
+            font-weight: bold; /* Make size labels bold */
+        }
 
-.size-input {
-    width: 100%; /* Make the input take up the full width of the cell */
-    padding: 5px;
-    margin-left: 0;
-    box-sizing: border-box;
-}
+        .size-input {
+            width: 100%; /* Make the input take up the full width of the cell */
+            padding: 5px;
+            margin-left: 0;
+            box-sizing: border-box;
+        }
 
-.total-input {
-    width: 100%;
-    padding: 5px;
-    margin-left: 0;
-    box-sizing: border-box;
-    background-color: #e0e0e0; /* Light gray background for non-editable field */
-    border: 1px solid #ccc;
-    text-align: center;
-    cursor: not-allowed;
-}
+        .total-input {
+            width: 100%;
+            padding: 5px;
+            margin-left: 0;
+            box-sizing: border-box;
+            background-color: #e0e0e0; /* Light gray background for non-editable field */
+            border: 1px solid #ccc;
+            text-align: center;
+            cursor: not-allowed;
+        }
 
-.submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #0C3A92; /* Changed to blue */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold; /* Made text bold */
-    cursor: pointer;
-    text-align: center;
-}
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0C3A92; /* Changed to blue */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold; /* Made text bold */
+            cursor: pointer;
+            text-align: center;
+        }
 
-.submit-button:hover {
-    background-color: #1177C3; /* Slightly darker shade for hover effect */
-}
+        .submit-button:hover {
+            background-color: #1177C3; /* Slightly darker shade for hover effect */
+        }
 
-h1.product-title {
-    font-size: 32px; /* Twice the size of the "Color" label */
-    font-weight: bold;
-    color: black;
-    margin-bottom: 5px;
-}
+        h1.product-title {
+            font-size: 32px; /* Twice the size of the "Color" label */
+            font-weight: bold;
+            color: black;
+            margin-bottom: 5px;
+        }
 
-.sku-text {
-    font-size: 16px; /* Half the size of the header */
-    font-weight: bold;
-    color: gray;
-    margin-bottom: 20px;
-}
+        .sku-text {
+            font-size: 16px; /* Half the size of the header */
+            font-weight: bold;
+            color: gray;
+            margin-bottom: 20px;
+        }
 
 .product-description {
     margin-top: 50px; /* Space between the disclaimer and the product description */
@@ -142,16 +140,20 @@ h1.product-title {
     color: #FFFFFF;
     max-width: 500px; /* Restrict width to match image container */
     padding-left: 16%; /* Use percentage for padding */
-}
+        }
 
-.disclaimer-container {
-    margin-top: 20px; /* Adjusted the margin */
-    font-size: 14px;
-    font-weight: bold;
-    color: gray;
-    max-width: 500px; /* Restrict width to match image container */
-    padding-left: 16%; /* Use percentage for padding */
-}
+
+        .disclaimer-container {
+            margin-top: 20px; /* Adjusted the margin */
+            font-size: 14px;
+            font-weight: bold;
+            color: gray;
+            max-width: 500px; /* Restrict width to match image container */
+            padding-left: 16%; /* Use percentage for padding */
+        } 
+            height: 100%;
+            object-fit: cover;
+        }
 
     </style>
 </head>
