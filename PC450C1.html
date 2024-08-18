@@ -159,7 +159,7 @@
         <div class="image-container">
             <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
-                <img src="Logos/ChessTest.png" alt="Logo">
+                <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
         </div>
         
@@ -233,6 +233,29 @@
     </div>
 
     <script>
+        // Firestore initialization (assumed to be already done elsewhere in your project)
+
+        async function updateLogo() {
+            const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
+            const logoUrl = await getLogoUrl(sessionId);
+
+            if (logoUrl) {
+                document.getElementById('logo-image').src = logoUrl;
+            }
+        }
+
+        async function getLogoUrl(sessionId) {
+            const doc = await firebase.firestore().collection('logos').doc(sessionId).get();
+            if (doc.exists) {
+                return doc.data().downloadURL;
+            } else {
+                console.error("No logo found for this session ID");
+                return null;
+            }
+        }
+
+        window.onload = updateLogo;
+
         function updateColor() {
             const color = document.getElementById('color-selection').value;
             const image = document.getElementById('product-image');
