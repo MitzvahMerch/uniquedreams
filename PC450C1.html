@@ -455,7 +455,7 @@ function updateLogoPlacement() {
     // Default to hiding the logo
     logo.style.display = 'none';
 
-    if (backPlacement !== 'none-back') {
+    if (backPlacement !== 'none-back' && backPlacement !== '') {
         // Show the back image
         image.src = 'PC450C1/BrightGoldBack.png';
 
@@ -469,7 +469,7 @@ function updateLogoPlacement() {
             logo.style.transform = 'translate(-50%, -50%)';
             image.classList.add('back-image');
         }
-    } else if (frontPlacement !== 'none-front') {
+    } else if (frontPlacement !== 'none-front' && frontPlacement !== '') {
         // Show the front image
         image.src = 'PC450C1/BrightGoldFront.png';
 
@@ -502,8 +502,11 @@ function updateLogoPlacement() {
     } else {
         // No logo placement selected, hide the logo
         logo.style.display = 'none';
+        // Show the front image if both front and back are "None"
+        image.src = 'PC450C1/BrightGoldFront.png';
     }
 }
+
 
 function updateTotal() {
     const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
