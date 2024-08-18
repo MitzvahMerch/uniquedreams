@@ -705,6 +705,7 @@ async function calculatePrice() {
     const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
 
     try {
+        const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
         const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=${orderDetails.totalQuantity}&sku=${orderDetails.sku}&frontPlacement=${orderDetails.frontPlacement}&backPlacement=${orderDetails.backPlacement}&rollTagSelection=${orderDetails.rollTagSelection}&selectedStyle=${orderDetails.selectedStyle}`);
         const result = await response.json();
 
