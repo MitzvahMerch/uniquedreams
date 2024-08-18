@@ -54,7 +54,7 @@
 
 .controls-container {
     flex: 0 0 400px; /* Fixed width for the controls container */
-    height: 673px; /* Shortened by 30px to match image container */
+    height: 660px; /* Shortened by 30px to match image container */
     background-color: #FFFFFF; /* Changed to white */
     padding: 20px;
     border-radius: 10px;
@@ -455,22 +455,8 @@ function updateLogoPlacement() {
     // Default to hiding the logo
     logo.style.display = 'none';
 
-    if (backPlacement !== 'none-back' && backPlacement !== '') {
-        // Show the back image
-        image.src = 'PC450C1/BrightGoldBack.png';
-
-        if (backPlacement === 'center-back') {
-            // Show the logo centered on the back
-            logo.style.display = 'block';
-            logo.style.width = '180px';
-            logo.style.height = '180px';
-            logo.style.top = '28%';
-            logo.style.left = '50%';
-            logo.style.transform = 'translate(-50%, -50%)';
-            image.classList.add('back-image');
-        }
-    } else if (frontPlacement !== 'none-front' && frontPlacement !== '') {
-        // Show the front image
+    if (frontPlacement !== 'none-front') {
+        // Show the front image with the selected front logo
         image.src = 'PC450C1/BrightGoldFront.png';
 
         switch (frontPlacement) {
@@ -499,11 +485,26 @@ function updateLogoPlacement() {
 
         logo.style.display = 'block'; // Show the logo if there's a front placement
         image.classList.remove('back-image'); // Reset any scaling for the front image
-    } else {
-        // No logo placement selected, hide the logo
+    } else if (backPlacement === 'center-back') {
+        // Show the back image with the selected back logo
+        image.src = 'PC450C1/BrightGoldBack.png';
+
+        logo.style.display = 'block';
+        logo.style.width = '180px';
+        logo.style.height = '180px';
+        logo.style.top = '28%';
+        logo.style.left = '50%';
+        logo.style.transform = 'translate(-50%, -50%)';
+        image.classList.add('back-image');
+    } else if (backPlacement === 'none-back') {
+        // Show the back image with no logo
+        image.src = 'PC450C1/BrightGoldBack.png';
         logo.style.display = 'none';
-        // Show the front image if both front and back are "None"
+        image.classList.add('back-image');
+    } else {
+        // Default to showing the front view without a logo
         image.src = 'PC450C1/BrightGoldFront.png';
+        logo.style.display = 'none';
     }
 }
 
