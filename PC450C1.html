@@ -479,6 +479,18 @@ function updateLogoPlacement() {
         // The front placement was the most recent change
         updateFrontLogo(frontPlacement, logo, image);
     }
+
+    // New condition to handle switching from front placement to none when back is set to center-back
+    if (frontPlacement === 'none-front' && backPlacement === 'center-back') {
+        image.src = 'PC450C1/BrightGoldBack.png';
+        logo.style.display = 'block';
+        logo.style.width = '180px';
+        logo.style.height = '180px';
+        logo.style.top = '28%';
+        logo.style.left = '50%';
+        logo.style.transform = 'translate(-50%, -50%)';
+        image.classList.add('back-image');
+    }
 }
 
 function updateFrontLogo(frontPlacement, logo, image) {
