@@ -193,24 +193,24 @@
                     <td><label for="size-yl">YL</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
-                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
+                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
                 </tr>
                 <tr>
                     <td><label for="size-s">S</label></td>
                     <td><label for="size-m">M</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
-                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
+                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
                 </tr>
                 <tr>
                     <td><label for="size-l">L</label></td>
                     <td><label for="size-xl">XL</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
-                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
+                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0" oninput="calculateQuantity()"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><label for="total">Total</label></td>
@@ -317,8 +317,15 @@
         }
 
         function calculateQuantity() {
-            // Functionality to calculate total quantity and handle form submission
-            // This is just a placeholder for now
+            const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
+            let total = 0;
+
+            sizes.forEach(size => {
+                const input = document.getElementById(`size-${size}`);
+                total += parseInt(input.value) || 0; // Add the value or 0 if empty
+            });
+
+            document.getElementById('total').value = total;
         }
 
         function proceedToCheckout() {
