@@ -157,6 +157,7 @@
 
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js"></script>
 </head>
 <body>
 
@@ -238,6 +239,22 @@
     </div>
 
     <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
+            authDomain: "mitzvahmerch-ac346.firebaseapp.com",
+            projectId: "mitzvahmerch-ac346",
+            storageBucket: "mitzvahmerch-ac346.appspot.com",
+            messagingSenderId: "232131426361",
+            appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
+            measurementId: "G-XXFM5DPRZ6"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
         async function updateLogo() {
             const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
             const logoUrl = await getLogoUrl(sessionId);
@@ -248,7 +265,7 @@
         }
 
         async function getLogoUrl(sessionId) {
-            const doc = await firebase.firestore().collection('logos').doc(sessionId).get();
+            const doc = await db.collection('logos').doc(sessionId).get();
             if (doc.exists) {
                 return doc.data().downloadURL;
             } else {
