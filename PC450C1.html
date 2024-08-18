@@ -703,7 +703,7 @@ function submitDetails() {
 // Function to calculate the price
 async function calculatePrice() {
     const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
-    
+
     // Retrieve sessionId
     const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
 
@@ -712,9 +712,13 @@ async function calculatePrice() {
 
         // Check if the response is okay (status 200-299)
         if (!response.ok) {
+            // Log and throw an error if the response status is not OK
+            const errorText = await response.text();
+            console.error('Server response text:', errorText);
             throw new Error(`Server responded with status: ${response.status}`);
         }
 
+        // If the response is OK, parse the JSON result
         const result = await response.json();
 
         if (result.price) {
@@ -724,10 +728,7 @@ async function calculatePrice() {
             console.error('Price not returned');
         }
     } catch (error) {
-        console.error('Error calculating price:', error);
-        // If the response is not valid JSON, log the response text
-        const errorText = await response.text();
-        console.error('Server response text:', errorText);
+        console.error('Error calculating price:', error.message);
     }
 }
 
