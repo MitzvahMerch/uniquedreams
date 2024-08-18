@@ -244,7 +244,7 @@
             <div class="controls">
                 <label for="logo-placement">Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
-                    <option value="" selected disabled>Select Placement</option>
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
                     <option value="left-chest">Left Chest</option>
                     <option value="full-front">Full Front</option>
                     <option value="half-front">Half Front</option>
@@ -258,24 +258,24 @@
                     <td><label for="size-yl">YL</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0"></td>
-                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
                 </tr>
                 <tr>
                     <td><label for="size-s">S</label></td>
                     <td><label for="size-m">M</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0"></td>
-                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
                 </tr>
                 <tr>
                     <td><label for="size-l">L</label></td>
                     <td><label for="size-xl">XL</label></td>
                 </tr>
                 <tr>
-                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0"></td>
-                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0"></td>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><label for="total">Total</label></td>
@@ -418,7 +418,7 @@
             }
         }
 
-        function calculateQuantity() {
+        function updateTotal() {
             const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
             let total = 0;
             let sizeDetails = {};
@@ -446,10 +446,7 @@
         }
 
         function getPrice() {
-            // First calculate the quantity and store details
-            calculateQuantity();
-
-            // Then show the modal form
+            // Show the modal form
             openModal();
         }
 
