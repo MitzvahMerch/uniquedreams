@@ -305,25 +305,25 @@ h1.product-title {
             </select>
         </div>
 
-        <div class="controls">
-            <label for="front-logo-placement">Front Logo Placement:</label>
-            <select id="front-logo-placement" onchange="updateLogoPlacement()">
-                <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-                <option value="left-chest">Left Chest</option>
-                <option value="full-front">Full Front</option>
-                <option value="half-front">Half Front</option>
-                <option value="none-front">None</option>
-            </select>
-        </div>
+<div class="controls">
+    <label for="front-logo-placement">Front Logo Placement:</label>
+    <select id="front-logo-placement" onchange="updateLogoPlacement()">
+        <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+        <option value="leftChest">Left Chest</option> <!-- Updated to match Firestore field -->
+        <option value="fullFront">Full Front</option> <!-- Updated to match Firestore field -->
+        <option value="centerChest">Center Chest</option> <!-- Updated to match Firestore field -->
+        <option value="none-front">None</option>
+    </select>
+</div>
 
-        <div class="controls">
-            <label for="back-logo-placement">Back Logo Placement:</label>
-            <select id="back-logo-placement" onchange="updateLogoPlacement()">
-                <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-                <option value="center-back">Center Back</option>
-                <option value="none-back">None</option>
-            </select>
-        </div>
+<div class="controls">
+    <label for="back-logo-placement">Back Logo Placement:</label>
+    <select id="back-logo-placement" onchange="updateLogoPlacement()">
+        <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+        <option value="centerBack">Center Back</option> <!-- Updated to match Firestore field -->
+        <option value="none-back">None</option>
+    </select>
+</div>
 
             <table class="size-table">
                 <tr>
