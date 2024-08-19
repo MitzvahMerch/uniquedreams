@@ -112,7 +112,7 @@
         }
 
         .receive-by {
-            font-size: 36px; /* Larger font for the 'To Receive By' date */
+            font-size: 28.8px; /* Match the size of the 'Order in the next' text */
             margin-top: 10px;
             color: #000;
             font-weight: bold;
@@ -312,7 +312,7 @@
             // Set "Receive By" date to a week from today
             const receiveByDate = new Date();
             receiveByDate.setDate(receiveByDate.getDate() + 7);
-            document.getElementById('receiveByDate').innerText = receiveByDate.toDateString();
+            document.getElementById('receiveByDate').innerText = receiveByDate.toLocaleDateString('en-US');
 
             updateTimer(); // Initial call
             const timerInterval = setInterval(updateTimer, 1000);
@@ -324,4 +324,5 @@
     </script>
 </body>
 </html>
+
 
