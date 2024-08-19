@@ -250,15 +250,16 @@
             return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
-        // Function to format size quantities and calculate total quantity
-        function formatSizeQuantities(sizes) {
-            const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
-            const formattedSizes = Object.entries(sizes)
-                .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
-                .join(', ');
+// Function to format size quantities and calculate total quantity
+function formatSizeQuantities(sizes) {
+    const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
+    const formattedSizes = Object.entries(sizes)
+        .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
+        .join(', ');
 
-            return `${formattedSizes}, Total: ${totalQuantity}`;
-        }
+    return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
+}
+
 
         // Update the checkout page display
         function updateDisplay() {
