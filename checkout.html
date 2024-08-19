@@ -5,70 +5,372 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <script src="https://www.paypal.com/sdk/js?client-id=AZzLQop9vrKuZKKoH5kjjdUW5bti6eMFwBePvUDXA2lYYZG73hHo3LFKSULAJfg84qHWdbqbDsio8C4p"></script>
+    <style>
+        /* Your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0137B7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+
+        .checkout-container {
+            width: 90%;
+            min-width: 500px;
+            margin-right: 100px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            min-height: 500px;
+            margin-top: 40px;
+            font-size: 120%; /* Increase font size by 20% */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28.8px; /* 20% larger */
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .product-title {
+            font-size: 21.6px; /* 20% larger */
+            margin: 0;
+            padding: 0;
+            color: #000;
+            text-align: left;
+        }
+
+        .sku-text {
+            font-size: 16.8px; /* 20% larger */
+            color: #777;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .size-quantities {
+            font-size: 18px; /* 20% larger */
+            color: black;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .size-quantities span {
+            font-weight: normal; /* Set the content after 'Quantities' to normal weight */
+        }
+
+        .controls-container {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .controls-container p {
+            margin: 5px 0;
+            font-size: 19.2px; /* 20% larger */
+            text-align: left;
+        }
+
+        .total-price-container {
+            font-size: 24px; /* 20% larger */
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            color: #000;
+            text-align: left;
+        }
+
+        #paypal-button-container {
+            text-align: center;
+        }
+
+        /* Countdown Timer Styling */
+        .countdown-timer {
+            background: #ffdf00;
+            padding: 20px;
+            border-radius: 10px;
+            color: #000;
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            margin-left: 20px;
+            margin-top: 120px;
+            min-width: 350px;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #000; /* Added black border */
+        }
+
+        .timer {
+            font-size: 35px; /* 20% larger */
+            margin-top: 10px;
+        }
+
+        .receive-by {
+            font-size: 26px; /* Match the size of the 'Order in the next' text */
+            margin-top: 20px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .date-boxes {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .date-box {
+            background-color: #fff;
+            color: #000;
+            font-size: 42px; /* 30% larger than timer */
+            font-weight: bold;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .container-wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        /* Confetti Styling */
+        .confetti {
+            position: absolute;
+            top: -50px;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            opacity: 0.9;
+            z-index: 1;
+            animation: confetti-fall 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(500px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti:nth-child(2n) {
+            background-color: #ff0000;
+            animation-duration: 2.5s;
+        }
+
+        .confetti:nth-child(3n) {
+            background-color: #00ff00;
+            animation-duration: 4s;
+        }
+
+        .confetti:nth-child(4n) {
+            background-color: #0000ff;
+            animation-duration: 3.5s;
+        }
+
+        .confetti:nth-child(5n) {
+            background-color: #ffff00;
+            animation-duration: 2.8s;
+        }
+
+        .confetti:nth-child(6n) {
+            background-color: #ff00ff;
+            animation-duration: 3.2s;
+        }
+
+        .confetti:nth-child(7n) {
+            background-color: #00ffff;
+            animation-duration: 3.6s;
+        }
+
+        .confetti:nth-child(8n) {
+            background-color: #ff8000;
+            animation-duration: 3s;
+        }
+
+        .confetti:nth-child(9n) {
+            background-color: #8000ff;
+            animation-duration: 3.4s;
+        }
+
+        .confetti:nth-child(10n) {
+            background-color: #008000;
+            animation-duration: 2.7s;
+        }
+    </style>
 </head>
 <body>
-    <h1>Checkout Page</h1>
-    <div id="orderDetailsDisplay">Loading Order Details...</div>
-    <div id="priceDisplay">Total Price: Calculating...</div>
-    <div id="paypal-button-container"></div>
+    <div class="container-wrapper">
+        <div class="checkout-container">
+            <h1>Checkout</h1>
+            <div id="orderDetailsDisplay">Loading Order Details...</div>
+            <div id="totalPriceDisplay" class="total-price-container">Total Price: Calculating...</div>
+            <div id="paypal-button-container"></div>
+        </div>
+        <div class="countdown-timer">
+            <p>Order in the next:</p>
+            <div class="timer" id="countdown">Loading...</div>
+            <p class="receive-by">To Receive By:</p>
+            <div class="date-boxes">
+                <div class="date-box" id="month">MM</div>
+                <div class="date-box" id="day">DD</div>
+                <div class="date-box" id="year">YY</div>
+            </div>
+            <!-- Confetti elements -->
+            <div class="confetti" style="left: 5%;"></div>
+            <div class="confetti" style="left: 15%;"></div>
+            <div class="confetti" style="left: 25%;"></div>
+            <div class="confetti" style="left: 35%;"></div>
+            <div class="confetti" style="left: 45%;"></div>
+            <div class="confetti" style="left: 55%;"></div>
+            <div class="confetti" style="left: 65%;"></div>
+            <div class="confetti" style="left: 75%;"></div>
+            <div class="confetti" style="left: 85%;"></div>
+            <div class="confetti" style="left: 95%;"></div>
+        </div>
+    </div>
 
     <script>
-        // Retrieve the price and order details from local storage
-        function getStoredData() {
-            const storedPrice = localStorage.getItem('totalPrice');
-            const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
-            return {
-                price: storedPrice ? parseFloat(storedPrice) : 0,
-                orderDetails: orderDetails || {}
-            };
+        // Retrieve the cart data from localStorage
+        function getCartData() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
-        // Update the order details and price display
-        function updateDisplay() {
-            const { price, orderDetails } = getStoredData();
+        // Function to format size quantities and calculate total quantity
+        function formatSizeQuantities(sizes) {
+            const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
+            const formattedSizes = Object.entries(sizes)
+                .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
+                .join(', ');
 
-            // Display order details
+            return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
+        }
+
+        // Update the checkout page display
+        function updateDisplay() {
+            const cart = getCartData();
+            let totalCost = 0;
             const orderDetailsDisplay = document.getElementById('orderDetailsDisplay');
-            if (orderDetails && orderDetails.sku) {
-                orderDetailsDisplay.innerHTML = `
-                    <p>Product SKU: ${orderDetails.sku}</p>
-                    <p>Color: ${orderDetails.color}</p>
-                    <p>Sizes Ordered: ${JSON.stringify(orderDetails.sizes)}</p>
+            orderDetailsDisplay.innerHTML = ''; // Clear previous content
+
+            cart.forEach(product => {
+                const productCost = parseFloat(product.totalPrice);
+                totalCost += productCost;
+
+                const formattedSizes = formatSizeQuantities(product.sizes);
+
+                orderDetailsDisplay.innerHTML += `
+                    <div class="controls-container">
+                        <h1 class="product-title">${product.title}</h1>
+                        <div class="sku-text">${product.sku}</div>
+                        <div class="size-quantities"><strong>Quantities:</strong> <span>${formattedSizes}</span></div>
+                        <p><strong>Merch:</strong> $${product.merchCost}</p>
+                        <p><strong>Roll and Tag:</strong> $${product.rollTagCost}</p>
+                        <p><strong>Shipping:</strong> Free</p>
+                    </div>
                 `;
-            } else {
-                orderDetailsDisplay.innerText = 'Order details not available.';
-            }
+            });
 
             // Display total price
-            const priceDisplay = document.getElementById('priceDisplay');
-            if (price > 0) {
-                priceDisplay.innerText = `Total Price: $${price.toFixed(2)}`;
-                
-                // Render the PayPal button with the correct price and order details
-                paypal.Buttons({
-                    createOrder: function(data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: price.toFixed(2)
-                                },
-                                description: `Order for SKU: ${orderDetails.sku}, Color: ${orderDetails.color}, Sizes: ${JSON.stringify(orderDetails.sizes)}`
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            alert('Transaction completed by ' + details.payer.name.given_name);
-                        });
-                    }
-                }).render('#paypal-button-container');
-            } else {
-                priceDisplay.innerText = 'Price data not available.';
-            }
+            const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+            totalPriceDisplay.innerText = `Total Price: $${totalCost.toFixed(2)}`;
+
+            // Render the PayPal button with the correct total price and order details
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: totalCost.toFixed(2)
+                            },
+                            description: `Order containing ${cart.length} products`
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Transaction completed by ' + details.payer.name.given_name);
+                    });
+                }
+            }).render('#paypal-button-container');
         }
 
-        // Call the function to update the display on page load
+        function initializeCountdown() {
+            function updateTimer() {
+                const now = new Date();
+                const target = new Date();
+                target.setHours(19, 0, 0, 0); // Set target time to 7 PM
+
+                if (now > target) {
+                    target.setDate(target.getDate() + 1); // Move to next day if past 7 PM
+                }
+
+                const diff = target - now;
+
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerText = `${hours}h ${minutes}m ${seconds}s`;
+
+                if (diff <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('countdown').innerText = "Time's up!";
+                }
+            }
+
+            function calculateTurnaroundDays(now) {
+                const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+                const hour = now.getHours();
+
+                let turnaroundDays = 14; // Base turnaround time
+
+                if (day === 4 && hour >= 19) { // Thursday after 7 PM
+                    turnaroundDays += 3; // Add 3 days to the turnaround time (Thursday night -> Sunday night)
+                } else if (day === 5) { // Friday
+                    turnaroundDays += 2; // Add 2 days (Friday -> Sunday night)
+                } else if (day === 6) { // Saturday
+                    turnaroundDays += 1; // Add 1 day (Saturday -> Sunday night)
+                }
+
+                return turnaroundDays;
+            }
+
+            // Set "Receive By" date based on current time
+            const now = new Date();
+            const turnaroundDays = calculateTurnaroundDays(now);
+            const receiveByDate = new Date();
+            receiveByDate.setDate(now.getDate() + turnaroundDays);
+
+            document.getElementById('month').innerText = String(receiveByDate.getMonth() + 1).padStart(2, '0');
+            document.getElementById('day').innerText = String(receiveByDate.getDate()).padStart(2, '0');
+            document.getElementById('year').innerText = receiveByDate.getFullYear().toString().slice(-2);
+
+            updateTimer(); // Initial call to start the countdown
+            const timerInterval = setInterval(updateTimer, 1000); // Update every second
+        }
+
+        // Initialize the page content and countdown
         updateDisplay();
+        initializeCountdown();
     </script>
 </body>
 </html>
+
+
+
+

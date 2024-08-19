@@ -272,10 +272,11 @@ h1.product-title {
 }
 
 #priceModal .button-container {
-    display: flex;
+    display: flex !important; /* Ensures it's displayed */
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    visibility: visible !important; /* Ensures it's visible */
 }
         #pricing-header {
     color: #05216E;
@@ -336,7 +337,7 @@ h1.product-title {
         <option value="leftChest">Left Chest</option> <!-- Updated to match Firestore field -->
         <option value="fullFront">Full Front</option> <!-- Updated to match Firestore field -->
         <option value="centerChest">Center Chest</option> <!-- Updated to match Firestore field -->
-        <option value="none-front">None</option>
+        <option value="none-front">None - Back Only</option>
     </select>
 </div>
 
@@ -345,7 +346,7 @@ h1.product-title {
     <select id="back-logo-placement" onchange="updateLogoPlacement()">
         <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
         <option value="centerBack">Center Back</option> <!-- Updated to match Firestore field -->
-        <option value="none-back">None</option>
+        <option value="none-back">None - Front Only</option>
     </select>
 </div>
 
@@ -451,7 +452,7 @@ h1.product-title {
     <div class="modal-content">
         <span class="close" onclick="closePriceModal()">&times;</span>
         <div id="loading-indicator" style="display: none; text-align: center;">
-            <img src="images/Loading.webp" alt="Loading..." style="width: 50px; height: 50px;">
+            <img src="Images/Loading.png" alt="Loading..." style="width: 50px; height: 50px;">
             <p>Please wait while we calculate your price...</p>
         </div>
         <div id="pricing-details" style="display: none;">
@@ -464,7 +465,7 @@ h1.product-title {
 </div>
 
 
-    <script>
+<script>
 async function updateLogo() {
     const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
 
@@ -484,32 +485,41 @@ async function updateLogo() {
 
 window.onload = updateLogo;
 
+// Initialize frontImageSrc and backImageSrc with the default values
+let frontImageSrc = 'PC450C1/BrightGoldFront.png';
+let backImageSrc = 'PC450C1/BrightGoldBack.png';
+
 function updateColor() {
     const color = document.getElementById('color-selection').value;
-    const image = document.getElementById('product-image');
 
     switch (color) {
         case 'BrightGold':
-            image.src = 'PC450C1/BrightGoldFront.png';
+            frontImageSrc = 'PC450C1/BrightGoldFront.png';
+            backImageSrc = 'PC450C1/BrightGoldBack.png';
             break;
         case 'AthleticHthr':
-            image.src = 'PC450C1/AthleticHthrFront.png';
+            frontImageSrc = 'PC450C1/AthleticHthrFront.png';
+            backImageSrc = 'PC450C1/AthleticHthrBack.png';
             break;
         case 'AthleticKelly':
-            image.src = 'PC450C1/AthleticKellyFront.png';
+            frontImageSrc = 'PC450C1/AthleticKellyFront.png';
+            backImageSrc = 'PC450C1/AthleticKellyBack.png';
             break;
         case 'AthleticMaroon':
-            image.src = 'PC450C1/AthleticMaroonFront.png';
+            frontImageSrc = 'PC450C1/AthleticMaroonFront.png';
+            backImageSrc = 'PC450C1/AthleticMaroonBack.png';
             break;
         case 'BrightRed':
-            image.src = 'PC450C1/BrightRedFront.png';
+            frontImageSrc = 'PC450C1/BrightRedFront.png';
+            backImageSrc = 'PC450C1/BrightRedBack.png';
             break;
         default:
-            image.src = 'PC450C1/BrightGoldFront.png';
+            frontImageSrc = 'PC450C1/BrightGoldFront.png';
+            backImageSrc = 'PC450C1/BrightGoldBack.png';
             break;
     }
 
-    // Ensure any logo placement changes are reset when color changes
+    // Update the logo placement after color change
     updateLogoPlacement();
 }
 
@@ -528,9 +538,9 @@ function updateLogoPlacement() {
 
     if (backDropdown.dataset.lastChanged && (!frontDropdown.dataset.lastChanged || backDropdown.dataset.lastChanged > frontDropdown.dataset.lastChanged)) {
         // The back placement was the most recent change
-        if (backPlacement === 'centerBack') { // Updated to match Firestore field
+        if (backPlacement === 'centerBack') {
             // Show the back image with the Center Back logo
-            image.src = 'PC450C1/BrightGoldBack.png';
+            image.src = backImageSrc;
             logo.style.display = 'block';
             logo.style.width = '180px';
             logo.style.height = '180px';
@@ -548,8 +558,8 @@ function updateLogoPlacement() {
     }
 
     // New condition to handle switching from front placement to none when back is set to centerBack
-    if (frontPlacement === 'none-front' && backPlacement === 'centerBack') { // Updated to match Firestore field
-        image.src = 'PC450C1/BrightGoldBack.png';
+    if (frontPlacement === 'none-front' && backPlacement === 'centerBack') {
+        image.src = backImageSrc;
         logo.style.display = 'block';
         logo.style.width = '180px';
         logo.style.height = '180px';
@@ -562,7 +572,7 @@ function updateLogoPlacement() {
 
 function updateFrontLogo(frontPlacement, logo, image) {
     if (frontPlacement !== 'none-front' && frontPlacement !== '') {
-        image.src = 'PC450C1/BrightGoldFront.png';
+        image.src = frontImageSrc;
 
         switch (frontPlacement) {
             case 'fullFront':  // Match HTML value
@@ -591,7 +601,7 @@ function updateFrontLogo(frontPlacement, logo, image) {
         logo.style.display = 'block'; // Show the logo if a front placement is selected
         image.classList.remove('back-image'); // Ensure no back-image scaling for front view
     } else {
-        image.src = 'PC450C1/BrightGoldFront.png';
+        image.src = frontImageSrc;
         logo.style.display = 'none';
     }
 }
@@ -645,10 +655,16 @@ function getPrice() {
     const sku = document.querySelector('.sku-text').textContent;
 
     // Retrieve the selected front logo placement
-    const frontPlacement = document.getElementById('front-logo-placement').value;
+    let frontPlacement = document.getElementById('front-logo-placement').value;
+    if (frontPlacement === "" || frontPlacement === "Select Placement") {
+        frontPlacement = "none-front"; // Set to "none-front" if nothing is selected
+    }
 
     // Retrieve the selected back logo placement
-    const backPlacement = document.getElementById('back-logo-placement').value;
+    let backPlacement = document.getElementById('back-logo-placement').value;
+    if (backPlacement === "" || backPlacement === "Select Placement") {
+        backPlacement = "none-back"; // Set to "none-back" if nothing is selected
+    }
 
     // Retrieve the selected roll tag option
     const rollTagSelection = document.getElementById('roll-tag').value;
@@ -662,6 +678,19 @@ function getPrice() {
     orderDetails.backPlacement = backPlacement;
     orderDetails.rollTagSelection = rollTagSelection;
     orderDetails.selectedStyle = selectedStyle;
+
+    // Check if the total quantity is 0
+    if (orderDetails.totalQuantity === 0) {
+        alert("Total quantity cannot be 0. Please enter a quantity for at least one size.");
+        return;
+    }
+
+    // Check if both front and back placements are either "none-front" or "none-back"
+    if ((frontPlacement === "none-front") && 
+        (backPlacement === "none-back")) {
+        alert("Please select at least one logo placement option.");
+        return;
+    }
 
     // Save the updated order details to localStorage
     localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
@@ -782,13 +811,37 @@ async function calculatePrice() {
                 <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
             `;
 
+            // Save pricing data to localStorage
+            const priceData = {
+                merch: result.merchCharge.toFixed(2),
+                rollAndTag: result.rollTagCharge.toFixed(2),
+                totalPrice: result.totalPrice.toFixed(2)
+            };
+            localStorage.setItem('priceData', JSON.stringify(priceData));
+
+            // Save the product to the cart
+            const product = {
+                title: 'Exceptional Tee',
+                sku: orderDetails.sku,
+                color: orderDetails.color,
+                sizes: orderDetails.sizes,
+                merchCost: result.merchCharge.toFixed(2),
+                rollTagCost: result.rollTagCharge.toFixed(2),
+                totalPrice: result.totalPrice.toFixed(2)
+            };
+            addToCart(product);
+
             // Display the breakdown in the modal
+            console.log("Inserting pricing details into modal...");
             document.getElementById('pricing-details').innerHTML = pricingBreakdown;
 
             // Hide loading indicator and show pricing details and button
+            console.log("Hiding loading indicator and showing pricing details...");
             document.getElementById('loading-indicator').style.display = 'none';
             document.getElementById('pricing-details').style.display = 'block';
-            document.querySelector('.button-container').style.display = 'flex';
+            document.querySelector('.button-container').style.display = 'block';
+            document.querySelector('.button-container').style.visibility = 'visible';
+            console.log("Pricing details should now be visible.");
         } else {
             console.error('Price not returned');
         }
@@ -814,6 +867,17 @@ function closePriceModal() {
 function proceedToCheckout() {
     // Redirect to the checkout page or handle the checkout process
     window.location.href = 'checkout.html';
+}
+
+function addToCart(product) {
+    // Retrieve existing cart from localStorage or initialize a new array
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add the new product to the cart
+    cart.push(product);
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 </script>
 
