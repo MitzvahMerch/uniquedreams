@@ -760,23 +760,25 @@ async function calculatePrice() {
         }
 
         const result = await response.json();
-        console.log("Server response:", result);
 
-        if (result.price) {
-            const merchCostPerItem = (result.merchCost / orderDetails.totalQuantity).toFixed(2);
-            const rollTagCostPerItem = (result.rollTagCost / orderDetails.totalQuantity).toFixed(2);
+        if (result.totalPrice) {
+            // Build the detailed pricing breakdown with itemized charges and per-item cost
+            const merchCostPerItem = (result.merchCharge / orderDetails.totalQuantity).toFixed(2);
+            const rollTagCostPerItem = (result.rollTagCharge / orderDetails.totalQuantity).toFixed(2);
 
-            document.getElementById('pricing-details').innerHTML = `
+            const pricingBreakdown = `
                 <h2 style="text-align: center; color: #05216E;">Pricing Breakdown</h2>
-                <p>Merch: $${result.merchCost.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
-                <p>Roll and Tag: $${result.rollTagCost.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
-                <p>Shipping: $${result.shippingCost.toFixed(2)}</p>
-                <p class="total" style="font-weight: bold;">Total Price: $${result.price.toFixed(2)}</p>
+                <p>Merch: $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
+                <p>Roll and Tag: $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
+                <p>Shipping: $${result.shippingCharge.toFixed(2)}</p>
+                <p class="total" style="font-weight: bold;">Total Price: $${result.totalPrice.toFixed(2)}</p>
             `;
+
+            // Display the breakdown in the modal
+            document.getElementById('pricing-details').innerHTML = pricingBreakdown;
             openPriceModal();
         } else {
             console.error('Price not returned');
-            document.getElementById('pricing-details').innerHTML = `<p style="color: red;">Error calculating price. Please try again later.</p>`;
         }
     } catch (error) {
         console.error('Error calculating price:', error.message);
