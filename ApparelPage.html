@@ -51,15 +51,15 @@
             box-sizing: border-box; /* Ensure padding is included in the element's width */
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end; /* Move images down within their boxes */
             transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
             cursor: pointer;
             border: 2px solid #0E9ED8; /* Ensure the container has a consistent border */
         }
 
         .container img {
-            max-height: 80%; /* Ensure images do not exceed the container height */
-            max-width: 80%; /* Ensure images do not exceed the container width */
+            max-height: 88%; /* Increase image size by 10% */
+            max-width: 88%; /* Increase image size by 10% */
             object-fit: contain; /* Maintain aspect ratio and ensure all images fit within the container */
         }
 
@@ -68,7 +68,7 @@
             top: 7%; /* Adjust the text position */
             left: 50%;
             transform: translate(-50%, -50%);
-            color: black;
+            color: white;
             font-weight: bold;
             text-decoration: none;
             font-size: 34px;
@@ -88,6 +88,10 @@
 
         .container:hover img {
             transform: scale(1.1); /* Slightly increase image size on hover */
+        }
+
+        .flex-container + .flex-container {
+            margin-top: 30px; /* Triple the vertical space between the first and second row */
         }
 
         .flex-container.centered {
