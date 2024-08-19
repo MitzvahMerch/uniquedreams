@@ -29,7 +29,7 @@
             padding: 10px; /* Add padding to ensure some spacing between the white box and its content */
             margin: 20px auto; /* Center the container and add some margin for spacing */
             max-width: 1340px; /* Limit the width of the container */
-            border: 4px solid white; /* Add a slight black border around the container */
+            border: 4px solid white; /* Add a slight white border around the container */
             box-sizing: border-box; /* Ensure padding and border are included in the width and height */
         }
 
@@ -44,28 +44,29 @@
         .container {
             position: relative;
             width: 23.5%; /* Adjusted width to fit 4 in a row while accommodating increased margin */
-            max-width: 285px; /* Ensure all containers are the same size */
+            height: 300px; /* Set a fixed height to make all containers uniform */
             margin: 10px; /* Adjust margin for better spacing */
             padding: 10px; /* Add padding inside the containers */
             background-color: #fff; /* Set the background color */
             box-sizing: border-box; /* Ensure padding is included in the element's width */
-            height: 380px; /* Set a fixed height to make all containers uniform */
             display: flex;
             justify-content: center;
             align-items: center;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
+            border: 2px solid #0E9ED8; /* Ensure the container has a consistent border */
         }
 
         .container img {
-            max-height: 300px; /* Limit the height of the images */
-            max-width: 100%; /* Ensure images are responsive within the container */
+            max-height: 80%; /* Ensure images do not exceed the container height */
+            max-width: 80%; /* Ensure images do not exceed the container width */
             object-fit: contain; /* Maintain aspect ratio and ensure all images fit within the container */
+            transition: transform 0.2s ease-in-out;
         }
 
         .overlay-text {
             position: absolute;
-            top: 25%; /* Adjust the text position */
+            top: 15%; /* Adjust the text position */
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
@@ -73,7 +74,6 @@
             text-decoration: none;
             font-size: 34px;
             line-height: 1.5;
-            padding: 5px 15px;
             white-space: nowrap;
             text-align: center;
             transition: color 0.2s;
@@ -84,9 +84,7 @@
         }
 
         .container:hover img {
-            filter: brightness(100%);
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.1); /* Slightly increase image size on hover */
         }
 
         .flex-container.centered {
@@ -163,7 +161,7 @@
     </div>
 
     <div class="flex-container centered other-container">
-        <div class="container" style="background-color: transparent; border: none;">
+        <div class="container" style="background-color: #0137B7; border: none;">
             <img src="Images/OtherDislay.png" alt="Other"> 
             <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/other" class="overlay-text" target="_blank" rel="noopener noreferrer">
                 Other
