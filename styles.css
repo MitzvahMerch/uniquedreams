@@ -66,9 +66,6 @@ footer {
     padding: 20px 0; /* Adjusted padding for top and bottom only */
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     box-sizing: border-box; /* Include padding within the element's width */
     margin: 0; /* Ensure there's no margin */
 }
@@ -76,7 +73,9 @@ footer {
 .footer-container {
     max-width: 1200px; /* Set a max width */
     margin: 0 auto; /* Center the container */
-    padding: 40px 40px; /* Add padding to the sides */
+    padding: 0 40px; /* Add padding to the sides */
+    display: flex; /* Add flex display to align children horizontally */
+    justify-content: space-between; /* Distribute space between columns */
     box-sizing: border-box;
 }
 
