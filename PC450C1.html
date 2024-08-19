@@ -465,7 +465,7 @@ h1.product-title {
 </div>
 
 
-    <script>
+<script>
 async function updateLogo() {
     const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
 
@@ -819,6 +819,18 @@ async function calculatePrice() {
             };
             localStorage.setItem('priceData', JSON.stringify(priceData));
 
+            // Save the product to the cart
+            const product = {
+                title: 'Exceptional Tee',
+                sku: orderDetails.sku,
+                color: orderDetails.color,
+                sizes: orderDetails.sizes,
+                merchCost: result.merchCharge.toFixed(2),
+                rollTagCost: result.rollTagCharge.toFixed(2),
+                totalPrice: result.totalPrice.toFixed(2)
+            };
+            addToCart(product);
+
             // Display the breakdown in the modal
             console.log("Inserting pricing details into modal...");
             document.getElementById('pricing-details').innerHTML = pricingBreakdown;
@@ -855,6 +867,17 @@ function closePriceModal() {
 function proceedToCheckout() {
     // Redirect to the checkout page or handle the checkout process
     window.location.href = 'checkout.html';
+}
+
+function addToCart(product) {
+    // Retrieve existing cart from localStorage or initialize a new array
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add the new product to the cart
+    cart.push(product);
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 </script>
 
