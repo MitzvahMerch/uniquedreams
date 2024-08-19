@@ -27,8 +27,9 @@
         .main-container {
             background-color: #0E9ED8; /* Set background color for the entire section */
             padding: 10px; /* Add padding to ensure some spacing between the white box and its content */
+            margin: 20px auto; /* Center the container and add some margin for spacing */
             max-width: 1340px; /* Limit the width of the container */
-            border: 4px solid black; /* Add a slight white border around the container */
+            border: 4px solid white; /* Add a slight white border around the container */
             box-sizing: border-box; /* Ensure padding and border are included in the width and height */
         }
 
@@ -42,16 +43,16 @@
 
         .container {
             position: relative;
-            width: 23.5%; /* Adjusted width to fit 4 in a row while accommodating increased margin */
+            width: 23.5%; /* Adjusted width to fit 4 in a row while accommodating reduced margin */
             height: 300px; /* Set a fixed height to make all containers uniform */
-            margin: 10px; /* Adjust margin for better spacing */
+            margin: 5px; /* Reduced margin for better spacing */
             padding: 10px; /* Add padding inside the containers */
             background-color: #fff; /* Set the background color */
             box-sizing: border-box; /* Ensure padding is included in the element's width */
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
             cursor: pointer;
             border: 2px solid #0E9ED8; /* Ensure the container has a consistent border */
         }
@@ -60,15 +61,14 @@
             max-height: 80%; /* Ensure images do not exceed the container height */
             max-width: 80%; /* Ensure images do not exceed the container width */
             object-fit: contain; /* Maintain aspect ratio and ensure all images fit within the container */
-            transition: transform 0.2s ease-in-out;
         }
 
         .overlay-text {
             position: absolute;
-            top: 10%; /* Adjust the text position */
+            top: 15%; /* Adjust the text position */
             left: 50%;
             transform: translate(-50%, -50%);
-            color: black;
+            color: white;
             font-weight: bold;
             text-decoration: none;
             font-size: 34px;
@@ -76,6 +76,10 @@
             white-space: nowrap;
             text-align: center;
             transition: color 0.2s;
+        }
+
+        .container:hover {
+            background-color: #b0b0b0; /* Change background color on hover to gray */
         }
 
         .container:hover .overlay-text {
@@ -92,6 +96,13 @@
 
         .other-container {
             margin-top: 40px; /* Add margin to separate from the main container */
+            background-color: #0137B7; /* Match the page background */
+            padding: 20px;
+        }
+
+        .other-container .container {
+            background-color: #fff; /* White background for the "Other" box */
+            border: 2px solid #0E9ED8; /* Border for the "Other" box */
         }
     </style>
 </head>
@@ -160,7 +171,7 @@
     </div>
 
     <div class="flex-container centered other-container">
-        <div class="container" style="background-color: #0137B7; border: none;">
+        <div class="container">
             <img src="Images/OtherDislay.png" alt="Other"> 
             <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/other" class="overlay-text" target="_blank" rel="noopener noreferrer">
                 Other
@@ -187,4 +198,5 @@
     </script>
 </body>
 </html>
+
 
