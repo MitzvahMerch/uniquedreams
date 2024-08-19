@@ -664,6 +664,19 @@ function getPrice() {
     orderDetails.rollTagSelection = rollTagSelection;
     orderDetails.selectedStyle = selectedStyle;
 
+    // Check if the total quantity is 0
+    if (orderDetails.totalQuantity === 0) {
+        alert("Total quantity cannot be 0. Please enter a quantity for at least one size.");
+        return;
+    }
+
+    // Check if both front and back placements are either "Select Placement" or "None"
+    if ((frontPlacement === "" || frontPlacement === "none-front") && 
+        (backPlacement === "" || backPlacement === "none-back")) {
+        alert("Please select at least one logo placement option.");
+        return;
+    }
+
     // Save the updated order details to localStorage
     localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 
