@@ -785,10 +785,10 @@ async function calculatePrice() {
             // Display the breakdown in the modal
             document.getElementById('pricing-details').innerHTML = pricingBreakdown;
 
-            // Hide loading indicator and show pricing details
+            // Hide loading indicator and show pricing details and button
             document.getElementById('loading-indicator').style.display = 'none';
             document.getElementById('pricing-details').style.display = 'block';
-            document.querySelector('.button-container').style.display = 'flex'; // Show the Proceed to Checkout button
+            document.querySelector('.button-container').style.display = 'flex';
         } else {
             console.error('Price not returned');
         }
