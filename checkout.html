@@ -21,7 +21,7 @@
         .checkout-container {
             width: 90%;
             min-width: 400px;
-            margin-right: 140px;
+            margin-right: 200px;
             background: #fff;
             padding: 30px;
             border-radius: 10px;
@@ -48,6 +48,13 @@
         .sku-text {
             font-size: 14px;
             color: #777;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .size-quantities {
+            font-size: 14px;
+            color: #555;
             margin-bottom: 10px;
             text-align: left;
         }
@@ -92,10 +99,9 @@
             font-weight: bold;
             text-align: center;
             margin-left: 20px;
-            margin-top: 40px;
             width: 400px;
             position: relative;
-            overflow: hidden; /* Ensures confetti stays within the box */
+            overflow: hidden;
         }
 
         .timer {
@@ -186,6 +192,13 @@
             return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
+        // Function to format size quantities
+        function formatSizeQuantities(sizes) {
+            return Object.entries(sizes)
+                .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
+                .join(', ');
+        }
+
         // Update the checkout page display
         function updateDisplay() {
             const cart = getCartData();
@@ -197,10 +210,13 @@
                 const productCost = parseFloat(product.totalPrice);
                 totalCost += productCost;
 
+                const formattedSizes = formatSizeQuantities(product.sizes);
+
                 orderDetailsDisplay.innerHTML += `
                     <div class="controls-container">
                         <h1 class="product-title">${product.title}</h1>
                         <div class="sku-text">${product.sku}</div>
+                        <div class="size-quantities">Quantities: ${formattedSizes}</div>
                         <p><strong>Merch:</strong> $${product.merchCost}</p>
                         <p><strong>Roll and Tag:</strong> $${product.rollTagCost}</p>
                         <p><strong>Shipping:</strong> Free</p>
