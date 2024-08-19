@@ -448,14 +448,14 @@ h1.product-title {
 
 <!-- Modal for displaying price -->
 <div id="priceModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePriceModal()">&times;</span>
-        <h2 id="pricing-header">Pricing Breakdown</h2>
-        <div id="pricing-details">
+    <div class="modal-content" style="padding: 30px;">
+        <span class="close" onclick="closePriceModal()" style="font-size: 28px;">&times;</span>
+        <h2 style="text-align: center; color: #05216E; font-size: 28px; margin-bottom: 20px;">Pricing Breakdown</h2>
+        <div id="pricing-details" style="font-size: 20px; line-height: 1.6;">
             <!-- The pricing details will be dynamically inserted here -->
         </div>
-        <div class="button-container">
-            <button class="submit-modal-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        <div class="button-container" style="margin-top: 30px;">
+            <button class="submit-modal-button" onclick="proceedToCheckout()" style="font-size: 20px; padding: 15px 30px;">Proceed to Checkout</button>
         </div>
     </div>
 </div>
