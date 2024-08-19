@@ -82,6 +82,7 @@ footer {
 
 .footer-column {
     flex: 1;
+    padding-left: 20px; /* Add padding to the left side to move away from the wall */
 }
 
 .footer-column h3 {
