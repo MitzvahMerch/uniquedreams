@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Your Apparel</title>
+    <title>Merch Options</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
         /* Specific styles for the apparel page */
         .custom-heading {
-            font-size: 120px; /* Increased size */
+            font-size: 96px; /* Reduced size by 20% */
             font-weight: 800;
             color: white;
             text-align: center;
@@ -33,47 +33,40 @@
         }
         .container {
             position: relative;
-            width: 30%;
-            max-width: 400px; /* Increased max-width for larger images */
-            margin: 5px; /* Decreased spacing between images */
+            width: 21%; /* Reduced size by 30% */
+            max-width: 280px; /* Reduced max-width by 30% */
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
+            cursor: pointer; /* Change cursor to pointer */
         }
         .container img {
             width: 100%;
             height: auto;
             display: block;
+            filter: brightness(70%); /* Darken images slightly */
         }
         .overlay-text {
             position: absolute;
-            top: 30%; /* Adjusted top position */
+            top: 50%; /* Centered vertically */
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
             font-weight: bold;
             text-decoration: none;
-            font-size: 48px; /* Increased font size */
+            font-size: 34px; /* Reduced font size by 30% */
             line-height: 1.5;
             padding: 5px 15px;
             white-space: nowrap;
             text-align: center;
+            transition: color 0.2s; /* Add transition for hover effects */
         }
-        .overlay-text:hover {
-            color: lightgray;
+        .container:hover .overlay-text {
+            color: #0b3a92; /* Change text color on hover */
         }
-        .final-outlined-text {
-            text-shadow: 
-                -2px -2px 0 #000, 
-                2px -2px 0 #000, 
-                -2px 2px 0 #000, 
-                2px 2px 0 #000,
-                -2px 0px 0 #000,
-                2px 0px 0 #000,
-                0px -2px 0 #000,
-                0px 2px 0 #000;
-            font-size: 80px;
-            font-weight: 800;
-            color: white;
-            text-align: center;
-            font-family: 'antarcticanheadlineb', sans-serif;
+        .container:hover img {
+            filter: brightness(100%); /* Brighten image on hover */
+            transform: scale(1.05); /* Scale up slightly on hover */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
         }
     </style>
 </head>
@@ -82,7 +75,7 @@
     <!-- Placeholder for header -->
     <div id="header-placeholder"></div>
 
-    <h1 class="custom-heading">Select Your Apparel!</h1>
+    <h1 class="custom-heading">Merch Options</h1>
 
     <div class="flex-container">
         <div class="container">
@@ -121,7 +114,7 @@
         <div class="container">
             <img src="Images/SlingBagsDisplay.png" alt="Sling Bags"> 
             <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/slingbags" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                &nbsp;&nbsp;Sling Bag
+                Sling Bag
             </a>
         </div>
     </div>
@@ -147,10 +140,6 @@
         </div>
     </div>
 
-    <p class="final-outlined-text">
-        Feel Free to Submit Multiple Items!
-    </p>
-
     <!-- Placeholder for footer -->
     <div id="footer-placeholder"></div>
 
@@ -170,3 +159,4 @@
     </script>
 </body>
 </html>
+
