@@ -111,6 +111,13 @@
             margin-top: 10px;
         }
 
+        .receive-by {
+            font-size: 36px; /* Larger font for the 'To Receive By' date */
+            margin-top: 10px;
+            color: #000;
+            font-weight: bold;
+        }
+
         .container-wrapper {
             display: flex;
             align-items: flex-start;
@@ -197,6 +204,7 @@
         <div class="countdown-timer">
             <p>Order in the next:</p>
             <div class="timer" id="countdown">Loading...</div>
+            <p class="receive-by">To Receive By: <span id="receiveByDate"></span></p>
             <!-- Confetti elements -->
             <div class="confetti" style="left: 5%;"></div>
             <div class="confetti" style="left: 15%;"></div>
@@ -276,7 +284,7 @@
             }).render('#paypal-button-container');
         }
 
-        // Function to initialize the countdown timer
+        // Function to initialize the countdown timer and set the "Receive By" date
         function initializeCountdown() {
             function updateTimer() {
                 const now = new Date();
@@ -301,13 +309,18 @@
                 }
             }
 
+            // Set "Receive By" date to a week from today
+            const receiveByDate = new Date();
+            receiveByDate.setDate(receiveByDate.getDate() + 7);
+            document.getElementById('receiveByDate').innerText = receiveByDate.toDateString();
+
             updateTimer(); // Initial call
             const timerInterval = setInterval(updateTimer, 1000);
         }
 
         // Call the function to update the display on page load
         updateDisplay();
-        initializeCountdown(); // Initialize the countdown
+        initializeCountdown(); // Initialize the countdown and "Receive By" date
     </script>
 </body>
 </html>
