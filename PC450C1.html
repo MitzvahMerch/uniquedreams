@@ -485,34 +485,37 @@ async function updateLogo() {
 
 window.onload = updateLogo;
 
+// Initialize frontImageSrc and backImageSrc with the default values
+let frontImageSrc = 'PC450C1/BrightGoldFront.png';
+let backImageSrc = 'PC450C1/BrightGoldBack.png';
+
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
-    // Set the front and back image sources based on the selected color
     switch (color) {
         case 'BrightGold':
-            window.frontImageSrc = 'PC450C1/BrightGoldFront.png';
-            window.backImageSrc = 'PC450C1/BrightGoldBack.png';
+            frontImageSrc = 'PC450C1/BrightGoldFront.png';
+            backImageSrc = 'PC450C1/BrightGoldBack.png';
             break;
         case 'AthleticHthr':
-            window.frontImageSrc = 'PC450C1/AthleticHthrFront.png';
-            window.backImageSrc = 'PC450C1/AthleticHthrBack.png';
+            frontImageSrc = 'PC450C1/AthleticHthrFront.png';
+            backImageSrc = 'PC450C1/AthleticHthrBack.png';
             break;
         case 'AthleticKelly':
-            window.frontImageSrc = 'PC450C1/AthleticKellyFront.png';
-            window.backImageSrc = 'PC450C1/AthleticKellyBack.png';
+            frontImageSrc = 'PC450C1/AthleticKellyFront.png';
+            backImageSrc = 'PC450C1/AthleticKellyBack.png';
             break;
         case 'AthleticMaroon':
-            window.frontImageSrc = 'PC450C1/AthleticMaroonFront.png';
-            window.backImageSrc = 'PC450C1/AthleticMaroonBack.png';
+            frontImageSrc = 'PC450C1/AthleticMaroonFront.png';
+            backImageSrc = 'PC450C1/AthleticMaroonBack.png';
             break;
         case 'BrightRed':
-            window.frontImageSrc = 'PC450C1/BrightRedFront.png';
-            window.backImageSrc = 'PC450C1/BrightRedBack.png';
+            frontImageSrc = 'PC450C1/BrightRedFront.png';
+            backImageSrc = 'PC450C1/BrightRedBack.png';
             break;
         default:
-            window.frontImageSrc = 'PC450C1/BrightGoldFront.png';
-            window.backImageSrc = 'PC450C1/BrightGoldBack.png';
+            frontImageSrc = 'PC450C1/BrightGoldFront.png';
+            backImageSrc = 'PC450C1/BrightGoldBack.png';
             break;
     }
 
@@ -537,7 +540,7 @@ function updateLogoPlacement() {
         // The back placement was the most recent change
         if (backPlacement === 'centerBack') {
             // Show the back image with the Center Back logo
-            image.src = window.backImageSrc;
+            image.src = backImageSrc;
             logo.style.display = 'block';
             logo.style.width = '180px';
             logo.style.height = '180px';
@@ -556,7 +559,7 @@ function updateLogoPlacement() {
 
     // New condition to handle switching from front placement to none when back is set to centerBack
     if (frontPlacement === 'none-front' && backPlacement === 'centerBack') {
-        image.src = window.backImageSrc;
+        image.src = backImageSrc;
         logo.style.display = 'block';
         logo.style.width = '180px';
         logo.style.height = '180px';
@@ -569,24 +572,24 @@ function updateLogoPlacement() {
 
 function updateFrontLogo(frontPlacement, logo, image) {
     if (frontPlacement !== 'none-front' && frontPlacement !== '') {
-        image.src = window.frontImageSrc;
+        image.src = frontImageSrc;
 
         switch (frontPlacement) {
-            case 'fullFront':
+            case 'fullFront':  // Match HTML value
                 logo.style.width = '200px';
                 logo.style.height = '200px';
                 logo.style.top = '38%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
-            case 'centerChest':
+            case 'centerChest':  // Match HTML value
                 logo.style.width = '154px';
                 logo.style.height = '154px';
                 logo.style.top = '35%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
-            case 'leftChest':
+            case 'leftChest':  // Match HTML value
                 logo.style.width = '90px';
                 logo.style.height = '90px';
                 logo.style.top = '30%';
@@ -595,10 +598,10 @@ function updateFrontLogo(frontPlacement, logo, image) {
                 break;
         }
 
-        logo.style.display = 'block';
-        image.classList.remove('back-image');
+        logo.style.display = 'block'; // Show the logo if a front placement is selected
+        image.classList.remove('back-image'); // Ensure no back-image scaling for front view
     } else {
-        image.src = window.frontImageSrc;
+        image.src = frontImageSrc;
         logo.style.display = 'none';
     }
 }
