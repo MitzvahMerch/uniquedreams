@@ -740,8 +740,17 @@ async function calculatePrice() {
         // If the response is OK, parse the JSON result
         const result = await response.json();
 
-        if (result.price) {
-            document.getElementById('price-display').innerText = `Total Price: $${result.price.toFixed(2)}`;
+        if (result.totalPrice) {
+            // Build the detailed pricing breakdown
+            const pricingBreakdown = `
+                <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)}</p>
+                <p><strong>Rolling and Tagging:</strong> $${result.rollTagCharge.toFixed(2)}</p>
+                <p><strong>Shipping:</strong> $${result.shippingCharge.toFixed(2)}</p>
+                <p><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
+            `;
+
+            // Display the breakdown in the modal
+            document.getElementById('price-display').innerHTML = pricingBreakdown;
             openPriceModal();
         } else {
             console.error('Price not returned');
