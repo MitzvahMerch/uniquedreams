@@ -655,10 +655,16 @@ function getPrice() {
     const sku = document.querySelector('.sku-text').textContent;
 
     // Retrieve the selected front logo placement
-    const frontPlacement = document.getElementById('front-logo-placement').value;
+    let frontPlacement = document.getElementById('front-logo-placement').value;
+    if (frontPlacement === "" || frontPlacement === "Select Placement") {
+        frontPlacement = "none-front"; // Set to "none-front" if nothing is selected
+    }
 
     // Retrieve the selected back logo placement
-    const backPlacement = document.getElementById('back-logo-placement').value;
+    let backPlacement = document.getElementById('back-logo-placement').value;
+    if (backPlacement === "" || backPlacement === "Select Placement") {
+        backPlacement = "none-back"; // Set to "none-back" if nothing is selected
+    }
 
     // Retrieve the selected roll tag option
     const rollTagSelection = document.getElementById('roll-tag').value;
@@ -679,9 +685,9 @@ function getPrice() {
         return;
     }
 
-    // Check if both front and back placements are either "Select Placement" or "None"
-    if ((frontPlacement === "" || frontPlacement === "none-front") && 
-        (backPlacement === "" || backPlacement === "none-back")) {
+    // Check if both front and back placements are either "none-front" or "none-back"
+    if ((frontPlacement === "none-front") && 
+        (backPlacement === "none-back")) {
         alert("Please select at least one logo placement option.");
         return;
     }
