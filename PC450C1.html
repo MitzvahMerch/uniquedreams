@@ -272,10 +272,11 @@ h1.product-title {
 }
 
 #priceModal .button-container {
-    display: flex;
+    display: flex !important; /* Ensures it's displayed */
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    visibility: visible !important; /* Ensures it's visible */
 }
         #pricing-header {
     color: #05216E;
@@ -790,7 +791,8 @@ if (result.totalPrice) {
     console.log("Hiding loading indicator and showing pricing details...");
     document.getElementById('loading-indicator').style.display = 'none';
     document.getElementById('pricing-details').style.display = 'block';
-    document.querySelector('.button-container').style.display = 'flex'; // Use 'flex' for proper centering if needed
+    document.querySelector('.button-container').style.display = 'block';
+    document.querySelector('.button-container').style.visibility = 'visible';
     console.log("Pricing details should now be visible.");
 } else {
     console.error('Price not returned');
