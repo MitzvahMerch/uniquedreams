@@ -800,31 +800,39 @@ async function calculatePrice() {
 
         const result = await response.json();
 
-if (result.totalPrice) {
-    // Build the detailed pricing breakdown
-    const merchCostPerItem = (result.merchCharge / orderDetails.totalQuantity).toFixed(2);
-    const rollTagCostPerItem = (result.rollTagCharge / orderDetails.totalQuantity).toFixed(2);
-    const pricingBreakdown = `
-        <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
-        <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
-        <p><strong>Shipping:</strong> Free</p>
-        <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
-    `;
+        if (result.totalPrice) {
+            // Build the detailed pricing breakdown
+            const merchCostPerItem = (result.merchCharge / orderDetails.totalQuantity).toFixed(2);
+            const rollTagCostPerItem = (result.rollTagCharge / orderDetails.totalQuantity).toFixed(2);
+            const pricingBreakdown = `
+                <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
+                <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
+                <p><strong>Shipping:</strong> Free</p>
+                <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
+            `;
 
-    // Display the breakdown in the modal
-    console.log("Inserting pricing details into modal...");
-    document.getElementById('pricing-details').innerHTML = pricingBreakdown;
+            // Save pricing data to localStorage
+            const priceData = {
+                merch: result.merchCharge.toFixed(2),
+                rollAndTag: result.rollTagCharge.toFixed(2),
+                totalPrice: result.totalPrice.toFixed(2)
+            };
+            localStorage.setItem('priceData', JSON.stringify(priceData));
 
-    // Hide loading indicator and show pricing details and button
-    console.log("Hiding loading indicator and showing pricing details...");
-    document.getElementById('loading-indicator').style.display = 'none';
-    document.getElementById('pricing-details').style.display = 'block';
-    document.querySelector('.button-container').style.display = 'block';
-    document.querySelector('.button-container').style.visibility = 'visible';
-    console.log("Pricing details should now be visible.");
-} else {
-    console.error('Price not returned');
-}
+            // Display the breakdown in the modal
+            console.log("Inserting pricing details into modal...");
+            document.getElementById('pricing-details').innerHTML = pricingBreakdown;
+
+            // Hide loading indicator and show pricing details and button
+            console.log("Hiding loading indicator and showing pricing details...");
+            document.getElementById('loading-indicator').style.display = 'none';
+            document.getElementById('pricing-details').style.display = 'block';
+            document.querySelector('.button-container').style.display = 'block';
+            document.querySelector('.button-container').style.visibility = 'visible';
+            console.log("Pricing details should now be visible.");
+        } else {
+            console.error('Price not returned');
+        }
     } catch (error) {
         console.error('Error calculating price:', error.message);
         // Hide loading indicator even in case of error
