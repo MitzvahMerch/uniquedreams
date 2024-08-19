@@ -57,7 +57,12 @@
             font-size: 18px; /* 20% larger */
             color: black;
             font-weight: bold;
+            margin-bottom: 10px;
             text-align: left;
+        }
+
+        .size-quantities span {
+            font-weight: normal; /* Set the content after 'Quantities' to normal weight */
         }
 
         .controls-container {
@@ -237,7 +242,7 @@
                     <div class="controls-container">
                         <h1 class="product-title">${product.title}</h1>
                         <div class="sku-text">${product.sku}</div>
-                        <div class="size-quantities">Quantities: ${formattedSizes}</div>
+                        <div class="size-quantities"><strong>Quantities:</strong> <span>${formattedSizes}</span></div>
                         <p><strong>Merch:</strong> $${product.merchCost}</p>
                         <p><strong>Roll and Tag:</strong> $${product.rollTagCost}</p>
                         <p><strong>Shipping:</strong> Free</p>
