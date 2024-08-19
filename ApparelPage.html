@@ -33,9 +33,9 @@
         }
         .container {
             position: relative;
-            width: 23%; /* Adjusted width to fit 4 in a row */
-            max-width: 280px;
-            margin: 5px;
+            width: 23.5%; /* Adjusted width to fit 4 in a row while accommodating increased margin */
+            max-width: 285px; /* Adjusted max-width slightly */
+            margin: 10px; /* Increased margin slightly */
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
@@ -44,6 +44,16 @@
             height: auto;
             display: block;
             filter: brightness(70%);
+        }
+        /* Specific size adjustments for images */
+        .container.tank-top img {
+            transform: scale(0.85); /* Shrink by 15% */
+        }
+        .container.towel img {
+            transform: scale(0.80); /* Shrink by 20% */
+        }
+        .container.sweatpants img {
+            transform: scale(1.15); /* Increase by 15% */
         }
         .overlay-text {
             position: absolute;
@@ -93,7 +103,7 @@
                 T-Shirts
             </a>
         </div>
-        <div class="container">
+        <div class="container tank-top">
             <img src="Images/TankTopsDisplay.png" alt="Tank Tops"> 
             <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tanktops" class="overlay-text" target="_blank" rel="noopener noreferrer">
                 Tank Tops
@@ -108,7 +118,7 @@
     </div>
 
     <div class="flex-container">
-        <div class="container">
+        <div class="container sweatpants">
             <img src="Images/SweatpantsDisplay.png" alt="Sweatpants"> 
             <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatpants" class="overlay-text" target="_blank" rel="noopener noreferrer">
                 Sweatpants
@@ -126,7 +136,7 @@
                 Sling Bags
             </a>
         </div>
-        <div class="container">
+        <div class="container towel">
             <img src="Images/TowelsDisplay.png" alt="Towels"> 
             <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/towel" class="overlay-text" target="_blank" rel="noopener noreferrer">
                 Towels
@@ -162,4 +172,3 @@
     </script>
 </body>
 </html>
-
