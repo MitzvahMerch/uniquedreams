@@ -7,25 +7,25 @@
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
         /* Specific styles for the logo submission page */
-        .main-container {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
+        body {
+            background-image: url('Images/LogoBackground.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .box-container {
-            background-color: #9715D3;
-            padding: 40px;
-            border-radius: 12px;
-            width: 320px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #0E9ED8;
+            width: 300px;
+            border-radius: 8px;
+            z-index: 1;
             position: relative;
         }
         .box-container h1 {
-            margin: 0 0 20px;
-            font-size: 28px;
+            margin: 0 0 10px;
+            font-size: 24px;
             color: white;
         }
         .box-container input {
@@ -34,15 +34,18 @@
         .box-container label {
             background-color: black;
             color: white;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             display: inline-block;
-            margin-bottom: 20px;
         }
-        .box-container img,
+        .box-container img {
+            margin-top: 20px;
+            max-width: 100%;
+            display: none;
+        }
         .box-container canvas {
             margin-top: 20px;
             max-width: 100%;
@@ -56,14 +59,14 @@
             padding: 15px 30px;
             border: none;
             border-radius: 5px;
-            font-size: 20px;
+            font-size: 24px;
             cursor: pointer;
             width: 100%;
         }
         .feedback-message {
             display: none;
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 22.4px;
             color: #0C3A92;
             font-weight: bold;
         }
@@ -73,50 +76,47 @@
             font-size: 16px;
             color: red;
         }
-        .cta-link {
-            margin-top: 40px;
-            display: inline-block;
-            background-color: #000;
+        .select-merch-button {
+            display: none;
+            margin-top: 10px;
+            background-color: #0C3A92;
             color: white;
-            padding: 15px 30px;
+            padding: 10px 20px;
+            border: none;
             border-radius: 5px;
-            text-decoration: none;
             font-size: 18px;
-            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
         }
-        .cta-link:hover {
-            background-color: #333;
+        .select-merch-button:hover {
+            background-color: #094f82;
         }
     </style>
     <!-- Include PDF.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
 </head>
 <body>
+
     <!-- Placeholder for header -->
     <div id="header-placeholder"></div>
 
-    <div class="main-container">
-        <div class="box-container">
-            <h1>Submit Your Design Here!</h1>
-            <input type="file" id="fileInput">
-            <label for="fileInput">Upload Your Logo</label>
-            <img id="fileDisplay" alt="Uploaded Logo">
-            <canvas id="pdfCanvas"></canvas>
-            <button id="submitButton">Submit</button>
-            <div class="feedback-message" id="feedback-message">Submission successful!</div>
-            <div class="error-message" id="error-message">Submission failed. Please try again.</div>
-        </div>
-    </div>
-
-    <!-- Add a Call to Action link to the merch page -->
-    <div class="cta-link-container">
-        <a href="ApparelPage.html" class="cta-link">Check Out Our Merch Options</a>
+    <div class="box-container">
+        <h1>Submit Your Design Here!</h1>
+        <input type="file" id="fileInput">
+        <label for="fileInput">Upload Your Logo</label>
+        <img id="fileDisplay" alt="Uploaded Logo">
+        <canvas id="pdfCanvas"></canvas>
+        <button id="submitButton">Submit</button>
+        <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
+        <div class="error-message" id="error-message">Submission failed. Please try again.</div>
+        <a href="apparel.html" class="select-merch-button" id="select-merch-button">Select Merch</a>
     </div>
 
     <!-- Placeholder for footer -->
     <div id="footer-placeholder"></div>
 
-    <!-- JavaScript to load header and footer -->
     <script>
         // Function to load an HTML file and insert it into the placeholder
         function loadHTML(file, elementId) {
@@ -129,32 +129,13 @@
         // Load header and footer
         loadHTML('header.html', 'header-placeholder');
         loadHTML('footer.html', 'footer-placeholder');
-    </script>
-
-        <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDXzyHOuZvDORubiwNtrZUo3cVnBYT288s",
-            authDomain: "mitzvahmerch-ac346.firebaseapp.com",
-            projectId: "mitzvahmerch-ac346",
-            storageBucket: "mitzvahmerch-ac346.appspot.com",
-            messagingSenderId: "232131426361",
-            appId: "1:232131426361:web:8c7852a8da0e2f7a8d35e8",
-            measurementId: "G-XXFM5DPRZ6"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const storage = getStorage(app);
-        const db = getFirestore(app);
 
         document.addEventListener('DOMContentLoaded', function () {
             const fileInput = document.getElementById('fileInput');
             const submitButton = document.getElementById('submitButton');
             const fileDisplay = document.getElementById('fileDisplay');
             const pdfCanvas = document.getElementById('pdfCanvas');
+            const selectMerchButton = document.getElementById('select-merch-button');
 
             // Retrieve the session ID from local storage
             const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
@@ -229,6 +210,7 @@
 
                     document.getElementById('feedback-message').style.display = 'block';
                     submitButton.style.display = 'none';
+                    selectMerchButton.style.display = 'block'; // Show the "Select Merch" button
                 } catch (error) {
                     console.error('Error: ', error);
                     document.getElementById('error-message').style.display = 'block';
@@ -238,3 +220,4 @@
     </script>
 </body>
 </html>
+
