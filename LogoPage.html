@@ -19,45 +19,46 @@
             min-height: calc(100vh - 200px); /* Full height minus header and footer */
         }
 
-.box-container {
-    text-align: center;
-    padding: 10px 20px; /* Reduced padding to lower the height */
-    background-color: #FFDF00; /* Updated background color */
-    width: 280px;
-    border-radius: 8px;
-    z-index: 1;
-    position: relative;
-    border: 2px solid black; /* Added 2px black border */
-    box-sizing: border-box; /* Ensure padding doesn't increase width/height */
+        .box-container {
+            text-align: center;
+            padding: 10px 20px; /* Reduced padding to lower the height */
+            background-color: #FFDF00; /* Updated background color */
+            width: 280px;
+            border-radius: 8px;
+            z-index: 1;
+            position: relative;
+            border: 2px solid black; /* Added 2px black border */
+            box-sizing: border-box; /* Ensure padding doesn't increase width/height */
         }
 
         .box-container input {
             display: none;
         }
 
-.box-container label {
-    background-color: #FFDF00; /* Updated button background color */
-    color: black;
-    font-weight: bold;
-    padding: 10px 20px; /* Adjusted padding to center the text */
-    border: none;
-    border-radius: 5px;
-    font-size: 36px; /* Text size */
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-    white-space: nowrap; /* Prevent text from wrapping to a new line */
-    width: 100%; /* Ensure it takes up the full width of the container */
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Thin white outline */
-    box-sizing: border-box; /* Ensure padding doesn't affect centering */
-}
+        .box-container label {
+            background-color: #FFDF00; /* Updated button background color */
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px; /* Adjusted padding to center the text */
+            border: none;
+            border-radius: 5px;
+            font-size: 36px; /* Text size */
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap; /* Prevent text from wrapping to a new line */
+            width: 100%; /* Ensure it takes up the full width of the container */
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Thin white outline */
+            box-sizing: border-box; /* Ensure padding doesn't affect centering */
+        }
 
         .image-display-container {
             margin-top: 20px;
-            background-color: #f0f0f0; /* Neutral light gray background */
+            background-color: #d3d3d3; /* Darker gray background */
             padding: 10px;
             border-radius: 5px;
             display: none; /* Hidden initially until an image is uploaded */
+            position: relative;
         }
 
         .image-display-container img {
@@ -66,6 +67,27 @@
 
         .image-display-container canvas {
             max-width: 100%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            cursor: pointer;
+            display: none;
+        }
+
+        .image-display-container:hover .close-btn {
+            display: block;
         }
 
         .box-container button {
@@ -133,6 +155,7 @@
             <div class="image-display-container" id="imageDisplayContainer">
                 <img id="fileDisplay" alt="Uploaded Logo">
                 <canvas id="pdfCanvas"></canvas>
+                <button class="close-btn" id="closeButton">&times;</button>
             </div>
             <button id="submitButton">Submit</button>
             <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
@@ -160,7 +183,7 @@
         loadHTML('footer.html', 'footer-placeholder');
     </script>
 
-    <!-- JavaScript to handle file upload and display, Firebase setup, and submission logic -->
+    <!-- JavaScript to handle file upload, display, delete, Firebase setup, and submission logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
@@ -186,6 +209,7 @@
             const fileDisplay = document.getElementById('fileDisplay');
             const pdfCanvas = document.getElementById('pdfCanvas');
             const imageDisplayContainer = document.getElementById('imageDisplayContainer');
+            const closeButton = document.getElementById('closeButton');
             const merchButton = document.getElementById('merchButton');
             const feedbackMessage = document.getElementById('feedback-message');
             const errorMessage = document.getElementById('error-message');
@@ -237,6 +261,15 @@
 
                 await page.render({canvasContext: context, viewport: viewport}).promise;
             }
+
+            closeButton.addEventListener('click', function() {
+                fileDisplay.src = ''; // Clear the image display
+                pdfCanvas.style.display = 'none';
+                imageDisplayContainer.style.display = 'none';
+                fileTypeInfo.style.display = 'block'; // Show the file type info
+                submitButton.style.display = 'none';
+                fileInput.value = ''; // Clear the file input value
+            });
 
             submitButton.addEventListener('click', async function() {
                 const file = fileInput.files[0];
