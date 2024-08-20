@@ -8,20 +8,26 @@
     <style>
         /* Specific styles for the logo submission page */
         body {
-            background-image: url('Images/LogoBackground.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .box-container {
-            text-align: center;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #0E9ED8;
-            width: 300px;
-            border-radius: 8px;
-            z-index: 1;
-            position: relative;
+    background-image: url('Images/LogoBackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensures the background image covers at least the full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center;
+}
+
+.box-container {
+    text-align: center;
+    padding: 40px; /* Increase padding to make the container larger */
+    background-color: #0E9ED8;
+    width: 400px; /* Slightly increase the width if needed */
+    border-radius: 8px;
+    z-index: 1;
+    position: relative;
+}
         }
         .box-container h1 {
             margin: 0 0 10px;
