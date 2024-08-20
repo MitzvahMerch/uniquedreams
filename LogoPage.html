@@ -69,25 +69,12 @@
             max-width: 100%;
         }
 
-        .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
+        .discard-text {
+            margin-top: 10px;
             font-size: 14px;
-            line-height: 20px;
-            text-align: center;
+            color: red;
             cursor: pointer;
-            display: none;
-        }
-
-        .image-display-container:hover .close-btn {
-            display: block;
+            text-decoration: underline;
         }
 
         .box-container button {
@@ -155,7 +142,7 @@
             <div class="image-display-container" id="imageDisplayContainer">
                 <img id="fileDisplay" alt="Uploaded Logo">
                 <canvas id="pdfCanvas"></canvas>
-                <button class="close-btn" id="closeButton">&times;</button>
+                <div class="discard-text" id="discardText">Discard</div>
             </div>
             <button id="submitButton">Submit</button>
             <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
@@ -183,7 +170,7 @@
         loadHTML('footer.html', 'footer-placeholder');
     </script>
 
-    <!-- JavaScript to handle file upload, display, delete, Firebase setup, and submission logic -->
+    <!-- JavaScript to handle file upload, display, discard, Firebase setup, and submission logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
@@ -209,7 +196,7 @@
             const fileDisplay = document.getElementById('fileDisplay');
             const pdfCanvas = document.getElementById('pdfCanvas');
             const imageDisplayContainer = document.getElementById('imageDisplayContainer');
-            const closeButton = document.getElementById('closeButton');
+            const discardText = document.getElementById('discardText');
             const merchButton = document.getElementById('merchButton');
             const feedbackMessage = document.getElementById('feedback-message');
             const errorMessage = document.getElementById('error-message');
@@ -262,7 +249,7 @@
                 await page.render({canvasContext: context, viewport: viewport}).promise;
             }
 
-            closeButton.addEventListener('click', function() {
+            discardText.addEventListener('click', function() {
                 fileDisplay.src = ''; // Clear the image display
                 pdfCanvas.style.display = 'none';
                 imageDisplayContainer.style.display = 'none';
