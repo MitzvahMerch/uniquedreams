@@ -19,36 +19,35 @@
             min-height: calc(100vh - 200px); /* Full height minus header and footer */
         }
 
-.box-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #FFDF00; /* Updated background color */
-    width: 280px;
-    border-radius: 8px;
-    z-index: 1;
-    position: relative;
-    border: 2px solid black; /* Added 2px black border */
-}
+        .box-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #FFDF00; /* Updated background color */
+            width: 280px;
+            border-radius: 8px;
+            z-index: 1;
+            position: relative;
+            border: 2px solid black; /* Added 2px black border */
+        }
 
         .box-container input {
             display: none;
         }
 
-.box-container label {
-    background-color: #FFDF00; /* Updated button background color */
-    color: black;
-    font-weight: bold;
-    padding: 20px 40px; /* Adjust padding as needed */
-    border: none;
-    border-radius: 5px;
-    font-size: 24px; /* Text size */
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-    white-space: nowrap; /* Prevent text from wrapping to a new line */
-    width: auto; /* Auto width so it adjusts based on content */
-}
-
+        .box-container label {
+            background-color: #FFDF00; /* Updated button background color */
+            color: black;
+            font-weight: bold;
+            padding: 20px 40px; /* Adjust padding as needed */
+            border: none;
+            border-radius: 5px;
+            font-size: 24px; /* Text size */
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap; /* Prevent text from wrapping to a new line */
+            width: auto; /* Auto width so it adjusts based on content */
+        }
 
         .box-container img {
             margin-top: 20px;
@@ -73,6 +72,13 @@
             font-size: 24px;
             cursor: pointer;
             width: 100%;
+        }
+
+        .file-type-info {
+            margin-top: 20px;
+            font-size: 14px; /* Small text size */
+            color: #0B3D02; /* Contrasting dark green color */
+            text-align: center;
         }
 
         .feedback-message {
@@ -122,6 +128,7 @@
             <button id="submitButton">Submit</button>
             <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
             <div class="error-message" id="error-message">Submission failed. Please try again.</div>
+            <div class="file-type-info" id="fileTypeInfo">.png, .jpg, .ai, .svg, .webp, .pdf</div> <!-- File type info -->
         </div>
         <a href="apparel.html" class="merch-button" id="merchButton">Select Merch</a>
     </div>
@@ -172,6 +179,7 @@
             const merchButton = document.getElementById('merchButton');
             const feedbackMessage = document.getElementById('feedback-message');
             const errorMessage = document.getElementById('error-message');
+            const fileTypeInfo = document.getElementById('fileTypeInfo');
 
             // Retrieve the session ID from local storage
             const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
@@ -180,6 +188,8 @@
                 const file = event.target.files[0];
                 if (file) {
                     const fileType = file.type;
+                    fileTypeInfo.style.display = 'none'; // Hide the file type info when a file is uploaded
+                    
                     if (fileType === 'application/pdf') {
                         const reader = new FileReader();
                         reader.onload = function(e) {
@@ -256,3 +266,4 @@
     </script>
 </body>
 </html>
+
