@@ -16,15 +16,15 @@
             background-position: center;
             background-repeat: no-repeat;
             position: relative; /* For positioning the button and text */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center content both horizontally and vertically */
+            flex-direction: column; /* Stack button and text vertically */
         }
 
-        /* Rectangular button with dark grey outline and hover effect */
+        /* Centered black button with dark grey outline and hover effect */
         .transparent-button {
-            position: absolute;
-            top: 50%;
-            left: 10px; /* Slightly inset from the left side */
-            transform: translateY(-50%);
-            background-color: transparent;
+            background-color: black; /* Set background to black */
             border: 2px solid #333; /* Dark grey outline */
             color: white;
             font-size: calc(18px * 1.4); /* Increase font size by 40% */
@@ -33,6 +33,7 @@
             transition: background-color 0.3s, color 0.3s;
             text-align: center;
             border-radius: 0; /* Ensures 90-degree corners */
+            margin-bottom: 20px; /* Space between button and text box */
         }
 
         .transparent-button:hover {
@@ -40,14 +41,12 @@
             color: #fff;
         }
 
-        /* Text box with white text below the button */
+        /* Centered text box with white text below the button */
         .text-box {
-            position: absolute;
-            top: calc(50% + 50px); /* Position below the button */
-            left: 10px;
             color: white;
             font-size: 18px;
             background-color: transparent; /* Ensure the text box is transparent */
+            text-align: center;
         }
     </style>
 </head>
@@ -57,10 +56,10 @@
 
     <!-- Main container wrapping the background image -->
     <div class="background-image-container">
-        <!-- Rectangular button on the left side of the screen -->
+        <!-- Centered black button -->
         <button class="transparent-button">Commemorate your Celebration</button>
         
-        <!-- Text box below the button -->
+        <!-- Centered text box below the button -->
         <div class="text-box">Text Box</div>
     </div>
 
