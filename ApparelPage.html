@@ -89,17 +89,23 @@
         }
 
         /* New Styles for the Centered Text */
-        .centered-text {
-            font-size: 22px;
-            font-weight: bold;
-            color: black;
-            text-align: center;
-            width: 100%;
-            position: absolute;
-            bottom: 20px; /* Position just above the footer */
-            left: 50%;
-            transform: translateX(-50%);
-        }
+.centered-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 20px; /* Position just above the footer */
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000; /* Creates a 1px black outline */
+}
+
     </style>
 </head>
 <body>
