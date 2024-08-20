@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Your Apparel</title>
+    <title>Mitzvah Merchandise</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
         /* Specific styles for the apparel page */
         .custom-heading {
-            font-size: 120px; /* Increased size */
+            font-size: 96px; /* Reduced size by 20% */
             font-weight: 800;
             color: white;
             text-align: center;
-            padding: 20px;
             text-shadow: 
                 -3px -3px 0 #000, 
                 3px -3px 0 #000, 
@@ -22,58 +21,92 @@
                 3px 0px 0 #000,
                 0px -3px 0 #000,
                 0px 3px 0 #000;
-            background-color: #0b3a92;
             font-family: 'antarcticanheadlineb', sans-serif; /* Using the custom font */
         }
+
+        .main-container {
+            background-color: #FFDF00; /* Set background color for the entire section */
+            padding: 20px; /* Add padding to ensure some spacing between the white box and its content */
+            margin: 20px auto; /* Center the container and add some margin for spacing */
+            max-width: 1340px; /* Limit the width of the container */
+            border: 3px solid black; /* Add a 4px blue border around the large container */
+            box-sizing: border-box; /* Ensure padding and border are included in the width and height */
+        }
+
         .flex-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-between; /* Distribute space evenly */
             align-items: center;
+            background-color: #FFDF00; /* Set the background color for the boxes */
         }
+
         .container {
             position: relative;
-            width: 30%;
-            max-width: 400px; /* Increased max-width for larger images */
-            margin: 5px; /* Decreased spacing between images */
+            width: 23.5%; /* Adjusted width to fit 4 in a row while accommodating reduced margin */
+            height: 300px; /* Set a fixed height to make all containers uniform */
+            margin: 5px; /* Reduced margin for better spacing */
+            padding: 10px; /* Add padding inside the containers */
+            background-color: #0E9ED8; /* Set the background color of the images */
+            box-sizing: border-box; /* Ensure padding is included in the element's width */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Move images down within their boxes */
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            cursor: pointer;
+            border: 1px solid black; /* Add a 1px white border around the small containers */
         }
+
         .container img {
-            width: 100%;
-            height: auto;
-            display: block;
+            max-height: 88%; /* Increase image size by 10% */
+            max-width: 88%; /* Increase image size by 10% */
+            object-fit: contain; /* Maintain aspect ratio and ensure all images fit within the container */
         }
+
         .overlay-text {
             position: absolute;
-            top: 30%; /* Adjusted top position */
+            top: 7%; /* Adjust the text position */
             left: 50%;
             transform: translate(-50%, -50%);
-            color: white;
+            color: black;
             font-weight: bold;
             text-decoration: none;
-            font-size: 48px; /* Increased font size */
+            font-size: 34px;
             line-height: 1.5;
-            padding: 5px 15px;
             white-space: nowrap;
             text-align: center;
+            transition: color 0.2s;
         }
-        .overlay-text:hover {
-            color: lightgray;
+
+        .container:hover {
+            background-color: #b0b0b0; /* Change background color on hover to gray */
         }
-        .final-outlined-text {
-            text-shadow: 
-                -2px -2px 0 #000, 
-                2px -2px 0 #000, 
-                -2px 2px 0 #000, 
-                2px 2px 0 #000,
-                -2px 0px 0 #000,
-                2px 0px 0 #000,
-                0px -2px 0 #000,
-                0px 2px 0 #000;
-            font-size: 80px;
-            font-weight: 800;
-            color: white;
-            text-align: center;
-            font-family: 'antarcticanheadlineb', sans-serif;
+
+        .container:hover .overlay-text {
+            color: #0b3a92;
+        }
+
+        .container:hover img {
+            transform: scale(1.1); /* Slightly increase image size on hover */
+        }
+
+        .flex-container + .flex-container {
+            margin-top: 30px; /* Triple the vertical space between the first and second row */
+        }
+
+        .flex-container.centered {
+            justify-content: center; /* Center the single item */
+        }
+
+        .other-container {
+            margin-top: 40px; /* Add margin to separate from the main container */
+            background-color: #0137B7; /* Match the page background */
+            padding: 20px;
+        }
+
+        .other-container .container {
+            background-color: #FFDF00; /* White background for the "Other" box */
+            border: 1px solid black; /* Border for the "Other" box */
         }
     </style>
 </head>
@@ -82,63 +115,66 @@
     <!-- Placeholder for header -->
     <div id="header-placeholder"></div>
 
-    <h1 class="custom-heading">Select Your Apparel!</h1>
+    <h1 class="custom-heading">Mitzvah Merchandise</h1>
 
-    <div class="flex-container">
-        <div class="container">
-            <img src="Images/TShirtDisplay.png" alt="T-Shirts"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tshirts" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                T-Shirt
-            </a>
+    <!-- Main container wrapping all the rows -->
+    <div class="main-container">
+        <div class="flex-container">
+            <div class="container">
+                <img src="Images/SweatshirtsDisplay.png" alt="Sweatshirts"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatshirts" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    Sweatshirts
+                </a>
+            </div>
+            <div class="container">
+                <img src="Images/TShirtDisplay.png" alt="T-Shirts"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tshirts" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    T-Shirts
+                </a>
+            </div>
+            <div class="container">
+                <img src="Images/TankTopsDisplay.png" alt="Tank Tops"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tanktops" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    Tank Tops
+                </a>
+            </div>
+            <div class="container">
+                <img src="Images/LongSleevesDisplay.png" alt="Long Sleeves"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/longsleeve" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    Long Sleeves
+                </a>
+            </div>
         </div>
-        <div class="container">
-            <img src="Images/SweatshirtsDisplay.png" alt="Sweatshirts"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatshirts" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                Sweatshirt
-            </a>
-        </div>
-        <div class="container">
-            <img src="Images/LongSleevesDisplay.png" alt="Long Sleeve"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/longsleeve" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                Long Sleeve
-            </a>
+
+        <div class="flex-container">
+            <div class="container">
+                <img src="Images/SweatpantsDisplay.png" alt="Sweatpants"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatpants" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    Sweatpants
+                </a>
+            </div>
+            <div class="container">
+                <img src="Images/HatsDisplay.png" alt="Hats"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/hat" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    Hats
+                </a>
+            </div>
+            <div class="container">
+                <img src="Images/SlingBagsDisplay.png" alt="Sling Bags"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/slingbags" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    Sling Bags
+                </a>
+            </div>
+            <div class="container">
+                <img src="Images/TowelsDisplay.png" alt="Towels"> 
+                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/towel" class="overlay-text" target="_blank" rel="noopener noreferrer">
+                    Towels
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="flex-container">
-        <div class="container">
-            <img src="Images/SweatpantsDisplay.png" alt="Sweatpants"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatpants" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                Sweatpants
-            </a>
-        </div>
-        <div class="container">
-            <img src="Images/HatsDisplay.png" alt="Hats"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/hat" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                Hat
-            </a>
-        </div>
-        <div class="container">
-            <img src="Images/SlingBagsDisplay.png" alt="Sling Bags"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/slingbags" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                &nbsp;&nbsp;Sling Bag
-            </a>
-        </div>
-    </div>
-
-    <div class="flex-container">
-        <div class="container">
-            <img src="Images/TankTopsDisplay.png" alt="Tank Tops"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tanktops" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                Tank Top
-            </a>
-        </div>
-        <div class="container">
-            <img src="Images/TowelsDisplay.png" alt="Towels"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/towel" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                Towel
-            </a>
-        </div>
+    <div class="flex-container centered other-container">
         <div class="container">
             <img src="Images/OtherDislay.png" alt="Other"> 
             <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/other" class="overlay-text" target="_blank" rel="noopener noreferrer">
@@ -146,10 +182,6 @@
             </a>
         </div>
     </div>
-
-    <p class="final-outlined-text">
-        Feel Free to Submit Multiple Items!
-    </p>
 
     <!-- Placeholder for footer -->
     <div id="footer-placeholder"></div>
@@ -170,3 +202,4 @@
     </script>
 </body>
 </html>
+
