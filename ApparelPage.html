@@ -5,102 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitzvah Merchandise</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
-    <style>
-        /* Specific styles for the apparel page */
-        body {
-    font-family: Arial, sans-serif;
-    background-color: #FFDF00; /* Dark blue background */
-    color: #333;
-    margin: 0;
-    padding: 0; /* Remove padding to prevent overflow */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
+<style>
+    /* Specific styles for the apparel page */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #FFDF00; /* This will be hidden by the background image */
+        color: #333;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
 
-        .main-container {
-            background-color: #FFDF00; /* Set background color for the entire section */
-            padding: 20px; /* Add padding to ensure some spacing between the white box and its content */
-            margin: 20px auto; /* Center the container and add some margin for spacing */
-            max-width: 1340px; /* Limit the width of the container */
-            border: 0px solid black; /* Add a 4px blue border around the large container */
-            box-sizing: border-box; /* Ensure padding and border are included in the width and height */
-        }
+    .main-container {
+        background-image: url('Images/ApparelBackground.png'); /* Set the background image */
+        background-size: cover; /* Ensure the image covers the entire container */
+        background-position: center; /* Center the background image */
+        background-repeat: no-repeat; /* Prevent the image from repeating */
+        padding: 20px;
+        margin: 0 auto; /* Center the container */
+        max-width: 100%; /* Ensure the container stretches the entire width */
+        box-sizing: border-box;
+        min-height: 100vh; /* Ensure the container covers the full viewport height */
+    }
 
-        .flex-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between; /* Distribute space evenly */
-            align-items: center;
-            background-color: #FFDF00; /* Set the background color for the boxes */
-        }
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent; /* Set background to fully transparent */
+        padding: 20px; /* Add some padding for spacing */
+        margin-bottom: 15px; /* Space between flex containers */
+    }
 
-        .container {
-            position: relative;
-            width: 23.5%; /* Adjusted width to fit 4 in a row while accommodating reduced margin */
-            height: 300px; /* Set a fixed height to make all containers uniform */
-            margin: 5px; /* Reduced margin for better spacing */
-            padding: 10px; /* Add padding inside the containers */
-            background-color: #0E9ED8; /* Set the background color of the images */
-            box-sizing: border-box; /* Ensure padding is included in the element's width */
-            display: flex;
-            justify-content: center;
-            align-items: flex-end; /* Move images down within their boxes */
-            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-            cursor: pointer;
-            border: 1px solid black; /* Add a 1px white border around the small containers */
-        }
+    .container {
+        position: relative;
+        width: 23.5%; 
+        height: 300px; 
+        margin: 5px; 
+        padding: 10px; 
+        background-color: #0E9ED8;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end; 
+        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        cursor: pointer;
+        border: 1px solid black; 
+    }
 
-        .container img {
-            max-height: 88%; /* Increase image size by 10% */
-            max-width: 88%; /* Increase image size by 10% */
-            object-fit: contain; /* Maintain aspect ratio and ensure all images fit within the container */
-        }
+    .container img {
+        max-height: 88%; 
+        max-width: 88%; 
+        object-fit: contain;
+    }
 
-        .overlay-text {
-            position: absolute;
-            top: 7%; /* Adjust the text position */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: black;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 34px;
-            line-height: 1.5;
-            white-space: nowrap;
-            text-align: center;
-            transition: color 0.2s;
-        }
+    .overlay-text {
+        position: absolute;
+        top: 7%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 34px;
+        line-height: 1.5;
+        white-space: nowrap;
+        text-align: center;
+        transition: color 0.2s;
+    }
 
-        .container:hover {
-            background-color: #b0b0b0; /* Change background color on hover to gray */
-        }
+    .container:hover {
+        background-color: #b0b0b0; /* Change background color on hover to gray */
+    }
 
-        .container:hover .overlay-text {
-            color: #0b3a92;
-        }
+    .container:hover .overlay-text {
+        color: #0b3a92;
+    }
 
-        .container:hover img {
-            transform: scale(1.1); /* Slightly increase image size on hover */
-        }
+    .container:hover img {
+        transform: scale(1.1); /* Slightly increase image size on hover */
+    }
 
-        .flex-container + .flex-container {
-            margin-top: 30px; /* Triple the vertical space between the first and second row */
-        }
+    .other-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 20px;
+        max-width: 25%; /* Set max width for the container */
+    }
 
-        .flex-container.centered {
-            justify-content: center; /* Center the single item */
-        }
+    .flex-container.centered {
+        justify-content: center; /* Center the single item */
+    }
 
-        .other-container {
-            margin-top: 40px; /* Add margin to separate from the main container */
-            background-color: #FFDF00; /* Match the page background */
-            padding: 20px;
-        }
-
-        .other-container .container {
-            background-color: #FFDF00; /* White background for the "Other" box */
-            border: 1px solid black; /* Border for the "Other" box */
-        }
-    </style>
+    .other-container .container {
+        background-color: #FFDF00; 
+        border: 1px solid black; 
+        width: 100%; /* Ensure it takes the full width of the parent */
+        height: 300px; /* Consistent height with other containers */
+    }
+</style>
 </head>
 <body>
 
