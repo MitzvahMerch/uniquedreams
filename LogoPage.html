@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,17 +22,11 @@
         .box-container {
             text-align: center;
             padding: 20px;
-            background-color: #9715D3;
+            background-color: #0E9ED8; /* Updated background color */
             width: 300px;
             border-radius: 8px;
             z-index: 1;
             position: relative;
-        }
-
-        .box-container h1 {
-            margin: 0 0 10px;
-            font-size: 24px;
-            color: white;
         }
 
         .box-container input {
@@ -115,16 +109,15 @@
     <!-- Main content section with background image -->
     <div class="content-container">
         <div class="box-container">
-            <h1>Submit Your Design Here!</h1>
             <input type="file" id="fileInput">
-            <label for="fileInput">Upload Your Logo</label>
+            <label for="fileInput">Upload Logo</label>
             <img id="fileDisplay" alt="Uploaded Logo">
             <canvas id="pdfCanvas"></canvas>
             <button id="submitButton">Submit</button>
             <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
             <div class="error-message" id="error-message">Submission failed. Please try again.</div>
         </div>
-        <a href="apparel.html" class="merch-button" id="merchButton">Merch Selection</a>
+        <a href="apparel.html" class="merch-button" id="merchButton">Select Merch</a>
     </div>
 
     <!-- Placeholder for footer -->
@@ -257,3 +250,4 @@
     </script>
 </body>
 </html>
+
