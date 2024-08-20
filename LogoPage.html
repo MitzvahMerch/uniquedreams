@@ -41,24 +41,29 @@
             padding: 20px 40px; /* Adjust padding as needed */
             border: none;
             border-radius: 5px;
-            font-size: 24px; /* Text size */
+            font-size: 36px; /* Increased text size */
             cursor: pointer;
             display: inline-block;
             text-align: center;
             white-space: nowrap; /* Prevent text from wrapping to a new line */
             width: auto; /* Auto width so it adjusts based on content */
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Thin white outline */
         }
 
-        .box-container img {
+        .image-display-container {
             margin-top: 20px;
-            max-width: 100%;
-            display: none;
+            background-color: #f0f0f0; /* Neutral light gray background */
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Hidden initially until an image is uploaded */
         }
 
-        .box-container canvas {
-            margin-top: 20px;
+        .image-display-container img {
             max-width: 100%;
-            display: none;
+        }
+
+        .image-display-container canvas {
+            max-width: 100%;
         }
 
         .box-container button {
@@ -123,8 +128,10 @@
         <div class="box-container">
             <input type="file" id="fileInput">
             <label for="fileInput">Upload Logo</label>
-            <img id="fileDisplay" alt="Uploaded Logo">
-            <canvas id="pdfCanvas"></canvas>
+            <div class="image-display-container" id="imageDisplayContainer">
+                <img id="fileDisplay" alt="Uploaded Logo">
+                <canvas id="pdfCanvas"></canvas>
+            </div>
             <button id="submitButton">Submit</button>
             <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
             <div class="error-message" id="error-message">Submission failed. Please try again.</div>
@@ -176,6 +183,7 @@
             const submitButton = document.getElementById('submitButton');
             const fileDisplay = document.getElementById('fileDisplay');
             const pdfCanvas = document.getElementById('pdfCanvas');
+            const imageDisplayContainer = document.getElementById('imageDisplayContainer');
             const merchButton = document.getElementById('merchButton');
             const feedbackMessage = document.getElementById('feedback-message');
             const errorMessage = document.getElementById('error-message');
@@ -189,6 +197,7 @@
                 if (file) {
                     const fileType = file.type;
                     fileTypeInfo.style.display = 'none'; // Hide the file type info when a file is uploaded
+                    imageDisplayContainer.style.display = 'block'; // Show the image display container
                     
                     if (fileType === 'application/pdf') {
                         const reader = new FileReader();
@@ -266,4 +275,3 @@
     </script>
 </body>
 </html>
-
