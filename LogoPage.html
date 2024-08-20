@@ -94,8 +94,6 @@
             background-color: #094f82;
         }
     </style>
-    <!-- Include PDF.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
 </head>
 <body>
 
@@ -110,13 +108,14 @@
         <canvas id="pdfCanvas"></canvas>
         <button id="submitButton">Submit</button>
         <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
+        <a href="apparel.html" class="select-merch-button" id="selectMerchButton">Select Merch</a>
         <div class="error-message" id="error-message">Submission failed. Please try again.</div>
-        <a href="apparel.html" class="select-merch-button" id="select-merch-button">Select Merch</a>
     </div>
 
     <!-- Placeholder for footer -->
     <div id="footer-placeholder"></div>
 
+    <!-- JavaScript to load header and footer -->
     <script>
         // Function to load an HTML file and insert it into the placeholder
         function loadHTML(file, elementId) {
@@ -130,12 +129,15 @@
         loadHTML('header.html', 'header-placeholder');
         loadHTML('footer.html', 'footer-placeholder');
 
+        // Existing JavaScript for file upload handling and Firebase integration
         document.addEventListener('DOMContentLoaded', function () {
             const fileInput = document.getElementById('fileInput');
             const submitButton = document.getElementById('submitButton');
             const fileDisplay = document.getElementById('fileDisplay');
             const pdfCanvas = document.getElementById('pdfCanvas');
-            const selectMerchButton = document.getElementById('select-merch-button');
+            const feedbackMessage = document.getElementById('feedback-message');
+            const errorMessage = document.getElementById('error-message');
+            const selectMerchButton = document.getElementById('selectMerchButton');
 
             // Retrieve the session ID from local storage
             const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
@@ -208,16 +210,15 @@
                         timestamp: new Date().toISOString()
                     });
 
-                    document.getElementById('feedback-message').style.display = 'block';
+                    feedbackMessage.style.display = 'block';
                     submitButton.style.display = 'none';
-                    selectMerchButton.style.display = 'block'; // Show the "Select Merch" button
+                    selectMerchButton.style.display = 'block'; // Show the Select Merch button
                 } catch (error) {
                     console.error('Error: ', error);
-                    document.getElementById('error-message').style.display = 'block';
+                    errorMessage.style.display = 'block';
                 }
             });
         });
     </script>
 </body>
 </html>
-
