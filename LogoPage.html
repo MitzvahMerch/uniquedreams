@@ -6,48 +6,77 @@
     <title>Submit Your Design</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
-        /* Specific styles for the logo submission page */
-        .main-container {
-            flex-grow: 1;
+        /* Specific styles for the content section */
+        .content-container {
+            background-image: url('Images/LogoBackground.png'); /* Set the background image */
+            background-size: cover; /* Cover the entire section */
+            background-position: center;
+            padding: 60px 20px; /* Add padding to space out the content */
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 20px;
+            min-height: calc(100vh - 200px); /* Full height minus header and footer */
         }
+
         .box-container {
-            background-color: #9715D3;
-            padding: 40px;
-            border-radius: 12px;
-            width: 320px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 10px 20px; /* Reduced padding to lower the height */
+            background-color: #FFDF00; /* Updated background color */
+            width: 280px;
+            border-radius: 8px;
+            z-index: 1;
             position: relative;
+            border: 2px solid black; /* Added 2px black border */
+            box-sizing: border-box; /* Ensure padding doesn't increase width/height */
         }
-        .box-container h1 {
-            margin: 0 0 20px;
-            font-size: 28px;
-            color: white;
-        }
+
         .box-container input {
             display: none;
         }
+
         .box-container label {
-            background-color: black;
-            color: white;
-            padding: 12px 25px;
+            background-color: #FFDF00; /* Updated button background color */
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px; /* Adjusted padding to center the text */
             border: none;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 36px; /* Text size */
             cursor: pointer;
             display: inline-block;
-            margin-bottom: 20px;
+            text-align: center;
+            white-space: nowrap; /* Prevent text from wrapping to a new line */
+            width: 100%; /* Ensure it takes up the full width of the container */
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Thin white outline */
+            box-sizing: border-box; /* Ensure padding doesn't affect centering */
         }
-        .box-container img,
-        .box-container canvas {
+
+        .image-display-container {
             margin-top: 20px;
-            max-width: 100%;
-            display: none;
+            background-color: #d3d3d3; /* Darker gray background */
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Hidden initially until an image is uploaded */
+            position: relative;
         }
+
+        .image-display-container img {
+            max-width: 100%;
+        }
+
+        .image-display-container canvas {
+            max-width: 100%;
+        }
+
+        .discard-text {
+            margin-top: 10px;
+            font-size: 14px;
+            color: red;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         .box-container button {
             display: none;
             margin-top: 20px;
@@ -56,61 +85,83 @@
             padding: 15px 30px;
             border: none;
             border-radius: 5px;
-            font-size: 20px;
+            font-size: 24px;
             cursor: pointer;
             width: 100%;
         }
+
+        .file-type-info {
+            margin-top: 20px;
+            font-size: 14px; /* Small text size */
+            color: #0B3D02; /* Contrasting dark green color */
+            text-align: center;
+        }
+
         .feedback-message {
             display: none;
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 22.4px;
             color: #0C3A92;
             font-weight: bold;
         }
+
         .error-message {
             display: none;
             margin-top: 20px;
             font-size: 16px;
             color: red;
         }
-        .cta-link {
-            margin-top: 40px;
-            display: inline-block;
-            background-color: #000;
-            color: white;
+
+        .merch-button {
+            display: none;
+            margin-top: 20px;
+            background-color: #0020ff;
+            color: White;
+            font-weight: bold;
             padding: 15px 30px;
-            border-radius: 5px;
+            border: 2px solid white; /* Added thin white border */
+            border-radius: 30px;
+            font-size: 26px;
+            cursor: pointer;
+            text-align: center;
+            width: 300px;
             text-decoration: none;
+        }
+
+        .inspiration-link {
+            color: white;
             font-size: 18px;
             font-weight: bold;
+            text-decoration: none; /* Remove underline from hyperlink */
+            margin-top: 20px;
+            display: inline-block; /* Ensures the margin-top applies */
+            text-align: center;
         }
-        .cta-link:hover {
-            background-color: #333;
-        }
+
     </style>
-    <!-- Include PDF.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
 </head>
 <body>
+
     <!-- Placeholder for header -->
     <div id="header-placeholder"></div>
 
-    <div class="main-container">
+    <!-- Main content section with background image -->
+    <div class="content-container">
         <div class="box-container">
-            <h1>Submit Your Design Here!</h1>
             <input type="file" id="fileInput">
-            <label for="fileInput">Upload Your Logo</label>
-            <img id="fileDisplay" alt="Uploaded Logo">
-            <canvas id="pdfCanvas"></canvas>
+            <label for="fileInput">Upload Logo</label>
+            <div class="image-display-container" id="imageDisplayContainer">
+                <img id="fileDisplay" alt="Uploaded Logo">
+                <canvas id="pdfCanvas"></canvas>
+                <div class="discard-text" id="discardText">Discard</div>
+            </div>
             <button id="submitButton">Submit</button>
-            <div class="feedback-message" id="feedback-message">Submission successful!</div>
+            <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
             <div class="error-message" id="error-message">Submission failed. Please try again.</div>
+            <div class="file-type-info" id="fileTypeInfo">.png, .jpg, .ai, .svg, .webp, .pdf</div> <!-- File type info -->
         </div>
-    </div>
-
-    <!-- Add a Call to Action link to the merch page -->
-    <div class="cta-link-container">
-        <a href="ApparelPage.html" class="cta-link">Check Out Our Merch Options</a>
+        <a href="apparel.html" class="merch-button" id="merchButton">✡️ Select Merch ✡️</a>
+        <a href="logohelp.html" class="inspiration-link">Looking For Inspiration?</a>
     </div>
 
     <!-- Placeholder for footer -->
@@ -131,7 +182,8 @@
         loadHTML('footer.html', 'footer-placeholder');
     </script>
 
-        <script type="module">
+    <!-- JavaScript to handle file upload, display, discard, Firebase setup, and submission logic -->
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
         import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
@@ -155,6 +207,12 @@
             const submitButton = document.getElementById('submitButton');
             const fileDisplay = document.getElementById('fileDisplay');
             const pdfCanvas = document.getElementById('pdfCanvas');
+            const imageDisplayContainer = document.getElementById('imageDisplayContainer');
+            const discardText = document.getElementById('discardText');
+            const merchButton = document.getElementById('merchButton');
+            const feedbackMessage = document.getElementById('feedback-message');
+            const errorMessage = document.getElementById('error-message');
+            const fileTypeInfo = document.getElementById('fileTypeInfo');
 
             // Retrieve the session ID from local storage
             const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
@@ -163,6 +221,9 @@
                 const file = event.target.files[0];
                 if (file) {
                     const fileType = file.type;
+                    fileTypeInfo.style.display = 'none'; // Hide the file type info when a file is uploaded
+                    imageDisplayContainer.style.display = 'block'; // Show the image display container
+                    
                     if (fileType === 'application/pdf') {
                         const reader = new FileReader();
                         reader.onload = function(e) {
@@ -200,6 +261,15 @@
                 await page.render({canvasContext: context, viewport: viewport}).promise;
             }
 
+            discardText.addEventListener('click', function() {
+                fileDisplay.src = ''; // Clear the image display
+                pdfCanvas.style.display = 'none';
+                imageDisplayContainer.style.display = 'none';
+                fileTypeInfo.style.display = 'block'; // Show the file type info
+                submitButton.style.display = 'none';
+                fileInput.value = ''; // Clear the file input value
+            });
+
             submitButton.addEventListener('click', async function() {
                 const file = fileInput.files[0];
                 if (!file) {
@@ -227,11 +297,12 @@
                         timestamp: new Date().toISOString()
                     });
 
-                    document.getElementById('feedback-message').style.display = 'block';
+                    feedbackMessage.style.display = 'block';
                     submitButton.style.display = 'none';
+                    merchButton.style.display = 'block';
                 } catch (error) {
                     console.error('Error: ', error);
-                    document.getElementById('error-message').style.display = 'block';
+                    errorMessage.style.display = 'block';
                 }
             });
         });

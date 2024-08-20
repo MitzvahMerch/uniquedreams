@@ -17,6 +17,7 @@ header {
     width: 100%;
     box-sizing: border-box; /* Include padding within the element's width */
     margin: 0; /* Ensure there's no margin */
+    border-bottom: 2px solid black; /* Added 2px black border at the bottom */
 }
 
 .header-container {
@@ -68,6 +69,7 @@ footer {
     width: 100%;
     box-sizing: border-box; /* Include padding within the element's width */
     margin: 0; /* Ensure there's no margin */
+    border-top: 2px solid black; /* Added 2px black border at the top */
 }
 
 .footer-container {
