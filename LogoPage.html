@@ -19,36 +19,34 @@
             min-height: calc(100vh - 200px); /* Full height minus header and footer */
         }
 
-        .box-container {
-            text-align: center;
-            padding: 20px;
-            background-color: #FFDF00; /* Updated background color */
-            width: 280px;
-            border-radius: 8px;
-            z-index: 1;
-            position: relative;
-            border: 2px solid black; /* Added 2px black border */
-        }
+.box-container {
+    text-align: center;
+    padding: 10px 20px; /* Reduced padding to lower the height */
+    background-color: #FFDF00; /* Updated background color */
+    width: 280px;
+    border-radius: 8px;
+    z-index: 1;
+    position: relative;
+    border: 2px solid black; /* Added 2px black border */
+    box-sizing: border-box; /* Ensure padding doesn't increase width/height */
+}
 
-        .box-container input {
-            display: none;
-        }
-
-        .box-container label {
-            background-color: #FFDF00; /* Updated button background color */
-            color: black;
-            font-weight: bold;
-            padding: 20px 40px; /* Adjust padding as needed */
-            border: none;
-            border-radius: 5px;
-            font-size: 36px; /* Increased text size */
-            cursor: pointer;
-            display: inline-block;
-            text-align: center;
-            white-space: nowrap; /* Prevent text from wrapping to a new line */
-            width: auto; /* Auto width so it adjusts based on content */
-            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Thin white outline */
-        }
+.box-container label {
+    background-color: #FFDF00; /* Updated button background color */
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px; /* Adjusted padding to center the text */
+    border: none;
+    border-radius: 5px;
+    font-size: 36px; /* Text size */
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+    width: 100%; /* Ensure it takes up the full width of the container */
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Thin white outline */
+    box-sizing: border-box; /* Ensure padding doesn't affect centering */
+}
 
         .image-display-container {
             margin-top: 20px;
