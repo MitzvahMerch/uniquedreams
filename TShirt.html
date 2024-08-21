@@ -28,6 +28,10 @@
     margin: 0 20px; /* Add some space between the cards */
     transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
     cursor: pointer; /* Change cursor to pointer */
+    min-height: 450px; /* Set minimum height to ensure consistency */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-card:hover {
@@ -40,12 +44,14 @@
     height: auto;
     max-height: 300px; /* Set max height */
     object-fit: contain; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add margin to space out the image */
 }
 
 .product-card .color-row {
     display: flex;
     justify-content: center;
     margin: 10px 0; /* Adjust margin */
+    flex-wrap: wrap;
 }
 
 .product-card .color-swatch {
