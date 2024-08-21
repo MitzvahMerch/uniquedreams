@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page with Logo Placement</title>
+    
+    <!-- Link to your global stylesheet -->
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure this path is correct -->
+
     <style>
-        body {
-    font-family: Arial, sans-serif;
-    background-color: #0137B7; /* Dark blue background */
-    color: #333;
-    margin: 0;
-    padding: 20px;
-}
 
 .product-container {
     display: flex;
@@ -879,6 +876,25 @@ function addToCart(product) {
     // Save the updated cart back to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+// Load header and footer when DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+    // Load the header
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading header:', error));
+
+    // Load the footer
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+});
 </script>
 
 </body>
