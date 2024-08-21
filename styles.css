@@ -22,7 +22,7 @@ header {
 
 .header-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between; /* Space between the logos and navigation */
     align-items: center;
     max-width: 1200px; /* Set a max width */
     margin: 0 auto; /* Center the container */
@@ -30,12 +30,8 @@ header {
     box-sizing: border-box;
 }
 
-.logo img {
-    height: 60px;
-}
-
-nav {
-    margin-left: 40px;
+.logo {
+    padding: 0 20px; /* Add padding to the logos */
 }
 
 .nav-links {
@@ -59,6 +55,11 @@ nav {
 
 .nav-links a:hover {
     text-decoration: underline;
+}
+
+/* Additional styles for the new logo */
+#mm-logo-image {
+    height: 60px; /* Ensure the logo height matches the existing logo */
 }
 
 /* Footer Styles */
