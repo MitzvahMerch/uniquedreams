@@ -28,6 +28,9 @@
             margin: 0 20px; /* Add some space between the cards */
             transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
             cursor: pointer; /* Change cursor to pointer */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-card:hover {
@@ -38,14 +41,14 @@
         .product-card img {
             width: 100%;
             height: auto;
-            max-height: 320px; /* Increase max height uniformly */
+            max-height: 330px; /* Increase max height uniformly */
             object-fit: contain; /* Maintain aspect ratio */
         }
 
         .product-card .color-row {
             display: flex;
             justify-content: center;
-            margin: 5px 0; /* Uniformly reduced margin */
+            margin: 8px 0; /* Uniformly reduced margin */
         }
 
         .product-card .color-swatch {
@@ -59,18 +62,18 @@
         .product-card .product-name {
             font-size: 20px; /* Set font size */
             font-weight: bold;
-            margin: 5px 0; /* Uniformly reduced margin */
+            margin: 6px 0; /* Uniformly reduced margin */
         }
 
         .product-card .product-brand {
             font-size: 16px; /* Set font size */
-            margin: 5px 0; /* Uniformly reduced margin */
+            margin: 4px 0; /* Uniformly reduced margin */
         }
 
         .product-card .product-price {
             font-size: 22px; /* Set font size */
             font-weight: bold;
-            margin-top: 5px; /* Uniformly reduced margin */
+            margin-top: 4px; /* Uniformly reduced margin */
         }
 
         .product-card-link {
