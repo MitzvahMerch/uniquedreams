@@ -17,19 +17,20 @@
             max-width: 1200px; /* Set a maximum width to maintain responsiveness */
             box-sizing: border-box; /* Ensure padding doesn't increase element's width */
         }
-        .product-card {
-            width: 280px; /* Set width */
-            background-color: #0E9ED8; /* Background color */
-            color: white;
-            text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            font-family: Arial, sans-serif;
-            margin: 0 20px; /* Add some space between the cards */
-            transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
-            cursor: pointer; /* Change cursor to pointer */
-            text-decoration: none; /* Remove underline */
-        }
+.product-card {
+    width: 280px; /* Set width */
+    background-color: #0E9ED8; /* Background color */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-family: Arial, sans-serif;
+    margin: 0 20px; /* Add some space between the cards */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
+    cursor: pointer; /* Change cursor to pointer */
+    text-decoration: none; /* Remove underline */
+    min-height: 450px; /* Set minimum height to ensure all cards match */
+}
         .product-card:hover {
             transform: scale(1.05); /* Slightly enlarge the card */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
