@@ -6,96 +6,80 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
-        /* Specific styles for the product page */
-        .full-width-container {
-            width: 100%;
-            max-width: 100%;
-            margin: 10px 0; /* Adjusted margin */
-            padding: 10px;
-            text-align: center; /* Center the text within the parent container */
-        }
-        .full-width-text {
-            text-shadow:
-                -1px -1px 0 #fff,
-                1px -1px 0 #fff,
-                -1px 1px 0 #fff,
-                1px 1px 0 #fff,
-                -1px 0px 0 #fff,
-                1px 0px 0 #fff,
-                0px -1px 0 #fff,
-                0px 1px 0 #fff;
-            font-size: 105.6px; /* Increased font size by 20% */
-            font-weight: 800;
-            color: black;
-            text-align: center;
-            font-family: antarcticanheadlineb;
-            width: 100%;
-            padding: 0; /* No padding below the text */
-            box-sizing: border-box; /* Ensure padding doesn't increase element's width */
-            margin: 0; /* No margin */
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 35px;
-            margin: 0 auto;
-            width: 90%; /* Adjusted width to make the container wider */
-            max-width: 1200px; /* Set a maximum width to maintain responsiveness */
-            box-sizing: border-box; /* Ensure padding doesn't increase element's width */
-        }
-        .product-card {
-            width: 300px; /* Set width */
-            background-color: transparent; /* Set background to transparent */
-            color: white;
-            text-align: center;
-            padding: 0;
-            border-radius: 0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
-            cursor: pointer; /* Change cursor to pointer */
-        }
-        .product-card:hover {
-            transform: scale(1.05); /* Scale up slightly on hover */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-        }
-        .product-card img {
-            width: 100%;
-            height: auto;
-            max-height: 300px; /* Set max height */
-            object-fit: contain; /* Maintain aspect ratio */
-        }
-        .product-card .color-row {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0; /* Adjust margin */
-        }
-        .product-card .color-swatch {
-            width: 20px;
-            height: 20px;
-            margin: 0 2px; /* Adjust margin */
-            border: 1px solid #fff;
-            cursor: pointer;
-        }
-        .product-card .product-name {
-            font-size: 20px; /* Set font size */
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .product-card .product-brand {
-            font-size: 16px; /* Set font size */
-            margin: 5px 0;
-        }
-        .product-card .product-sku {
-            font-size: 16px; /* Set font size */
-            margin: 5px 0;
-        }
-        .product-card .product-price {
-            font-size: 22px; /* Set font size */
-            font-weight: bold;
-            margin-top: 10px;
-        }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    margin: 0 auto;
+    width: 90%; /* Adjusted width to make the container wider */
+    max-width: 1200px; /* Set a maximum width to maintain responsiveness */
+    box-sizing: border-box; /* Ensure padding doesn't increase element's width */
+}
+
+.product-card {
+    width: 300px; /* Set width */
+    background-color: #0E9ED8; /* Background color */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-family: Arial, sans-serif;
+    margin: 0 20px; /* Add some space between the cards */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.product-card:hover {
+    transform: scale(1.05); /* Scale up slightly on hover */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Set max height */
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+.product-card .color-row {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0; /* Adjust margin */
+}
+
+.product-card .color-swatch {
+    width: 20px;
+    height: 20px;
+    margin: 0 2px; /* Adjust margin */
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.product-card .product-name {
+    font-size: 20px; /* Set font size */
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-card .product-brand {
+    font-size: 16px; /* Set font size */
+    margin: 5px 0;
+}
+
+.product-card .product-price {
+    font-size: 22px; /* Set font size */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.product-card-link {
+    text-decoration: none; /* Remove underline from link */
+}
+
+.product-card-link:hover {
+    text-decoration: none; /* Ensure underline stays removed on hover */
+}
     </style>
 </head>
 <body>
@@ -103,13 +87,28 @@
     <!-- Placeholder for header -->
     <div id="header-placeholder"></div>
 
-    <div class="full-width-container">
-        <p class="has-text-align-center has-contrast-color has-text-color has-link-color full-width-text">
-            <strong>Select Your T-Shirt!</strong>
-        </p>
-    </div>
-
     <div class="container">
+        <!-- First Product Card: Exceptional Tee -->
+        <a href="your-next-page-url" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Exceptional Tee">
+                <div class="color-row">
+                    <div class="color-swatch" style="background-color: #FFD700;"></div>
+                    <div class="color-swatch" style="background-color: #808080;"></div>
+                    <div class="color-swatch" style="background-color: #008000;"></div>
+                    <div class="color-swatch" style="background-color: #800000;"></div>
+                    <div class="color-swatch" style="background-color: #FF0000;"></div>
+                    <div class="color-swatch" style="background-color: #FFC0CB;"></div>
+                    <div class="color-swatch" style="background-color: #696969;"></div>
+                    <div class="color-swatch" style="background-color: #000000;"></div>
+                </div>
+                <div class="product-name">Exceptional Tee</div>
+                <div class="product-brand">Port & Company | PC450C1</div>
+                <div class="product-price">$4.09</div>
+            </div>
+        </a>
+
+        <!-- Second Product Card: Bella Canvas Tee -->
         <a href="your-next-page-url" class="product-card-link">
             <div class="product-card">
                 <img id="product-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png" alt="Ringspun Super Soft Tee">
@@ -149,3 +148,4 @@
     </script>
 </body>
 </html>
+

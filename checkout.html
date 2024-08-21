@@ -211,162 +211,191 @@
             background-color: #008000;
             animation-duration: 2.7s;
         }
+        .remove-button {
+    background-color: #f44336; /* Red background */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; /* Space between the button and other content */
+}
+
+.remove-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
     </style>
 </head>
 <body>
     <div class="container-wrapper">
-        <div class="checkout-container">
-            <h1>Checkout</h1>
-            <div id="orderDetailsDisplay">Loading Order Details...</div>
-            <div id="totalPriceDisplay" class="total-price-container">Total Price: Calculating...</div>
-            <div id="paypal-button-container"></div>
-        </div>
-        <div class="countdown-timer">
-            <p>Order in the next:</p>
-            <div class="timer" id="countdown">Loading...</div>
-            <p class="receive-by">To Receive By:</p>
-            <div class="date-boxes">
-                <div class="date-box" id="month">MM</div>
-                <div class="date-box" id="day">DD</div>
-                <div class="date-box" id="year">YY</div>
-            </div>
-            <!-- Confetti elements -->
-            <div class="confetti" style="left: 5%;"></div>
-            <div class="confetti" style="left: 15%;"></div>
-            <div class="confetti" style="left: 25%;"></div>
-            <div class="confetti" style="left: 35%;"></div>
-            <div class="confetti" style="left: 45%;"></div>
-            <div class="confetti" style="left: 55%;"></div>
-            <div class="confetti" style="left: 65%;"></div>
-            <div class="confetti" style="left: 75%;"></div>
-            <div class="confetti" style="left: 85%;"></div>
-            <div class="confetti" style="left: 95%;"></div>
-        </div>
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <div id="orderDetailsDisplay">Loading Order Details...</div>
+        <div id="totalPriceDisplay" class="total-price-container">Total Price: Calculating...</div>
+        <div id="paypal-button-container"></div>
     </div>
+    <div class="countdown-timer">
+        <p>Order in the next:</p>
+        <div class="timer" id="countdown">Loading...</div>
+        <p class="receive-by">To Receive By:</p>
+        <div class="date-boxes">
+            <div class="date-box" id="month">MM</div>
+            <div class="date-box" id="day">DD</div>
+            <div class="date-box" id="year">YY</div>
+        </div>
+        <!-- Confetti elements -->
+        <div class="confetti" style="left: 5%;"></div>
+        <div class="confetti" style="left: 15%;"></div>
+        <div class="confetti" style="left: 25%;"></div>
+        <div class="confetti" style="left: 35%;"></div>
+        <div class="confetti" style="left: 45%;"></div>
+        <div class="confetti" style="left: 55%;"></div>
+        <div class="confetti" style="left: 65%;"></div>
+        <div class="confetti" style="left: 75%;"></div>
+        <div class="confetti" style="left: 85%;"></div>
+        <div class="confetti" style="left: 95%;"></div>
+    </div>
+</div>
 
     <script>
-        // Retrieve the cart data from localStorage
-        function getCartData() {
-            return JSON.parse(localStorage.getItem('cart')) || [];
-        }
 
-        // Function to format size quantities and calculate total quantity
-        function formatSizeQuantities(sizes) {
-            const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
-            const formattedSizes = Object.entries(sizes)
-                .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
-                .join(', ');
+// Retrieve the cart data from localStorage
+function getCartData() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
 
-            return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
-        }
+// Save the updated cart data to localStorage
+function saveCartData(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
-        // Update the checkout page display
-        function updateDisplay() {
-            const cart = getCartData();
-            let totalCost = 0;
-            const orderDetailsDisplay = document.getElementById('orderDetailsDisplay');
-            orderDetailsDisplay.innerHTML = ''; // Clear previous content
+// Remove an item from the cart by index
+function removeFromCart(index) {
+    const cart = getCartData();
+    cart.splice(index, 1); // Remove the item at the specified index
+    saveCartData(cart); // Save the updated cart
+    updateDisplay(); // Update the display
+}
 
-            cart.forEach(product => {
-                const productCost = parseFloat(product.totalPrice);
-                totalCost += productCost;
+// Function to format size quantities and calculate total quantity
+function formatSizeQuantities(sizes) {
+    const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
+    const formattedSizes = Object.entries(sizes)
+        .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
+        .join(', ');
 
-                const formattedSizes = formatSizeQuantities(product.sizes);
+    return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
+}
 
-                orderDetailsDisplay.innerHTML += `
-                    <div class="controls-container">
-                        <h1 class="product-title">${product.title}</h1>
-                        <div class="sku-text">${product.sku}</div>
-                        <div class="size-quantities"><strong>Quantities:</strong> <span>${formattedSizes}</span></div>
-                        <p><strong>Merch:</strong> $${product.merchCost}</p>
-                        <p><strong>Roll and Tag:</strong> $${product.rollTagCost}</p>
-                        <p><strong>Shipping:</strong> Free</p>
-                    </div>
-                `;
+// Update the checkout page display
+function updateDisplay() {
+    const cart = getCartData();
+    let totalCost = 0;
+    const orderDetailsDisplay = document.getElementById('orderDetailsDisplay');
+    orderDetailsDisplay.innerHTML = ''; // Clear previous content
+
+    cart.forEach((product, index) => {
+        const productCost = parseFloat(product.totalPrice);
+        totalCost += productCost;
+
+        const formattedSizes = formatSizeQuantities(product.sizes);
+
+        orderDetailsDisplay.innerHTML += `
+            <div class="controls-container">
+                <h1 class="product-title">${product.title}</h1>
+                <div class="sku-text">${product.sku}</div>
+                <div class="size-quantities"><strong>Quantities:</strong> <span>${formattedSizes}</span></div>
+                <p><strong>Merch:</strong> $${product.merchCost}</p>
+                <p><strong>Roll and Tag:</strong> $${product.rollTagCost}</p>
+                <p><strong>Shipping:</strong> Free</p>
+                <button class="remove-button" onclick="removeFromCart(${index})">Remove</button>
+            </div>
+        `;
+    });
+
+    // Display total price
+    const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+    totalPriceDisplay.innerText = `Total Price: $${totalCost.toFixed(2)}`;
+
+    // Render the PayPal button with the correct total price and order details
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: totalCost.toFixed(2)
+                    },
+                    description: `Order containing ${cart.length} products`
+                }]
             });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        }
+    }).render('#paypal-button-container');
+}
 
-            // Display total price
-            const totalPriceDisplay = document.getElementById('totalPriceDisplay');
-            totalPriceDisplay.innerText = `Total Price: $${totalCost.toFixed(2)}`;
+function initializeCountdown() {
+    function updateTimer() {
+        const now = new Date();
+        const target = new Date();
+        target.setHours(19, 0, 0, 0); // Set target time to 7 PM
 
-            // Render the PayPal button with the correct total price and order details
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: totalCost.toFixed(2)
-                            },
-                            description: `Order containing ${cart.length} products`
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Transaction completed by ' + details.payer.name.given_name);
-                    });
-                }
-            }).render('#paypal-button-container');
+        if (now > target) {
+            target.setDate(target.getDate() + 1); // Move to next day if past 7 PM
         }
 
-        function initializeCountdown() {
-            function updateTimer() {
-                const now = new Date();
-                const target = new Date();
-                target.setHours(19, 0, 0, 0); // Set target time to 7 PM
+        const diff = target - now;
 
-                if (now > target) {
-                    target.setDate(target.getDate() + 1); // Move to next day if past 7 PM
-                }
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                const diff = target - now;
+        document.getElementById('countdown').innerText = `${hours}h ${minutes}m ${seconds}s`;
 
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        if (diff <= 0) {
+            clearInterval(timerInterval);
+            document.getElementById('countdown').innerText = "Time's up!";
+        }
+    }
 
-                document.getElementById('countdown').innerText = `${hours}h ${minutes}m ${seconds}s`;
+    function calculateTurnaroundDays(now) {
+        const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+        const hour = now.getHours();
 
-                if (diff <= 0) {
-                    clearInterval(timerInterval);
-                    document.getElementById('countdown').innerText = "Time's up!";
-                }
-            }
+        let turnaroundDays = 14; // Base turnaround time
 
-            function calculateTurnaroundDays(now) {
-                const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-                const hour = now.getHours();
-
-                let turnaroundDays = 14; // Base turnaround time
-
-                if (day === 4 && hour >= 19) { // Thursday after 7 PM
-                    turnaroundDays += 3; // Add 3 days to the turnaround time (Thursday night -> Sunday night)
-                } else if (day === 5) { // Friday
-                    turnaroundDays += 2; // Add 2 days (Friday -> Sunday night)
-                } else if (day === 6) { // Saturday
-                    turnaroundDays += 1; // Add 1 day (Saturday -> Sunday night)
-                }
-
-                return turnaroundDays;
-            }
-
-            // Set "Receive By" date based on current time
-            const now = new Date();
-            const turnaroundDays = calculateTurnaroundDays(now);
-            const receiveByDate = new Date();
-            receiveByDate.setDate(now.getDate() + turnaroundDays);
-
-            document.getElementById('month').innerText = String(receiveByDate.getMonth() + 1).padStart(2, '0');
-            document.getElementById('day').innerText = String(receiveByDate.getDate()).padStart(2, '0');
-            document.getElementById('year').innerText = receiveByDate.getFullYear().toString().slice(-2);
-
-            updateTimer(); // Initial call to start the countdown
-            const timerInterval = setInterval(updateTimer, 1000); // Update every second
+        if (day === 4 && hour >= 19) { // Thursday after 7 PM
+            turnaroundDays += 3; // Add 3 days to the turnaround time (Thursday night -> Sunday night)
+        } else if (day === 5) { // Friday
+            turnaroundDays += 2; // Add 2 days (Friday -> Sunday night)
+        } else if (day === 6) { // Saturday
+            turnaroundDays += 1; // Add 1 day (Saturday -> Sunday night)
         }
 
-        // Initialize the page content and countdown
-        updateDisplay();
-        initializeCountdown();
+        return turnaroundDays;
+    }
+
+    // Set "Receive By" date based on current time
+    const now = new Date();
+    const turnaroundDays = calculateTurnaroundDays(now);
+    const receiveByDate = new Date();
+    receiveByDate.setDate(now.getDate() + turnaroundDays);
+
+    document.getElementById('month').innerText = String(receiveByDate.getMonth() + 1).padStart(2, '0');
+    document.getElementById('day').innerText = String(receiveByDate.getDate()).padStart(2, '0');
+    document.getElementById('year').innerText = receiveByDate.getFullYear().toString().slice(-2);
+
+    updateTimer(); // Initial call to start the countdown
+    const timerInterval = setInterval(updateTimer, 1000); // Update every second
+}
+
+// Initialize the page content and countdown
+updateDisplay();
+initializeCountdown();
     </script>
 </body>
 </html>
