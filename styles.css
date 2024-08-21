@@ -32,16 +32,16 @@ header {
 }
 
 .logo img {
-    height: 60px;
+    height: 80px;
     display: block;
 }
 
 #logo-image {
-    height: 50px; /* Adjust based on your preferred size */
+    height: 70px; /* Adjust based on your preferred size */
 }
 
 #mm-logo-image {
-    height: 50px; /* Ensure consistent height */
+    height: 70px; /* Ensure consistent height */
     margin-left: 20px; /* Adjust spacing between the MM logo and navigation */
 }
 
