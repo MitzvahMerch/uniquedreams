@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
+    <style>
+        /* Specific styles for the product page */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px;
+            margin: 0 auto;
+            width: 90%; /* Adjusted width to make the container wider */
+            max-width: 1200px; /* Set a maximum width to maintain responsiveness */
+            box-sizing: border-box; /* Ensure padding doesn't increase element's width */
+        }
+        .product-card {
+            width: 280px; /* Set width */
+            background-color: #0E9ED8; /* Background color */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: Arial, sans-serif;
+            margin: 0 20px; /* Add some space between the cards */
+            transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
+            cursor: pointer; /* Change cursor to pointer */
+            text-decoration: none; /* Remove underline */
+            min-height: 450px; /* Set minimum height to ensure all cards match */
+        }
+        .product-card:hover {
+            transform: scale(1.05); /* Slightly enlarge the card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            max-height: 300px; /* Set max height */
+            object-fit: contain; /* Maintain aspect ratio */
+        }
+        .product-card .color-row {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0; /* Adjust margin */
+        }
+        .product-card .color-swatch {
+            width: 20px;
+            height: 20px;
+            margin: 0 2px; /* Adjust margin */
+            border: 1px solid #fff;
+            cursor: pointer;
+        }
+        .product-card .product-name {
+            font-size: 20px; /* Set font size */
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-card .product-brand {
+            font-size: 16px; /* Set font size */
+            margin: 5px 0;
+        }
+        .product-card .product-sku {
+            font-size: 16px; /* Set font size */
+            margin: 5px 0;
+        }
+        .product-card .product-price {
+            font-size: 22px; /* Set font size */
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .product-card-link {
+            text-decoration: none; /* Remove underline from the link */
+            color: inherit; /* Ensure link inherits text color */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder for header -->
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+        <!-- First Product Card: Value Sweatshirt -->
+        <a href="https://mitzvahmerch.github.io/WriteOcassio/P170C1.html" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="P170C1/AshFront.png" alt="Value Sweatshirt">
+                <div class="color-row">
+                    <!-- Add color swatches here as per the product -->
+                    <div class="color-swatch" style="background-color: #FFFFFF;"></div>
+                    <div class="color-swatch" style="background-color: #000000;"></div>
+                    <div class="color-swatch" style="background-color: #B0C4DE;"></div>
+                    <div class="color-swatch" style="background-color: #228B22;"></div>
+                    <div class="color-swatch" style="background-color: #8B0000;"></div>
+                    <div class="color-swatch" style="background-color: #B22222;"></div>
+                    <div class="color-swatch" style="background-color: #808080;"></div>
+                </div>
+                <div class="product-name">Value Sweatshirt</div>
+                <div class="product-brand">Hanes | P170C1</div>
+                <div class="product-price">$14.50</div>
+            </div>
+        </a>
+
+        <!-- Second Product Card: Quality Hoodie -->
+        <a href="https://mitzvahmerch.github.io/WriteOcassio/PC78HC1.html" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="PC78HC1/AquaticBlueFront.png" alt="Quality Hoodie">
+                <div class="color-row">
+                    <!-- Add color swatches here as per the product -->
+                    <div class="color-swatch" style="background-color: #87CEEB;"></div>
+                    <div class="color-swatch" style="background-color: #D3D3D3;"></div>
+                    <div class="color-swatch" style="background-color: #708090;"></div>
+                    <div class="color-swatch" style="background-color: #000000;"></div>
+                    <div class="color-swatch" style="background-color: #A52A2A;"></div>
+                    <div class="color-swatch" style="background-color: #556B2F;"></div>
+                </div>
+                <div class="product-name">Quality Hoodie</div>
+                <div class="product-brand">Port & Company | PC78HC1</div>
+                <div class="product-price">$16.50</div>
+            </div>
+        </a>
+
+        <!-- Third Product Card: Ring Spun Soft Sweatshirt -->
+        <a href="https://mitzvahmerch.github.io/WriteOcassio/BC3719C1.html" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="BC3719C1/HeatherTrueRoyalFront.png" alt="Ring Spun Soft Sweatshirt">
+                <div class="color-row">
+                    <!-- Add color swatches here as per the product -->
+                    <div class="color-swatch" style="background-color: #708090;"></div>
+                    <div class="color-swatch" style="background-color: #000000;"></div>
+                    <div class="color-swatch" style="background-color: #556B2F;"></div>
+                    <div class="color-swatch" style="background-color: #FFD700;"></div>
+                    <div class="color-swatch" style="background-color: #FF8C00;"></div>
+                    <div class="color-swatch" style="background-color: #C0C0C0;"></div>
+                </div>
+                <div class="product-name">Ring Spun Soft Sweatshirt</div>
+                <div class="product-brand">Bella Canvas | BC3719C1</div>
+                <div class="product-price">$21.00</div>
+            </div>
+        </a>
+
+        <!-- Fourth Product Card: Premium Blended Sweatshirt -->
+        <a href="https://mitzvahmerch.github.io/WriteOcassio/5414C1.html" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="5414C1/WhiteFront.png" alt="Premium Blended Sweatshirt">
+                <div class="color-row">
+                    <!-- Add color swatches here as per the product -->
+                    <div class="color-swatch" style="background-color: #FFFFFF;"></div>
+                    <div class="color-swatch" style="background-color: #000000;"></div>
+                    <div class="color-swatch" style="background-color: #8B0000;"></div>
+                    <div class="color-swatch" style="background-color: #87CEEB;"></div>
+                    <div class="color-swatch" style="background-color: #556B2F;"></div>
+                    <div class="color-swatch" style="background-color: #808080;"></div>
+                </div>
+                <div class="product-name">Premium Blended Sweatshirt</div>
+                <div class="product-brand">Augusta Sportswear | 5414C1</div>
+                <div class="product-price">$23.59</div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Placeholder for footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript to load header and footer -->
+    <script>
+        // Function to load an HTML file and insert it into the placeholder
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data)
+                .catch(error => console.error('Error loading the file:', error));
+        }
+
+        // Load header and footer
+        loadHTML('header.html', 'header-placeholder');
+        loadHTML('footer.html', 'footer-placeholder');
+    </script>
+</body>
+</html>
