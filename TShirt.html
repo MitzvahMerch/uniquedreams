@@ -6,83 +6,84 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 35px;
-            margin: 0 auto;
-            width: 95%; /* Adjusted width to make the container wider */
-            max-width: 1300px; /* Set a maximum width to maintain responsiveness */
-            box-sizing: border-box; /* Ensure padding doesn't increase element's width */
-        }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    padding: 35px;
+    margin: 0 auto;
+    width: 95%; /* Adjusted width to make the container wider */
+    max-width: 1300px; /* Set a maximum width to maintain responsiveness */
+    box-sizing: border-box; /* Ensure padding doesn't increase element's width */
+}
 
-        .product-card {
-            width: 250px; /* Set width */
-            background-color: #0E9ED8; /* Background color */
-            color: white;
-            text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            font-family: Arial, sans-serif;
-            margin: 0 20px; /* Add some space between the cards */
-            transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
-            cursor: pointer; /* Change cursor to pointer */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+.product-card {
+    width: 250px; /* Set width */
+    background-color: #0E9ED8; /* Background color */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-family: Arial, sans-serif;
+    margin: 0 20px; /* Add some space between the cards */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
+    cursor: pointer; /* Change cursor to pointer */
+    min-height: 550px; /* Ensure all cards have the same height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-        .product-card:hover {
-            transform: scale(1.05); /* Scale up slightly on hover */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-        }
+.product-card img {
+    width: 100%;
+    height: 300px; /* Set fixed height for all images */
+    object-fit: contain; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add margin to space out the image */
+}
 
-        .product-card img {
-            width: 100%;
-            height: auto;
-            max-height: 330px; /* Increase max height uniformly */
-            object-fit: contain; /* Maintain aspect ratio */
-        }
+.product-card .color-row {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0; /* Adjust margin */
+    flex-wrap: wrap;
+    min-height: 40px; /* Ensure color rows have the same height */
+}
 
-        .product-card .color-row {
-            display: flex;
-            justify-content: center;
-            margin: 8px 0; /* Uniformly reduced margin */
-        }
+.product-card .color-swatch {
+    width: 20px;
+    height: 20px;
+    margin: 0 2px; /* Adjust margin */
+    border: 1px solid #fff;
+    cursor: pointer;
+}
 
-        .product-card .color-swatch {
-            width: 20px;
-            height: 20px;
-            margin: 0 2px; /* Adjust margin */
-            border: 1px solid #fff;
-            cursor: pointer;
-        }
+.product-card .product-name {
+    font-size: 20px; /* Set font size */
+    font-weight: bold;
+    margin: 5px 0;
+    height: 30px; /* Fixed height for alignment */
+}
 
-        .product-card .product-name {
-            font-size: 20px; /* Set font size */
-            font-weight: bold;
-            margin: 6px 0; /* Uniformly reduced margin */
-        }
+.product-card .product-brand {
+    font-size: 16px; /* Set font size */
+    margin: 2px 0;
+    height: 24px; /* Fixed height for alignment */
+}
 
-        .product-card .product-brand {
-            font-size: 16px; /* Set font size */
-            margin: 4px 0; /* Uniformly reduced margin */
-        }
+.product-card .product-price {
+    font-size: 22px; /* Set font size */
+    font-weight: bold;
+    margin-top: 5px;
+    height: 30px; /* Fixed height for alignment */
+}
 
-        .product-card .product-price {
-            font-size: 22px; /* Set font size */
-            font-weight: bold;
-            margin-top: 4px; /* Uniformly reduced margin */
-        }
+.product-card-link {
+    text-decoration: none; /* Remove underline from link */
+}
 
-        .product-card-link {
-            text-decoration: none; /* Remove underline from link */
-        }
-
-        .product-card-link:hover {
-            text-decoration: none; /* Ensure underline stays removed on hover */
-        }
+.product-card-link:hover {
+    text-decoration: none; /* Ensure underline stays removed on hover */
+}
     </style>
 </head>
 <body>
