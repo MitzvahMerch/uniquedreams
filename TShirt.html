@@ -6,72 +6,80 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 35px;
-    margin: 0 auto;
-    width: 95%; /* Adjusted width to make the container wider */
-    max-width: 1300px; /* Set a maximum width to maintain responsiveness */
-    box-sizing: border-box; /* Ensure padding doesn't increase element's width */
-}
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px;
+            margin: 0 auto;
+            width: 95%; /* Adjusted width to make the container wider */
+            max-width: 1300px; /* Set a maximum width to maintain responsiveness */
+            box-sizing: border-box; /* Ensure padding doesn't increase element's width */
+        }
 
-.product-card {
-    width: 250px; /* Set width */
-    background-color: #0E9ED8; /* Background color */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    font-family: Arial, sans-serif;
-    margin: 0 20px; /* Add some space between the cards */
-    transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
-    cursor: pointer; /* Change cursor to pointer */
-}
+        .product-card {
+            width: 250px; /* Set width */
+            background-color: #0E9ED8; /* Background color */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: Arial, sans-serif;
+            margin: 0 20px; /* Add some space between the cards */
+            transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
+            cursor: pointer; /* Change cursor to pointer */
+        }
 
-.product-card:hover {
-    transform: scale(1.05); /* Scale up slightly on hover */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-}
+        .product-card:hover {
+            transform: scale(1.05); /* Scale up slightly on hover */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
 
-.product-card img {
-    width: 100%;
-    height: auto;
-    max-height: 350px; /* Increase the max height of the image */
-    object-fit: contain; /* Maintain aspect ratio */
-}
+        .product-card img {
+            width: 100%;
+            height: auto;
+            max-height: 320px; /* Increase max height uniformly */
+            object-fit: contain; /* Maintain aspect ratio */
+        }
 
-.product-card .color-row {
-    display: flex;
-    justify-content: center;
-    margin: 5px 0; /* Reduce margin between color swatch line and product name */
-}
+        .product-card .color-row {
+            display: flex;
+            justify-content: center;
+            margin: 5px 0; /* Uniformly reduced margin */
+        }
 
-.product-card .product-name {
-    font-size: 20px; /* Set font size */
-    font-weight: bold;
-    margin: 5px 0; /* Reduce margin between product name and brand/sku line */
-}
+        .product-card .color-swatch {
+            width: 20px;
+            height: 20px;
+            margin: 0 2px; /* Adjust margin */
+            border: 1px solid #fff;
+            cursor: pointer;
+        }
 
-.product-card .product-brand {
-    font-size: 16px; /* Set font size */
-    margin: 3px 0; /* Reduce margin between brand/sku line and price */
-}
+        .product-card .product-name {
+            font-size: 20px; /* Set font size */
+            font-weight: bold;
+            margin: 5px 0; /* Uniformly reduced margin */
+        }
 
-.product-card .product-price {
-    font-size: 22px; /* Set font size */
-    font-weight: bold;
-    margin-top: 5px; /* Adjust margin at the bottom */
-}
+        .product-card .product-brand {
+            font-size: 16px; /* Set font size */
+            margin: 5px 0; /* Uniformly reduced margin */
+        }
 
-.product-card-link {
-    text-decoration: none; /* Remove underline from link */
-}
+        .product-card .product-price {
+            font-size: 22px; /* Set font size */
+            font-weight: bold;
+            margin-top: 5px; /* Uniformly reduced margin */
+        }
 
-.product-card-link:hover {
-    text-decoration: none; /* Ensure underline stays removed on hover */
-}
+        .product-card-link {
+            text-decoration: none; /* Remove underline from link */
+        }
+
+        .product-card-link:hover {
+            text-decoration: none; /* Ensure underline stays removed on hover */
+        }
     </style>
 </head>
 <body>
@@ -79,83 +87,82 @@
     <!-- Placeholder for header -->
     <div id="header-placeholder"></div>
 
-<div class="container">
-    <!-- Standard Blend Tee -->
-    <a href="your-next-page-url" class="product-card-link">
-        <div class="product-card">
-            <img id="product-image" src="29MC1/ClassicPinkFront.png" alt="Standard Blend Tee">
-            <div class="color-row">
-                <div class="color-swatch" style="background-color: #FFB6C1;"></div>
-                <div class="color-swatch" style="background-color: #B0E0E6;"></div>
-                <div class="color-swatch" style="background-color: #D3D3D3;"></div>
-                <div class="color-swatch" style="background-color: #000000;"></div>
-                <div class="color-swatch" style="background-color: #FF4500;"></div>
-                <div class="color-swatch" style="background-color: #1E90FF;"></div>
+    <div class="container">
+        <!-- Standard Blend Tee -->
+        <a href="your-next-page-url" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="29MC1/ClassicPinkFront.png" alt="Standard Blend Tee">
+                <div class="color-row">
+                    <div class="color-swatch" style="background-color: #FFB6C1;"></div>
+                    <div class="color-swatch" style="background-color: #B0E0E6;"></div>
+                    <div class="color-swatch" style="background-color: #D3D3D3;"></div>
+                    <div class="color-swatch" style="background-color: #000000;"></div>
+                    <div class="color-swatch" style="background-color: #FF4500;"></div>
+                    <div class="color-swatch" style="background-color: #1E90FF;"></div>
+                </div>
+                <div class="product-name">Standard Blend Tee</div>
+                <div class="product-brand">Jerzees | 29MC1</div>
+                <div class="product-price">$3.24</div>
             </div>
-            <div class="product-name">Standard Blend Tee</div>
-            <div class="product-brand">Jerzees | 29MC1</div>
-            <div class="product-price">$3.24</div>
-        </div>
-    </a>
+        </a>
 
-    <!-- Exceptional Tee -->
-    <a href="your-next-page-url" class="product-card-link">
-        <div class="product-card">
-            <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Exceptional Tee">
-            <div class="color-row">
-                <div class="color-swatch" style="background-color: #FFD700;"></div>
-                <div class="color-swatch" style="background-color: #808080;"></div>
-                <div class="color-swatch" style="background-color: #228B22;"></div>
-                <div class="color-swatch" style="background-color: #800000;"></div>
-                <div class="color-swatch" style="background-color: #FF0000;"></div>
-                <div class="color-swatch" style="background-color: #FF69B4;"></div>
-                <div class="color-swatch" style="background-color: #696969;"></div>
+        <!-- Exceptional Tee -->
+        <a href="your-next-page-url" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Exceptional Tee">
+                <div class="color-row">
+                    <div class="color-swatch" style="background-color: #FFD700;"></div>
+                    <div class="color-swatch" style="background-color: #808080;"></div>
+                    <div class="color-swatch" style="background-color: #228B22;"></div>
+                    <div class="color-swatch" style="background-color: #800000;"></div>
+                    <div class="color-swatch" style="background-color: #FF0000;"></div>
+                    <div class="color-swatch" style="background-color: #FF69B4;"></div>
+                    <div class="color-swatch" style="background-color: #696969;"></div>
+                </div>
+                <div class="product-name">Exceptional Tee</div>
+                <div class="product-brand">Port & Company | PC450C1</div>
+                <div class="product-price">$4.09</div>
             </div>
-            <div class="product-name">Exceptional Tee</div>
-            <div class="product-brand">Port & Company | PC450C1</div>
-            <div class="product-price">$4.09</div>
-        </div>
-    </a>
+        </a>
 
-    <!-- Athletic Tee -->
-    <a href="your-next-page-url" class="product-card-link">
-        <div class="product-card">
-            <img id="product-image" src="ST350C1/DeepOrangeFront.png" alt="Athletic Tee">
-            <div class="color-row">
-                <div class="color-swatch" style="background-color: #FF4500;"></div>
-                <div class="color-swatch" style="background-color: #00BFFF;"></div>
-                <div class="color-swatch" style="background-color: #8B0000;"></div>
-                <div class="color-swatch" style="background-color: #A9A9A9;"></div>
-                <div class="color-swatch" style="background-color: #006400;"></div>
-                <div class="color-swatch" style="background-color: #FFD700;"></div>
+        <!-- Athletic Tee -->
+        <a href="your-next-page-url" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="ST350C1/DeepOrangeFront.png" alt="Athletic Tee">
+                <div class="color-row">
+                    <div class="color-swatch" style="background-color: #FF4500;"></div>
+                    <div class="color-swatch" style="background-color: #00BFFF;"></div>
+                    <div class="color-swatch" style="background-color: #8B0000;"></div>
+                    <div class="color-swatch" style="background-color: #A9A9A9;"></div>
+                    <div class="color-swatch" style="background-color: #006400;"></div>
+                    <div class="color-swatch" style="background-color: #FFD700;"></div>
+                </div>
+                <div class="product-name">Athletic Tee</div>
+                <div class="product-brand">Sport-Tek | ST350C1</div>
+                <div class="product-price">$7.36</div>
             </div>
-            <div class="product-name">Athletic Tee</div>
-            <div class="product-brand">Sport-Tek | ST350C1</div>
-            <div class="product-price">$7.36</div>
-        </div>
-    </a>
+        </a>
 
-    <!-- Ringspun Super Soft Tee -->
-    <a href="your-next-page-url" class="product-card-link">
-        <div class="product-card">
-            <img id="product-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png" alt="Ringspun Super Soft Tee">
-            <div class="color-row">
-                <div class="color-swatch" style="background-color: #800000;"></div>
-                <div class="color-swatch" style="background-color: #FFFFFF;"></div>
-                <div class="color-swatch" style="background-color: #000000;"></div>
-                <div class="color-swatch" style="background-color: #C0C0C0;"></div>
-                <div class="color-swatch" style="background-color: #FF00FF;"></div>
-                <div class="color-swatch" style="background-color: #008000;"></div>
-                <div class="color-swatch" style="background-color: #000080;"></div>
-                <div class="color-swatch" style="background-color: #FFFF00;"></div>
+        <!-- Ringspun Super Soft Tee -->
+        <a href="your-next-page-url" class="product-card-link">
+            <div class="product-card">
+                <img id="product-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png" alt="Ringspun Super Soft Tee">
+                <div class="color-row">
+                    <div class="color-swatch" style="background-color: #800000;"></div>
+                    <div class="color-swatch" style="background-color: #FFFFFF;"></div>
+                    <div class="color-swatch" style="background-color: #000000;"></div>
+                    <div class="color-swatch" style="background-color: #C0C0C0;"></div>
+                    <div class="color-swatch" style="background-color: #FF00FF;"></div>
+                    <div class="color-swatch" style="background-color: #008000;"></div>
+                    <div class="color-swatch" style="background-color: #000080;"></div>
+                    <div class="color-swatch" style="background-color: #FFFF00;"></div>
+                </div>
+                <div class="product-name">Ringspun Super Soft Tee</div>
+                <div class="product-brand">Bella Canvas | BC3001C1</div>
+                <div class="product-price">$6.21</div>
             </div>
-            <div class="product-name">Ringspun Super Soft Tee</div>
-            <div class="product-brand">Bella Canvas | BC3001C1</div>
-            <div class="product-price">$6.21</div>
-        </div>
-    </a>
-</div>
-
+        </a>
+    </div>
 
     <!-- Placeholder for footer -->
     <div id="footer-placeholder"></div>
@@ -176,4 +183,3 @@
     </script>
 </body>
 </html>
-
