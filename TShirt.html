@@ -28,6 +28,11 @@
             margin: 0 20px; /* Add some space between the cards */
             transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
             cursor: pointer; /* Change cursor to pointer */
+            text-decoration: none; /* Remove underline */
+        }
+        .product-card:hover {
+            transform: scale(1.05); /* Slightly enlarge the card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
         }
         .product-card img {
             width: 100%;
@@ -64,6 +69,10 @@
             font-size: 22px; /* Set font size */
             font-weight: bold;
             margin-top: 10px;
+        }
+        .product-card-link {
+            text-decoration: none; /* Remove underline from the link */
+            color: inherit; /* Ensure link inherits text color */
         }
     </style>
 </head>
@@ -133,4 +142,3 @@
     </script>
 </body>
 </html>
-
