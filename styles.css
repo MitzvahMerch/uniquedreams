@@ -26,7 +26,7 @@ header {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 20px; /* Reduced padding to bring logos and text closer */
     box-sizing: border-box;
     height: 70px;
 }
@@ -42,7 +42,7 @@ header {
 
 #mm-logo-image {
     height: 70px; /* Ensure consistent height */
-    margin-left: 20px; /* Adjust spacing between the MM logo and navigation */
+    margin-left: 10px; /* Reduced spacing between the MM logo and navigation */
 }
 
 .nav-links {
@@ -50,8 +50,8 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 40px; /* Increased gap for better spacing */
-    justify-content: center; /* Center the navigation links */
+    gap: 20px; /* Reduced gap to bring navigation links closer together */
+    justify-content: center;
 }
 
 .nav-links li {
@@ -62,7 +62,7 @@ header {
     text-decoration: none;
     font-weight: bold;
     color: #000;
-    font-size: 18px; /* Slightly larger font for better readability */
+    font-size: 18px;
 }
 
 .nav-links a:hover {
