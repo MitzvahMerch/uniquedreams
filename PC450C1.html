@@ -315,6 +315,8 @@
 <!-- If you are using any other Firebase products, like Firestore -->
 <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
 
+    <script type="module" src="firebase-config.js"></script>
+
     <div class="product-container">
     <div class="image-container">
         <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
@@ -779,7 +781,9 @@ function submitDetails() {
         alert('Please fill in all fields.');
     }
 }
-    async function submitDetails() {
+ import { db } from './firebase-config.js'; // Make sure the path is correct
+
+async function submitDetails() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value; // New phone number field
@@ -811,7 +815,7 @@ function submitDetails() {
 
         // Save to Firestore
         try {
-            const docRef = await firebase.firestore().collection('orders').add(orderDetails);
+            const docRef = await db.collection('orders').add(orderDetails);
             console.log("Order written with ID: ", docRef.id);
             calculatePrice(); // Proceed to calculate the price after successful Firestore write
         } catch (error) {
