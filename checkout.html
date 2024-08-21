@@ -259,54 +259,6 @@
 </div>
 
     <script>
-// Retrieve the cart data from localStorage
-function getCartData() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
-}
-
-// Function to format size quantities and calculate total quantity
-function formatSizeQuantities(sizes) {
-    const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
-    const formattedSizes = Object.entries(sizes)
-        .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
-        .join(', ');
-
-    return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
-}
-
-// Function to remove item from the cart
-function removeFromCart(index) {
-    let cart = getCartData();
-    cart.splice(index, 1);  // Remove the item at the specified index
-    localStorage.setItem('cart', JSON.stringify(cart));  // Save updated cart
-    updateDisplay();  // Update the display
-}
-
-// Update the checkout page display
-function updateDisplay() {
-    const cart = getCartData();
-    let totalCost = 0;
-    const orderDetailsDisplay = document.getElementById('orderDetailsDisplay');
-    orderDetailsDisplay.innerHTML = '';  // Clear previous content
-
-    cart.forEach((product, index) => {
-        const productCost = parseFloat(product.totalPrice);
-        totalCost += productCost;
-
-        const formattedSizes = formatSizeQuantities(product.sizes);
-
-        orderDetailsDisplay.innerHTML += `
-            <div class="controls-container">
-                <h1 class="product-title">${product.title}</h1>
-                <div class="sku-text">${product.sku}</div>
-                <div class="size-quantities"><strong>Quantities:</strong> <span>${formattedSizes}</span></div>
-                <p><strong>Merch:</strong> $${product.merchCost}</p>
-                <p><strong>Roll and Tag:</strong> $${product.rollTagCost}</p>
-                <p><strong>Shipping:</strong> Free</p>
-                <button onclick="removeFromCart(${index})">Remove</button>
-            </div>
-        `;
-    });
 
 // Retrieve the cart data from localStorage
 function getCartData() {
