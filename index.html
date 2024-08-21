@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> <!-- Modern Font -->
     <style>
         /* Page-specific styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #f5f5f5;
+        }
+
         .background-image-container {
             width: 100%;
             height: 100vh; /* Full viewport height */
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                               url('Images/Background.png'); /* Darker grey gradient overlay */
             background-size: cover;
             background-position: center;
@@ -20,37 +29,38 @@
             justify-content: center;
             align-items: center; /* Center content both horizontally and vertically */
             flex-direction: column; /* Stack button and text vertically */
-        }
-
-        /* Centered button with updated color, larger size, and better text contrast */
-        .transparent-button {
-            background-color: #00796b; /* Muted teal color */
-            border: 2px solid #004d40; /* Darker teal outline */
-            color: white; /* White text for better contrast */
-            font-size: calc(16px * 1.4); /* Increase font size slightly */
-            padding: calc(10px * 1.4) calc(25px * 1.6); /* Increase height and width for better balance */
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
             text-align: center;
-            border-radius: 5px; /* Slightly rounded corners for a softer look */
-            margin-bottom: 20px; /* Adjust spacing between button and text box */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add subtle shadow for better text readability */
+            padding: 20px;
         }
 
-        .transparent-button:hover {
-            background-color: #004d40; /* Darker shade on hover */
-            color: #fff;
-        }
-
-        /* Centered text box with narrower width and multi-line formatting */
-        .text-box {
+        /* Modern button design */
+        .modern-button {
+            background-color: #2c3e50; /* Dark blue-gray color */
+            border: none;
             color: white;
-            font-size: 18px; /* Adjust font size */
-            background-color: transparent; /* Ensure the text box is transparent */
-            text-align: center;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle shadow for readability */
-            max-width: 60%; /* Reduce width for narrower, multi-line text */
-            line-height: 1.5; /* Increase line spacing for readability */
+            font-size: 20px;
+            font-weight: 600;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin-bottom: 20px;
+        }
+
+        .modern-button:hover {
+            background-color: #1a252f;
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        /* Modern text box with two lines */
+        .modern-text-box {
+            color: white;
+            font-size: 18px;
+            font-weight: 400;
+            max-width: 600px; /* Width to control line breaks */
+            line-height: 1.6; /* Better readability */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Subtle shadow for readability */
         }
     </style>
 </head>
@@ -60,11 +70,13 @@
 
     <!-- Main container wrapping the background image -->
     <div class="background-image-container">
-        <!-- Centered button -->
-        <button class="transparent-button">Commemorate your Celebration</button>
+        <!-- Centered button with modern design -->
+        <button class="modern-button">Commemorate your Celebration</button>
         
-        <!-- Centered text box below the button with narrower width and multi-line formatting -->
-        <div class="text-box">We'll create, roll, and tag your Mitzvah Merch, so it's one less thing to worry about on your big day!</div>
+        <!-- Centered text box below the button with modern design and two lines -->
+        <div class="modern-text-box">
+            We’ll create, roll, and tag your Mitzvah Merch,<br> so it’s one less thing to worry about on your big day!
+        </div>
     </div>
 
     <!-- Placeholder for footer -->
@@ -143,4 +155,3 @@
     </script>    
 </body>
 </html>
-
