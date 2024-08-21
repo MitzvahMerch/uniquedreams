@@ -28,11 +28,11 @@ header {
     margin: 0 auto;
     padding: 0 40px;
     box-sizing: border-box;
-    height: 80px;
+    height: 70px;
 }
 
 .logo img {
-    height: 80px;
+    height: 70px;
     display: block;
 }
 
