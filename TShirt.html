@@ -6,65 +6,80 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
-        /* Specific styles for the product page */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 35px;
-            margin: 0 auto;
-            width: 90%; /* Adjusted width to make the container wider */
-            max-width: 1200px; /* Set a maximum width to maintain responsiveness */
-            box-sizing: border-box; /* Ensure padding doesn't increase element's width */
-        }
-        .product-card {
-            width: 300px; /* Set width */
-            background-color: #0E9ED8; /* Background color */
-            color: white;
-            text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            font-family: Arial, sans-serif;
-            margin: 0 20px; /* Add some space between the cards */
-            transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
-            cursor: pointer; /* Change cursor to pointer */
-        }
-        .product-card img {
-            width: 100%;
-            height: auto;
-            max-height: 300px; /* Set max height */
-            object-fit: contain; /* Maintain aspect ratio */
-        }
-        .product-card .color-row {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0; /* Adjust margin */
-        }
-        .product-card .color-swatch {
-            width: 20px;
-            height: 20px;
-            margin: 0 2px; /* Adjust margin */
-            border: 1px solid #fff;
-            cursor: pointer;
-        }
-        .product-card .product-name {
-            font-size: 20px; /* Set font size */
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .product-card .product-brand {
-            font-size: 16px; /* Set font size */
-            margin: 5px 0;
-        }
-        .product-card .product-sku {
-            font-size: 16px; /* Set font size */
-            margin: 5px 0;
-        }
-        .product-card .product-price {
-            font-size: 22px; /* Set font size */
-            font-weight: bold;
-            margin-top: 10px;
-        }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    margin: 0 auto;
+    width: 90%; /* Adjusted width to make the container wider */
+    max-width: 1200px; /* Set a maximum width to maintain responsiveness */
+    box-sizing: border-box; /* Ensure padding doesn't increase element's width */
+}
+
+.product-card {
+    width: 300px; /* Set width */
+    background-color: #0E9ED8; /* Background color */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-family: Arial, sans-serif;
+    margin: 0 20px; /* Add some space between the cards */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.product-card:hover {
+    transform: scale(1.05); /* Scale up slightly on hover */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Set max height */
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+.product-card .color-row {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0; /* Adjust margin */
+}
+
+.product-card .color-swatch {
+    width: 20px;
+    height: 20px;
+    margin: 0 2px; /* Adjust margin */
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.product-card .product-name {
+    font-size: 20px; /* Set font size */
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-card .product-brand {
+    font-size: 16px; /* Set font size */
+    margin: 5px 0;
+}
+
+.product-card .product-price {
+    font-size: 22px; /* Set font size */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.product-card-link {
+    text-decoration: none; /* Remove underline from link */
+}
+
+.product-card-link:hover {
+    text-decoration: none; /* Ensure underline stays removed on hover */
+}
     </style>
 </head>
 <body>
