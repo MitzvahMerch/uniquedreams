@@ -779,6 +779,49 @@ function submitDetails() {
         alert('Please fill in all fields.');
     }
 }
+    async function submitDetails() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value; // New phone number field
+    const date = document.getElementById("date").value;
+    const rollTag = document.getElementById("roll-tag").value;
+
+    if (name && email && phone && date && rollTag) {
+        const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+        orderDetails.name = name;
+        orderDetails.email = email;
+        orderDetails.phone = phone; // Add phone to order details
+        orderDetails.date = date;
+
+        if (rollTag === "yes") {
+            const selectedStyle = document.querySelector('.image-options img.selected')?.id;
+            if (selectedStyle) {
+                orderDetails.rollTagSelection = selectedStyle;
+            } else {
+                alert('Please select a roll tag style.');
+                return;
+            }
+        } else {
+            orderDetails.rollTagSelection = "none";
+        }
+
+        localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+        closeModal();
+
+        // Save to Firestore
+        try {
+            const docRef = await firebase.firestore().collection('orders').add(orderDetails);
+            console.log("Order written with ID: ", docRef.id);
+            calculatePrice(); // Proceed to calculate the price after successful Firestore write
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            alert('There was an issue submitting your details. Please try again.');
+        }
+    } else {
+        alert('Please fill in all fields.');
+    }
+}
 
 async function calculatePrice() {
     const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
