@@ -304,48 +304,52 @@ h1.product-title {
 </head>
 <body>
 
+        <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
     <div class="product-container">
-    <div class="image-container">
-        <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
-        <div id="logo-placeholder" class="logo-placeholder">
-            <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
-        </div>
-    </div>
-
-    <div class="controls-container">
-        <h1 class="product-title">Exceptional Tee</h1> <!-- Product Title Changed to Header -->
-        <div class="sku-text">PC450C1</div> <!-- SKU Text Added -->
-
-        <div class="controls">
-            <label for="color-selection">Color:</label>
-            <select id="color-selection" onchange="updateColor()">
-                <option value="BrightGold" selected>🟨 BrightGold</option>
-                <option value="AthleticHthr">⬜ Athletic Hthr</option>
-                <option value="AthleticKelly">🟩 Athletic Kelly</option>
-                <option value="AthleticMaroon">🟥 Athletic Maroon</option>
-                <option value="BrightRed">🟥 Bright Red</option>
-            </select>
+        <div class="image-container">
+            <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
+            <div id="logo-placeholder" class="logo-placeholder">
+                <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
+            </div>
         </div>
 
-<div class="controls">
-    <label for="front-logo-placement">Front Logo Placement:</label>
-    <select id="front-logo-placement" onchange="updateLogoPlacement()">
-        <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-        <option value="leftChest">Left Chest</option> <!-- Updated to match Firestore field -->
-        <option value="fullFront">Full Front</option> <!-- Updated to match Firestore field -->
-        <option value="centerChest">Center Chest</option> <!-- Updated to match Firestore field -->
-        <option value="none-front">None - Back Only</option>
-    </select>
-</div>
+        <div class="controls-container">
+            <h1 class="product-title">Exceptional Tee</h1> <!-- Product Title Changed to Header -->
+            <div class="sku-text">PC450C1</div> <!-- SKU Text Added -->
 
-<div class="controls">
-    <label for="back-logo-placement">Back Logo Placement:</label>
-    <select id="back-logo-placement" onchange="updateLogoPlacement()">
-        <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-        <option value="centerBack">Center Back</option> <!-- Updated to match Firestore field -->
-        <option value="none-back">None - Front Only</option>
-    </select>
-</div>
+            <div class="controls">
+                <label for="color-selection">Color:</label>
+                <select id="color-selection" onchange="updateColor()">
+                    <option value="BrightGold" selected>🟨 BrightGold</option>
+                    <option value="AthleticHthr">⬜ Athletic Hthr</option>
+                    <option value="AthleticKelly">🟩 Athletic Kelly</option>
+                    <option value="AthleticMaroon">🟥 Athletic Maroon</option>
+                    <option value="BrightRed">🟥 Bright Red</option>
+                </select>
+            </div>
+
+            <div class="controls">
+                <label for="front-logo-placement">Front Logo Placement:</label>
+                <select id="front-logo-placement" onchange="updateLogoPlacement()">
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="leftChest">Left Chest</option> <!-- Updated to match Firestore field -->
+                    <option value="fullFront">Full Front</option> <!-- Updated to match Firestore field -->
+                    <option value="centerChest">Center Chest</option> <!-- Updated to match Firestore field -->
+                    <option value="none-front">None - Back Only</option>
+                </select>
+            </div>
+
+            <div class="controls">
+                <label for="back-logo-placement">Back Logo Placement:</label>
+                <select id="back-logo-placement" onchange="updateLogoPlacement()">
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="centerBack">Center Back</option> <!-- Updated to match Firestore field -->
+                    <option value="none-back">None - Front Only</option>
+                </select>
+            </div>
 
             <table class="size-table">
                 <tr>
@@ -392,74 +396,77 @@ h1.product-title {
         Port and Company's tee that genuinely matches your favorite collegiate and professional sports team colors.| 4.5-ounce, 100% ring spun cotton
     </div>
 
-<!-- Modal for additional information -->
-<div id="infoModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Almost There!</h2>
-        <label class="modal-label" for="name">Name:</label>
-        <input type="text" id="name" class="modal-input" placeholder="Enter your name">
+    <!-- Modal for additional information -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Almost There!</h2>
+            <label class="modal-label" for="name">Name:</label>
+            <input type="text" id="name" class="modal-input" placeholder="Enter your name">
 
-        <label class="modal-label" for="email">Email:</label>
-        <input type="email" id="email" class="modal-input" placeholder="Enter your email">
+            <label class="modal-label" for="email">Email:</label>
+            <input type="email" id="email" class="modal-input" placeholder="Enter your email">
 
-        <label class="modal-label" for="date">When's the Special Day:</label>
-        <input type="date" id="date" class="modal-input">
+            <label class="modal-label" for="date">When's the Special Day:</label>
+            <input type="date" id="date" class="modal-input">
 
-<label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
-<select id="roll-tag" class="modal-input" onchange="toggleImageOptions()">
-    <option value="" selected disabled>Select</option>
-    <option value="yes">Yes</option> <!-- If yes, further options should be shown -->
-    <option value="no">No</option>
-</select>
+            <label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
+            <select id="roll-tag" class="modal-input" onchange="toggleImageOptions()">
+                <option value="" selected disabled>Select</option>
+                <option value="yes">Yes</option> <!-- If yes, further options should be shown -->
+                <option value="no">No</option>
+            </select>
 
-<div class="image-options" id="image-options">
-    <p style="font-weight: bold;">Select Your Preferred Style:</p>
-    <div class="image-option">
-        <img src="RollDisplayImages/RollTag1.jpg" alt="Option 1" id="CircleTag" onclick="selectImage('CircleTag')">
-        <p>Standard Roll and Tag</p>
-        <p>$2.50 (per item)</p>
-    </div>
-    <div class="image-option">
-        <img src="RollDisplayImages/RollTag2.png" alt="Option 2" id="SquareTag" onclick="selectImage('SquareTag')">
-        <p>Deluxe Roll and Tag</p>
-        <p>$3.00 (per item)</p>
-    </div>
-    <div class="image-option">
-        <img src="RollDisplayImages/RollTag3.png" alt="Option 3" id="ScallopedTag" onclick="selectImage('ScallopedTag')">
-        <p>Premium Roll and Tag</p>
-        <p>$3.50 (per item)</p>
-    </div>
-    <div class="image-option">
-        <img src="RollDisplayImages/RollTag4.png" alt="Option 4" id="Sticker" onclick="selectImage('Sticker')">
-        <p>Exclusive Roll and Tag</p>
-        <p>$4.00 (per item)</p>
-    </div>
-</div>
+            <div class="image-options" id="image-options">
+                <p style="font-weight: bold;">Select Your Preferred Style:</p>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag1.jpg" alt="Option 1" id="CircleTag" onclick="selectImage('CircleTag')">
+                    <p>Standard Roll and Tag</p>
+                    <p>$2.50 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag2.png" alt="Option 2" id="SquareTag" onclick="selectImage('SquareTag')">
+                    <p>Deluxe Roll and Tag</p>
+                    <p>$3.00 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag3.png" alt="Option 3" id="ScallopedTag" onclick="selectImage('ScallopedTag')">
+                    <p>Premium Roll and Tag</p>
+                    <p>$3.50 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag4.png" alt="Option 4" id="Sticker" onclick="selectImage('Sticker')">
+                    <p>Exclusive Roll and Tag</p>
+                    <p>$4.00 (per item)</p>
+                </div>
+            </div>
 
-        <!-- Center the submit button -->
-        <div class="button-container">
-            <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+            <!-- Center the submit button -->
+            <div class="button-container">
+                <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Modal for displaying price -->
-<div id="priceModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePriceModal()">&times;</span>
-        <div id="loading-indicator" style="display: none; text-align: center;">
-            <img src="Images/Loading.png" alt="Loading..." style="width: 50px; height: 50px;">
-            <p>Please wait while we calculate your price...</p>
-        </div>
-        <div id="pricing-details" style="display: none;">
-            <!-- The pricing details will be dynamically inserted here -->
-        </div>
-        <div class="button-container" style="display: none;">
-            <button class="submit-modal-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+    <!-- Modal for displaying price -->
+    <div id="priceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePriceModal()">&times;</span>
+            <div id="loading-indicator" style="display: none; text-align: center;">
+                <img src="Images/Loading.png" alt="Loading..." style="width: 50px; height: 50px;">
+                <p>Please wait while we calculate your price...</p>
+            </div>
+            <div id="pricing-details" style="display: none;">
+                <!-- The pricing details will be dynamically inserted here -->
+            </div>
+            <div class="button-container" style="display: none;">
+                <button class="submit-modal-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
 
 
 <script>
