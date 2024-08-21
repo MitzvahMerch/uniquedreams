@@ -53,6 +53,7 @@
             transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
             cursor: pointer;
             border: 1px solid black; 
+            text-align: center;
         }
 
         .container img {
@@ -86,6 +87,13 @@
 
         .container:hover img {
             transform: scale(1.1); /* Slightly increase image size on hover */
+        }
+
+        .container-link {
+            width: 23.5%; /* Ensure the link occupies the same width as the container */
+            height: 300px; /* Ensure the link occupies the same height as the container */
+            display: block; /* Make sure the link behaves like a block element */
+            text-decoration: none; /* Remove underline from link */
         }
 
         /* New Styles for the Centered Text */
@@ -194,3 +202,4 @@
     </script>
 </body>
 </html>
+
