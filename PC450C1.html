@@ -37,11 +37,6 @@
         object-fit: cover;
     }
 
-    .image-container img.back-image {
-        transform: scale(1.32);
-        transform-origin: 50% 28%;
-    }
-
     .logo-placeholder {
         position: absolute;
         display: none;
@@ -138,22 +133,19 @@
     .product-description {
         font-size: 14px;
         color: #FFFFFF;
-        max-width: 500px;
+        max-width: 499px; /* Match the image width */
         text-align: center;
-        margin-top: 20px; /* Ensures spacing between disclaimer and description */
+        margin-top: 20px;
         padding-left: 0;
     }
 
     .disclaimer-container {
-        position: absolute;
-        bottom: 0; /* Sticks the disclaimer to the bottom of the image */
-        left: 50%;
-        transform: translateX(-50%);
         font-size: 14px;
         font-weight: bold;
         color: gray;
-        max-width: 500px;
+        max-width: 499px; /* Match the image width */
         text-align: center;
+        margin-top: 10px;
     }
 
     /* Modal styles */
