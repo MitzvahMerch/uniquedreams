@@ -313,13 +313,13 @@
     <div class="image-container">
         <img id="product-image" src="PC450C1/BrightGoldFront.png" alt="Product Image">
         <div id="logo-placeholder" class="logo-placeholder">
-            <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
+            <img id="logo-image" src="" alt="Logo">
         </div>
     </div>
 
     <div class="controls-container">
-        <h1 class="product-title">Exceptional Tee</h1> <!-- Product Title Changed to Header -->
-        <div class="sku-text">PC450C1</div> <!-- SKU Text Added -->
+        <h1 class="product-title">Exceptional Tee</h1>
+        <div class="sku-text">PC450C1</div>
 
         <div class="controls">
             <label for="color-selection">Color:</label>
@@ -332,70 +332,70 @@
             </select>
         </div>
 
-<div class="controls">
-    <label for="front-logo-placement">Front Logo Placement:</label>
-    <select id="front-logo-placement" onchange="updateLogoPlacement()">
-        <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-        <option value="leftChest">Left Chest</option> <!-- Updated to match Firestore field -->
-        <option value="fullFront">Full Front</option> <!-- Updated to match Firestore field -->
-        <option value="centerChest">Center Chest</option> <!-- Updated to match Firestore field -->
-        <option value="none-front">None - Back Only</option>
-    </select>
-</div>
-
-<div class="controls">
-    <label for="back-logo-placement">Back Logo Placement:</label>
-    <select id="back-logo-placement" onchange="updateLogoPlacement()">
-        <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-        <option value="centerBack">Center Back</option> <!-- Updated to match Firestore field -->
-        <option value="none-back">None - Front Only</option>
-    </select>
-</div>
-
-            <table class="size-table">
-                <tr>
-                    <td><label for="size-ym">YM</label></td>
-                    <td><label for="size-yl">YL</label></td>
-                </tr>
-                <tr>
-                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
-                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
-                </tr>
-                <tr>
-                    <td><label for="size-s">S</label></td>
-                    <td><label for="size-m">M</label></td>
-                </tr>
-                <tr>
-                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
-                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
-                </tr>
-                <tr>
-                    <td><label for="size-l">L</label></td>
-                    <td><label for="size-xl">XL</label></td>
-                </tr>
-                <tr>
-                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
-                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><label for="total">Total</label></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="number" id="total" class="total-input" value="0" readonly></td>
-                </tr>
-            </table>
-
-            <button class="submit-button" onclick="getPrice()">Get Price</button>
+        <div class="controls">
+            <label for="front-logo-placement">Front Logo Placement:</label>
+            <select id="front-logo-placement" onchange="updateLogoPlacement()">
+                <option value="" selected disabled>Select Placement</option>
+                <option value="leftChest">Left Chest</option>
+                <option value="fullFront">Full Front</option>
+                <option value="centerChest">Center Chest</option>
+                <option value="none-front">None - Back Only</option>
+            </select>
         </div>
-    </div>
 
-    <div class="disclaimer-container">
-        *Logo Placements are approximate and non-final. An art approval will be sent within 1 business day of order.
-    </div>
+        <div class="controls">
+            <label for="back-logo-placement">Back Logo Placement:</label>
+            <select id="back-logo-placement" onchange="updateLogoPlacement()">
+                <option value="" selected disabled>Select Placement</option>
+                <option value="centerBack">Center Back</option>
+                <option value="none-back">None - Front Only</option>
+            </select>
+        </div>
 
-    <div class="product-description">
-        Port and Company's tee that genuinely matches your favorite collegiate and professional sports team colors.| 4.5-ounce, 100% ring spun cotton
+        <table class="size-table">
+            <tr>
+                <td><label for="size-ym">YM</label></td>
+                <td><label for="size-yl">YL</label></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+            </tr>
+            <tr>
+                <td><label for="size-s">S</label></td>
+                <td><label for="size-m">M</label></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+            </tr>
+            <tr>
+                <td><label for="size-l">L</label></td>
+                <td><label for="size-xl">XL</label></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><label for="total">Total</label></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="number" id="total" class="total-input" value="0" readonly></td>
+            </tr>
+        </table>
+
+        <button class="submit-button" onclick="getPrice()">Get Price</button>
     </div>
+</div>
+
+<div class="disclaimer-container">
+    *Logo Placements are approximate and non-final. An art approval will be sent within 1 business day of order.
+</div>
+
+<div class="product-description">
+    Port and Company's tee that genuinely matches your favorite collegiate and professional sports team colors.| 4.5-ounce, 100% ring spun cotton
+</div>
 
 <!-- Modal for additional information -->
 <div id="infoModal" class="modal">
@@ -445,15 +445,9 @@
             </div>
         </div>
 
+        <!-- Center the submit button inside the modal -->
         <div class="button-container">
             <button class="submit-modal-button" onclick="submitDetails()">Get Price</button>
-        </div>
-    </div>
-</div>
-
-        <!-- Center the submit button -->
-        <div class="button-container">
-            <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
         </div>
     </div>
 </div>
