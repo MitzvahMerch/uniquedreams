@@ -5,108 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitzvah Merchandise</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
-<style>
-    /* Specific styles for the apparel page */
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #FFDF00; /* This will be hidden by the background image */
-        color: #333;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
+    <style>
+        /* Specific styles for the apparel page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFDF00; /* This will be hidden by the background image */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
-    .main-container {
-        background-image: url('Images/ApparelBackground.png'); /* Set the background image */
-        background-size: cover; /* Ensure the image covers the entire container */
-        background-position: center; /* Center the background image */
-        background-repeat: no-repeat; /* Prevent the image from repeating */
-        padding: 20px;
-        margin: 0 auto; /* Center the container */
-        max-width: 100%; /* Ensure the container stretches the entire width */
-        box-sizing: border-box;
-        min-height: 100vh; /* Ensure the container covers the full viewport height */
-    }
+        .main-container {
+            background-image: url('Images/ApparelBackground.png'); /* Set the background image */
+            background-size: cover; /* Ensure the image covers the entire container */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            padding: 20px;
+            margin: 0 auto; /* Center the container */
+            max-width: 100%; /* Ensure the container stretches the entire width */
+            box-sizing: border-box;
+            min-height: 100vh; /* Ensure the container covers the full viewport height */
+            position: relative; /* Needed for overlaying text */
+        }
 
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        background-color: transparent; /* Set background to fully transparent */
-        padding: 20px; /* Add some padding for spacing */
-        margin-bottom: 15px; /* Space between flex containers */
-    }
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent; /* Set background to fully transparent */
+            padding: 20px; /* Add some padding for spacing */
+            margin-bottom: 15px; /* Space between flex containers */
+        }
 
-    .container {
-        position: relative;
-        width: 23.5%; 
-        height: 300px; 
-        margin: 5px; 
-        padding: 10px; 
-        background-color: #0E9ED8;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end; 
-        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-        cursor: pointer;
-        border: 1px solid black; 
-    }
+        .container {
+            position: relative;
+            width: 23.5%; 
+            height: 300px; 
+            margin: 5px; 
+            padding: 10px; 
+            background-color: #0E9ED8;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; 
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            cursor: pointer;
+            border: 1px solid black; 
+        }
 
-    .container img {
-        max-height: 88%; 
-        max-width: 88%; 
-        object-fit: contain;
-    }
+        .container img {
+            max-height: 88%; 
+            max-width: 88%; 
+            object-fit: contain;
+        }
 
-    .overlay-text {
-        position: absolute;
-        top: 7%; 
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: black;
-        font-weight: bold;
-        text-decoration: none;
-        font-size: 34px;
-        line-height: 1.5;
-        white-space: nowrap;
-        text-align: center;
-        transition: color 0.2s;
-    }
+        .overlay-text {
+            position: absolute;
+            top: 7%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 34px;
+            line-height: 1.5;
+            white-space: nowrap;
+            text-align: center;
+            transition: color 0.2s;
+        }
 
-    .container:hover {
-        background-color: #b0b0b0; /* Change background color on hover to gray */
-    }
+        .container:hover {
+            background-color: #b0b0b0; /* Change background color on hover to gray */
+        }
 
-    .container:hover .overlay-text {
-        color: #0b3a92;
-    }
+        .container:hover .overlay-text {
+            color: #0b3a92;
+        }
 
-    .container:hover img {
-        transform: scale(1.1); /* Slightly increase image size on hover */
-    }
+        .container:hover img {
+            transform: scale(1.1); /* Slightly increase image size on hover */
+        }
 
-    .other-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto; /* Center the container horizontally */
-        padding: 20px;
-        max-width: 25%; /* Set max width for the container */
-    }
+        /* New Styles for the Centered Text */
+.centered-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 20px; /* Position just above the footer */
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000; /* Creates a 1px black outline */
+}
 
-    .flex-container.centered {
-        justify-content: center; /* Center the single item */
-    }
-
-    .other-container .container {
-        background-color: #FFDF00; 
-        border: 1px solid black; 
-        width: 100%; /* Ensure it takes the full width of the parent */
-        height: 300px; /* Consistent height with other containers */
-    }
-</style>
+    </style>
 </head>
 <body>
 
@@ -168,14 +168,10 @@
                 </a>
             </div>
         </div>
-    </div>
 
-    <div class="flex-container centered other-container">
-        <div class="container">
-            <img src="Images/OtherDislay.png" alt="Other"> 
-            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/other" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                Other
-            </a>
+        <!-- Centered text below the last flex container -->
+        <div class="centered-text">
+            Don't See Your Desired Apparel?
         </div>
     </div>
 
