@@ -28,16 +28,15 @@
     margin: 0 20px; /* Add some space between the cards */
     transition: transform 0.2s, box-shadow 0.2s; /* Add transition for hover effects */
     cursor: pointer; /* Change cursor to pointer */
-    min-height: 500px; /* Increase min-height to ensure consistency */
+    min-height: 550px; /* Ensure all cards have the same height */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .product-card img {
     width: 100%;
-    height: auto;
-    max-height: 300px; /* Set max height */
+    height: 300px; /* Set fixed height for all images */
     object-fit: contain; /* Maintain aspect ratio */
     margin-bottom: 10px; /* Add margin to space out the image */
 }
@@ -47,7 +46,7 @@
     justify-content: center;
     margin: 10px 0; /* Adjust margin */
     flex-wrap: wrap;
-    min-height: 30px; /* Ensures color rows have the same height */
+    min-height: 40px; /* Ensure color rows have the same height */
 }
 
 .product-card .color-swatch {
@@ -62,19 +61,20 @@
     font-size: 20px; /* Set font size */
     font-weight: bold;
     margin: 10px 0;
-    min-height: 24px; /* Ensures product names align */
+    height: 30px; /* Fixed height for alignment */
 }
 
 .product-card .product-brand {
     font-size: 16px; /* Set font size */
     margin: 5px 0;
-    min-height: 24px; /* Ensures brand names align */
+    height: 24px; /* Fixed height for alignment */
 }
 
 .product-card .product-price {
     font-size: 22px; /* Set font size */
     font-weight: bold;
-    margin-top: auto; /* Push price to the bottom of the card */
+    margin-top: 10px;
+    height: 30px; /* Fixed height for alignment */
 }
 
 .product-card-link {
