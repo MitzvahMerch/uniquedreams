@@ -22,25 +22,27 @@ header {
 
 .header-container {
     display: flex;
-    justify-content: space-between; /* Space between the logos and navigation */
+    justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Set a max width */
-    margin: 0 auto; /* Center the container */
-    padding: 0 40px; /* Add padding to the sides */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
     box-sizing: border-box;
-    height: 80px; /* Adjust the height to limit the vertical space */
+    height: 80px;
 }
 
 .logo img {
-    height: 60px; /* Set a uniform height for both logos */
+    height: 60px;
+    display: block;
 }
 
 #logo-image {
-    height: 50px; /* Reduce the height of the Write Occasion logo */
+    height: 50px; /* Adjust based on your preferred size */
 }
 
 #mm-logo-image {
-    height: 50px; /* Ensure the MM logo has a similar height */
+    height: 50px; /* Ensure consistent height */
+    margin-left: 20px; /* Adjust spacing between the MM logo and navigation */
 }
 
 .nav-links {
@@ -48,18 +50,19 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 30px;
+    gap: 40px; /* Increased gap for better spacing */
+    justify-content: center; /* Center the navigation links */
 }
 
 .nav-links li {
-    display: inline;
+    display: inline-block;
 }
 
 .nav-links a {
     text-decoration: none;
     font-weight: bold;
     color: #000;
-    font-size: 1.2em;
+    font-size: 18px; /* Slightly larger font for better readability */
 }
 
 .nav-links a:hover {
