@@ -26,7 +26,7 @@ header {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Reduced padding to bring logos and text closer */
+    padding: 0 0px; /* Reduced padding to bring logos and text closer */
     box-sizing: border-box;
     height: 70px;
 }
@@ -41,8 +41,8 @@ header {
 }
 
 #mm-logo-image {
-    height: 70px; /* Ensure consistent height */
-    margin-left: 10px; /* Reduced spacing between the MM logo and navigation */
+    height: 80px; /* Ensure consistent height */
+    margin-left: 0px; /* Reduced spacing between the MM logo and navigation */
 }
 
 .nav-links {
@@ -50,7 +50,7 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 20px; /* Reduced gap to bring navigation links closer together */
+    gap: 40px; /* Reduced gap to bring navigation links closer together */
     justify-content: center;
 }
 
