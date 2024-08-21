@@ -46,6 +46,7 @@
             border-radius: 8px; /* Rounded corners */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             margin-bottom: 20px;
+            text-decoration: none; /* Ensure no underline on hover */
         }
 
         .modern-button:hover {
@@ -71,7 +72,9 @@
     <!-- Main container wrapping the background image -->
     <div class="background-image-container">
         <!-- Centered button with modern design -->
-        <button class="modern-button">Commemorate your Celebration</button>
+        <a href="https://mitzvahmerch.github.io/WriteOcassio/LogoPage.html" target="_blank" rel="noopener noreferrer">
+            <button class="modern-button">Commemorate your Celebration</button>
+        </a>
         
         <!-- Centered text box below the button with modern design and two lines -->
         <div class="modern-text-box">
@@ -134,9 +137,9 @@
 
             if (sessionData) {
                 const { sessionId, timestamp } = sessionData;
-                const expiration time = 72 * 60 * 60 * 1000;
+                const expirationTime = 72 * 60 * 60 * 1000;
 
-                if (currentTimestamp - timestamp < expiration time) {
+                if (currentTimestamp - timestamp < expirationTime) {
                     return sessionId;
                 }
             }
@@ -155,3 +158,4 @@
     </script>    
 </body>
 </html>
+
