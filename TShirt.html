@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
-    <style>
-        /* Specific styles for the product page */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 35px;
-            margin: 0 auto;
-            width: 90%; /* Adjusted width to make the container wider */
-            max-width: 1200px; /* Set a maximum width to maintain responsiveness */
-            box-sizing: border-box; /* Ensure padding doesn't increase element's width */
-        }
+ /* Specific styles for the product page */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    margin: 0 auto;
+    width: 90%; /* Adjusted width to make the container wider */
+    max-width: 1200px; /* Set a maximum width to maintain responsiveness */
+    box-sizing: border-box; /* Ensure padding doesn't increase element's width */
+}
 .product-card {
     width: 280px; /* Set width */
     background-color: #0E9ED8; /* Background color */
@@ -31,51 +30,46 @@
     text-decoration: none; /* Remove underline */
     min-height: 450px; /* Set minimum height to ensure all cards match */
 }
-        .product-card:hover {
-            transform: scale(1.05); /* Slightly enlarge the card */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-        }
-        .product-card img {
-            width: 100%;
-            height: auto;
-            max-height: 300px; /* Set max height */
-            object-fit: contain; /* Maintain aspect ratio */
-        }
-        .product-card .color-row {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0; /* Adjust margin */
-        }
-        .product-card .color-swatch {
-            width: 20px;
-            height: 20px;
-            margin: 0 2px; /* Adjust margin */
-            border: 1px solid #fff;
-            cursor: pointer;
-        }
-        .product-card .product-name {
-            font-size: 20px; /* Set font size */
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .product-card .product-brand {
-            font-size: 16px; /* Set font size */
-            margin: 5px 0;
-        }
-        .product-card .product-sku {
-            font-size: 16px; /* Set font size */
-            margin: 5px 0;
-        }
-        .product-card .product-price {
-            font-size: 22px; /* Set font size */
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .product-card-link {
-            text-decoration: none; /* Remove underline from the link */
-            color: inherit; /* Ensure link inherits text color */
-        }
-    </style>
+.product-card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+.product-card img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Set max height */
+    object-fit: contain; /* Maintain aspect ratio */
+}
+.product-card .color-row {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0; /* Adjusted margin */
+}
+.product-card .color-swatch {
+    width: 20px;
+    height: 20px;
+    margin: 0 2px; /* Adjust margin */
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+.product-card .product-name {
+    font-size: 20px; /* Set font size */
+    font-weight: bold;
+    margin: 8px 0; /* Adjusted margin to reduce space below the name */
+}
+.product-card .product-brand {
+    font-size: 16px; /* Set font size */
+    margin: 4px 0; /* Adjusted margin to reduce space below the brand */
+}
+.product-card .product-price {
+    font-size: 22px; /* Set font size */
+    font-weight: bold;
+    margin-top: 8px; /* Adjusted margin to reduce space above the price */
+}
+.product-card-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Ensure link inherits text color */
+}
 </head>
 <body>
 
