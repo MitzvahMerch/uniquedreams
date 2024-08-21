@@ -28,10 +28,19 @@ header {
     margin: 0 auto; /* Center the container */
     padding: 0 40px; /* Add padding to the sides */
     box-sizing: border-box;
+    height: 80px; /* Adjust the height to limit the vertical space */
 }
 
-.logo {
-    padding: 0 20px; /* Add padding to the logos */
+.logo img {
+    height: 60px; /* Set a uniform height for both logos */
+}
+
+#logo-image {
+    height: 50px; /* Reduce the height of the Write Occasion logo */
+}
+
+#mm-logo-image {
+    height: 50px; /* Ensure the MM logo has a similar height */
 }
 
 .nav-links {
@@ -55,11 +64,6 @@ header {
 
 .nav-links a:hover {
     text-decoration: underline;
-}
-
-/* Additional styles for the new logo */
-#mm-logo-image {
-    height: 60px; /* Ensure the logo height matches the existing logo */
 }
 
 /* Footer Styles */
