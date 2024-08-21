@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +53,7 @@
             transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
             cursor: pointer;
             border: 1px solid black; 
+            text-decoration: none; /* Ensure no underline on hover */
         }
 
         .container img {
@@ -90,23 +90,22 @@
         }
 
         /* New Styles for the Centered Text */
-.centered-text {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    width: 100%;
-    position: absolute;
-    bottom: 20px; /* Position just above the footer */
-    left: 50%;
-    transform: translateX(-50%);
-    text-shadow: 
-        -1px -1px 0 #000,  
-         1px -1px 0 #000,
-        -1px  1px 0 #000,
-         1px  1px 0 #000; /* Creates a 1px black outline */
-}
-
+        .centered-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 20px; /* Position just above the footer */
+            left: 50%;
+            transform: translateX(-50%);
+            text-shadow: 
+                -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000; /* Creates a 1px black outline */
+        }
     </style>
 </head>
 <body>
@@ -117,57 +116,41 @@
     <!-- Main container wrapping all the rows -->
     <div class="main-container">
         <div class="flex-container">
-            <div class="container">
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatshirts" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/SweatshirtsDisplay.png" alt="Sweatshirts"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatshirts" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    Sweatshirts
-                </a>
-            </div>
-            <div class="container">
+                <span class="overlay-text">Sweatshirts</span>
+            </a>
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tshirts" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/TShirtDisplay.png" alt="T-Shirts"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tshirts" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    T-Shirts
-                </a>
-            </div>
-            <div class="container">
+                <span class="overlay-text">T-Shirts</span>
+            </a>
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tanktops" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/TankTopsDisplay.png" alt="Tank Tops"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/tanktops" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    Tank Tops
-                </a>
-            </div>
-            <div class="container">
+                <span class="overlay-text">Tank Tops</span>
+            </a>
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/longsleeve" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/LongSleevesDisplay.png" alt="Long Sleeves"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/longsleeve" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    Long Sleeves
-                </a>
-            </div>
+                <span class="overlay-text">Long Sleeves</span>
+            </a>
         </div>
 
         <div class="flex-container">
-            <div class="container">
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatpants" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/SweatpantsDisplay.png" alt="Sweatpants"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/sweatpants" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    Sweatpants
-                </a>
-            </div>
-            <div class="container">
+                <span class="overlay-text">Sweatpants</span>
+            </a>
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/hat" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/HatsDisplay.png" alt="Hats"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/hat" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    Hats
-                </a>
-            </div>
-            <div class="container">
+                <span class="overlay-text">Hats</span>
+            </a>
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/slingbags" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/SlingBagsDisplay.png" alt="Sling Bags"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/slingbags" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    Sling Bags
-                </a>
-            </div>
-            <div class="container">
+                <span class="overlay-text">Sling Bags</span>
+            </a>
+            <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/towel" class="container" target="_blank" rel="noopener noreferrer">
                 <img src="Images/TowelsDisplay.png" alt="Towels"> 
-                <a href="https://potomacimprints.com/TheWriteOcassionApparel/shop/page/towel" class="overlay-text" target="_blank" rel="noopener noreferrer">
-                    Towels
-                </a>
-            </div>
+                <span class="overlay-text">Towels</span>
+            </a>
         </div>
 
         <!-- Centered text below the last flex container -->
@@ -195,3 +178,4 @@
     </script>
 </body>
 </html>
+
