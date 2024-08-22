@@ -320,16 +320,38 @@ h1.product-title {
             <h1 class="product-title">Exceptional Tee</h1> <!-- Product Title Changed to Header -->
             <div class="sku-text">PC450C1</div> <!-- SKU Text Added -->
 
-            <div class="controls">
-                <label for="color-selection">Color:</label>
-                <select id="color-selection" onchange="updateColor()">
-                    <option value="BrightGold" selected>🟨 BrightGold</option>
-                    <option value="AthleticHthr">⬜ Athletic Hthr</option>
-                    <option value="AthleticKelly">🟩 Athletic Kelly</option>
-                    <option value="AthleticMaroon">🟥 Athletic Maroon</option>
-                    <option value="BrightRed">🟥 Bright Red</option>
-                </select>
-            </div>
+<div class="controls">
+    <label for="color-selection">Color:</label>
+    <select id="color-selection" onchange="updateColor()">
+        <option value="BrightGold" selected>🟨 Bright Gold</option>
+        <option value="AthleticHthr">⬜ Athletic Heather</option>
+        <option value="AthleticKelly">🟩 Athletic Kelly</option>
+        <option value="AthleticMaroon">🟥 Athletic Maroon</option>
+        <option value="BrightRed">🟥 Bright Red</option>
+        <option value="CandyPink">🟪 Candy Pink</option>
+        <option value="Charcoal">⬛ Charcoal</option>
+        <option value="DarkHthrGrey">⬛ Dark Heather Grey</option>
+        <option value="DeepNavy">🔵 Deep Navy</option>
+        <option value="FlashGreen">🟩 Flash Green</option>
+        <option value="ForestGreen">🟩 Forest Green</option>
+        <option value="HeatherNavy">🔵 Heather Navy</option>
+        <option value="JetBlack">⬛ Jet Black</option>
+        <option value="Kiwi">🟩 Kiwi</option>
+        <option value="LightBlue">🟦 Light Blue</option>
+        <option value="MediumGrey">⬛ Medium Grey</option>
+        <option value="Olive">🟩 Olive</option>
+        <option value="Orange">🟧 Orange</option>
+        <option value="Sapphire">🔵 Sapphire</option>
+        <option value="Silver">⬜ Silver</option>
+        <option value="TeamCardinal">🟥 Team Cardinal</option>
+        <option value="TeamNavy">🔵 Team Navy</option>
+        <option value="TeamPurple">🟪 Team Purple</option>
+        <option value="TrueRoyal">🔵 True Royal</option>
+        <option value="White">⬜ White</option>
+        <option value="Yellow">🟨 Yellow</option>
+    </select>
+</div>
+
 
             <div class="controls">
                 <label for="front-logo-placement">Front Logo Placement:</label>
@@ -516,6 +538,90 @@ function updateColor() {
         case 'BrightRed':
             frontImageSrc = 'PC450C1/BrightRedFront.png';
             backImageSrc = 'PC450C1/BrightRedBack.png';
+            break;
+        case 'CandyPink':
+            frontImageSrc = 'PC450C1/CandyPinkFront.png';
+            backImageSrc = 'PC450C1/CandyPinkBack.png';
+            break;
+        case 'Charcoal':
+            frontImageSrc = 'PC450C1/CharcoalFront.png';
+            backImageSrc = 'PC450C1/CharcoalBack.png';
+            break;
+        case 'DarkHthrGrey':
+            frontImageSrc = 'PC450C1/DarkHthrGreyFront.png';
+            backImageSrc = 'PC450C1/DarkHthrGreyBack.png';
+            break;
+        case 'DeepNavy':
+            frontImageSrc = 'PC450C1/DeepNavyFront.png';
+            backImageSrc = 'PC450C1/DeepNavyBack.png';
+            break;
+        case 'FlashGreen':
+            frontImageSrc = 'PC450C1/FlashGreenFront.png';
+            backImageSrc = 'PC450C1/FlashGreenBack.png';
+            break;
+        case 'ForestGreen':
+            frontImageSrc = 'PC450C1/ForestGreenFront.png';
+            backImageSrc = 'PC450C1/ForestGreenBack.png';
+            break;
+        case 'HeatherNavy':
+            frontImageSrc = 'PC450C1/HeatherNavyFront.png';
+            backImageSrc = 'PC450C1/HeatherNavyBack.png';
+            break;
+        case 'JetBlack':
+            frontImageSrc = 'PC450C1/JetBlackFront.png';
+            backImageSrc = 'PC450C1/JetBlackBack.png';
+            break;
+        case 'Kiwi':
+            frontImageSrc = 'PC450C1/KiwiFront.png';
+            backImageSrc = 'PC450C1/KiwiBack.png';
+            break;
+        case 'LightBlue':
+            frontImageSrc = 'PC450C1/LightBlueFront.png';
+            backImageSrc = 'PC450C1/LightBlueBack.png';
+            break;
+        case 'MediumGrey':
+            frontImageSrc = 'PC450C1/MediumGreyFront.png';
+            backImageSrc = 'PC450C1/MediumGreyBack.png';
+            break;
+        case 'Olive':
+            frontImageSrc = 'PC450C1/OliveFront.png';
+            backImageSrc = 'PC450C1/OliveBack.png';
+            break;
+        case 'Orange':
+            frontImageSrc = 'PC450C1/OrangeFront.png';
+            backImageSrc = 'PC450C1/OrangeBack.png';
+            break;
+        case 'Sapphire':
+            frontImageSrc = 'PC450C1/SapphireFront.png';
+            backImageSrc = 'PC450C1/SapphireBack.png';
+            break;
+        case 'Silver':
+            frontImageSrc = 'PC450C1/SilverFront.png';
+            backImageSrc = 'PC450C1/SilverBack.png';
+            break;
+        case 'TeamCardinal':
+            frontImageSrc = 'PC450C1/TeamCardinalFront.png';
+            backImageSrc = 'PC450C1/TeamCardinalBack.png';
+            break;
+        case 'TeamNavy':
+            frontImageSrc = 'PC450C1/TeamNavyFront.png';
+            backImageSrc = 'PC450C1/TeamNavyBack.png';
+            break;
+        case 'TeamPurple':
+            frontImageSrc = 'PC450C1/TeamPurpleFront.png';
+            backImageSrc = 'PC450C1/TeamPurpleBack.png';
+            break;
+        case 'TrueRoyal':
+            frontImageSrc = 'PC450C1/TrueRoyalFront.png';
+            backImageSrc = 'PC450C1/TrueRoyalBack.png';
+            break;
+        case 'White':
+            frontImageSrc = 'PC450C1/WhiteFront.png';
+            backImageSrc = 'PC450C1/WhiteBack.png';
+            break;
+        case 'Yellow':
+            frontImageSrc = 'PC450C1/YellowFront.png';
+            backImageSrc = 'PC450C1/YellowBack.png';
             break;
         default:
             frontImageSrc = 'PC450C1/BrightGoldFront.png';
