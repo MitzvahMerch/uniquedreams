@@ -919,7 +919,7 @@ async function calculatePrice() {
                 <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
                 <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
                 <p><strong>Shipping:</strong> Free</p>
-                <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
+                <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}}</p>
             `;
 
             // Save pricing data to localStorage
@@ -929,18 +929,6 @@ async function calculatePrice() {
                 totalPrice: result.totalPrice.toFixed(2)
             };
             localStorage.setItem('priceData', JSON.stringify(priceData));
-
-            // Save the product to the cart
-            const product = {
-                title: 'Exceptional Tee',
-                sku: orderDetails.sku,
-                color: orderDetails.color,
-                sizes: orderDetails.sizes,
-                merchCost: result.merchCharge.toFixed(2),
-                rollTagCost: result.rollTagCharge.toFixed(2),
-                totalPrice: result.totalPrice.toFixed(2)
-            };
-            addToCart(product);
 
             // Display the breakdown in the modal
             console.log("Inserting pricing details into modal...");
@@ -976,6 +964,26 @@ function closePriceModal() {
 
 // Function to proceed to checkout
 function proceedToCheckout() {
+    // Retrieve the pricing data
+    const priceData = JSON.parse(localStorage.getItem('priceData'));
+    
+    // Retrieve the existing order details
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+    // Prepare the product details to be added to the cart
+    const product = {
+        title: 'Exceptional Tee',
+        sku: orderDetails.sku,
+        color: orderDetails.color,
+        sizes: orderDetails.sizes,
+        merchCost: priceData.merch,
+        rollTagCost: priceData.rollAndTag,
+        totalPrice: priceData.totalPrice
+    };
+
+    // Add the product to the cart
+    addToCart(product);
+
     // Redirect to the checkout page or handle the checkout process
     window.location.href = 'checkout.html';
 }
