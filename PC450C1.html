@@ -31,10 +31,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.image-container img.back-image {
-    transform: scale(1.32); /* Scale the back image by 20% */
+    transform: scale(1.32); /* Scale both front and back images by 32% */
     transform-origin: 50% 28%; /* Custom percentages for finer control */
 }
 
@@ -208,6 +205,8 @@ h1.product-title {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    text-align: center; /* Ensure text inside the button is centered */
+    margin: 0 auto; /* Center the button within the container */
 }
 
 .submit-modal-button:hover {
@@ -247,7 +246,8 @@ h1.product-title {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Optional: add some space above the button */
+    margin-top: 20px; /* Space above the button */
+    width: 100%; /* Ensure the container takes up the full width */
 }
 
 /* Price Modal styles - reusing the modal styles you already have */
@@ -310,7 +310,7 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="PC450C1/BrightGold_Flat_Front.png" alt="Product Image">
+            <img id="product-image" src="PC450C1/PC450_brightgold_flat_front.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
@@ -443,29 +443,29 @@ h1.product-title {
                 <p style="font-weight: bold;">Select Your Preferred Style:</p>
                 <div class="image-option">
                     <img src="RollDisplayImages/RollTag1.jpg" alt="Option 1" id="CircleTag" onclick="selectImage('CircleTag')">
-                    <p>Standard Roll and Tag</p>
+                    <p>Roll and Circular Tag</p>
                     <p>$2.50 (per item)</p>
                 </div>
                 <div class="image-option">
                     <img src="RollDisplayImages/RollTag2.png" alt="Option 2" id="SquareTag" onclick="selectImage('SquareTag')">
-                    <p>Deluxe Roll and Tag</p>
-                    <p>$3.00 (per item)</p>
+                    <p>Roll and Scalloped Tag</p>
+                    <p>$2.50 (per item)</p>
                 </div>
                 <div class="image-option">
                     <img src="RollDisplayImages/RollTag3.png" alt="Option 3" id="ScallopedTag" onclick="selectImage('ScallopedTag')">
-                    <p>Premium Roll and Tag</p>
-                    <p>$3.50 (per item)</p>
+                    <p>Roll and Banner Tag</p>
+                    <p>$3.00 (per item)</p>
                 </div>
                 <div class="image-option">
                     <img src="RollDisplayImages/RollTag4.png" alt="Option 4" id="Sticker" onclick="selectImage('Sticker')">
-                    <p>Exclusive Roll and Tag</p>
-                    <p>$4.00 (per item)</p>
+                    <p>Roll and Sticker</p>
+                    <p>$2.00 (per item)</p>
                 </div>
             </div>
 
             <!-- Center the submit button -->
             <div class="button-container">
-                <button class="submit-modal-button" onclick="submitDetails()">Submit</button>
+                <button class="submit-modal-button" onclick="submitDetails()">Get Price</button>
             </div>
         </div>
     </div>
@@ -512,8 +512,8 @@ async function updateLogo() {
 window.onload = updateLogo;
 
 // Initialize frontImageSrc and backImageSrc with the default values
-let frontImageSrc = 'PC450C1/BrightGold_Flat_Front.png';
-let backImageSrc = 'PC450C1/BrightGold_Flat_Back.png';
+let frontImageSrc = 'PC450C1/PC450_brightgold_flat_front.png';
+let backImageSrc = 'PC450C1/PC450_brightgold_flat_back.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
@@ -624,8 +624,8 @@ function updateColor() {
             backImageSrc = 'PC450C1/PC450_yellow_flat_back.png';
             break;
         default:
-            frontImageSrc = 'PC450C1/BrightGoldFront.png';
-            backImageSrc = 'PC450C1/BrightGoldBack.png';
+            frontImageSrc = 'PC450C1/PC450_brightgold_flat_front.png';
+            backImageSrc = 'PC450C1/PC450_brightgold_flat_back.png';
             break;
     }
 
@@ -916,11 +916,11 @@ async function calculatePrice() {
             const merchCostPerItem = (result.merchCharge / orderDetails.totalQuantity).toFixed(2);
             const rollTagCostPerItem = (result.rollTagCharge / orderDetails.totalQuantity).toFixed(2);
             const pricingBreakdown = `
-                <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
-                <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
-                <p><strong>Shipping:</strong> Free</p>
-                <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
-            `;
+    <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
+    <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
+    <p><strong>Shipping:</strong> Free</p>
+    <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
+`;
 
             // Save pricing data to localStorage
             const priceData = {
@@ -929,18 +929,6 @@ async function calculatePrice() {
                 totalPrice: result.totalPrice.toFixed(2)
             };
             localStorage.setItem('priceData', JSON.stringify(priceData));
-
-            // Save the product to the cart
-            const product = {
-                title: 'Exceptional Tee',
-                sku: orderDetails.sku,
-                color: orderDetails.color,
-                sizes: orderDetails.sizes,
-                merchCost: result.merchCharge.toFixed(2),
-                rollTagCost: result.rollTagCharge.toFixed(2),
-                totalPrice: result.totalPrice.toFixed(2)
-            };
-            addToCart(product);
 
             // Display the breakdown in the modal
             console.log("Inserting pricing details into modal...");
@@ -976,6 +964,26 @@ function closePriceModal() {
 
 // Function to proceed to checkout
 function proceedToCheckout() {
+    // Retrieve the pricing data
+    const priceData = JSON.parse(localStorage.getItem('priceData'));
+    
+    // Retrieve the existing order details
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+    // Prepare the product details to be added to the cart
+    const product = {
+        title: 'Exceptional Tee',
+        sku: orderDetails.sku,
+        color: orderDetails.color,
+        sizes: orderDetails.sizes,
+        merchCost: priceData.merch,
+        rollTagCost: priceData.rollAndTag,
+        totalPrice: priceData.totalPrice
+    };
+
+    // Add the product to the cart
+    addToCart(product);
+
     // Redirect to the checkout page or handle the checkout process
     window.location.href = 'checkout.html';
 }
@@ -991,7 +999,7 @@ function addToCart(product) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Load header and footer when DOM is ready
+// Load header, footer, and logo when DOM is ready
 document.addEventListener("DOMContentLoaded", function() {
     // Load the header
     fetch('header.html')
@@ -1008,6 +1016,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('footer-container').innerHTML = data;
         })
         .catch(error => console.error('Error loading footer:', error));
+
+    // Call updateLogo() to fetch and display the user's logo immediately upon page load
+    updateLogo();
 });
 </script>
 
