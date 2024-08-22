@@ -310,7 +310,7 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="P170C1/P170_black_flat_front.png" alt="Product Image">
+            <img id="product-image" src="P170C1/P170_Black_flat_front.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
@@ -323,8 +323,8 @@ h1.product-title {
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="Ash" selected>⬜ Ash</option>
-        <option value="Black">⬛ Black</option>
+        <option value="Black" selected>⬛ Black</option>
+        <option value="Black">⬜ Ash</option>
         <option value="CharcoalHeather">⬛ Charcoal Heather</option>
         <option value="DeepForest">🟩 Deep Forest</option>
         <option value="DeepRed">🟥 Deep Red</option>
@@ -507,7 +507,7 @@ function updateColor() {
 
     switch (color) {
         case 'Black':
-            frontImageSrc = 'P170C1/P170_black_flat_front.png';
+            frontImageSrc = 'P170C1/P170_Black_flat_front.png';
             backImageSrc = 'P170C1/P170_black_flat_back.png';
             break;
         case 'Ash':
@@ -563,7 +563,7 @@ function updateColor() {
             backImageSrc = 'P170C1/P170_white_flat_back.png';
             break;
         default:
-            frontImageSrc = 'P170C1/P170_black_flat_front.png';
+            frontImageSrc = 'P170C1/P170_Black_flat_front.png';
             backImageSrc = 'P170C1/P170_black_flat_back.png';
             break;
     }
@@ -595,7 +595,7 @@ function updateLogoPlacement() {
             logo.style.display = 'block';
             logo.style.width = '180px';
             logo.style.height = '180px';
-            logo.style.top = '25%';
+            logo.style.top = '42%';
             logo.style.left = '50%';
             logo.style.transform = 'translate(-50%, -50%)';
             image.classList.add('back-image');
@@ -614,7 +614,7 @@ function updateLogoPlacement() {
         logo.style.display = 'block';
         logo.style.width = '180px';
         logo.style.height = '180px';
-        logo.style.top = '28%';
+        logo.style.top = '42%';
         logo.style.left = '50%';
         logo.style.transform = 'translate(-50%, -50%)';
         image.classList.add('back-image');
@@ -629,21 +629,21 @@ function updateFrontLogo(frontPlacement, logo, image) {
             case 'fullFront':  // Match HTML value
                 logo.style.width = '200px';
                 logo.style.height = '200px';
-                logo.style.top = '35%';
+                logo.style.top = '44%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
             case 'centerChest':  // Match HTML value
                 logo.style.width = '154px';
                 logo.style.height = '154px';
-                logo.style.top = '32%';
+                logo.style.top = '41%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
             case 'leftChest':  // Match HTML value
                 logo.style.width = '90px';
                 logo.style.height = '90px';
-                logo.style.top = '30%';
+                logo.style.top = '38%';
                 logo.style.left = '64%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;

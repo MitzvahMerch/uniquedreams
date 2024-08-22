@@ -31,7 +31,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.18); /* Scale both front and back images by 32% */
+    transform: scale(1.25); /* Scale both front and back images by 32% */
     transform-origin: 50% 28%; /* Custom percentages for finer control */
 }
 
@@ -310,55 +310,30 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="PC78HC1/PC78H_aquaticblue_flat_front.png" alt="Product Image">
+            <img id="product-image" src="BC3719C1/BC3719_heathertrueroyal_flat_front.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
         </div>
 
         <div class="controls-container">
-            <h1 class="product-title">Quality Hoodie</h1> <!-- Product Title Changed to Header -->
-            <div class="sku-text">PC78HC1</div> <!-- SKU Text Added -->
-
+            <h1 class="product-title">Ring Spun Soft Sweatshirt</h1> <!-- Product Title Changed to Header -->
+            <div class="sku-text">BC3719C1</div> <!-- SKU Text Added -->
+          
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="AquaticBlue" selected>🔵 Aquatic Blue</option>
-        <option value="Ash">⬜ Ash</option>
-        <option value="AthleticHthr">⬛ Athletic Heather</option>
-        <option value="CarolinaBlue">🔵 Carolina Blue</option>
-        <option value="Charcoal">⬛ Charcoal</option>
-        <option value="CoyoteBrown">🟫 Coyote Brown</option>
-        <option value="DarkGreen">🟩 Dark Green</option>
-        <option value="DarkChocolate">🟫 Dark Chocolate</option>
-        <option value="DarkHeatherGrey">⬛ Dark Heather Grey</option>
-        <option value="Gold">🟨 Gold</option>
-        <option value="GraphiteHeather">⬛ Graphite Heather</option>
+        <option value="HeatherTrueRoyal" selected>🔵 Heather True Royal</option>
+        <option value="AthleticHeather">⬛ Athletic Heather</option>
+        <option value="Black">⬛ Black</option>
+        <option value="DarkGreyHeather">⬛ Dark Grey Heather</option>
+        <option value="HeatherForest">🟩 Heather Forest</option>
         <option value="HeatherNavy">🔵 Heather Navy</option>
-        <option value="JetBlack">⬛ Jet Black</option>
-        <option value="Kelly">🟩 Kelly</option>
-        <option value="Lime">🟩 Lime</option>
-        <option value="Maroon">🟥 Maroon</option>
+        <option value="MilitaryGreen">🟩 Military Green</option>
         <option value="Navy">🔵 Navy</option>
-        <option value="NeonBlue">🔵 Neon Blue</option>
-        <option value="NeonGreen">🟩 Neon Green</option>
-        <option value="NeonPink">🟪 Neon Pink</option>
-        <option value="NeonYellow">🟨 Neon Yellow</option>
-        <option value="OliveDrabGreen">🟩 Olive Drab Green</option>
-        <option value="Orange">🟧 Orange</option>
-        <option value="Purple">🟪 Purple</option>
         <option value="Red">🟥 Red</option>
-        <option value="Royal">🔵 Royal</option>
-        <option value="Sapphire">🔵 Sapphire</option>
-        <option value="Sangria">🟪 Sangria</option>
-        <option value="TeamPurple">🟪 Team Purple</option>
-        <option value="TrueRoyal">🔵 True Royal</option>
-        <option value="White">⬜ White</option>
-        <option value="WoodlandBrown">🟫 Woodland Brown</option>
     </select>
 </div>
-
-
 
             <div class="controls">
                 <label for="front-logo-placement">Front Logo Placement:</label>
@@ -422,7 +397,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        Crafted for comfort, this lighter weight sweatshirt is perfect for relaxing and it's a real value. | 7.8-ounce, 50/50 cotton/poly
+        Retail fit Solid Colors and Heather Colors: 6.5-ounce, 52/48 Airlume combed and ring spun cotton/poly fleece
     </div>
 
     <!-- Modal for additional information -->
@@ -519,151 +494,58 @@ async function updateLogo() {
 window.onload = updateLogo;
 
 // Initialize frontImageSrc and backImageSrc with the default values
-let frontImageSrc = 'PC78HC1/PC78H_aquaticblue_flat_front.png';
-let backImageSrc = 'PC78HC1/PC78H_aquaticblue_flat_back.png';
+let frontImageSrc = 'BC3719C1/BC3719_heathertrueroyal_flat_front.png';
+let backImageSrc = 'BC3719C1/BC3719_heathertrueroyal_flat_back.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'AquaticBlue':
-            frontImageSrc = 'PC78HC1/PC78H_aquaticblue_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_aquaticblue_flat_back.png';
+        case 'MilitaryGreen':
+            frontImageSrc = 'BC3719C1/BC3719_Military Green_Flat_Front.png';
+            backImageSrc = 'BC3719C1/BC3719_Military Green_Flat_Back.png';
             break;
-        case 'Ash':
-            frontImageSrc = 'PC78HC1/PC78H_ash_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_ash_flat_back.png';
+        case 'AthleticHeather':
+            frontImageSrc = 'BC3719C1/BC3719_athleticheather_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_athleticheather_flat_back.png';
             break;
-        case 'AthleticHthr':
-            frontImageSrc = 'PC78HC1/PC78H_athleticheather_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_athleticheather_flat_back.png';
+        case 'Black':
+            frontImageSrc = 'BC3719C1/BC3719_black_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_black_flat_back.png';
             break;
-        case 'CarolinaBlue':
-            frontImageSrc = 'PC78HC1/PC78H_carolinablue_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_carolinablue_flat_back.png';
+        case 'DarkGreyHeather':
+            frontImageSrc = 'BC3719C1/BC3719_darkgreyheather_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_darkgreyheather_flat_back.png';
             break;
-        case 'Charcoal':
-            frontImageSrc = 'PC78HC1/PC78H_charcoal_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_charcoal_flat_back.png';
-            break;
-        case 'CoyoteBrown':
-            frontImageSrc = 'PC78HC1/PC78H_coyotebrown_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_coyotebrown_flat_back.png';
-            break;
-        case 'DarkChocolate':
-            frontImageSrc = 'PC78HC1/PC78H_darkchocolatebrown_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_darkchocolatebrown_flat_back.png';
-            break;
-        case 'DarkGreen':
-            frontImageSrc = 'PC78HC1/PC78H_darkgreen_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_darkgreen_flat_back.png';
-            break;
-        case 'DarkHeatherGrey':
-            frontImageSrc = 'PC78HC1/PC78H_darkheathergrey_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_darkheathergrey_flat_back.png';
-            break;
-        case 'Gold':
-            frontImageSrc = 'PC78HC1/PC78H_gold_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_gold_flat_back.png';
-            break;
-        case 'GraphiteHeather':
-            frontImageSrc = 'PC78HC1/PC78H_graphiteheather_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_graphiteheather_flat_back.png';
+        case 'HeatherForest':
+            frontImageSrc = 'BC3719C1/BC3719_heatherforest_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_heatherforest_flat_back.png';
             break;
         case 'HeatherNavy':
-            frontImageSrc = 'PC78HC1/PC78H_heathernavy_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_heathernavy_flat_back.png';
+            frontImageSrc = 'BC3719C1/BC3719_heathernavy_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_heathernavy_flat_back.png';
             break;
-        case 'JetBlack':
-            frontImageSrc = 'PC78HC1/PC78H_jetblack_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_jetblack_flat_back.png';
-            break;
-        case 'KellyGreen':
-            frontImageSrc = 'PC78HC1/PC78H_kellygreen_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_kellygreen_flat_back.png';
-            break;
-        case 'Lime':
-            frontImageSrc = 'PC78HC1/PC78H_lime_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_lime_flat_back.png';
-            break;
-        case 'Maroon':
-            frontImageSrc = 'PC78HC1/PC78H_maroon_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_maroon_flat_back.png';
+        case 'HeatherTrueRoyal':
+            frontImageSrc = 'BC3719C1/BC3719_heathertrueroyal_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_heathertrueroyal_flat_back.png';
             break;
         case 'Navy':
-            frontImageSrc = 'PC78HC1/PC78H_navy_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_navy_flat_back.png';
-            break;
-        case 'NeonBlue':
-            frontImageSrc = 'PC78HC1/PC78H_neonblue_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_neonblue_flat_back.png';
-            break;
-        case 'NeonGreen':
-            frontImageSrc = 'PC78HC1/PC78H_neongreen_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_neongreen_flat_back.png';
-            break;
-        case 'NeonPink':
-            frontImageSrc = 'PC78HC1/PC78H_neonpink_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_neonpink_flat_back.png';
-            break;
-        case 'NeonYellow':
-            frontImageSrc = 'PC78HC1/PC78H_neonyellow_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_neonyellow_flat_back.png';
-            break;
-        case 'OliveDrabGreen':
-            frontImageSrc = 'PC78HC1/PC78H_olivedrabgreen_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_olivedrabgreen_flat_back.png';
-            break;
-        case 'Orange':
-            frontImageSrc = 'PC78HC1/PC78H_orange_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_orange_flat_back.png';
-            break;
-        case 'Purple':
-            frontImageSrc = 'PC78HC1/PC78H_purple_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_purple_flat_back.png';
+            frontImageSrc = 'BC3719C1/BC3719_navy_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_navy_flat_back.png';
             break;
         case 'Red':
-            frontImageSrc = 'PC78HC1/PC78H_red_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_red_flat_back.png';
-            break;
-        case 'Royal':
-            frontImageSrc = 'PC78HC1/PC78H_royal_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_royal_flat_back.png';
-            break;
-        case 'Sangria':
-            frontImageSrc = 'PC78HC1/PC78H_sangria_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_sangria_flat_back.png';
-            break;
-        case 'Sapphire':
-            frontImageSrc = 'PC78HC1/PC78H_sapphire_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_sapphire_flat_back.png';
-            break;
-        case 'TeamPurple':
-            frontImageSrc = 'PC78HC1/PC78H_teampurple_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_teampurple_flat_back.png';
-            break;
-        case 'TrueRoyal':
-            frontImageSrc = 'PC78HC1/PC78H_trueroyal_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_trueroyal_flat_back.png';
-            break;
-        case 'White':
-            frontImageSrc = 'PC78HC1/PC78H_white_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_white_flat_back.png';
-            break;
-        case 'WoodlandBrown':
-            frontImageSrc = 'PC78HC1/PC78H_woodlandbrown_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_woodlandbrown_flat_back.png';
+            frontImageSrc = 'BC3719C1/BC3719_red_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_red_flat_back.png';
             break;
         default:
-            frontImageSrc = 'PC78HC1/PC78H_aquaticblue_flat_front.png';
-            backImageSrc = 'PC78HC1/PC78H_aquaticblue_flat_back.png';
+            rontImageSrc = 'BC3719C1/BC3719_heathertrueroyal_flat_front.png';
+            backImageSrc = 'BC3719C1/BC3719_heathertrueroyal_flat_back.png';
             break;
     }
 
     // Update the logo placement after color change
     updateLogoPlacement();
 }
-
 
 
 
@@ -688,7 +570,7 @@ function updateLogoPlacement() {
             logo.style.display = 'block';
             logo.style.width = '180px';
             logo.style.height = '180px';
-            logo.style.top = '35%';
+            logo.style.top = '42%';
             logo.style.left = '50%';
             logo.style.transform = 'translate(-50%, -50%)';
             image.classList.add('back-image');
@@ -707,7 +589,7 @@ function updateLogoPlacement() {
         logo.style.display = 'block';
         logo.style.width = '180px';
         logo.style.height = '180px';
-        logo.style.top = '35%';
+        logo.style.top = '42%';
         logo.style.left = '50%';
         logo.style.transform = 'translate(-50%, -50%)';
         image.classList.add('back-image');
@@ -722,21 +604,21 @@ function updateFrontLogo(frontPlacement, logo, image) {
             case 'fullFront':  // Match HTML value
                 logo.style.width = '200px';
                 logo.style.height = '200px';
-                logo.style.top = '40%';
+                logo.style.top = '44%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
             case 'centerChest':  // Match HTML value
                 logo.style.width = '154px';
                 logo.style.height = '154px';
-                logo.style.top = '37%';
+                logo.style.top = '41%';
                 logo.style.left = '50%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
             case 'leftChest':  // Match HTML value
                 logo.style.width = '90px';
                 logo.style.height = '90px';
-                logo.style.top = '34%';
+                logo.style.top = '38%';
                 logo.style.left = '64%';
                 logo.style.transform = 'translate(-50%, -50%)';
                 break;
