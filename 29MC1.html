@@ -310,42 +310,56 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="ST350C1/ST350_Deep Orange_Flat_Front.png" alt="Product Image">
+            <img id="product-image" src="29MC1/29M_cyberpink_flat_front.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
         </div>
 
         <div class="controls-container">
-            <h1 class="product-title">Athletic Tee</h1> <!-- Product Title Changed to Header -->
-            <div class="sku-text">ST350C1</div> <!-- SKU Text Added -->
+            <h1 class="product-title">Standard Blend Tee</h1> <!-- Product Title Changed to Header -->
+            <div class="sku-text">29MC1</div> <!-- SKU Text Added -->
 
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="DeepOrange" selected>🟧 Deep Orange</option>
-        <option value="AtomicBlue">🔵 Atomic Blue</option>
+        <option value="ClassicPink" selected>🟪 Classic Pink</option>
+        <option value="AquaticBlue">🔵 Aquatic Blue</option>
+        <option value="Ash">⬜ Ash</option>
+        <option value="AthleticHthr">⬛ Athletic Heather</option>
         <option value="Black">⬛ Black</option>
+        <option value="BlackHeather">⬛ Black Heather</option>
+        <option value="BurntOrange">🟧 Burnt Orange</option>
+        <option value="CaliforniaBlue">🔵 California Blue</option>
         <option value="Cardinal">🟥 Cardinal</option>
-        <option value="CarolinaBlue">🔵 Carolina Blue</option>
-        <option value="DeepRed">🟥 Deep Red</option>
+        <option value="CharcoalGrey">⬛ Charcoal Grey</option>
+        <option value="ColumbiaBlue">🔵 Columbia Blue</option>
+        <option value="CyberPink">🟪 Cyber Pink</option>
+        <option value="DeepPurple">🟪 Deep Purple</option>
         <option value="ForestGreen">🟩 Forest Green</option>
         <option value="Gold">🟨 Gold</option>
-        <option value="GreyConcrete">⬛ Grey Concrete</option>
-        <option value="IronGrey">⬛ Iron Grey</option>
-        <option value="KellyGreen">🟩 Kelly Green</option>
-        <option value="LimeShock">🟩 Lime Shock</option>
+        <option value="IslandYellow">🟨 Island Yellow</option>
+        <option value="Jade">🟩 Jade</option>
+        <option value="Kelly">🟩 Kelly</option>
+        <option value="Kiwi">🟩 Kiwi</option>
+        <option value="LightBlue">🟦 Light Blue</option>
         <option value="Maroon">🟥 Maroon</option>
-        <option value="NeonOrange">🟧 Neon Orange</option>
+        <option value="MilitaryGreen">🟩 Military Green</option>
+        <option value="Navy">🔵 Navy</option>
+        <option value="NeonGreen">🟩 Neon Green</option>
         <option value="NeonPink">🟪 Neon Pink</option>
         <option value="NeonYellow">🟨 Neon Yellow</option>
-        <option value="Purple">🟪 Purple</option>
+        <option value="Oxford">⬛ Oxford</option>
+        <option value="Royal">🔵 Royal</option>
+        <option value="SafetyGreen">🟩 Safety Green</option>
+        <option value="SafetyOrange">🟧 Safety Orange</option>
         <option value="Silver">⬜ Silver</option>
-        <option value="TexasOrange">🟧 Texas Orange</option>
-        <option value="TropicBlue">🔵 Tropic Blue</option>
-        <option value="TrueNavy">🔵 True Navy</option>
+        <option value="TennesseeOrange">🟧 Tennessee Orange</option>
         <option value="TrueRed">🟥 True Red</option>
-        <option value="TrueRoyal">🔵 True Royal</option>
+        <option value="VintageHeatherBlue">🔵 Vintage Heather Blue</option>
+        <option value="VintageHeatherMaroon">🟥 Vintage Heather Maroon</option>
+        <option value="VintageHeatherNavy">🔵 Vintage Heather Navy</option>
+        <option value="VintageHeatherRed">🟥 Vintage Heather Red</option>
         <option value="White">⬜ White</option>
     </select>
 </div>
@@ -413,7 +427,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        Lightweight, roomy and highly breathable, these moisture-wicking, value-priced tees feature PosiCharge technology to lock in color and prevent logos from fading.| 3.8-ounce, 100% polyester interlock
+        Jerzees Heavyweight blend, 50/50 cotton/poly (preshrunk) 1x1 rib knit crew collar Seamless body with set-in sleeves Double-needle coverstitched on front neck Shoulder-to-shoulder taping
     </div>
 
     <!-- Modal for additional information -->
@@ -510,112 +524,164 @@ async function updateLogo() {
 window.onload = updateLogo;
 
 // Initialize frontImageSrc and backImageSrc with the default values
-let frontImageSrc = 'ST350C1/ST350_Deep Orange_Flat_Front.png';
-let backImageSrc = 'ST350C1/ST350_Deep Orange_Flat_Back.png';
+let frontImageSrc = '29MC1/29M_cyberpink_flat_front.png';
+let backImageSrc = '29MC1/29M_cyberpink_flat_back.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'DeepOrange':
-            frontImageSrc = 'ST350C1/ST350_Deep Orange_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Deep Orange_Flat_Back.png';
-            break;
-        case 'AtomicBlue':
-            frontImageSrc = 'ST350C1/ST350_Atomic Blue_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Atomic Blue_Flat_Back.png';
-            break;
         case 'Black':
-            frontImageSrc = 'ST350C1/ST350_Black_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_Black_flat_back.png';
+            frontImageSrc = '29MC1/29M_black_flat_front.png';
+            backImageSrc = '29MC1/29M_black_flat_back.png';
+            break;
+        case 'AquaticBlue':
+            frontImageSrc = '29MC1/29M_aquaticblue_flat_front.png';
+            backImageSrc = '29MC1/29M_aquaticblue_flat_back.png';
+            break;
+        case 'Ash':
+            frontImageSrc = '29MC1/29M_ash_flat_front.png';
+            backImageSrc = '29MC1/29M_ash_flat_back.png';
+            break;
+        case 'AthleticHthr':
+            frontImageSrc = '29MC1/29M_athleticheather_flat_front.png';
+            backImageSrc = '29MC1/29M_athleticheather_flat_back.png';
+            break;
+        case 'BlackHeather':
+            frontImageSrc = '29MC1/29M_blackheather_flat_front.png';
+            backImageSrc = '29MC1/29M_blackheather_flat_back.png';
+            break;
+        case 'BurntOrange':
+            frontImageSrc = '29MC1/29M_burntorange_flat_front.png';
+            backImageSrc = '29MC1/29M_burntorange_flat_back.png';
+            break;
+        case 'CaliforniaBlue':
+            frontImageSrc = '29MC1/29M_californiablue_flat_front.png';
+            backImageSrc = '29MC1/29M_californiablue_flat_back.png';
             break;
         case 'Cardinal':
-            frontImageSrc = 'ST350C1/ST350_cardinal_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_cardinal_flat_back.png';
+            frontImageSrc = '29MC1/29M_cardinal_flat_front.png';
+            backImageSrc = '29MC1/29M_cardinal_flat_back.png';
             break;
-        case 'CarolinaBlue':
-            frontImageSrc = 'ST350C1/ST350_Carolina Blue_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Carolina Blue_Flat_Back.png';
+        case 'CharcoalGrey':
+            frontImageSrc = '29MC1/29M_charcoalgrey_flat_front.png';
+            backImageSrc = '29MC1/29M_charcoalgrey_flat_back.png';
             break;
-        case 'DeepRed':
-            frontImageSrc = 'ST350C1/ST350_DEEP RED_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_DEEP RED_Flat_Back.png';
+        case 'ColumbiaBlue':
+            frontImageSrc = '29MC1/29M_columbiablue_flat_front.png';
+            backImageSrc = '29MC1/29M_columbiablue_flat_back.png';
+            break;
+        case 'CyberPink':
+            frontImageSrc = '29MC1/29M_cyberpink_flat_front.png';
+            backImageSrc = '29MC1/29M_cyberpink_flat_back.png';
+            break;
+        case 'DeepPurple':
+            frontImageSrc = '29MC1/29M_deeppurple_flat_front.png';
+            backImageSrc = '29MC1/29M_deeppurple_flat_back.png';
             break;
         case 'ForestGreen':
-            frontImageSrc = 'ST350C1/ST350_Forest Green_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Forest Green_Flat_Back.png';
+            frontImageSrc = '29MC1/29M_forestgreen_flat_front.png';
+            backImageSrc = '29MC1/29M_forestgreen_flat_back.png';
             break;
         case 'Gold':
-            frontImageSrc = 'ST350C1/ST350_gold_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_gold_flat_back.png';
+            frontImageSrc = '29MC1/29M_gold_flat_front.png';
+            backImageSrc = '29MC1/29M_gold_flat_back.png';
             break;
-        case 'GreyConcrete':
-            frontImageSrc = 'ST350C1/ST350_Grey Concrete_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Grey Concrete_Flat_Back.png';
+        case 'IslandYellow':
+            frontImageSrc = '29MC1/29M_islandyellow_flat_front.png';
+            backImageSrc = '29MC1/29M_islandyellow_flat_back.png';
             break;
-        case 'IronGrey':
-            frontImageSrc = 'ST350C1/ST350_Iron Grey_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Iron Grey_Flat_Back.png';
+        case 'Jade':
+            frontImageSrc = '29MC1/29M_jade_flat_front.png';
+            backImageSrc = '29MC1/29M_jade_flat_back.png';
             break;
-        case 'KellyGreen':
-            frontImageSrc = 'ST350C1/ST350_Kelly Green_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Kelly Green_Flat_Back.png';
+        case 'Kelly':
+            frontImageSrc = '29MC1/29M_kelly_flat_front.png';
+            backImageSrc = '29MC1/29M_kelly_flat_back.png';
             break;
-        case 'LimeShock':
-            frontImageSrc = 'ST350C1/ST350_Lime Shock_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Lime Shock_Flat_Back.png';
+        case 'Kiwi':
+            frontImageSrc = '29MC1/29M_kiwi_flat_front.png';
+            backImageSrc = '29MC1/29M_kiwi_flat_back.png';
             break;
-        case 'NeonOrange':
-            frontImageSrc = 'ST350C1/ST350_Neon Orange_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Neon Orange_Flat_Back.png';
-            break;
-        case 'NeonYellow':
-            frontImageSrc = 'ST350C1/ST350_Neon Yellow_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Neon Yellow_Flat_Back.png';
-            break;
-        case 'TexasOrange':
-            frontImageSrc = 'ST350C1/ST350_Texas Orange_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Texas Orange_Flat_Back.png';
-            break;
-        case 'TropicBlue':
-            frontImageSrc = 'ST350C1/ST350_Tropic Blue_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Tropic Blue_Flat_Back.png';
-            break;
-        case 'TrueNavy':
-            frontImageSrc = 'ST350C1/ST350_True Navy_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_True Navy_Flat_Back.png';
-            break;
-        case 'TrueRed':
-            frontImageSrc = 'ST350C1/ST350_True Red_Form_Front.png';
-            backImageSrc = 'ST350C1/ST350_True Red_Flat_Back.png';
-            break;
-        case 'TrueRoyal':
-            frontImageSrc = 'ST350C1/ST350_True Royal_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_True Royal_Flat_Back.png';
+        case 'LightBlue':
+            frontImageSrc = '29MC1/29M_lightblue_flat_front.png';
+            backImageSrc = '29MC1/29M_lightblue_flat_back.png';
             break;
         case 'Maroon':
-            frontImageSrc = 'ST350C1/ST350_maroon_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_maroon_flat_back.png';
+            frontImageSrc = '29MC1/29M_maroon_flat_front.png';
+            backImageSrc = '29MC1/29M_maroon_flat_back.png';
+            break;
+        case 'MilitaryGreen':
+            frontImageSrc = '29MC1/29M_militarygreen_flat_front.png';
+            backImageSrc = '29MC1/29M_militarygreen_flat_back.png';
+            break;
+        case 'Navy':
+            frontImageSrc = '29MC1/29M_navy_flat_front.png';
+            backImageSrc = '29MC1/29M_navy_flat_back.png';
+            break;
+        case 'NeonGreen':
+            frontImageSrc = '29MC1/29m_neongreen_flat_front.png';
+            backImageSrc = '29MC1/29m_neongreen_flat_back.png';
             break;
         case 'NeonPink':
-            frontImageSrc = 'ST350C1/ST350_neonpink_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_neonpink_flat_back.png';
+            frontImageSrc = '29MC1/29m_neonpink_flat_front.png';
+            backImageSrc = '29MC1/29m_neonpink_flat_back.png';
             break;
-        case 'Purple':
-            frontImageSrc = 'ST350C1/ST350_purple_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_purple_flat_back.png';
+        case 'NeonYellow':
+            frontImageSrc = '29MC1/29M_neonyellow_flat_front.png';
+            backImageSrc = '29MC1/29M_neonyellow_flat_back.png';
+            break;
+        case 'Oxford':
+            frontImageSrc = '29MC1/29M_oxford_flat_front.png';
+            backImageSrc = '29MC1/29M_oxford_flat_back.png';
+            break;
+        case 'Royal':
+            frontImageSrc = '29MC1/29M_royal_flat_front.png';
+            backImageSrc = '29MC1/29M_royal_flat_back.png';
+            break;
+        case 'SafetyGreen':
+            frontImageSrc = '29MC1/29M_safetygreen_flat_front.png';
+            backImageSrc = '29MC1/29m_safetygreen_flat_back.png';
+            break;
+        case 'SafetyOrange':
+            frontImageSrc = '29MC1/29M_safetyorange_flat_front.png';
+            backImageSrc = '29MC1/29M_safetyorange_flat_back.png';
             break;
         case 'Silver':
-            frontImageSrc = 'ST350C1/ST350_silver_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_silver_flat_back.png';
+            frontImageSrc = '29MC1/29M_silver_flat_front.png';
+            backImageSrc = '29MC1/29M_silver_flat_back.png';
+            break;
+        case 'TennesseeOrange':
+            frontImageSrc = '29MC1/29M_tennesseeorange_flat_front.png';
+            backImageSrc = '29MC1/29M_tennesseeorange_flat_back.png';
+            break;
+        case 'TrueRed':
+            frontImageSrc = '29MC1/29M_truered_flat_front.png';
+            backImageSrc = '29MC1/29M_truered_flat_back.png';
+            break;
+        case 'VintageHeatherBlue':
+            frontImageSrc = '29MC1/29M_vintageheatherblue_flat_front.png';
+            backImageSrc = '29MC1/29M_vintageheatherblue_flat_back.png';
+            break;
+        case 'VintageHeatherMaroon':
+            frontImageSrc = '29MC1/29M_vintageheathermaroon_flat_front.png';
+            backImageSrc = '29MC1/29M_vintageheathermaroon_flat_back.png';
+            break;
+        case 'VintageHeatherNavy':
+            frontImageSrc = '29MC1/29M_vintageheathernavy_flat_front.png';
+            backImageSrc = '29MC1/29M_vintageheathernavy_flat_back.png';
+            break;
+        case 'VintageHeatherRed':
+            frontImageSrc = '29MC1/29M_vintageheatherred_flat_front.png';
+            backImageSrc = '29MC1/29M_vintageheatherred_flat_back.png';
             break;
         case 'White':
-            frontImageSrc = 'ST350C1/ST350_white_flat_front.png';
-            backImageSrc = 'ST350C1/ST350_white_flat_back.png';
+            frontImageSrc = '29MC1/29M_white_flat_front.png';
+            backImageSrc = '29MC1/29M_white_flat_back.png';
             break;
         default:
-            frontImageSrc = 'ST350C1/ST350_Deep Orange_Flat_Front.png';
-            backImageSrc = 'ST350C1/ST350_Deep Orange_Flat_Back.png';
+            frontImageSrc = '29MC1/29M_cyberpink_flat_front.png';
+            backImageSrc = '29MC1/29MC1/29M_cyberpink_flat_back.png';
             break;
     }
 
