@@ -158,6 +158,9 @@
             <button id="submitButton">Submit</button>
             <div class="feedback-message" id="feedback-message">Mazel Tov!</div>
             <div class="error-message" id="error-message">Submission failed. Please try again.</div>
+            <div id="backgroundPreference" style="color: red; margin-top: 10px; font-size: 14px;">
+                Images without background preferred
+            </div>
             <div class="file-type-info" id="fileTypeInfo">.png, .jpg, .ai, .svg, .webp, .pdf</div> <!-- File type info -->
         </div>
         <a href="https://mitzvahmerch.github.io/WriteOcassio/ApparelPage.html" class="merch-button" id="merchButton">✡️ Select Merch ✡️</a>
@@ -270,41 +273,45 @@
                 fileInput.value = ''; // Clear the file input value
             });
 
-            submitButton.addEventListener('click', async function() {
-                const file = fileInput.files[0];
-                if (!file) {
-                    alert('Please select a file.');
-                    return;
-                }
+submitButton.addEventListener('click', async function() {
+    const file = fileInput.files[0];
+    if (!file) {
+        alert('Please select a file.');
+        return;
+    }
 
-                // Include session ID in metadata
-                const metadata = {
-                    customMetadata: {
-                        sessionId: sessionId
-                    }
-                };
+    // Include session ID in metadata
+    const metadata = {
+        customMetadata: {
+            sessionId: sessionId
+        }
+    };
 
-                const storageRef = ref(storage, 'logos/' + file.name);
-                try {
-                    const snapshot = await uploadBytes(storageRef, file, metadata);
-                    const downloadURL = await getDownloadURL(snapshot.ref);
+    const storageRef = ref(storage, 'logos/' + file.name);
+    try {
+        const snapshot = await uploadBytes(storageRef, file, metadata);
+        const downloadURL = await getDownloadURL(snapshot.ref);
 
-                    // Save logo data to Firestore under the session ID
-                    await setDoc(doc(db, "logos", sessionId), {
-                        sessionId: sessionId,
-                        logoName: file.name,
-                        downloadURL: downloadURL,
-                        timestamp: new Date().toISOString()
-                    });
+        // Save logo data to Firestore under the session ID
+        await setDoc(doc(db, "logos", sessionId), {
+            sessionId: sessionId,
+            logoName: file.name,
+            downloadURL: downloadURL,
+            timestamp: new Date().toISOString()
+        });
 
-                    feedbackMessage.style.display = 'block';
-                    submitButton.style.display = 'none';
-                    merchButton.style.display = 'block';
-                } catch (error) {
-                    console.error('Error: ', error);
-                    errorMessage.style.display = 'block';
-                }
-            });
+        feedbackMessage.style.display = 'block';
+        submitButton.style.display = 'none';
+        merchButton.style.display = 'block';
+        
+        // Hide the background preference line
+        document.getElementById('backgroundPreference').style.display = 'none';
+    } catch (error) {
+        console.error('Error: ', error);
+        errorMessage.style.display = 'block';
+    }
+});
+
         });
     </script>
 </body>
