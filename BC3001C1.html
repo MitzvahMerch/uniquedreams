@@ -3,283 +3,1039 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Display</title>
+    <title>Product Page with Logo Placement</title>
+    
+    <!-- Link to your global stylesheet -->
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure this path is correct -->
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0B3A92;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        header, footer {
-            background-color: #004080;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            left: 0;
-            z-index: 1000;
-        }
-        header {
-            top: 0;
-        }
-        footer {
-            bottom: 0;
-        }
-        .main-content {
-            margin-top: 60px; /* Ensure the content is below the fixed header */
-            margin-bottom: 60px; /* Ensure the content is above the fixed footer */
-        }
-        .product-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-            background-color: #0B3A92;
-            gap: 20px;
-        }
-        .product-image-container {
-            flex: 1;
-            text-align: center;
-            background-color: #f0f0f0; /* Light grey background */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .product-image {
-            background-color: #fff; /* White background for the image */
-            padding: 20px;
-            border-radius: 10px;
-            border: 5px solid #fff; /* White border around the image */
-        }
-        .product-image img {
-            max-width: 100%;
-            height: auto;
-        }
-        .back-image {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .back-image img {
-            max-width: 100px;
-            height: auto;
-            cursor: pointer;
-        }
-        .product-details {
-            flex: 0 0 400px; /* Adjusted width */
-            background-color: #f0f0f0; /* Light grey background */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .product-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .product-brand {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .product-price {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .product-form {
-            margin-bottom: 20px;
-        }
-        .product-form label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .product-form select,
-        .product-form button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .product-form button {
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-        .product-form button:hover {
-            background-color: #0056b3;
-        }
-        .size-table {
-            width: 100%;
-            border-spacing: 10px;
-        }
-        .size-table td {
-            vertical-align: middle;
-        }
-        .size-input {
-            width: 60px;
-            padding: 5px;
-            margin-left: 10px;
-        }
-        #priceDisplay {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.image-container {
+    position: relative;
+    width: 499px; /* New width based on aspect ratio */
+    height: 673px; /* Increased height */
+    border: 6px solid white; /* Black border */
+    background-color: #1493E9; /* Changed to blue */
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.32); /* Scale both front and back images by 32% */
+    transform-origin: 50% 28%; /* Custom percentages for finer control */
+}
+
+.logo-placeholder {
+    position: absolute;
+    display: none;
+}
+
+.logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.controls-container {
+    flex: 0 0 400px; /* Fixed width for the controls container */
+    height: 660px; /* Shortened by 30px to match image container */
+    background-color: #FFFFFF; /* Changed to white */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.controls label {
+    margin-right: 10px;
+    font-weight: bold; /* Make labels bold */
+}
+
+.controls select {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.size-table {
+    width: 100%;
+    border-spacing: 10px;
+    margin-bottom: 20px;
+}
+
+.size-table td {
+    vertical-align: middle;
+    width: 50%; /* Make sure each cell takes up half the row */
+    font-weight: bold; /* Make size labels bold */
+}
+
+.size-input {
+    width: 100%; /* Make the input take up the full width of the cell */
+    padding: 5px;
+    margin-left: 0;
+    box-sizing: border-box;
+}
+
+.total-input {
+    width: 100%;
+    padding: 5px;
+    margin-left: 0;
+    box-sizing: border-box;
+    background-color: #e0e0e0; /* Light gray background for non-editable field */
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: not-allowed;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1493E9; /* Changed to blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold; /* Made text bold */
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit-button:hover {
+    background-color: #1177C3; /* Slightly darker shade for hover effect */
+}
+
+h1.product-title {
+    font-size: 32px; /* Twice the size of the "Color" label */
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.sku-text {
+    font-size: 16px; /* Half the size of the header */
+    font-weight: bold;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.product-description {
+    margin-top: 50px; /* Increase space between the disclaimer and the product description */
+    font-size: 14px;
+    color: #FFFFFF;
+    max-width: 500px; /* Restrict width to match image container */
+    padding-left: 16%; /* Use percentage for padding */
+}
+
+.disclaimer-container {
+    margin-top: 10px; /* Adjust the margin as needed */
+    font-size: 14px;
+    font-weight: bold;
+    color: gray;
+    max-width: 500px; /* Restrict width to match image container */
+    padding-left: 16%; /* Use percentage for padding */
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-modal-button {
+    background-color: #1493E9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center; /* Ensure text inside the button is centered */
+    margin: 0 auto; /* Center the button within the container */
+}
+
+.submit-modal-button:hover {
+    background-color: #1177C3;
+}
+
+.image-options {
+    display: none;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.image-option {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.image-options img {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.image-options img.selected {
+    border-color: #1493E9; /* Highlight the selected image with a blue border */
+}
+
+.image-option p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Space above the button */
+    width: 100%; /* Ensure the container takes up the full width */
+}
+
+/* Price Modal styles - reusing the modal styles you already have */
+#priceModal .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+#price-display {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#priceModal .button-container {
+    display: flex !important; /* Ensures it's displayed */
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    visibility: visible !important; /* Ensures it's visible */
+}
+        #pricing-header {
+    color: #05216E;
+    text-align: center;
+    font-size: 24px; /* Adjust to your desired size */
+    font-weight: bold; /* For the header */
+    margin-bottom: 20px; /* Add some space below the header */
+}
+
+#pricing-details {
+    text-align: center;
+    font-size: 18px; /* Adjust to match your design */
+}
+
+#pricing-details p {
+    margin: 10px 0;
+}
+
+#pricing-details p span {
+    font-weight: normal; /* Unbold everything except total */
+}
+
+#pricing-details p.total {
+    font-weight: bold; /* Bold the total price line */
+}
+
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Your Website Name</h1>
-</header>
+        <!-- Header Container -->
+    <div id="header-container"></div>
 
-<div class="main-content">
+    <!-- Main Content -->
     <div class="product-container">
-        <div class="product-image-container">
-            <div class="product-image">
-                <img id="main-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png" alt="Ringspun Super Soft Tee">
-            </div>
-            <div class="back-image">
-                <img id="back-image" src="https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Sweatshirt6.png" alt="Back Image" onclick="changeImage()">
+        <div class="image-container">
+            <img id="product-image" src="BC3001C1/BC3001_cardinal_flat_front.png" alt="Product Image">
+            <div id="logo-placeholder" class="logo-placeholder">
+                <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
         </div>
-        <div class="product-details">
-            <div class="product-title">Ringspun Super Soft Tee</div>
-            <div class="product-brand">Bella Canvas | BC3001C1</div>
-            <div class="product-price">$6.21</div>
-            <form class="product-form" onsubmit="calculateQuantity(event)">
-                <label for="color">Color</label>
-                <select id="color" onchange="updateImages()">
-                    <option value="red">Red</option>
-                    <option value="green">Green</option>
-                    <option value="white">White</option>
-                    <option value="blue">Blue</option>
-                    <option value="yellow">Yellow</option>
-                </select>
 
-                <table class="size-table">
-                    <tr>
-                        <td>
-                            <label for="size-ym">YM</label>
-                            <input type="number" id="size-ym" class="size-input" min="0" placeholder="0">
-                        </td>
-                        <td>
-                            <label for="size-yl">YL</label>
-                            <input type="number" id="size-yl" class="size-input" min="0" placeholder="0">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="size-s">S</label>
-                            <input type="number" id="size-s" class="size-input" min="0" placeholder="0">
-                        </td>
-                        <td>
-                            <label for="size-m">M</label>
-                            <input type="number" id="size-m" class="size-input" min="0" placeholder="0">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="size-l">L</label>
-                            <input type="number" id="size-l" class="size-input" min="0" placeholder="0">
-                        </td>
-                        <td>
-                            <label for="size-xl">XL</label>
-                            <input type="number" id="size-xl" class="size-input" min="0" placeholder="0">
-                        </td>
-                    </tr>
-                </table>
+        <div class="controls-container">
+            <h1 class="product-title">Ringspun Super Soft Tee</h1> <!-- Product Title Changed to Header -->
+            <div class="sku-text">BC3001C1</div> <!-- SKU Text Added -->
 
-                <button type="submit" class="submit-button">Submit Item</button>
-            </form>
-            <p id="priceDisplay">Total Price: </p>
-            <button id="checkoutButton" class="submit-button" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
-        </div>
-    </div>
+<div class="controls">
+    <label for="color-selection">Color:</label>
+    <select id="color-selection" onchange="updateColor()">
+        <option value="Cardinal" selected>🟥 Cardinal</option>
+        <option value="Ash">⬜ Ash</option>
+        <option value="Asphalt">⬛ Asphalt</option>
+        <option value="Berry">🟪 Berry</option>
+        <option value="Black">⬛ Black</option>
+        <option value="DarkGrey">⬛ Dark Grey</option>
+        <option value="Forest">🟩 Forest</option>
+        <option value="Gold">🟨 Gold</option>
+        <option value="Kelly">🟩 Kelly</option>
+        <option value="Maroon">🟥 Maroon</option>
+        <option value="Mauve">🟪 Mauve</option>
+        <option value="MilitaryGreen">🟩 Military Green</option>
+        <option value="Mint">🟩 Mint</option>
+        <option value="Mustard">🟨 Mustard</option>
+        <option value="Natural">⬜ Natural</option>
+        <option value="Navy">🔵 Navy</option>
+        <option value="Pink">🟪 Pink</option>
+        <option value="Red">🟥 Red</option>
+        <option value="Silver">⬜ Silver</option>
+        <option value="SoftCream">⬜ Soft Cream</option>
+        <option value="SteelBlue">🔵 Steel Blue</option>
+        <option value="Storm">⬛ Storm</option>
+        <option value="Tan">🟫 Tan</option>
+        <option value="Teal">🟦 Teal</option>
+        <option value="TeamPurple">🟪 Team Purple</option>
+        <option value="TrueRoyal">🔵 True Royal</option>
+        <option value="VintageBlack">⬛ Vintage Black</option>
+        <option value="VintageWhite">⬜ Vintage White</option>
+        <option value="White">⬜ White</option>
+    </select>
 </div>
 
-<footer>
-    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-</footer>
+
+            <div class="controls">
+                <label for="front-logo-placement">Front Logo Placement:</label>
+                <select id="front-logo-placement" onchange="updateLogoPlacement()">
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="leftChest">Left Chest</option> <!-- Updated to match Firestore field -->
+                    <option value="fullFront">Full Front</option> <!-- Updated to match Firestore field -->
+                    <option value="centerChest">Center Chest</option> <!-- Updated to match Firestore field -->
+                    <option value="none-front">None - Back Only</option>
+                </select>
+            </div>
+
+            <div class="controls">
+                <label for="back-logo-placement">Back Logo Placement:</label>
+                <select id="back-logo-placement" onchange="updateLogoPlacement()">
+                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
+                    <option value="centerBack">Center Back</option> <!-- Updated to match Firestore field -->
+                    <option value="none-back">None - Front Only</option>
+                </select>
+            </div>
+
+            <table class="size-table">
+                <tr>
+                    <td><label for="size-ym">YM</label></td>
+                    <td><label for="size-yl">YL</label></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-s">S</label></td>
+                    <td><label for="size-m">M</label></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-l">L</label></td>
+                    <td><label for="size-xl">XL</label></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="total">Total</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="number" id="total" class="total-input" value="0" readonly></td>
+                </tr>
+            </table>
+
+            <button class="submit-button" onclick="getPrice()">Get Price</button>
+        </div>
+    </div>
+
+    <div class="disclaimer-container">
+        *Logo Placements are approximate and non-final. An art approval will be sent within 1 business day of order.
+    </div>
+
+    <div class="product-description">
+        Port and Company's tee that genuinely matches your favorite collegiate and professional sports team colors.| 4.5-ounce, 100% ring spun cotton
+    </div>
+
+    <!-- Modal for additional information -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Almost There!</h2>
+            <label class="modal-label" for="name">Name:</label>
+            <input type="text" id="name" class="modal-input" placeholder="Enter your name">
+
+            <label class="modal-label" for="email">Email:</label>
+            <input type="email" id="email" class="modal-input" placeholder="Enter your email">
+
+            <label class="modal-label" for="date">When's the Special Day:</label>
+            <input type="date" id="date" class="modal-input">
+
+            <label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
+            <select id="roll-tag" class="modal-input" onchange="toggleImageOptions()">
+                <option value="" selected disabled>Select</option>
+                <option value="yes">Yes</option> <!-- If yes, further options should be shown -->
+                <option value="no">No</option>
+            </select>
+
+            <div class="image-options" id="image-options">
+                <p style="font-weight: bold;">Select Your Preferred Style:</p>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag1.jpg" alt="Option 1" id="CircleTag" onclick="selectImage('CircleTag')">
+                    <p>Roll and Circular Tag</p>
+                    <p>$2.50 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag2.png" alt="Option 2" id="SquareTag" onclick="selectImage('SquareTag')">
+                    <p>Roll and Scalloped Tag</p>
+                    <p>$2.50 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag3.png" alt="Option 3" id="ScallopedTag" onclick="selectImage('ScallopedTag')">
+                    <p>Roll and Banner Tag</p>
+                    <p>$3.00 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag4.png" alt="Option 4" id="Sticker" onclick="selectImage('Sticker')">
+                    <p>Roll and Sticker</p>
+                    <p>$2.00 (per item)</p>
+                </div>
+            </div>
+
+            <!-- Center the submit button -->
+            <div class="button-container">
+                <button class="submit-modal-button" onclick="submitDetails()">Get Price</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying price -->
+    <div id="priceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePriceModal()">&times;</span>
+            <div id="loading-indicator" style="display: none; text-align: center;">
+                <img src="Images/Loading.png" alt="Loading..." style="width: 50px; height: 50px;">
+                <p>Please wait while we calculate your price...</p>
+            </div>
+            <div id="pricing-details" style="display: none;">
+                <!-- The pricing details will be dynamically inserted here -->
+            </div>
+            <div class="button-container" style="display: none;">
+                <button class="submit-modal-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
 
 <script>
-    function changeImage() {
-        const mainImage = document.getElementById('main-image');
-        const backImage = document.getElementById('back-image');
+async function updateLogo() {
+    const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
 
-        const currentMainSrc = mainImage.src;
-        mainImage.src = backImage.src;
-        backImage.src = currentMainSrc;
-    }
+    try {
+        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/getLogoUrl?sessionId=${sessionId}`);
+        const result = await response.json();
 
-    function updateImages() {
-        const color = document.getElementById('color').value;
-        const mainImage = document.getElementById('main-image');
-        const backImage = document.getElementById('back-image');
-
-        if (color === 'red') {
-            mainImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/1634-Red-5-PC61RedFlatFront2-337W-1-1.png";
-            backImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Sweatshirt6.png";
-        } else if (color === 'green') {
-            mainImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/LongSleeve.png";
-            backImage.src = "https://gdw.egj.mybluehost.me/website_55046b1f/wp-content/uploads/2024/07/Hat.png";
+        if (result.downloadURL) {
+            document.getElementById('logo-image').src = result.downloadURL;
+        } else {
+            console.error('Logo URL not found');
         }
-        // Add more conditions for other colors if needed
+    } catch (error) {
+        console.error('Error fetching logo URL:', error);
+    }
+}
+
+window.onload = updateLogo;
+
+// Initialize frontImageSrc and backImageSrc with the default values
+let frontImageSrc = 'BC3001C1/BC3001_cardinal_flat_front.png';
+let backImageSrc = 'BC3001C1/BC3001_cardinal_flat_back.png';
+
+function updateColor() {
+    const color = document.getElementById('color-selection').value;
+
+    switch (color) {
+        case 'Cardinal':
+            frontImageSrc = 'BC3001C1/BC3001_cardinal_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_cardinal_flat_back.png';
+            break;
+        case 'Ash':
+            frontImageSrc = 'BC3001C1/BC3001_ash_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_ash_flat_back.png';
+            break;
+        case 'Asphalt':
+            frontImageSrc = 'BC3001C1/BC3001_asphalt_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_asphalt_flat_back.png';
+            break;
+        case 'Berry':
+            frontImageSrc = 'BC3001C1/BC3001_berry_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_berry_flat_back.png';
+            break;
+        case 'Black':
+            frontImageSrc = 'BC3001C1/BC3001_black_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_black_flat_back.png';
+            break;
+        case 'DarkGrey':
+            frontImageSrc = 'BC3001C1/BC3001_darkgrey_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_darkgrey_flat_back.png';
+            break;
+        case 'Forest':
+            frontImageSrc = 'BC3001C1/BC3001_forest_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_forest_flat_back.png';
+            break;
+        case 'Gold':
+            frontImageSrc = 'BC3001C1/BC3001_gold_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_gold_flat_back.png';
+            break;
+        case 'Kelly':
+            frontImageSrc = 'BC3001C1/BC3001_kelly_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_kelly_flat_back.png';
+            break;
+        case 'Maroon':
+            frontImageSrc = 'BC3001C1/BC3001_maroon_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_maroon_flat_back.png';
+            break;
+        case 'Mauve':
+            frontImageSrc = 'BC3001C1/BC3001_mauve_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_mauve_flat_back.png';
+            break;
+        case 'MilitaryGreen':
+            frontImageSrc = 'BC3001C1/BC3001_militarygreen_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_militarygreen_flat_back.png';
+            break;
+        case 'Mint':
+            frontImageSrc = 'BC3001C1/BC3001_mint_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_mint_flat_back.png';
+            break;
+        case 'Mustard':
+            frontImageSrc = 'BC3001C1/BC3001_mustard_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_mustard_flat_back.png';
+            break;
+        case 'Natural':
+            frontImageSrc = 'BC3001C1/BC3001_natural_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_natural_flat_back.png';
+            break;
+        case 'Navy':
+            frontImageSrc = 'BC3001C1/BC3001_navy_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_navy_flat_back.png';
+            break;
+        case 'Pink':
+            frontImageSrc = 'BC3001C1/BC3001_pink_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_pink_flat_back.png';
+            break;
+        case 'Red':
+            frontImageSrc = 'BC3001C1/BC3001_red_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_red_flat_back.png';
+            break;
+        case 'Silver':
+            frontImageSrc = 'BC3001C1/BC3001_silver_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_silver_flat_back.png';
+            break;
+        case 'SoftCream':
+            frontImageSrc = 'BC3001C1/BC3001_softcream_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_softcream_flat_back.png';
+            break;
+        case 'SteelBlue':
+            frontImageSrc = 'BC3001C1/BC3001_steelblue_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_steelblue_flat_back.png';
+            break;
+        case 'Storm':
+            frontImageSrc = 'BC3001C1/BC3001_storm_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_storm_flat_back.png';
+            break;
+        case 'Tan':
+            frontImageSrc = 'BC3001C1/BC3001_tan_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_tan_flat_back.png';
+            break;
+        case 'Teal':
+            frontImageSrc = 'BC3001C1/BC3001_teal_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_teal_flat_back.png';
+            break;
+        case 'TeamPurple':
+            frontImageSrc = 'BC3001C1/BC3001_teampurple_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_teampurple_flat_back.png';
+            break;
+        case 'TrueRoyal':
+            frontImageSrc = 'BC3001C1/BC3001_trueroyal_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_trueroyal_flat_back.png';
+            break;
+        case 'VintageBlack':
+            frontImageSrc = 'BC3001C1/BC3001_vintageblack_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_vintageblack_flat_back.png';
+            break;
+        case 'VintageWhite':
+            frontImageSrc = 'BC3001C1/BC3001_vintagewhite_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_vintagewhite_flat_back.png';
+            break;
+        case 'White':
+            frontImageSrc = 'BC3001C1/BC3001_white_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_white_flat_back.png';
+            break;
+        default:
+            frontImageSrc = 'BC3001C1/BC3001_cardinal_flat_front.png';
+            backImageSrc = 'BC3001C1/BC3001_cardinal_flat_back.png';
+            break;
     }
 
-    async function calculateQuantity(event) {
-    event.preventDefault(); // Prevent the form from submitting
+    // Update the logo placement after color change
+    updateLogoPlacement();
+}
 
-    const sizes = ['size-ym', 'size-yl', 'size-s', 'size-m', 'size-l', 'size-xl'];
-    let totalQuantity = 0;
+
+
+function updateLogoPlacement() {
+    const logo = document.getElementById('logo-placeholder');
+    const frontPlacement = document.getElementById('front-logo-placement').value;
+    const backPlacement = document.getElementById('back-logo-placement').value;
+    const image = document.getElementById('product-image');
+
+    // Default to hiding the logo
+    logo.style.display = 'none';
+
+    // Determine which dropdown was most recently changed
+    const frontDropdown = document.getElementById('front-logo-placement');
+    const backDropdown = document.getElementById('back-logo-placement');
+
+    if (backDropdown.dataset.lastChanged && (!frontDropdown.dataset.lastChanged || backDropdown.dataset.lastChanged > frontDropdown.dataset.lastChanged)) {
+        // The back placement was the most recent change
+        if (backPlacement === 'centerBack') {
+            // Show the back image with the Center Back logo
+            image.src = backImageSrc;
+            logo.style.display = 'block';
+            logo.style.width = '180px';
+            logo.style.height = '180px';
+            logo.style.top = '28%';
+            logo.style.left = '50%';
+            logo.style.transform = 'translate(-50%, -50%)';
+            image.classList.add('back-image');
+        } else {
+            // If "None" is selected for back, revert to the front image with the appropriate logo
+            updateFrontLogo(frontPlacement, logo, image);
+        }
+    } else {
+        // The front placement was the most recent change
+        updateFrontLogo(frontPlacement, logo, image);
+    }
+
+    // New condition to handle switching from front placement to none when back is set to centerBack
+    if (frontPlacement === 'none-front' && backPlacement === 'centerBack') {
+        image.src = backImageSrc;
+        logo.style.display = 'block';
+        logo.style.width = '180px';
+        logo.style.height = '180px';
+        logo.style.top = '28%';
+        logo.style.left = '50%';
+        logo.style.transform = 'translate(-50%, -50%)';
+        image.classList.add('back-image');
+    }
+}
+
+function updateFrontLogo(frontPlacement, logo, image) {
+    if (frontPlacement !== 'none-front' && frontPlacement !== '') {
+        image.src = frontImageSrc;
+
+        switch (frontPlacement) {
+            case 'fullFront':  // Match HTML value
+                logo.style.width = '200px';
+                logo.style.height = '200px';
+                logo.style.top = '38%';
+                logo.style.left = '50%';
+                logo.style.transform = 'translate(-50%, -50%)';
+                break;
+            case 'centerChest':  // Match HTML value
+                logo.style.width = '154px';
+                logo.style.height = '154px';
+                logo.style.top = '35%';
+                logo.style.left = '50%';
+                logo.style.transform = 'translate(-50%, -50%)';
+                break;
+            case 'leftChest':  // Match HTML value
+                logo.style.width = '90px';
+                logo.style.height = '90px';
+                logo.style.top = '30%';
+                logo.style.left = '62%';
+                logo.style.transform = 'translate(-50%, -50%)';
+                break;
+        }
+
+        logo.style.display = 'block'; // Show the logo if a front placement is selected
+        image.classList.remove('back-image'); // Ensure no back-image scaling for front view
+    } else {
+        image.src = frontImageSrc;
+        logo.style.display = 'none';
+    }
+}
+
+// Track which dropdown was changed most recently
+document.getElementById('front-logo-placement').addEventListener('change', function() {
+    this.dataset.lastChanged = new Date().getTime();
+    updateLogoPlacement();
+});
+
+document.getElementById('back-logo-placement').addEventListener('change', function() {
+    this.dataset.lastChanged = new Date().getTime();
+    updateLogoPlacement();
+});
+
+function updateTotal() {
+    const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
+    let total = 0;
     let sizeDetails = {};
 
     sizes.forEach(size => {
-        const sizeInput = document.getElementById(size);
-        const sizeValue = parseInt(sizeInput.value) || 0;
-        totalQuantity += sizeValue;
-        sizeDetails[size] = sizeValue; // Capture each size's quantity
+        const input = document.getElementById(`size-${size}`);
+        const quantity = parseInt(input.value) || 0;
+        total += quantity;
+        sizeDetails[size] = quantity;
     });
 
-    const color = document.getElementById('color').value;
-    const sku = 'BC3001C1'; // SKU for this product
+    document.getElementById('total').value = total;
 
-    try {
-        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${JSON.parse(localStorage.getItem('sessionData')).sessionId}&quantity=${totalQuantity}&sku=${sku}`);
-        const result = await response.json();
+    const color = document.getElementById('color-selection').value;
+    const sku = document.querySelector('.sku-text').textContent;
 
-        if (result.price) {
-            document.getElementById('priceDisplay').innerText = `Total Price: $${result.price}`;
-            document.getElementById('checkoutButton').style.display = 'block';
+    const orderDetails = {
+        totalQuantity: total,
+        sizes: sizeDetails,
+        sku: sku,
+        color: color
+    };
 
-            // Save the price, SKU, color, and size details in localStorage to use in the checkout page
-            localStorage.setItem('orderDetails', JSON.stringify({
-                totalPrice: result.price,
-                sku: sku,
-                color: color,
-                sizes: sizeDetails
-            }));
-        } else {
-            document.getElementById('priceDisplay').innerText = 'Could not calculate price. Please try again.';
-            document.getElementById('checkoutButton').style.display = 'none';
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('priceDisplay').innerText = 'There was an error calculating the price.';
-        document.getElementById('checkoutButton').style.display = 'none';
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+}
+
+function getPrice() {
+    // Ensure the total quantity is up to date
+    updateTotal();
+
+    // Retrieve the existing order details, including the quantity
+    let orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+
+    // Retrieve the SKU
+    const sku = document.querySelector('.sku-text').textContent;
+
+    // Retrieve the selected front logo placement
+    let frontPlacement = document.getElementById('front-logo-placement').value;
+    if (frontPlacement === "" || frontPlacement === "Select Placement") {
+        frontPlacement = "none-front"; // Set to "none-front" if nothing is selected
+    }
+
+    // Retrieve the selected back logo placement
+    let backPlacement = document.getElementById('back-logo-placement').value;
+    if (backPlacement === "" || backPlacement === "Select Placement") {
+        backPlacement = "none-back"; // Set to "none-back" if nothing is selected
+    }
+
+    // Retrieve the selected roll tag option
+    const rollTagSelection = document.getElementById('roll-tag').value;
+
+    // Retrieve the selected roll tag style, if applicable
+    const selectedStyle = document.querySelector('.image-options img.selected')?.id || null;
+
+    // Update the orderDetails object with the latest selections
+    orderDetails.sku = sku;
+    orderDetails.frontPlacement = frontPlacement;
+    orderDetails.backPlacement = backPlacement;
+    orderDetails.rollTagSelection = rollTagSelection;
+    orderDetails.selectedStyle = selectedStyle;
+
+    // Check if the total quantity is 0
+    if (orderDetails.totalQuantity === 0) {
+        alert("Total quantity cannot be 0. Please enter a quantity for at least one size.");
+        return;
+    }
+
+    // Check if both front and back placements are either "none-front" or "none-back"
+    if ((frontPlacement === "none-front") && 
+        (backPlacement === "none-back")) {
+        alert("Please select at least one logo placement option.");
+        return;
+    }
+
+    // Save the updated order details to localStorage
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+    // Show the modal form for the next steps
+    openModal();
+}
+
+function openModal() {
+    document.getElementById("infoModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("infoModal").style.display = "none";
+}
+
+function toggleImageOptions() {
+    const rollTag = document.getElementById("roll-tag").value;
+    const imageOptions = document.getElementById("image-options");
+
+    if (rollTag === "yes") {
+        imageOptions.style.display = "block";
+    } else {
+        imageOptions.style.display = "none";
     }
 }
 
+function selectImage(optionId) {
+    // Deselect any previously selected images
+    const images = document.querySelectorAll('.image-options img');
+    images.forEach(img => img.classList.remove('selected'));
 
-    function proceedToCheckout() {
-    // Navigate to the correct checkout page on GitHub Pages
-    window.location.href = 'https://mitzvahmerch.github.io/WriteOcassio/checkout.html';
+    // Select the clicked image
+    const selectedImage = document.getElementById(optionId);
+    selectedImage.classList.add('selected');
+
+    // Save the selected option to localStorage or for further processing
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+    orderDetails.selectedStyle = optionId; // This will be one of CircleTag, SquareTag, ScallopedTag, or Sticker
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 }
+
+function submitDetails() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const date = document.getElementById("date").value;
+    const rollTag = document.getElementById("roll-tag").value;
+
+    if (name && email && date && rollTag) {
+        const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+        orderDetails.name = name;
+        orderDetails.email = email;
+        orderDetails.date = date;
+
+        // If the user selected "Yes" for roll tagging, save the selected style
+        if (rollTag === "yes") {
+            const selectedStyle = document.querySelector('.image-options img.selected')?.id;
+            if (selectedStyle) {
+                orderDetails.rollTagSelection = selectedStyle; // Use the style ID directly
+            } else {
+                alert('Please select a roll tag style.');
+                return; // Prevent submission if a style is not selected
+            }
+        } else {
+            orderDetails.rollTagSelection = "none"; // No roll tag selected
+        }
+
+        localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+        closeModal();
+
+        // Proceed to calculate the price and show it in the price modal
+        calculatePrice();
+    } else {
+        alert('Please fill in all fields.');
+    }
+}
+
+async function calculatePrice() {
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+    // Retrieve sessionId
+    const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
+
+    // Show loading indicator and hide pricing details
+    document.getElementById('loading-indicator').style.display = 'block';
+    document.getElementById('pricing-details').style.display = 'none';
+    document.querySelector('.button-container').style.display = 'none';
+    openPriceModal(); // Open the modal right away to show the loading indicator
+
+    try {
+        console.log("Session ID:", sessionId);
+        console.log("Quantity:", orderDetails.totalQuantity);
+        console.log("SKU:", orderDetails.sku);
+        console.log("Front Placement:", orderDetails.frontPlacement);
+        console.log("Back Placement:", orderDetails.backPlacement);
+        console.log("Roll Tag Selection:", orderDetails.rollTagSelection);
+        console.log("Selected Style:", orderDetails.selectedStyle);
+
+        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=${orderDetails.totalQuantity}&sku=${orderDetails.sku}&frontLogoPlacement=${orderDetails.frontPlacement}&backLogoPlacement=${orderDetails.backPlacement}&rollTagOption=${orderDetails.rollTagSelection}&selectedStyle=${orderDetails.selectedStyle}`);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Server response text:', errorText);
+            throw new Error(`Server responded with status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.totalPrice) {
+            // Build the detailed pricing breakdown
+            const merchCostPerItem = (result.merchCharge / orderDetails.totalQuantity).toFixed(2);
+            const rollTagCostPerItem = (result.rollTagCharge / orderDetails.totalQuantity).toFixed(2);
+            const pricingBreakdown = `
+    <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
+    <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
+    <p><strong>Shipping:</strong> Free</p>
+    <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
+`;
+
+            // Save pricing data to localStorage
+            const priceData = {
+                merch: result.merchCharge.toFixed(2),
+                rollAndTag: result.rollTagCharge.toFixed(2),
+                totalPrice: result.totalPrice.toFixed(2)
+            };
+            localStorage.setItem('priceData', JSON.stringify(priceData));
+
+            // Display the breakdown in the modal
+            console.log("Inserting pricing details into modal...");
+            document.getElementById('pricing-details').innerHTML = pricingBreakdown;
+
+            // Hide loading indicator and show pricing details and button
+            console.log("Hiding loading indicator and showing pricing details...");
+            document.getElementById('loading-indicator').style.display = 'none';
+            document.getElementById('pricing-details').style.display = 'block';
+            document.querySelector('.button-container').style.display = 'block';
+            document.querySelector('.button-container').style.visibility = 'visible';
+            console.log("Pricing details should now be visible.");
+        } else {
+            console.error('Price not returned');
+        }
+    } catch (error) {
+        console.error('Error calculating price:', error.message);
+        // Hide loading indicator even in case of error
+        document.getElementById('loading-indicator').style.display = 'none';
+        alert('There was an issue calculating the price. Please try again.');
+    }
+}
+
+// Function to open the price modal
+function openPriceModal() {
+    document.getElementById("priceModal").style.display = "block";
+}
+
+// Function to close the price modal
+function closePriceModal() {
+    document.getElementById("priceModal").style.display = "none";
+}
+
+// Function to proceed to checkout
+function proceedToCheckout() {
+    // Retrieve the pricing data
+    const priceData = JSON.parse(localStorage.getItem('priceData'));
+    
+    // Retrieve the existing order details
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+    // Prepare the product details to be added to the cart
+    const product = {
+        title: 'Exceptional Tee',
+        sku: orderDetails.sku,
+        color: orderDetails.color,
+        sizes: orderDetails.sizes,
+        merchCost: priceData.merch,
+        rollTagCost: priceData.rollAndTag,
+        totalPrice: priceData.totalPrice
+    };
+
+    // Add the product to the cart
+    addToCart(product);
+
+    // Redirect to the checkout page or handle the checkout process
+    window.location.href = 'checkout.html';
+}
+
+function addToCart(product) {
+    // Retrieve existing cart from localStorage or initialize a new array
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add the new product to the cart
+    cart.push(product);
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Load header, footer, and logo when DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+    // Load the header
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading header:', error));
+
+    // Load the footer
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+
+    // Call updateLogo() to fetch and display the user's logo immediately upon page load
+    updateLogo();
+});
 </script>
 
 </body>
