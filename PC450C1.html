@@ -916,11 +916,11 @@ async function calculatePrice() {
             const merchCostPerItem = (result.merchCharge / orderDetails.totalQuantity).toFixed(2);
             const rollTagCostPerItem = (result.rollTagCharge / orderDetails.totalQuantity).toFixed(2);
             const pricingBreakdown = `
-                <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
-                <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
-                <p><strong>Shipping:</strong> Free</p>
-                <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}}</p>
-            `;
+    <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
+    <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
+    <p><strong>Shipping:</strong> Free</p>
+    <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
+`;
 
             // Save pricing data to localStorage
             const priceData = {
