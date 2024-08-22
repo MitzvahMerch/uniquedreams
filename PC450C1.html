@@ -988,7 +988,7 @@ function addToCart(product) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Load header and footer when DOM is ready
+// Load header, footer, and logo when DOM is ready
 document.addEventListener("DOMContentLoaded", function() {
     // Load the header
     fetch('header.html')
@@ -1005,6 +1005,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('footer-container').innerHTML = data;
         })
         .catch(error => console.error('Error loading footer:', error));
+
+    // Call updateLogo() to fetch and display the user's logo immediately upon page load
+    updateLogo();
 });
 </script>
 
