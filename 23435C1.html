@@ -310,26 +310,33 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="BC3480C1/BC3480_navy_flat_front.png" alt="Product Image">
+            <img id="product-image" src="23435C1/JERZEES_974MPR_Maroon_Front_High.jpg" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
         </div>
 
 <div class="controls-container">
-    <h1 class="product-title">Ring Spun Super Soft Tank</h1>
-    <div class="sku-text">BC3480C1</div>
+    <h1 class="product-title">Value Sweatpants</h1>
+    <div class="sku-text">23435C1</div>
 
-    <div class="controls">
-        <label for="color-selection">Color:</label>
-        <select id="color-selection" onchange="updateColor()">
-            <option value="Navy" selected>🔵 Navy</option>
-            <option value="Aqua">🔵 Aqua</option>
-            <option value="Black">⬛ Black</option>
-            <option value="NeonBlue">🔵 Neon Blue</option>
-            <option value="White">⬜ White</option>
-        </select>
-    </div>
+<div class="controls">
+    <label for="color-selection">Color:</label>
+    <select id="color-selection" onchange="updateColor()">
+        <option value="Maroon" selected>🟥 Maroon</option>
+        <option value="Ash">⬜ Ash</option>
+        <option value="Athletic Heather">⬜ Athletic Heather</option>
+        <option value="Black">⬛ Black</option>
+        <option value="Black Heather">⬛ Black Heather</option>
+        <option value="Forest Green">🟩 Forest Green</option>
+        <option value="Navy">🔵 Navy</option>
+        <option value="Oxford">⬜ Oxford</option>
+        <option value="Royal">🔵 Royal</option>
+        <option value="True Red">🟥 True Red</option>
+        <option value="White">⬜ White</option>
+    </select>
+</div>
+
 
     <div class="controls">
         <label for="logo-placement">Logo Placement:</label>
@@ -382,7 +389,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        Retail fit Tear-away label Side seamed Solid Colors: 4.2-ounce, 100% Airlume combed and ring spun cotton.
+        8.0 oz., 50/50 cotton/polyesterNuBlend® pill-resistant fleeceTriple-needle covered waistband with inside drawcord.
     </div>
 
     <!-- Modal for additional information -->
@@ -480,29 +487,41 @@ window.onload = updateLogo;
 
 
 // Initialize frontImageSrc with the default value
-let frontImageSrc = 'BC3480C1/BC3480_navy_flat_front.png';
+let frontImageSrc = '23435C1/JERZEES_974MPR_Maroon_Front_High.jpg';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'AquaTriblend':
-            frontImageSrc = 'BC3480C1/BC3480_aquatriblend_flat_front.png';
+        case 'Maroon':
+            frontImageSrc = '23435C1/JERZEES_974MPR_Maroon_Front_High.jpg';
+            break;
+        case 'Ash':
+            frontImageSrc = '23435C1/JERZEES_974MPR_Ash_Front_High.jpg';
+            break;
+        case 'Athletic Heather':
+            frontImageSrc = '23435C1/JERZEES_974MPR_Athletic_Heather_Front_High.jpg';
             break;
         case 'Black':
-            frontImageSrc = 'BC3480C1/BC3480_black_flat_front.png';
+            frontImageSrc = '23435C1/JERZEES_974MPR_Black_Front_High.jpg';
+            break;
+        case 'Black Heather':
+            frontImageSrc = '23435C1/JERZEES_974MPR_Black_Heather_Front_High.jpg';
+            break;
+        case 'Forest Green':
+            frontImageSrc = '23435C1/JERZEES_974MPR_Forest_Green_Front_High.jpg';
             break;
         case 'Navy':
-            frontImageSrc = 'BC3480C1/BC3480_navy_flat_front.png';
+            frontImageSrc = '23435C1/JERZEES_974MPR_J._Navy_Front_High.jpg';
             break;
-        case 'NeonBlue':
-            frontImageSrc = 'BC3480C1/BC3480_neonblue_flat_front.png';
+        case 'Oxford':
+            frontImageSrc = '23435C1/JERZEES_974MPR_Oxford_Front_High.jpg';
             break;
-        case 'White':
-            frontImageSrc = 'BC3480C1/BC3480_white_flat_front.png';
+        case 'Royal':
+            frontImageSrc = '23435C1/JERZEES_974MPR_Royal_Front_High.jpg';
             break;
         default:
-            frontImageSrc = 'BC3480C1/BC3480_navy_flat_front.png';
+            frontImageSrc = '23435C1/JERZEES_974MPR_Maroon_Front_High.jpg';
             break;
     }
 
@@ -510,6 +529,7 @@ function updateColor() {
     document.getElementById('product-image').src = frontImageSrc;
     updateLogoPlacement();
 }
+
 
 function updateLogoPlacement() {
     const logo = document.getElementById('logo-placeholder');
