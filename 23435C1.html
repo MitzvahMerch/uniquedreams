@@ -588,7 +588,7 @@ function getPrice() {
     }
 
     // Retrieve the selected roll tag option
-    const rollTagSelection = document.getElementById('roll-tag') ? document.getElementById('roll-tag').value : "none";
+    const rollTagSelection = document.getElementById('roll-tag').value;
 
     // Retrieve the selected roll tag style, if applicable
     const selectedStyle = document.querySelector('.image-options img.selected')?.id || null;
@@ -605,9 +605,9 @@ function getPrice() {
         return;
     }
 
-    // Check if front placement is set to none
+    // Check if the front placement is "none-front"
     if (frontPlacement === "none-front") {
-        alert("Please select a logo placement option.");
+        alert("Please select at least one logo placement option.");
         return;
     }
 
