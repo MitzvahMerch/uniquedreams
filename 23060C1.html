@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page with Logo Placement</title>
+    
+    <!-- Link to your global stylesheet -->
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure this path is correct -->
+
+    <style>
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.image-container {
+    position: relative;
+    width: 499px; /* New width based on aspect ratio */
+    height: 673px; /* Increased height */
+    border: 6px solid white; /* Black border */
+    background-color: #1493E9; /* Changed to blue */
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.25); /* Scale both front and back images by 32% */
+    transform-origin: 50% 28%; /* Custom percentages for finer control */
+}
+
+.logo-placeholder {
+    position: absolute;
+    display: none;
+}
+
+.logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.controls-container {
+    flex: 0 0 400px; /* Fixed width for the controls container */
+    height: 660px; /* Shortened by 30px to match image container */
+    background-color: #FFFFFF; /* Changed to white */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.controls label {
+    margin-right: 10px;
+    font-weight: bold; /* Make labels bold */
+}
+
+.controls select {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.size-table {
+    width: 100%;
+    border-spacing: 10px;
+    margin-bottom: 20px;
+}
+
+.size-table td {
+    vertical-align: middle;
+    width: 50%; /* Make sure each cell takes up half the row */
+    font-weight: bold; /* Make size labels bold */
+}
+
+.size-input {
+    width: 100%; /* Make the input take up the full width of the cell */
+    padding: 5px;
+    margin-left: 0;
+    box-sizing: border-box;
+}
+
+.total-input {
+    width: 100%;
+    padding: 5px;
+    margin-left: 0;
+    box-sizing: border-box;
+    background-color: #e0e0e0; /* Light gray background for non-editable field */
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: not-allowed;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1493E9; /* Changed to blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold; /* Made text bold */
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit-button:hover {
+    background-color: #1177C3; /* Slightly darker shade for hover effect */
+}
+
+h1.product-title {
+    font-size: 32px; /* Twice the size of the "Color" label */
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.sku-text {
+    font-size: 16px; /* Half the size of the header */
+    font-weight: bold;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.product-description {
+    margin-top: 50px; /* Increase space between the disclaimer and the product description */
+    font-size: 14px;
+    color: #FFFFFF;
+    max-width: 500px; /* Restrict width to match image container */
+    padding-left: 16%; /* Use percentage for padding */
+}
+
+.disclaimer-container {
+    margin-top: 10px; /* Adjust the margin as needed */
+    font-size: 14px;
+    font-weight: bold;
+    color: gray;
+    max-width: 500px; /* Restrict width to match image container */
+    padding-left: 16%; /* Use percentage for padding */
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-modal-button {
+    background-color: #1493E9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center; /* Ensure text inside the button is centered */
+    margin: 0 auto; /* Center the button within the container */
+}
+
+.submit-modal-button:hover {
+    background-color: #1177C3;
+}
+
+.image-options {
+    display: none;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.image-option {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.image-options img {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.image-options img.selected {
+    border-color: #1493E9; /* Highlight the selected image with a blue border */
+}
+
+.image-option p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Space above the button */
+    width: 100%; /* Ensure the container takes up the full width */
+}
+
+/* Price Modal styles - reusing the modal styles you already have */
+#priceModal .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+#price-display {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#priceModal .button-container {
+    display: flex !important; /* Ensures it's displayed */
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    visibility: visible !important; /* Ensures it's visible */
+}
+        #pricing-header {
+    color: #05216E;
+    text-align: center;
+    font-size: 24px; /* Adjust to your desired size */
+    font-weight: bold; /* For the header */
+    margin-bottom: 20px; /* Add some space below the header */
+}
+
+#pricing-details {
+    text-align: center;
+    font-size: 18px; /* Adjust to match your design */
+}
+
+#pricing-details p {
+    margin: 10px 0;
+}
+
+#pricing-details p span {
+    font-weight: normal; /* Unbold everything except total */
+}
+
+#pricing-details p.total {
+    font-weight: bold; /* Bold the total price line */
+}
+
+    </style>
+</head>
+<body>
+
+        <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <div class="product-container">
+        <div class="image-container">
+            <img id="product-image" src="23060C1/Gildan_18200_Black_Front_High.png" alt="Product Image">
+            <div id="logo-placeholder" class="logo-placeholder">
+                <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
+            </div>
+        </div>
+
+<div class="controls-container">
+    <h1 class="product-title">Standard Sweats</h1>
+    <div class="sku-text">23060C1</div>
+
+<div class="controls">
+    <label for="color-selection">Color:</label>
+    <select id="color-selection" onchange="updateColor()">
+        <option value="Black" selected>⬛ Black</option>
+        <option value="Navy">🔵 Navy</option>
+        <option value="Sport Grey">⬜ Sport Grey</option>
+    </select>
+</div>
+
+
+    <div class="controls">
+        <label for="logo-placement">Logo Placement:</label>
+        <select id="logo-placement" onchange="updateLogoPlacement()">
+            <option value="" selected disabled>Select Placement</option>
+            <option value="leftChest">Left Hip</option>
+            <option value="centerChest">Full Leg</option>
+        </select>
+    </div>
+
+            <table class="size-table">
+                <tr>
+                    <td><label for="size-ym">YM</label></td>
+                    <td><label for="size-yl">YL</label></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="size-ym" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-yl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-s">S</label></td>
+                    <td><label for="size-m">M</label></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="size-s" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-m" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                </tr>
+                <tr>
+                    <td><label for="size-l">L</label></td>
+                    <td><label for="size-xl">XL</label></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="size-l" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                    <td><input type="number" id="size-xl" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="total">Total</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="number" id="total" class="total-input" value="0" readonly></td>
+                </tr>
+            </table>
+
+            <button class="submit-button" onclick="getPrice()">Get Price</button>
+        </div>
+    </div>
+
+    <div class="disclaimer-container">
+        *Logo Placements are approximate and non-final. An art approval will be sent within 1 business day of order.
+    </div>
+
+    <div class="product-description">
+        50/50 cotton/polyester, Pill-resistant and softer air-jet spun yarn, Elastic waistband with drawstring (adult style onlyl) Elastic cuffs
+    </div>
+
+    <!-- Modal for additional information -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Almost There!</h2>
+            <label class="modal-label" for="name">Name:</label>
+            <input type="text" id="name" class="modal-input" placeholder="Enter your name">
+
+            <label class="modal-label" for="email">Email:</label>
+            <input type="email" id="email" class="modal-input" placeholder="Enter your email">
+
+            <label class="modal-label" for="date">When's the Special Day:</label>
+            <input type="date" id="date" class="modal-input">
+
+            <label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
+            <select id="roll-tag" class="modal-input" onchange="toggleImageOptions()">
+                <option value="" selected disabled>Select</option>
+                <option value="yes">Yes</option> <!-- If yes, further options should be shown -->
+                <option value="no">No</option>
+            </select>
+
+            <div class="image-options" id="image-options">
+                <p style="font-weight: bold;">Select Your Preferred Style:</p>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag1.jpg" alt="Option 1" id="CircleTag" onclick="selectImage('CircleTag')">
+                    <p>Roll and Circular Tag</p>
+                    <p>$2.50 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag2.png" alt="Option 2" id="SquareTag" onclick="selectImage('SquareTag')">
+                    <p>Roll and Scalloped Tag</p>
+                    <p>$2.50 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag3.png" alt="Option 3" id="ScallopedTag" onclick="selectImage('ScallopedTag')">
+                    <p>Roll and Banner Tag</p>
+                    <p>$3.00 (per item)</p>
+                </div>
+                <div class="image-option">
+                    <img src="RollDisplayImages/RollTag4.png" alt="Option 4" id="Sticker" onclick="selectImage('Sticker')">
+                    <p>Roll and Sticker</p>
+                    <p>$2.00 (per item)</p>
+                </div>
+            </div>
+
+            <!-- Center the submit button -->
+            <div class="button-container">
+                <button class="submit-modal-button" onclick="submitDetails()">Get Price</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying price -->
+    <div id="priceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePriceModal()">&times;</span>
+            <div id="loading-indicator" style="display: none; text-align: center;">
+                <img src="Images/Loading.png" alt="Loading..." style="width: 50px; height: 50px;">
+                <p>Please wait while we calculate your price...</p>
+            </div>
+            <div id="pricing-details" style="display: none;">
+                <!-- The pricing details will be dynamically inserted here -->
+            </div>
+            <div class="button-container" style="display: none;">
+                <button class="submit-modal-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+
+<script>
+async function updateLogo() {
+    const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
+
+    try {
+        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/getLogoUrl?sessionId=${sessionId}`);
+        const result = await response.json();
+
+        if (result.downloadURL) {
+            document.getElementById('logo-image').src = result.downloadURL;
+        } else {
+            console.error('Logo URL not found');
+        }
+    } catch (error) {
+        console.error('Error fetching logo URL:', error);
+    }
+}
+
+window.onload = updateLogo;
+
+
+// Initialize frontImageSrc with the default value
+let frontImageSrc = '23060C1/Gildan_18200_Black_Front_High.png';
+
+function updateColor() {
+    const color = document.getElementById('color-selection').value;
+
+    switch (color) {
+        case 'Black':
+            frontImageSrc = '23060C1/Gildan_18200_Black_Front_High.png';
+            break;
+        case 'Navy':
+            frontImageSrc = '23060C1/Gildan_18200_Navy_Front_High.png';
+            break;
+        case 'Sport Grey':
+            frontImageSrc = '23060C1/Gildan_18200_Sport_Grey_Front_High.png';
+            break;
+        default:
+            frontImageSrc = '23060C1/Gildan_18200_Black_Front_High.png';
+            break;
+    }
+
+    // Update the image source after color change
+    document.getElementById('product-image').src = frontImageSrc;
+    updateLogoPlacement();
+}
+
+
+
+function updateLogoPlacement() {
+    const logo = document.getElementById('logo-placeholder');
+    const placement = document.getElementById('logo-placement').value;
+
+    if (placement !== '' && placement !== 'none-front') {
+        switch (placement) {
+            case 'fullFront':
+                logo.style.width = '200px';
+                logo.style.height = '200px';
+                logo.style.top = '35%';
+                logo.style.left = '50%';
+                break;
+            case 'centerChest':
+                logo.style.width = '154px';
+                logo.style.height = '154px';
+                logo.style.top = '32%';
+                logo.style.left = '50%';
+                break;
+            case 'leftChest':
+                logo.style.width = '90px';
+                logo.style.height = '90px';
+                logo.style.top = '30%';
+                logo.style.left = '64%';
+                break;
+        }
+        logo.style.display = 'block';
+        logo.style.transform = 'translate(-50%, -50%)';
+    } else {
+        logo.style.display = 'none';
+    }
+}
+
+function updateTotal() {
+    const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
+    let total = 0;
+    let sizeDetails = {};
+
+    sizes.forEach(size => {
+        const input = document.getElementById(`size-${size}`);
+        const quantity = parseInt(input.value) || 0;
+        total += quantity;
+        sizeDetails[size] = quantity;
+    });
+
+    document.getElementById('total').value = total;
+
+    const color = document.getElementById('color-selection').value;
+    const sku = document.querySelector('.sku-text').textContent;
+
+    const orderDetails = {
+        totalQuantity: total,
+        sizes: sizeDetails,
+        sku: sku,
+        color: color
+    };
+
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+}
+
+function getPrice() {
+    // Ensure the total quantity is up to date
+    updateTotal();
+
+    // Retrieve the existing order details, including the quantity
+    let orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+
+    // Retrieve the SKU
+    const sku = document.querySelector('.sku-text').textContent;
+
+    // Retrieve the selected front logo placement
+    let frontPlacement = document.getElementById('logo-placement').value;
+    if (frontPlacement === "" || frontPlacement === "Select Placement") {
+        frontPlacement = "none-front"; // Set to "none-front" if nothing is selected
+    }
+
+    // Retrieve the selected roll tag option
+    const rollTagSelection = document.getElementById('roll-tag').value;
+
+    // Retrieve the selected roll tag style, if applicable
+    const selectedStyle = document.querySelector('.image-options img.selected')?.id || null;
+
+    // Update the orderDetails object with the latest selections
+    orderDetails.sku = sku;
+    orderDetails.frontPlacement = frontPlacement;
+    orderDetails.rollTagSelection = rollTagSelection;
+    orderDetails.selectedStyle = selectedStyle;
+
+    // Check if the total quantity is 0
+    if (orderDetails.totalQuantity === 0) {
+        alert("Total quantity cannot be 0. Please enter a quantity for at least one size.");
+        return;
+    }
+
+    // Check if the front placement is "none-front"
+    if (frontPlacement === "none-front") {
+        alert("Please select at least one logo placement option.");
+        return;
+    }
+
+    // Save the updated order details to localStorage
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+    // Show the modal form for the next steps
+    openModal();
+}
+
+function openModal() {
+    document.getElementById("infoModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("infoModal").style.display = "none";
+}
+
+function toggleImageOptions() {
+    const rollTag = document.getElementById("roll-tag").value;
+    const imageOptions = document.getElementById("image-options");
+
+    if (rollTag === "yes") {
+        imageOptions.style.display = "block";
+    } else {
+        imageOptions.style.display = "none";
+    }
+}
+
+function selectImage(optionId) {
+    // Deselect any previously selected images
+    const images = document.querySelectorAll('.image-options img');
+    images.forEach(img => img.classList.remove('selected'));
+
+    // Select the clicked image
+    const selectedImage = document.getElementById(optionId);
+    selectedImage.classList.add('selected');
+
+    // Save the selected option to localStorage or for further processing
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+    orderDetails.selectedStyle = optionId; // This will be one of CircleTag, SquareTag, ScallopedTag, or Sticker
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+}
+
+function submitDetails() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const date = document.getElementById("date").value;
+    const rollTag = document.getElementById("roll-tag").value;
+
+    if (name && email && date && rollTag) {
+        const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+        orderDetails.name = name;
+        orderDetails.email = email;
+        orderDetails.date = date;
+
+        // If the user selected "Yes" for roll tagging, save the selected style
+        if (rollTag === "yes") {
+            const selectedStyle = document.querySelector('.image-options img.selected')?.id;
+            if (selectedStyle) {
+                orderDetails.rollTagSelection = selectedStyle; // Use the style ID directly
+            } else {
+                alert('Please select a roll tag style.');
+                return; // Prevent submission if a style is not selected
+            }
+        } else {
+            orderDetails.rollTagSelection = "none"; // No roll tag selected
+        }
+
+        localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+        closeModal();
+
+        // Proceed to calculate the price and show it in the price modal
+        calculatePrice();
+    } else {
+        alert('Please fill in all fields.');
+    }
+}
+
+async function calculatePrice() {
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+    // Retrieve sessionId
+    const sessionId = JSON.parse(localStorage.getItem('sessionData')).sessionId;
+
+    // Show loading indicator and hide pricing details
+    document.getElementById('loading-indicator').style.display = 'block';
+    document.getElementById('pricing-details').style.display = 'none';
+    document.querySelector('.button-container').style.display = 'none';
+    openPriceModal(); // Open the modal right away to show the loading indicator
+
+    try {
+        console.log("Session ID:", sessionId);
+        console.log("Quantity:", orderDetails.totalQuantity);
+        console.log("SKU:", orderDetails.sku);
+        console.log("Front Placement:", orderDetails.frontPlacement);
+        console.log("Roll Tag Selection:", orderDetails.rollTagSelection);
+        console.log("Selected Style:", orderDetails.selectedStyle);
+
+        // Adjust the fetch URL to remove the `backLogoPlacement` parameter
+        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=${orderDetails.totalQuantity}&sku=${orderDetails.sku}&frontLogoPlacement=${orderDetails.frontPlacement}&rollTagOption=${orderDetails.rollTagSelection}&selectedStyle=${orderDetails.selectedStyle}`);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Server response text:', errorText);
+            throw new Error(`Server responded with status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.totalPrice) {
+            // Build the detailed pricing breakdown
+            const merchCostPerItem = (result.merchCharge / orderDetails.totalQuantity).toFixed(2);
+            const rollTagCostPerItem = (result.rollTagCharge / orderDetails.totalQuantity).toFixed(2);
+            const pricingBreakdown = `
+    <p><strong>Merch:</strong> $${result.merchCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${merchCostPerItem})</p>
+    <p><strong>Roll and Tag:</strong> $${result.rollTagCharge.toFixed(2)} (${orderDetails.totalQuantity} x $${rollTagCostPerItem})</p>
+    <p><strong>Shipping:</strong> Free</p>
+    <p class="total"><strong>Total Price:</strong> $${result.totalPrice.toFixed(2)}</p>
+`;
+
+            // Save pricing data to localStorage
+            const priceData = {
+                merch: result.merchCharge.toFixed(2),
+                rollAndTag: result.rollTagCharge.toFixed(2),
+                totalPrice: result.totalPrice.toFixed(2)
+            };
+            localStorage.setItem('priceData', JSON.stringify(priceData));
+
+            // Display the breakdown in the modal
+            console.log("Inserting pricing details into modal...");
+            document.getElementById('pricing-details').innerHTML = pricingBreakdown;
+
+            // Hide loading indicator and show pricing details and button
+            console.log("Hiding loading indicator and showing pricing details...");
+            document.getElementById('loading-indicator').style.display = 'none';
+            document.getElementById('pricing-details').style.display = 'block';
+            document.querySelector('.button-container').style.display = 'block';
+            document.querySelector('.button-container').style.visibility = 'visible';
+            console.log("Pricing details should now be visible.");
+        } else {
+            console.error('Price not returned');
+        }
+    } catch (error) {
+        console.error('Error calculating price:', error.message);
+        // Hide loading indicator even in case of error
+        document.getElementById('loading-indicator').style.display = 'none';
+        alert('There was an issue calculating the price. Please try again.');
+    }
+}
+
+// Function to open the price modal
+function openPriceModal() {
+    document.getElementById("priceModal").style.display = "block";
+}
+
+// Function to close the price modal
+function closePriceModal() {
+    document.getElementById("priceModal").style.display = "none";
+}
+
+// Function to proceed to checkout
+function proceedToCheckout() {
+    // Retrieve the pricing data
+    const priceData = JSON.parse(localStorage.getItem('priceData'));
+    
+    // Retrieve the existing order details
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+    // Prepare the product details to be added to the cart
+    const product = {
+        title: 'Exceptional Tee',
+        sku: orderDetails.sku,
+        color: orderDetails.color,
+        sizes: orderDetails.sizes,
+        merchCost: priceData.merch,
+        rollTagCost: priceData.rollAndTag,
+        totalPrice: priceData.totalPrice
+    };
+
+    // Add the product to the cart
+    addToCart(product);
+
+    // Redirect to the checkout page or handle the checkout process
+    window.location.href = 'checkout.html';
+}
+
+function addToCart(product) {
+    // Retrieve existing cart from localStorage or initialize a new array
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add the new product to the cart
+    cart.push(product);
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Load header, footer, and logo when DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+    // Load the header
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading header:', error));
+
+    // Load the footer
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+
+    // Call updateLogo() to fetch and display the user's logo immediately upon page load
+    updateLogo();
+});
+</script>
+
+</body>
+</html>
