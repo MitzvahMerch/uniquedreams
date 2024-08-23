@@ -582,7 +582,7 @@ function getPrice() {
     const sku = document.querySelector('.sku-text').textContent;
 
     // Retrieve the selected front logo placement
-    let frontPlacement = document.getElementById('front-logo-placement').value;
+    let frontPlacement = document.getElementById('logo-placement').value;
     if (frontPlacement === "" || frontPlacement === "Select Placement") {
         frontPlacement = "none-front"; // Set to "none-front" if nothing is selected
     }
