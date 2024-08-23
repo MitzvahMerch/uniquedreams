@@ -310,7 +310,7 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="02334C1/Augusta_Sportswear_703_Black_Front_High.png" alt="Product Image">
+            <img id="product-image" src="02334C1/Augusta_Sportswear_703_Gold_Front_High.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
@@ -323,9 +323,8 @@ h1.product-title {
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="PowerYellow" selected>🟨 Power Yellow</option>
+        <option value="Gold" selected>🟨 Gold</option>
         <option value="Black">⬛ Black</option>
-        <option value="Gold">🟨 Gold</option>
         <option value="Graphite">⬛ Graphite</option>
         <option value="Kelly">🟩 Kelly</option>
         <option value="Lime">🟩 Lime</option>
@@ -500,8 +499,8 @@ window.onload = updateLogo;
 
 
 // Initialize frontImageSrc and backImageSrc with the default values
-let frontImageSrc = '02334C1/Augusta_Sportswear_703_Black_Front_High.png';
-let backImageSrc = '02334C1/Augusta_Sportswear_703_Black_Back_High.png';
+let frontImageSrc = '02334C1/Augusta_Sportswear_703_Gold_Front_High.png';
+let backImageSrc = '02334C1/Augusta_Sportswear_703_Gold_Back_High.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
@@ -560,8 +559,8 @@ function updateColor() {
             backImageSrc = '02334C1/Augusta_Sportswear_703_White_Back_High.png';
             break;
         default:
-            frontImageSrc = '02334C1/Augusta_Sportswear_703_Black_Front_High.png';
-            backImageSrc = '02334C1/Augusta_Sportswear_703_Black_Back_High.png';
+            frontImageSrc = '02334C1/Augusta_Sportswear_703_Gold_Front_High.png';
+            backImageSrc = '02334C1/Augusta_Sportswear_703_Gold_Back_High.png';
             break;
     }
 
