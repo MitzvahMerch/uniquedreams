@@ -587,14 +587,8 @@ function getPrice() {
         frontPlacement = "none-front"; // Set to "none-front" if nothing is selected
     }
 
-    // Retrieve the selected back logo placement
-    let backPlacement = document.getElementById('back-logo-placement').value;
-    if (backPlacement === "" || backPlacement === "Select Placement") {
-        backPlacement = "none-back"; // Set to "none-back" if nothing is selected
-    }
-
     // Retrieve the selected roll tag option
-    const rollTagSelection = document.getElementById('roll-tag').value;
+    const rollTagSelection = document.getElementById('roll-tag') ? document.getElementById('roll-tag').value : "none";
 
     // Retrieve the selected roll tag style, if applicable
     const selectedStyle = document.querySelector('.image-options img.selected')?.id || null;
@@ -602,7 +596,6 @@ function getPrice() {
     // Update the orderDetails object with the latest selections
     orderDetails.sku = sku;
     orderDetails.frontPlacement = frontPlacement;
-    orderDetails.backPlacement = backPlacement;
     orderDetails.rollTagSelection = rollTagSelection;
     orderDetails.selectedStyle = selectedStyle;
 
@@ -612,10 +605,9 @@ function getPrice() {
         return;
     }
 
-    // Check if both front and back placements are either "none-front" or "none-back"
-    if ((frontPlacement === "none-front") && 
-        (backPlacement === "none-back")) {
-        alert("Please select at least one logo placement option.");
+    // Check if front placement is set to none
+    if (frontPlacement === "none-front") {
+        alert("Please select a logo placement option.");
         return;
     }
 
@@ -713,11 +705,11 @@ async function calculatePrice() {
         console.log("Quantity:", orderDetails.totalQuantity);
         console.log("SKU:", orderDetails.sku);
         console.log("Front Placement:", orderDetails.frontPlacement);
-        console.log("Back Placement:", orderDetails.backPlacement);
         console.log("Roll Tag Selection:", orderDetails.rollTagSelection);
         console.log("Selected Style:", orderDetails.selectedStyle);
 
-        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=${orderDetails.totalQuantity}&sku=${orderDetails.sku}&frontLogoPlacement=${orderDetails.frontPlacement}&backLogoPlacement=${orderDetails.backPlacement}&rollTagOption=${orderDetails.rollTagSelection}&selectedStyle=${orderDetails.selectedStyle}`);
+        // Adjust the fetch URL to remove the `backLogoPlacement` parameter
+        const response = await fetch(`https://us-central1-mitzvahmerch-ac346.cloudfunctions.net/calculatePrice?sessionId=${sessionId}&quantity=${orderDetails.totalQuantity}&sku=${orderDetails.sku}&frontLogoPlacement=${orderDetails.frontPlacement}&rollTagOption=${orderDetails.rollTagSelection}&selectedStyle=${orderDetails.selectedStyle}`);
 
         if (!response.ok) {
             const errorText = await response.text();
