@@ -316,41 +316,30 @@ h1.product-title {
             </div>
         </div>
 
-        <div class="controls-container">
-            <h1 class="product-title">Ring Spun Super Soft Tank</h1> <!-- Product Title Changed to Header -->
-            <div class="sku-text">BC3480C1</div> <!-- SKU Text Added -->
+<div class="controls-container">
+    <h1 class="product-title">Ring Spun Super Soft Tank</h1>
+    <div class="sku-text">BC3480C1</div>
 
-<div class="controls">
-    <label for="color-selection">Color:</label>
-    <select id="color-selection" onchange="updateColor()">
-        <option value="Navy" selected>🔵 Navy</option>
-        <option value="Aqua">🔵 Aqua</option>
-        <option value="Black">⬛ Black</option>
-        <option value="NeonBlue">🔵 Neon Blue</option>
-        <option value="White">⬜ White</option>
-    </select>
-</div>
+    <div class="controls">
+        <label for="color-selection">Color:</label>
+        <select id="color-selection" onchange="updateColor()">
+            <option value="Navy" selected>🔵 Navy</option>
+            <option value="Aqua">🔵 Aqua</option>
+            <option value="Black">⬛ Black</option>
+            <option value="NeonBlue">🔵 Neon Blue</option>
+            <option value="White">⬜ White</option>
+        </select>
+    </div>
 
-
-            <div class="controls">
-                <label for="front-logo-placement">Front Logo Placement:</label>
-                <select id="front-logo-placement" onchange="updateLogoPlacement()">
-                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-                    <option value="leftChest">Left Chest</option> <!-- Updated to match Firestore field -->
-                    <option value="fullFront">Full Front</option> <!-- Updated to match Firestore field -->
-                    <option value="centerChest">Center Chest</option> <!-- Updated to match Firestore field -->
-                    <option value="none-front">None - Back Only</option>
-                </select>
-            </div>
-
-            <div class="controls">
-                <label for="back-logo-placement">Back Logo Placement:</label>
-                <select id="back-logo-placement" onchange="updateLogoPlacement()">
-                    <option value="" selected disabled>Select Placement</option> <!-- Empty default option -->
-                    <option value="centerBack">Center Back</option> <!-- Updated to match Firestore field -->
-                    <option value="none-back">None - Front Only</option>
-                </select>
-            </div>
+    <div class="controls">
+        <label for="logo-placement">Logo Placement:</label>
+        <select id="logo-placement" onchange="updateLogoPlacement()">
+            <option value="" selected disabled>Select Placement</option>
+            <option value="leftChest">Left Chest</option>
+            <option value="fullFront">Full Front</option>
+            <option value="centerChest">Center Chest</option>
+        </select>
+    </div>
 
             <table class="size-table">
                 <tr>
