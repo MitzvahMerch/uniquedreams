@@ -308,10 +308,20 @@ h1.product-title {
         </select>
     </div>
 
-  <div class="controls">
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" class="size-input" min="0" placeholder="0" oninput="updateTotal()">
-    </div>
+<table class="size-table">
+    <tr>
+        <td colspan="2"><label for="size-number">#</label></td>
+    </tr>
+    <tr>
+        <td colspan="2"><input type="number" id="size-number" class="size-input" min="0" placeholder="0" oninput="updateTotal()"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><label for="total">Total</label></td>
+    </tr>
+    <tr>
+        <td colspan="2"><input type="number" id="total" class="total-input" value="0" readonly></td>
+    </tr>
+</table>
 
     <button class="submit-button" onclick="getPrice()">Get Price</button>
 </div>
