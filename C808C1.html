@@ -520,29 +520,32 @@ function updateLogoPlacement() {
 }
 
 function updateTotal() {
-    const sizes = ['ym', 'yl', 's', 'm', 'l', 'xl'];
-    let total = 0;
-    let sizeDetails = {};
+    // Get the single size input
+    const input = document.getElementById('size-one');
+    const quantity = parseInt(input.value) || 0; // Get the quantity or 0 if it's empty
+    let total = quantity;
 
-    sizes.forEach(size => {
-        const input = document.getElementById(`size-${size}`);
-        const quantity = parseInt(input.value) || 0;
-        total += quantity;
-        sizeDetails[size] = quantity;
-    });
+    // Store the details for the single size
+    let sizeDetails = {
+        size: quantity
+    };
 
+    // Update the total field
     document.getElementById('total').value = total;
 
+    // Get color and SKU information
     const color = document.getElementById('color-selection').value;
     const sku = document.querySelector('.sku-text').textContent;
 
+    // Prepare order details to store in localStorage
     const orderDetails = {
         totalQuantity: total,
-        sizes: sizeDetails,
+        size: sizeDetails,
         sku: sku,
         color: color
     };
 
+    // Save the order details to localStorage
     localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 }
 
