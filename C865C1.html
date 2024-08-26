@@ -317,18 +317,33 @@ h1.product-title {
         </div>
 
         <div class="controls-container">
-            <h1 class="product-title">Quality Cap</h1>
-            <div class="sku-text">C808C1</div>
+            <h1 class="product-title">Best Value Cap</h1>
+            <div class="sku-text">C865C1</div>
 
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="Black" selected>⬛ Black</option>
-        <option value="Grey">⬜ Grey</option>
+        <option value="Khaki">🟫 Khaki</option>
+        <option value="Black">⬛ Black</option>
+        <option value="Brown">🟫 Brown</option>
+        <option value="Coyote Brown">🟫 Coyote Brown</option>
+        <option value="Dark Grey">⬛ Dark Grey</option>
+        <option value="Dark Navy">🔵 Dark Navy</option>
+        <option value="Forest Green">🟩 Forest Green</option>
+        <option value="Gray">⬜ Gray</option>
+        <option value="Maroon">🟥 Maroon</option>
+        <option value="Multicam">🟫 Multicam</option>
+        <option value="Multicam Black">⬛ Multicam Black</option>
         <option value="Navy">🔵 Navy</option>
+        <option value="Olive Drab Green">🟩 Olive Drab Green</option>
+        <option value="Red">🟥 Red</option>
         <option value="Royal">🔵 Royal</option>
+        <option value="Silver">⬜ Silver</option>
+        <option value="White">⬜ White</option>
+        <option value="Woodland Brown">🟫 Woodland Brown</option>
     </select>
 </div>
+
 
             <div class="controls">
                 <label for="logo-placement">Logo Placement:</label>
@@ -363,7 +378,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        The patented poly-weave spandex ensures you get a superbly comfortable fit, while the flat bill keeps you looking up-to-date.
+        The original Flexfit cap. Only Flexfit offers the patented poly-weave spandex to assure you get the perfect fit.
     </div>
 
     <!-- Modal for additional information -->
@@ -461,26 +476,68 @@ window.onload = updateLogo;
 
 
 // Initialize frontImageSrc with the default value
-let frontImageSrc = 'C808C1/C808_BLACK_Flat_Straight.png';
+let frontImageSrc = 'C865C1/C865_BLACK_Flat_Straight.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'Black':
-            frontImageSrc = 'C808C1/C808_BLACK_Flat_Straight.png';
+        case 'Khaki':
+            frontImageSrc = 'C865C1/C865_KHAKI_Flat_Straight.png';
             break;
-        case 'Grey':
-            frontImageSrc = 'C808C1/C808_GREY_Flat_Straight.png';
+        case 'Black':
+            frontImageSrc = 'C865C1/C865_BLACK_Flat_Straight.png';
+            break;
+        case 'Brown':
+            frontImageSrc = 'C865C1/C865_BROWN_Flat_Straight.png';
+            break;
+        case 'Coyote Brown':
+            frontImageSrc = 'C865C1/C865_COYOTE BROWN_Flat_Straight.png';
+            break;
+        case 'Dark Grey':
+            frontImageSrc = 'C865C1/C865_DARK GREY_Flat_Straight.png';
+            break;
+        case 'Dark Navy':
+            frontImageSrc = 'C865C1/C865_DARK NAVY_Flat_Straight.png';
+            break;
+        case 'Forest Green':
+            frontImageSrc = 'C865C1/C865_FOREST GREEN_Flat_Straight.png';
+            break;
+        case 'Gray':
+            frontImageSrc = 'C865C1/C865_GREY_Flat_Front.png';
+            break;
+        case 'Maroon':
+            frontImageSrc = 'C865C1/C865_MAROON_Flat_Straight.png';
+            break;
+        case 'Multicam':
+            frontImageSrc = 'C865C1/C865_MULTICAM_Flat_Front.png';
+            break;
+        case 'Multicam Black':
+            frontImageSrc = 'C865C1/C865_MULTICAM BLACK_Flat_Straight.png';
             break;
         case 'Navy':
-            frontImageSrc = 'C808C1/C808_NAVY_Flat_Straight.png';
+            frontImageSrc = 'C865C1/C865_NAVY_Flat_Straight.png';
+            break;
+        case 'Olive Drab Green':
+            frontImageSrc = 'C865C1/C865_OLIVE DRAB GREEN_Flat_Straight.png';
+            break;
+        case 'Red':
+            frontImageSrc = 'C865C1/C865_RED_Flat_Straight.png';
             break;
         case 'Royal':
-            frontImageSrc = 'C808C1/C808_ROYAL_Flat_Straight.png';
+            frontImageSrc = 'C865C1/C865_ROYAL_Flat_Front.png';
+            break;
+        case 'Silver':
+            frontImageSrc = 'C865C1/C865_SILVER_Flat_Straight.png';
+            break;
+        case 'White':
+            frontImageSrc = 'C865C1/C865_WHITE_Flat_Front.png';
+            break;
+        case 'Woodland Brown':
+            frontImageSrc = 'C865C1/C865_WOODLAND BROWN_Flat_Straight.png';
             break;
         default:
-            frontImageSrc = 'C808C1/C808_BLACK_Flat_Straight.png';
+            frontImageSrc = 'C865C1/C865_BLACK_Flat_Straight.png';
             break;
     }
 
