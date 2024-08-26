@@ -310,40 +310,35 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="C865C1/C865_BLACK_Flat_Straight.png" alt="Product Image">
+            <img id="product-image" src="NE1020C1/NE1020_BlackBlack_full_front.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
         </div>
 
         <div class="controls-container">
-            <h1 class="product-title">Best Value Cap</h1>
-            <div class="sku-text">C865C1</div>
+            <h1 class="product-title">Exceptional Cotton Cap</h1>
+            <div class="sku-text">NE1020C1.html</div>
 
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="Khaki">🟫 Khaki</option>
-        <option value="Black">⬛ Black</option>
-        <option value="Brown">🟫 Brown</option>
-        <option value="Coyote Brown">🟫 Coyote Brown</option>
-        <option value="Dark Grey">⬛ Dark Grey</option>
-        <option value="Dark Navy">🔵 Dark Navy</option>
-        <option value="Forest Green">🟩 Forest Green</option>
-        <option value="Gray">⬜ Gray</option>
-        <option value="Maroon">🟥 Maroon</option>
-        <option value="Multicam">🟫 Multicam</option>
-        <option value="Multicam Black">⬛ Multicam Black</option>
-        <option value="Navy">🔵 Navy</option>
-        <option value="Olive Drab Green">🟩 Olive Drab Green</option>
-        <option value="Red">🟥 Red</option>
-        <option value="Royal">🔵 Royal</option>
-        <option value="Silver">⬜ Silver</option>
+        <option value="Black" selected>⬛ Black</option>
+        <option value="Black Gold">⬛ Black Gold</option>
+        <option value="Black White">⬛ Black White</option>
+        <option value="Charcoal Charcoal">⬛ Charcoal Charcoal</option>
+        <option value="Chocolate Khaki">🟫 Chocolate Khaki</option>
+        <option value="Dark Green">🟩 Dark Green</option>
+        <option value="Deep Navy">🔵 Deep Navy</option>
+        <option value="Deep Navy White">🔵 Deep Navy White</option>
+        <option value="Graphite Cyber Green">🟫 Graphite Cyber Green</option>
+        <option value="Grey Black">⬛ Grey Black</option>
+        <option value="Royal Royal White">🔵 Royal Royal White</option>
+        <option value="Scarlet Red">🟥 Scarlet Red</option>
+        <option value="Scarlet Red White">🟥 Scarlet Red White</option>
         <option value="White">⬜ White</option>
-        <option value="Woodland Brown">🟫 Woodland Brown</option>
     </select>
 </div>
-
 
             <div class="controls">
                 <label for="logo-placement">Logo Placement:</label>
@@ -378,7 +373,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        The original Flexfit cap. Only Flexfit offers the patented poly-weave spandex to assure you get the perfect fit.
+        Get into the game without losing your cool. Spacer Mesh panels on hat back allow cooling ventilation on even the warmest days.
     </div>
 
     <!-- Modal for additional information -->
@@ -476,68 +471,56 @@ window.onload = updateLogo;
 
 
 // Initialize frontImageSrc with the default value
-let frontImageSrc = 'C865C1/C865_BLACK_Flat_Straight.png';
+let frontImageSrc = 'NE1020C1/NE1020_BlackBlack_full_front.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'Khaki':
-            frontImageSrc = 'C865C1/C865_KHAKI_Flat_Straight.png';
-            break;
         case 'Black':
-            frontImageSrc = 'C865C1/C865_BLACK_Flat_Straight.png';
+            frontImageSrc = 'NE1020C1/NE1020_BlackBlack_full_front.png';
             break;
-        case 'Brown':
-            frontImageSrc = 'C865C1/C865_BROWN_Flat_Straight.png';
+        case 'Black White':
+            frontImageSrc = 'NE1020C1/NE1020_BlackWhite_full_front.png';
             break;
-        case 'Coyote Brown':
-            frontImageSrc = 'C865C1/C865_COYOTE BROWN_Flat_Straight.png';
-            break;
-        case 'Dark Grey':
-            frontImageSrc = 'C865C1/C865_DARK GREY_Flat_Straight.png';
-            break;
-        case 'Dark Navy':
-            frontImageSrc = 'C865C1/C865_DARK NAVY_Flat_Straight.png';
-            break;
-        case 'Forest Green':
-            frontImageSrc = 'C865C1/C865_FOREST GREEN_Flat_Straight.png';
-            break;
-        case 'Gray':
-            frontImageSrc = 'C865C1/C865_GREY_Flat_Front.png';
-            break;
-        case 'Maroon':
-            frontImageSrc = 'C865C1/C865_MAROON_Flat_Straight.png';
-            break;
-        case 'Multicam':
-            frontImageSrc = 'C865C1/C865_MULTICAM_Flat_Front.png';
-            break;
-        case 'Multicam Black':
-            frontImageSrc = 'C865C1/C865_MULTICAM BLACK_Flat_Straight.png';
-            break;
-        case 'Navy':
-            frontImageSrc = 'C865C1/C865_NAVY_Flat_Straight.png';
-            break;
-        case 'Olive Drab Green':
-            frontImageSrc = 'C865C1/C865_OLIVE DRAB GREEN_Flat_Straight.png';
-            break;
-        case 'Red':
-            frontImageSrc = 'C865C1/C865_RED_Flat_Straight.png';
+        case 'Black Gold':
+            frontImageSrc = 'NE1020C1/NE1020_Blackgold_full_front.png';
             break;
         case 'Royal':
-            frontImageSrc = 'C865C1/C865_ROYAL_Flat_Front.png';
-            break;
-        case 'Silver':
-            frontImageSrc = 'C865C1/C865_SILVER_Flat_Straight.png';
+            frontImageSrc = 'NE1020C1/NE1020_Royal_Flat_Front.png';
             break;
         case 'White':
-            frontImageSrc = 'C865C1/C865_WHITE_Flat_Front.png';
+            frontImageSrc = 'NE1020C1/NE1020_WhiteWhite_full_front.png';
             break;
-        case 'Woodland Brown':
-            frontImageSrc = 'C865C1/C865_WOODLAND BROWN_Flat_Straight.png';
+        case 'Charcoal Charcoal':
+            frontImageSrc = 'NE1020C1/NE1020_charcoalcharcoal_full_front.png';
+            break;
+        case 'Chocolate Khaki':
+            frontImageSrc = 'NE1020C1/NE1020_chocolatekhaki_full_front.png';
+            break;
+        case 'Dark Green':
+            frontImageSrc = 'NE1020C1/NE1020_darkgreendarkgreen_full_front.png';
+            break;
+        case 'Deep Navy White':
+            frontImageSrc = 'NE1020C1/NE1020_deepnavyWhite_full_front.png';
+            break;
+        case 'Deep Navy':
+            frontImageSrc = 'NE1020C1/NE1020_deepnavydeepnavy_full_front.png';
+            break;
+        case 'Graphite Cyber Green':
+            frontImageSrc = 'NE1020C1/NE1020_graphitecybergreen_full_front.png';
+            break;
+        case 'Grey Black':
+            frontImageSrc = 'NE1020C1/NE1020_greyBlack_full_front.png';
+            break;
+        case 'Royal White':
+            frontImageSrc = 'NE1020C1/NE1020_royalWhite_full_front.png';
+            break;
+        case 'Scarlet Red':
+            frontImageSrc = 'NE1020C1/NE1020_scarletredscarletred_full_front.png';
             break;
         default:
-            frontImageSrc = 'C865C1/C865_BLACK_Flat_Straight.png';
+            frontImageSrc = 'NE1020C1/NE1020_BlackBlack_full_front.png';
             break;
     }
 
@@ -545,6 +528,7 @@ function updateColor() {
     document.getElementById('product-image').src = frontImageSrc;
     updateLogoPlacement();
 }
+
 
 
 function updateLogoPlacement() {
