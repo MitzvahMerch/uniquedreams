@@ -320,14 +320,15 @@ h1.product-title {
             <h1 class="product-title">Quality Cap</h1>
             <div class="sku-text">C808C1</div>
 
-            <div class="controls">
-                <label for="color-selection">Color:</label>
-                <select id="color-selection" onchange="updateColor()">
-                    <option value="Black" selected>⬛ Black</option>
-                    <option value="Navy">🔵 Navy</option>
-                    <option value="Sport Grey">⬜ Sport Grey</option>
-                </select>
-            </div>
+<div class="controls">
+    <label for="color-selection">Color:</label>
+    <select id="color-selection" onchange="updateColor()">
+        <option value="Black" selected>⬛ Black</option>
+        <option value="Grey">⬜ Grey</option>
+        <option value="Navy">🔵 Navy</option>
+        <option value="Royal">🔵 Royal</option>
+    </select>
+</div>
 
             <div class="controls">
                 <label for="logo-placement">Logo Placement:</label>
@@ -362,7 +363,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        50/50 cotton/polyester, Pill-resistant and softer air-jet spun yarn, Elastic waistband with drawstring (adult style only) Elastic cuffs
+        The patented poly-weave spandex ensures you get a superbly comfortable fit, while the flat bill keeps you looking up-to-date.
     </div>
 
     <!-- Modal for additional information -->
@@ -460,23 +461,26 @@ window.onload = updateLogo;
 
 
 // Initialize frontImageSrc with the default value
-let frontImageSrc = '23060C1/Gildan_18200_Black_Front_High.png';
+let frontImageSrc = 'C808C1/C808_BLACK_Flat_Straight.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
         case 'Black':
-            frontImageSrc = '23060C1/Gildan_18200_Black_Front_High.png';
+            frontImageSrc = 'C808C1/C808_BLACK_Flat_Straight.png';
+            break;
+        case 'Grey':
+            frontImageSrc = 'C808C1/C808_GREY_Flat_Straight.png';
             break;
         case 'Navy':
-            frontImageSrc = '23060C1/Gildan_18200_Navy_Front_High.png';
+            frontImageSrc = 'C808C1/C808_NAVY_Flat_Straight.png';
             break;
-        case 'Sport Grey':
-            frontImageSrc = '23060C1/Gildan_18200_Sport_Grey_Front_High.png';
+        case 'Royal':
+            frontImageSrc = 'C808C1/C808_ROYAL_Flat_Straight.png';
             break;
         default:
-            frontImageSrc = '23060C1/Gildan_18200_Black_Front_High.png';
+            frontImageSrc = 'C808C1/C808_BLACK_Flat_Straight.png';
             break;
     }
 
@@ -484,7 +488,6 @@ function updateColor() {
     document.getElementById('product-image').src = frontImageSrc;
     updateLogoPlacement();
 }
-
 
 
 function updateLogoPlacement() {
