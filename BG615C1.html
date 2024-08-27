@@ -31,7 +31,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.05); /* Scale both front and back images by 32% */
+    transform: scale(1.2); /* Scale both front and back images by 32% */
     transform-origin: 50% 50%; /* Custom percentages for finer control */
 }
 
@@ -310,30 +310,35 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png" alt="Product Image">
+            <img id="product-image" src="BG615C1/BG615_limeshock_front.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
         </div>
 
         <div class="controls-container">
-            <h1 class="product-title">Beach Towel</h1>
-            <div class="sku-text">75166C1</div>
+            <h1 class="product-title">Value Sling Bag</h1>
+            <div class="sku-text">BG615C1</div>
           
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="Black">⬛  Black</option>
-        <option value="Aqua">🟦 Aqua</option>
-        <option value="Red">🟥 Red</option>
-        <option value="Navy">🔵 Navy</option>
+        <option value="Lime Shock">🟩 Lime Shock</option>
+        <option value="Black">⬛ Black</option>
+        <option value="Cardinal">🟥 Cardinal</option>
+        <option value="Carolina Blue">🟦 Carolina Blue</option>
+        <option value="Forest Green">🟩 Forest Green</option>
+        <option value="Gold">🟨 Gold</option>
+        <option value="Graphite Grey">⬛ Graphite Grey</option>
+        <option value="Orange">🟧 Orange</option>
         <option value="Purple">🟪 Purple</option>
-        <option value="Royal">🔵 Royal</option>
-        <option value="Sunlight">🟨 Sunlight</option>
-        <option value="Tangerine">🟧 Tangerine</option>
-        <option value="White">⬜ White</option> 🟥
+        <option value="True Navy">🔵 True Navy</option>
+        <option value="True Red">🟥 True Red</option>
+        <option value="True Royal">🔵 True Royal</option>
+        <option value="Turquoise">🟦 Turquoise</option>
     </select>
 </div>
+
 
 
             <div class="controls">
@@ -370,7 +375,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        Head to the beach with one of the softest velour towel under the sun.100% cotton velourFiber-reactive dyedHemmed edges10.5 pounds per dozenSize: 30" x 60" 
+        A basic cinch pack at a very friendly price. Lightweight and easy to wear over your shoulder thanks to adjustable-length drawcord straps. 
     </div>
 
     <!-- Modal for additional information -->
@@ -468,41 +473,53 @@ window.onload = updateLogo;
 
 
 // Initialize frontImageSrc with the default value
-let frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png';
+let frontImageSrc = 'BG615C1/BG615_limeshock_front.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'Aqua':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Aqua_Back_High.png';
+        case 'Lime Shock':
+            frontImageSrc = 'BG615C1/BG615_limeshock_front.png';
             break;
         case 'Black':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png';
+            frontImageSrc = 'BG615C1/BG615_Black_front.png';
             break;
-        case 'Navy':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Navy_Back_High.png';
+        case 'Cardinal':
+            frontImageSrc = 'BG615C1/BG615_cardinal_front.png';
+            break;
+        case 'Carolina Blue':
+            frontImageSrc = 'BG615C1/BG615_carolinablue_front.png';
+            break;
+        case 'Forest Green':
+            frontImageSrc = 'BG615C1/BG615_forestgreen_front.png';
+            break;
+        case 'Gold':
+            frontImageSrc = 'BG615C1/BG615_gold_front.png';
+            break;
+        case 'Graphite Grey':
+            frontImageSrc = 'BG615C1/BG615_graphitegrey_front.png';
+            break;
+        case 'Orange':
+            frontImageSrc = 'BG615C1/BG615_orange_front.png';
             break;
         case 'Purple':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Purple_Back_High.png';
+            frontImageSrc = 'BG615C1/BG615_purple_front.png';
             break;
-        case 'Red':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Red_Back_High.png';
+        case 'True Navy':
+            frontImageSrc = 'BG615C1/BG615_truenavy_front.png';
             break;
-        case 'Royal':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Royal_Back_High.png';
+        case 'True Red':
+            frontImageSrc = 'BG615C1/BG615_truered_front.png';
             break;
-        case 'Sunlight':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Sunlight_Back_High.png';
+        case 'True Royal':
+            frontImageSrc = 'BG615C1/BG615_trueroyal_front.png';
             break;
-        case 'Tangerine':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Tangerine_Back_High.png';
-            break;
-        case 'White':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_White_Back_High.png';
+        case 'Turquoise':
+            frontImageSrc = 'BG615C1/BG615_turquoise_flat_front.png';
             break;
         default:
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png';
+            frontImageSrc = 'BG615C1/BG615_limeshock_front.png';
             break;
     }
 
@@ -510,6 +527,7 @@ function updateColor() {
     document.getElementById('product-image').src = frontImageSrc;
     updateLogoPlacement();
 }
+
 
 
 function updateLogoPlacement() {
