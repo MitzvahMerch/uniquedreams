@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Standard Beach Towel</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your global styles.css -->
     <style>
         /* Specific styles for the product page */
@@ -30,6 +30,17 @@
             cursor: pointer; /* Change cursor to pointer */
             text-decoration: none; /* Remove underline */
             min-height: 450px; /* Set minimum height to ensure all cards match */
+          
+            .product-card-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit the color from the parent element */
+    display: inline-block; /* Ensure the entire card is clickable */
+}
+
+        }
+        .product-card a {
+            text-decoration: none; /* Ensure links inside the product card have no underline */
+            color: inherit; /* Inherit the color from the parent element */
         }
         .product-card:hover {
             transform: scale(1.05); /* Slightly enlarge the card */
@@ -62,18 +73,10 @@
             font-size: 16px; /* Set font size */
             margin: 5px 0;
         }
-        .product-card .product-sku {
-            font-size: 16px; /* Set font size */
-            margin: 5px 0;
-        }
         .product-card .product-price {
             font-size: 22px; /* Set font size */
             font-weight: bold;
             margin-top: 10px;
-        }
-        .product-card-link {
-            text-decoration: none; /* Remove underline from the link */
-            color: inherit; /* Ensure link inherits text color */
         }
     </style>
 </head>
@@ -83,47 +86,10 @@
     <div id="header-placeholder"></div>
 
     <div class="container">
-        <!-- First Product Card: Striped Towel -->
-        <a href="https://mitzvahmerch.github.io/WriteOcassio/76266C1.html" class="product-card-link">
-            <div class="product-card">
-                <img id="product-image" src="76266C1/KellyFront.png" alt="Striped Towel">
-                <div class="color-row">
-                    <!-- Add color swatches here as per the product -->
-                    <div class="color-swatch" style="background-color: #228B22;"></div>
-                    <div class="color-swatch" style="background-color: #8B0000;"></div>
-                    <div class="color-swatch" style="background-color: #708090;"></div>
-                    <div class="color-swatch" style="background-color: #FFFF00;"></div>
-                </div>
-                <div class="product-name">Striped Towel</div>
-                <div class="product-brand">Carmel Towel Company | 76266C1</div>
-                <div class="product-price">$11.37</div>
-            </div>
-        </a>
-
-        <!-- Second Product Card: Poka Dot Towel -->
-        <a href="https://mitzvahmerch.github.io/WriteOcassio/76166C1.html" class="product-card-link">
-            <div class="product-card">
-                <img id="product-image" src="76166C1/BlackFront.png" alt="Poka Dot Towel">
-                <div class="color-row">
-                    <!-- Add color swatches here as per the product -->
-                    <div class="color-swatch" style="background-color: #000000;"></div>
-                    <div class="color-swatch" style="background-color: #FF00FF;"></div>
-                    <div class="color-swatch" style="background-color: #008000;"></div>
-                    <div class="color-swatch" style="background-color: #00FFFF;"></div>
-                    <div class="color-swatch" style="background-color: #808080;"></div>
-                    <div class="color-swatch" style="background-color: #4682B4;"></div>
-                    <div class="color-swatch" style="background-color: #4169E1;"></div>
-                </div>
-                <div class="product-name">Poka Dot Towel</div>
-                <div class="product-brand">Carmel Towel Company | 76166C1</div>
-                <div class="product-price">$12.62</div>
-            </div>
-        </a>
-
-        <!-- Third Product Card: Standard Beach Towel -->
+        <!-- Standard Beach Towel Product Card -->
         <a href="https://mitzvahmerch.github.io/WriteOcassio/75166C1.html" class="product-card-link">
             <div class="product-card">
-                <img id="product-image" src="75166C1/RedFront.png" alt="Standard Beach Towel">
+                <img id="product-image" src="75166C1/Carmel_Towel_Company_C3060_Red_Back_High.png" alt="Standard Beach Towel">
                 <div class="color-row">
                     <!-- Add color swatches here as per the product -->
                     <div class="color-swatch" style="background-color: #FF0000;"></div>
@@ -137,7 +103,7 @@
                 </div>
                 <div class="product-name">Standard Beach Towel</div>
                 <div class="product-brand">Carmel Towel Company | 75166C1</div>
-                <div class="product-price">$12.00</div>
+                <div class="product-price">$14.99</div>
             </div>
         </a>
     </div>
