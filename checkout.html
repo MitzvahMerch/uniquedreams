@@ -280,6 +280,10 @@ function removeFromCart(index) {
 
 // Function to format size quantities and calculate total quantity
 function formatSizeQuantities(sizes) {
+    if (!sizes || typeof sizes !== 'object' || Object.keys(sizes).length === 0) {
+        return ''; // Return an empty string if no sizes are present
+    }
+
     const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
     const formattedSizes = Object.entries(sizes)
         .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
@@ -299,13 +303,13 @@ function updateDisplay() {
         const productCost = parseFloat(product.totalPrice);
         totalCost += productCost;
 
-        const formattedSizes = formatSizeQuantities(product.sizes);
+        const formattedSizes = product.sizes ? formatSizeQuantities(product.sizes) : '';
 
         orderDetailsDisplay.innerHTML += `
             <div class="controls-container">
                 <h1 class="product-title">${product.title}</h1>
                 <div class="sku-text">${product.sku}</div>
-                <div class="size-quantities"><strong>Quantities:</strong> <span>${formattedSizes}</span></div>
+                ${formattedSizes ? `<div class="size-quantities"><strong>Quantities:</strong> <span>${formattedSizes}</span></div>` : ''}
                 <p><strong>Merch:</strong> $${product.merchCost}</p>
                 <p><strong>Roll and Tag:</strong> $${product.rollTagCost}</p>
                 <p><strong>Shipping:</strong> Free</p>
