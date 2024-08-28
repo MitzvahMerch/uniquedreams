@@ -31,7 +31,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.25); /* Scale both front and back images by 32% */
+    transform: scale(1.02); /* Scale both front and back images by 32% */
     transform-origin: 50% 28%; /* Custom percentages for finer control */
 }
 
@@ -310,7 +310,7 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="13203C1/Boxercraft_BM6624_Black-_Gold_Front_High.png" alt="Product Image">
+            <img id="product-image" src="13203C1/Boxercraft_BM6624_Red-_Black_Buffalo_Front_High.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
@@ -488,7 +488,7 @@ window.onload = updateLogo;
 
 
 // Initialize frontImageSrc with the default value
-let frontImageSrc = '13203C1/Boxercraft_BM6624_Black-_Gold_Front_High.png';
+let frontImageSrc = '13203C1/Boxercraft_BM6624_Red-_Black_Buffalo_Front_High.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
@@ -531,7 +531,7 @@ function updateColor() {
             frontImageSrc = '13203C1/Boxercraft_BM6624_Scottish_Tartan_Front_High.png';
             break;
         default:
-            frontImageSrc = '13203C1/Boxercraft_BM6624_Black-_Gold_Front_High.png';
+            frontImageSrc = '13203C1/Boxercraft_BM6624_Red-_Black_Buffalo_Front_High.png';
             break;
     }
 
