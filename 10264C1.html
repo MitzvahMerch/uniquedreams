@@ -521,12 +521,13 @@ function updateLogoPlacement() {
                 logo.style.top = '35%';
                 logo.style.left = '50%';
                 break;
-            case 'centerChest':
-                logo.style.width = '154px';
-                logo.style.height = '154px';
-                logo.style.top = '32%';
-                logo.style.left = '50%';
-                break;
+        case 'centerChest':
+            logo.style.width = '154px';
+            logo.style.height = '154px';
+            logo.style.top = '32%';
+            logo.style.left = '50%';
+            logo.style.transform = 'translate(-50%, -50%) rotate(90deg)'; // Rotate 90 degrees
+            break;
             case 'leftChest':
                 logo.style.width = '90px';
                 logo.style.height = '90px';
