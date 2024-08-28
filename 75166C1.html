@@ -310,7 +310,7 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png" alt="Product Image">
+            <img id="product-image" src="75166C1/Carmel_Towel_Company_C3060_Red_Back_High.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
@@ -323,15 +323,10 @@ h1.product-title {
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="Black">⬛  Black</option>
-        <option value="Aqua">🟦 Aqua</option>
         <option value="Red">🟥 Red</option>
         <option value="Navy">🔵 Navy</option>
-        <option value="Purple">🟪 Purple</option>
         <option value="Royal">🔵 Royal</option>
-        <option value="Sunlight">🟨 Sunlight</option>
-        <option value="Tangerine">🟧 Tangerine</option>
-        <option value="White">⬜ White</option> 🟥
+        <option value="White">⬜ White</option>
     </select>
 </div>
 
@@ -467,42 +462,27 @@ async function updateLogo() {
 window.onload = updateLogo;
 
 
-// Initialize frontImageSrc with the default value
-let frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png';
+// Initialize frontImageSrc with the default value (Red)
+let frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Red_Back_High.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'Aqua':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Aqua_Back_High.png';
-            break;
-        case 'Black':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png';
+        case 'Red':
+            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Red_Back_High.png';
             break;
         case 'Navy':
             frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Navy_Back_High.png';
             break;
-        case 'Purple':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Purple_Back_High.png';
-            break;
-        case 'Red':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Red_Back_High.png';
-            break;
         case 'Royal':
             frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Royal_Back_High.png';
-            break;
-        case 'Sunlight':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Sunlight_Back_High.png';
-            break;
-        case 'Tangerine':
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Tangerine_Back_High.png';
             break;
         case 'White':
             frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_White_Back_High.png';
             break;
         default:
-            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Black_Back_High.png';
+            frontImageSrc = '75166C1/Carmel_Towel_Company_C3060_Red_Back_High.png'; // Default to Red
             break;
     }
 
