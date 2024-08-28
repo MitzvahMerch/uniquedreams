@@ -335,7 +335,7 @@ h1.product-title {
                 <label for="logo-placement">Logo Placement:</label>
                 <select id="logo-placement" onchange="updateLogoPlacement()">
                     <option value="" selected disabled>Select Placement</option>
-                    <option value="centerChest">Front Center</option>
+                    <option value="centerChest">Full Front</option>
                   <option value="leftChest">Corner</option>
                 </select>
             </div>
@@ -513,7 +513,7 @@ function updateLogoPlacement() {
             case 'leftChest':
                 logo.style.width = '90px';
                 logo.style.height = '90px';
-                logo.style.top = '30%';
+                logo.style.top = '35%';
                 logo.style.left = '64%';
                 break;
         }
