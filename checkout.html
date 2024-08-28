@@ -280,6 +280,10 @@ function removeFromCart(index) {
 
 // Function to format size quantities and calculate total quantity
 function formatSizeQuantities(sizes) {
+    if (!sizes) {
+        return `<strong>Total: 0</strong>`; // or return an empty string if you prefer
+    }
+
     const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
     const formattedSizes = Object.entries(sizes)
         .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
@@ -299,6 +303,7 @@ function updateDisplay() {
         const productCost = parseFloat(product.totalPrice);
         totalCost += productCost;
 
+        // Handle the case where product.sizes might be undefined or null
         const formattedSizes = formatSizeQuantities(product.sizes);
 
         orderDetailsDisplay.innerHTML += `
