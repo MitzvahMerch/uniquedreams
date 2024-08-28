@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <script src="https://www.paypal.com/sdk/js?client-id=Aa2-mzkmjWQCgXq3zONHNu1eFWPABooevh0Hjp_z7PMBjZOJ0xdCIAIgE4eK8MJ4TcowsMROEefprlvm"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AZzLQop9vrKuZKKoH5kjjdUW5bti6eMFwBePvUDXA2lYYZG73hHo3LFKSULAJfg84qHWdbqbDsio8C4p"></script>
     <style>
         /* Your CSS styling here */
         body {
@@ -282,10 +282,10 @@ function removeFromCart(index) {
 function formatSizeQuantities(sizes) {
     const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
     const formattedSizes = Object.entries(sizes)
-        .map(([size, quantity]) => ${size.toUpperCase()}: ${quantity})
+        .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
         .join(', ');
 
-    return ${formattedSizes}, <strong>Total: ${totalQuantity}</strong>;
+    return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
 }
 
 // Update the checkout page display
@@ -301,7 +301,7 @@ function updateDisplay() {
 
         const formattedSizes = formatSizeQuantities(product.sizes);
 
-        orderDetailsDisplay.innerHTML += 
+        orderDetailsDisplay.innerHTML += `
             <div class="controls-container">
                 <h1 class="product-title">${product.title}</h1>
                 <div class="sku-text">${product.sku}</div>
@@ -311,12 +311,12 @@ function updateDisplay() {
                 <p><strong>Shipping:</strong> Free</p>
                 <button class="remove-button" onclick="removeFromCart(${index})">Remove</button>
             </div>
-        ;
+        `;
     });
 
     // Display total price
     const totalPriceDisplay = document.getElementById('totalPriceDisplay');
-    totalPriceDisplay.innerText = Total Price: $${totalCost.toFixed(2)};
+    totalPriceDisplay.innerText = `Total Price: $${totalCost.toFixed(2)}`;
 
     // Render the PayPal button with the correct total price and order details
     paypal.Buttons({
@@ -326,7 +326,7 @@ function updateDisplay() {
                     amount: {
                         value: totalCost.toFixed(2)
                     },
-                    description: Order containing ${cart.length} products
+                    description: `Order containing ${cart.length} products`
                 }]
             });
         },
@@ -354,7 +354,7 @@ function initializeCountdown() {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById('countdown').innerText = ${hours}h ${minutes}m ${seconds}s;
+        document.getElementById('countdown').innerText = `${hours}h ${minutes}m ${seconds}s`;
 
         if (diff <= 0) {
             clearInterval(timerInterval);
@@ -399,4 +399,3 @@ initializeCountdown();
     </script>
 </body>
 </html>
-
