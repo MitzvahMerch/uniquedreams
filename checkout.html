@@ -348,6 +348,9 @@
                 onApprove: function(data, actions) {
                     return actions.order.capture().then(function(details) {
                         alert('Transaction completed by ' + details.payer.name.given_name);
+
+                        // Additional user feedback: Redirect to a confirmation page
+                        window.location.href = 'confirmation.html';
                     });
                 }
             }).render('#paypal-button-container');
