@@ -345,26 +345,22 @@
                         }]
                     });
                 },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Transaction completed by ' + details.payer.name.given_name);
+onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+        // Store order details including address and delivery date
+        const orderDetails = {
+            quantities: cart.map(product => `${product.title}: ${product.sizes ? formatSizeQuantities(product.sizes) : 'N/A'}`).join(', '),
+            totalPrice: totalCost.toFixed(2),
+            rollTagCost: cart.reduce((total, product) => total + parseFloat(product.rollTagCost || 0), 0).toFixed(2),
+            deliveryDate: getDeliveryDate(),
+            shippingAddress: `${details.payer.address.address_line_1}, ${details.payer.address.admin_area_2}, ${details.payer.address.admin_area_1}, ${details.payer.address.postal_code}, ${details.payer.address.country_code}`
+        };
+        localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 
-                        // Store order details including address and delivery date
-                        const orderDetails = {
-                            quantities: cart.map(product => `${product.title}: ${product.sizes ? formatSizeQuantities(product.sizes) : 'N/A'}`).join(', '),
-                            totalPrice: totalCost.toFixed(2),
-                            rollTagCost: cart.reduce((total, product) => total + parseFloat(product.rollTagCost || 0), 0).toFixed(2),
-                            deliveryDate: getDeliveryDate(),
-                            shippingAddress: `${details.payer.address.address_line_1}, ${details.payer.address.admin_area_2}, ${details.payer.address.admin_area_1}, ${details.payer.address.postal_code}, ${details.payer.address.country_code}`
-                        };
-                        localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
-
-                        // Additional user feedback: Redirect to a confirmation page
-                        window.location.href = 'confirmation.html';
-                    });
-                }
-            }).render('#paypal-button-container');
-        }
+        // Redirect to a confirmation page
+        window.location.href = 'confirmation.html';
+    });
+}
 
         function initializeCountdown() {
             function updateTimer() {
