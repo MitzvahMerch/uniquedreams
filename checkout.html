@@ -371,7 +371,7 @@
                     }]
                 });
             },
-            onApprove: function(data, actions) {
+                onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
             // Log payment details and shipping address
             console.log('Payment details:', details);
@@ -387,8 +387,11 @@
             };
             localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 
-            // Redirect to a confirmation page
-            window.location.href = 'confirmation.html';
+            // Delay the redirection slightly to ensure data is stored
+            setTimeout(function() {
+                // Redirect to a confirmation page
+                window.location.href = 'confirmation.html';
+            }, 1000); // 1-second delay
         });
     }
 }).render('#paypal-button-container');
