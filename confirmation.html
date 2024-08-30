@@ -83,35 +83,39 @@
         </div>
     </div>
 
-    <script>
-        // Retrieve order details from localStorage or sessionStorage
-        const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+<script>
+    // Retrieve order details from localStorage or sessionStorage
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
 
-        // Function to generate the next order number
-        function generateOrderNumber() {
-            let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
-            lastOrderNumber += 1;
-            localStorage.setItem('lastOrderNumber', lastOrderNumber);
-            return lastOrderNumber;
+    // Function to generate the next order number
+    function generateOrderNumber() {
+        let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
+        lastOrderNumber += 1;
+        localStorage.setItem('lastOrderNumber', lastOrderNumber);
+        return lastOrderNumber;
+    }
+
+    // Update the confirmation page with order details
+    function updateConfirmationPage() {
+        const orderNumber = generateOrderNumber();
+        document.getElementById('orderNumber').innerText = `Order Number: ${orderNumber}`;
+
+        if (!orderDetails || Object.keys(orderDetails).length === 0) {
+            document.getElementById('orderDetails').innerText = 'Order details not found. Please check your email for confirmation.';
+            return;
         }
 
-        // Update the confirmation page with order details
-        function updateConfirmationPage() {
-            const orderNumber = generateOrderNumber();
-            document.getElementById('orderNumber').innerText = `Order Number: ${orderNumber}`;
+        const orderDetailsElement = document.getElementById('orderDetails');
+        orderDetailsElement.innerHTML = orderDetails.quantities || 'N/A';
 
-            // Assuming orderDetails contain keys like 'quantities', 'totalPrice', 'rollTagCost', 'deliveryDate', 'shippingAddress'
-            const orderDetailsElement = document.getElementById('orderDetails');
-            orderDetailsElement.innerHTML = orderDetails.quantities || 'N/A';
+        document.getElementById('totalPrice').innerText = orderDetails.totalPrice || '0.00';
+        document.getElementById('rollTagCost').innerText = orderDetails.rollTagCost || '0.00';
+        document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
+        document.getElementById('shippingAddress').innerText = orderDetails.shippingAddress || 'Address not provided';
+    }
 
-            document.getElementById('totalPrice').innerText = orderDetails.totalPrice || 'N/A';
-            document.getElementById('rollTagCost').innerText = orderDetails.rollTagCost || 'N/A';
-            document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
-            document.getElementById('shippingAddress').innerText = orderDetails.shippingAddress || 'N/A';
-        }
-
-        // Call the function to update the page
-        updateConfirmationPage();
-    </script>
+    // Call the function to update the page
+    updateConfirmationPage();
+</script>
 </body>
 </html>
