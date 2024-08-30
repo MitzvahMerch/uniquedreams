@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #0137B7;
             color: #333;
             display: flex;
             justify-content: center;
@@ -73,9 +73,7 @@
             <p><strong>Order Summary:</strong></p>
             <p id="orderDetails"></p>
             <p><strong>Total Price:</strong> <span id="totalPrice"></span></p>
-            <p><strong>Roll and Tag:</strong> <span id="rollTagCost"></span></p>
             <p><strong>Delivery Date:</strong> <span id="deliveryDate"></span></p>
-            <p><strong>Shipping Address:</strong> <span id="shippingAddress"></span></p>
         </div>
 
         <div class="contact-info">
@@ -84,15 +82,20 @@
     </div>
 
 <script>
-    // Retrieve order details from sessionStorage
-    const orderDetails = JSON.parse(sessionStorage.getItem('orderDetails')) || {};
+    // Retrieve order details from localStorage
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
 
-    // Function to generate the next order number
+    // Function to generate the next order number only if it doesn't exist
     function generateOrderNumber() {
-        let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
-        lastOrderNumber += 1;
-        localStorage.setItem('lastOrderNumber', lastOrderNumber);
-        return lastOrderNumber;
+        let orderNumber = localStorage.getItem('orderNumber');
+        if (!orderNumber && Object.keys(orderDetails).length !== 0) {
+            let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
+            lastOrderNumber += 1;
+            localStorage.setItem('lastOrderNumber', lastOrderNumber);
+            localStorage.setItem('orderNumber', lastOrderNumber); // Store in localStorage
+            orderNumber = lastOrderNumber;
+        }
+        return orderNumber;
     }
 
     // Update the confirmation page with order details
@@ -109,9 +112,7 @@
         orderDetailsElement.innerHTML = orderDetails.quantities || 'N/A';
 
         document.getElementById('totalPrice').innerText = orderDetails.totalPrice || '0.00';
-        document.getElementById('rollTagCost').innerText = orderDetails.rollTagCost || '0.00';
         document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
-        document.getElementById('shippingAddress').innerText = orderDetails.shippingAddress || 'Address not provided';
     }
 
     // Call the function to update the page

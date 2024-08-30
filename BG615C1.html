@@ -567,9 +567,9 @@ function updateTotal() {
     const quantity = parseInt(input.value) || 0; // Get the quantity or 0 if it's empty
     let total = quantity;
 
-    // Store the details for the single size
+    // Store the details for the single size using "OS" as the size key
     let sizeDetails = {
-        size: quantity
+        "OS": quantity // "OS" stands for One Size
     };
 
     // Update the total field
@@ -582,7 +582,7 @@ function updateTotal() {
     // Prepare order details to store in localStorage
     const orderDetails = {
         totalQuantity: total,
-        size: sizeDetails,
+        sizes: sizeDetails, // Use "sizes" key to be consistent with multi-size products
         sku: sku,
         color: color
     };
@@ -790,7 +790,6 @@ function closePriceModal() {
     document.getElementById("priceModal").style.display = "none";
 }
 
-// Function to proceed to checkout
 function proceedToCheckout() {
     // Retrieve the pricing data
     const priceData = JSON.parse(localStorage.getItem('priceData'));
@@ -800,10 +799,10 @@ function proceedToCheckout() {
 
     // Prepare the product details to be added to the cart
     const product = {
-        title: 'Best Value Sling Bag',
+        title: 'Best Value Sling Bag', // Adjust the title as needed for the specific product
         sku: orderDetails.sku,
         color: orderDetails.color,
-        sizes: orderDetails.sizes,
+        sizes: orderDetails.sizes, // Passing the sizes object, which contains "OS" for one-size products
         merchCost: priceData.merch,
         rollTagCost: priceData.rollAndTag,
         totalPrice: priceData.totalPrice
@@ -815,6 +814,7 @@ function proceedToCheckout() {
     // Redirect to the checkout page or handle the checkout process
     window.location.href = 'checkout.html';
 }
+
 
 function addToCart(product) {
     // Retrieve existing cart from localStorage or initialize a new array
