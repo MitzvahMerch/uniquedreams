@@ -87,12 +87,17 @@
     // Retrieve order details from sessionStorage
     const orderDetails = JSON.parse(sessionStorage.getItem('orderDetails')) || {};
 
-    // Function to generate the next order number
+    // Function to generate the next order number only if it doesn't exist
     function generateOrderNumber() {
-        let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
-        lastOrderNumber += 1;
-        localStorage.setItem('lastOrderNumber', lastOrderNumber);
-        return lastOrderNumber;
+        let orderNumber = sessionStorage.getItem('orderNumber');
+        if (!orderNumber) {
+            let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
+            lastOrderNumber += 1;
+            localStorage.setItem('lastOrderNumber', lastOrderNumber);
+            sessionStorage.setItem('orderNumber', lastOrderNumber); // Store in sessionStorage
+            orderNumber = lastOrderNumber;
+        }
+        return orderNumber;
     }
 
     // Update the confirmation page with order details
