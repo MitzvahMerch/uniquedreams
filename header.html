@@ -35,15 +35,26 @@
 
             // Define the logos and links for each subdomain
             const plannerData = {
-                'nyx': {
+                'nyxevents': {
                     logo: 'Images/NYXLogo.png',
                     link: 'https://nyxevents.com/'
                 },
-                'anotherplanner': {
-                    logo: 'Images/AnotherPlannerLogo.png',
-                    link: 'https://anotherplanner.com/'
+                'uniquedreams': {
+                    logo: 'Images/uniquedreamslogo.png',
+                    link: 'https://uniquedreams.net/'
                 },
-                // Add more subdomains with their logos and links here
+                'writeocassion': {
+                    logo: 'Images/writeocassionlogo.png',
+                    link: 'https://writeoccasionmd.com/'
+                },
+                'popcolorevents': {
+                    logo: 'Images/popcolorevents.png',
+                    link: 'https://popcolorevents.com/'
+                },
+                'limelightevents': {
+                    logo: 'Images/limelightevents.png',
+                    link: 'https://www.limelighteventgroup.com/'
+                }
             };
 
             // Set the logo and link based on the subdomain, or use a default
@@ -52,7 +63,7 @@
                 plannerLink.href = plannerData[subdomain].link;
             } else {
                 plannerLogo.src = 'Images/DefaultPlannerLogo.png';
-                plannerLink.href = 'https://defaultplanner.com/'; // Default link if subdomain doesn't match
+                plannerLink.href = 'https://mitzvah-merch.com'; // Default link if subdomain doesn't match
             }
         }
 
@@ -61,19 +72,8 @@
             const subdomain = getSubdomain();
             const mmLink = document.querySelector('.mm-logo-link');
 
-            // Define the links for the Mitzvah Merch logo for each subdomain
-            const mmLinks = {
-                'nyx': 'https://mitzvahmerch.github.io/WriteOcassio/nyx.html',
-                'anotherplanner': 'https://mitzvahmerch.github.io/WriteOcassio/anotherplanner.html',
-                // Add more subdomains with their links here
-            };
-
-            // Set the link based on the subdomain, or use a default
-            if (mmLinks[subdomain]) {
-                mmLink.href = mmLinks[subdomain];
-            } else {
-                mmLink.href = 'https://mitzvahmerch.github.io/WriteOcassio/default.html'; // Default link if subdomain doesn't match
-            }
+            // Set the link for the Mitzvah Merch logo to the subdomain-specific URL
+            mmLink.href = `https://${subdomain}.mitzvah-merch.com`;
         }
 
         // Call the functions when the page loads
