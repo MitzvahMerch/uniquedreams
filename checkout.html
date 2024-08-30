@@ -260,7 +260,7 @@
         </div>
     </div>
 
-    <script>
+<script>
     // Retrieve the cart data from localStorage
     function getCartData() {
         return JSON.parse(localStorage.getItem('cart')) || [];
@@ -291,6 +291,32 @@
             .join(', ');
 
         return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
+    }
+
+    function calculateTurnaroundDays(now) {
+        const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+        const hour = now.getHours();
+
+        let turnaroundDays = 14; // Base turnaround time
+
+        if (day === 4 && hour >= 19) { // Thursday after 7 PM
+            turnaroundDays += 3; // Add 3 days to the turnaround time (Thursday night -> Sunday night)
+        } else if (day === 5) { // Friday
+            turnaroundDays += 2; // Add 2 days (Friday -> Sunday night)
+        } else if (day === 6) { // Saturday
+            turnaroundDays += 1; // Add 1 day (Saturday -> Sunday night)
+        }
+
+        return turnaroundDays;
+    }
+
+    // Function to get the delivery date for storage
+    function getDeliveryDate() {
+        const now = new Date();
+        const turnaroundDays = calculateTurnaroundDays(now);
+        const deliveryDate = new Date();
+        deliveryDate.setDate(now.getDate() + turnaroundDays);
+        return deliveryDate.toDateString();
     }
 
     function updateDisplay() {
@@ -388,23 +414,6 @@
             }
         }
 
-        function calculateTurnaroundDays(now) {
-            const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-            const hour = now.getHours();
-
-            let turnaroundDays = 14; // Base turnaround time
-
-            if (day === 4 && hour >= 19) { // Thursday after 7 PM
-                turnaroundDays += 3; // Add 3 days to the turnaround time (Thursday night -> Sunday night)
-            } else if (day === 5) { // Friday
-                turnaroundDays += 2; // Add 2 days (Friday -> Sunday night)
-            } else if (day === 6) { // Saturday
-                turnaroundDays += 1; // Add 1 day (Saturday -> Sunday night)
-            }
-
-            return turnaroundDays;
-        }
-
         // Set "Receive By" date based on current time
         const now = new Date();
         const turnaroundDays = calculateTurnaroundDays(now);
@@ -420,15 +429,6 @@
 
         // Return the delivery date for storage
         return receiveByDate.toDateString();
-    }
-
-    // Function to get the delivery date for storage
-    function getDeliveryDate() {
-        const now = new Date();
-        const turnaroundDays = calculateTurnaroundDays(now);
-        const deliveryDate = new Date();
-        deliveryDate.setDate(now.getDate() + turnaroundDays);
-        return deliveryDate.toDateString();
     }
 
     // Initialize the page content and countdown
