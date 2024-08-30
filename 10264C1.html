@@ -31,7 +31,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.25); /* Scale both front and back images by 32% */
+    transform: scale(1.03); /* Scale both front and back images by 32% */
     transform-origin: 50% 28%; /* Custom percentages for finer control */
 }
 
@@ -512,33 +512,35 @@ function updateColor() {
 function updateLogoPlacement() {
     const logo = document.getElementById('logo-placeholder');
     const placement = document.getElementById('logo-placement').value;
-
-    if (placement !== '' && placement !== 'none-front') {
-        switch (placement) {
-            case 'fullFront':
-                logo.style.width = '200px';
-                logo.style.height = '200px';
-                logo.style.top = '35%';
-                logo.style.left = '50%';
-                break;
-            case 'centerChest':
-                logo.style.width = '154px';
-                logo.style.height = '154px';
-                logo.style.top = '32%';
-                logo.style.left = '50%';
-                break;
-            case 'leftChest':
-                logo.style.width = '90px';
-                logo.style.height = '90px';
-                logo.style.top = '30%';
-                logo.style.left = '64%';
-                break;
-        }
-        logo.style.display = 'block';
-        logo.style.transform = 'translate(-50%, -50%)';
-    } else {
-        logo.style.display = 'none';
+    
+if (placement !== '' && placement !== 'none-front') {
+    switch (placement) {
+        case 'fullFront':
+            logo.style.width = '200px';
+            logo.style.height = '200px';
+            logo.style.top = '35%';
+            logo.style.left = '50%';
+            logo.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+            break;
+        case 'centerChest':
+            logo.style.width = '170px';
+            logo.style.height = '154px';
+            logo.style.top = '43%';
+            logo.style.left = '62%';
+            logo.style.transform = 'translate(-50%, -50%) rotate(270deg)';
+            break;
+        case 'leftChest':
+            logo.style.width = '90px';
+            logo.style.height = '90px';
+            logo.style.top = '20%';
+            logo.style.left = '62%';
+            logo.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+            break;
     }
+    logo.style.display = 'block';
+} else {
+    logo.style.display = 'none';
+}
 }
 
 function updateTotal() {
@@ -777,7 +779,7 @@ function proceedToCheckout() {
 
     // Prepare the product details to be added to the cart
     const product = {
-        title: 'Exceptional Tee',
+        title: 'Exceptional Joggers',
         sku: orderDetails.sku,
         color: orderDetails.color,
         sizes: orderDetails.sizes,

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .confirmation-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .order-summary p {
+            margin: 5px 0;
+        }
+
+        .order-number {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <h1>Thank You for Your Order!</h1>
+        <p>Your transaction has been successfully completed.</p>
+        <p>We've received your order and it is now being processed.</p>
+
+        <div class="order-number" id="orderNumber"></div>
+
+        <div class="order-summary">
+            <p><strong>Order Summary:</strong></p>
+            <p id="orderDetails"></p>
+            <p><strong>Total Price:</strong> <span id="totalPrice"></span></p>
+            <p><strong>Roll and Tag:</strong> <span id="rollTagCost"></span></p>
+            <p><strong>Delivery Date:</strong> <span id="deliveryDate"></span></p>
+            <p><strong>Shipping Address:</strong> <span id="shippingAddress"></span></p>
+        </div>
+
+        <div class="contact-info">
+            <p>If you have any questions about your order, feel free to <a href="mailto:support@example.com">contact us</a>.</p>
+        </div>
+    </div>
+
+<script>
+    // Retrieve order details from sessionStorage
+    const orderDetails = JSON.parse(sessionStorage.getItem('orderDetails')) || {};
+
+    // Function to generate the next order number
+    function generateOrderNumber() {
+        let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
+        lastOrderNumber += 1;
+        localStorage.setItem('lastOrderNumber', lastOrderNumber);
+        return lastOrderNumber;
+    }
+
+    // Update the confirmation page with order details
+    function updateConfirmationPage() {
+        const orderNumber = generateOrderNumber();
+        document.getElementById('orderNumber').innerText = `Order Number: ${orderNumber}`;
+
+        if (!orderDetails || Object.keys(orderDetails).length === 0) {
+            document.getElementById('orderDetails').innerText = 'Order details not found. Please check your email for confirmation.';
+            return;
+        }
+
+        const orderDetailsElement = document.getElementById('orderDetails');
+        orderDetailsElement.innerHTML = orderDetails.quantities || 'N/A';
+
+        document.getElementById('totalPrice').innerText = orderDetails.totalPrice || '0.00';
+        document.getElementById('rollTagCost').innerText = orderDetails.rollTagCost || '0.00';
+        document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
+        document.getElementById('shippingAddress').innerText = orderDetails.shippingAddress || 'Address not provided';
+    }
+
+    // Call the function to update the page
+    updateConfirmationPage();
+</script>
+</body>
+</html>
