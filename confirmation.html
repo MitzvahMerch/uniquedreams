@@ -84,8 +84,8 @@
     </div>
 
 <script>
-    // Retrieve order details from localStorage or sessionStorage
-    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+    // Retrieve order details from sessionStorage
+    const orderDetails = JSON.parse(sessionStorage.getItem('orderDetails')) || {};
 
     // Function to generate the next order number
     function generateOrderNumber() {
