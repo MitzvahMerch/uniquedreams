@@ -84,17 +84,17 @@
     </div>
 
 <script>
-    // Retrieve order details from sessionStorage
-    const orderDetails = JSON.parse(sessionStorage.getItem('orderDetails')) || {};
+    // Retrieve order details from localStorage
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
 
     // Function to generate the next order number only if it doesn't exist
     function generateOrderNumber() {
-        let orderNumber = sessionStorage.getItem('orderNumber');
-        if (!orderNumber) {
+        let orderNumber = localStorage.getItem('orderNumber');
+        if (!orderNumber && Object.keys(orderDetails).length !== 0) {
             let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber')) || 7815632; // Start at 7815632 so first order is 7815633
             lastOrderNumber += 1;
             localStorage.setItem('lastOrderNumber', lastOrderNumber);
-            sessionStorage.setItem('orderNumber', lastOrderNumber); // Store in sessionStorage
+            localStorage.setItem('orderNumber', lastOrderNumber); // Store in localStorage
             orderNumber = lastOrderNumber;
         }
         return orderNumber;
@@ -114,9 +114,7 @@
         orderDetailsElement.innerHTML = orderDetails.quantities || 'N/A';
 
         document.getElementById('totalPrice').innerText = orderDetails.totalPrice || '0.00';
-        document.getElementById('rollTagCost').innerText = orderDetails.rollTagCost || '0.00';
         document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
-        document.getElementById('shippingAddress').innerText = orderDetails.shippingAddress || 'Address not provided';
     }
 
     // Call the function to update the page
