@@ -360,7 +360,7 @@
         document.getElementById('paypal-button-container').innerHTML = '';
 
         // Re-render the PayPal button with updated total cost
-  paypal.Buttons({
+paypal.Buttons({
     createOrder: function(data, actions) {
         const cart = getCartData();  // Assuming this function retrieves the cart data
         const productDetails = cart.map(product => {
@@ -376,14 +376,15 @@
             }]
         });
     },
-                onApprove: function(data, actions) {
+    onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
             // Log payment details and shipping address
             console.log('Payment details:', details);
             console.log('Shipping Address:', details.payer.address);
 
-            // Store order details including address and delivery date
+            // Store order details including address, delivery date, and store ID
             const orderDetails = {
+                storeId: 'WriteOcassion', // Hardcoded Store ID
                 quantities: cart.map(product => `${product.title}: ${product.sizes ? formatSizeQuantities(product.sizes) : 'N/A'}`).join(', '),
                 totalPrice: totalCost.toFixed(2),
                 rollTagCost: cart.reduce((total, product) => total + parseFloat(product.rollTagCost || 0), 0).toFixed(2),
