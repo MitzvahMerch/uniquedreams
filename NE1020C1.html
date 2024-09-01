@@ -376,74 +376,8 @@ h1.product-title {
         Get into the game without losing your cool. Spacer Mesh panels on hat back allow cooling ventilation on even the warmest days.
     </div>
 
-    <!-- Modal for additional information -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Almost There!</h2>
-            <label class="modal-label" for="name">Name:</label>
-            <input type="text" id="name" class="modal-input" placeholder="Enter your name">
-
-            <label class="modal-label" for="email">Email:</label>
-            <input type="email" id="email" class="modal-input" placeholder="Enter your email">
-
-            <label class="modal-label" for="date">When's the Special Day:</label>
-            <input type="date" id="date" class="modal-input">
-
-            <label class="modal-label" for="roll-tag">Roll and Tag Your Favors:</label>
-            <select id="roll-tag" class="modal-input" onchange="toggleImageOptions()">
-                <option value="" selected disabled>Select</option>
-                <option value="yes">Yes</option> <!-- If yes, further options should be shown -->
-                <option value="no">No</option>
-            </select>
-
-            <div class="image-options" id="image-options">
-                <p style="font-weight: bold;">Select Your Preferred Style:</p>
-                <div class="image-option">
-                    <img src="RollDisplayImages/RollTag1.jpg" alt="Option 1" id="CircleTag" onclick="selectImage('CircleTag')">
-                    <p>Roll and Circular Tag</p>
-                    <p>$2.50 (per item)</p>
-                </div>
-                <div class="image-option">
-                    <img src="RollDisplayImages/RollTag2.png" alt="Option 2" id="SquareTag" onclick="selectImage('SquareTag')">
-                    <p>Roll and Scalloped Tag</p>
-                    <p>$2.50 (per item)</p>
-                </div>
-                <div class="image-option">
-                    <img src="RollDisplayImages/RollTag3.png" alt="Option 3" id="ScallopedTag" onclick="selectImage('ScallopedTag')">
-                    <p>Roll and Banner Tag</p>
-                    <p>$3.00 (per item)</p>
-                </div>
-                <div class="image-option">
-                    <img src="RollDisplayImages/RollTag4.png" alt="Option 4" id="Sticker" onclick="selectImage('Sticker')">
-                    <p>Roll and Sticker</p>
-                    <p>$2.00 (per item)</p>
-                </div>
-            </div>
-
-            <!-- Center the submit button -->
-            <div class="button-container">
-                <button class="submit-modal-button" onclick="submitDetails()">Get Price</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for displaying price -->
-    <div id="priceModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closePriceModal()">&times;</span>
-            <div id="loading-indicator" style="display: none; text-align: center;">
-                <img src="Images/Loading.png" alt="Loading..." style="width: 50px; height: 50px;">
-                <p>Please wait while we calculate your price...</p>
-            </div>
-            <div id="pricing-details" style="display: none;">
-                <!-- The pricing details will be dynamically inserted here -->
-            </div>
-            <div class="button-container" style="display: none;">
-                <button class="submit-modal-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
-            </div>
-        </div>
-    </div>
+<!-- Include the modal content from modal.html -->
+<div id="modal-placeholder"></div>
 
     <!-- Footer Container -->
     <div id="footer-container"></div>
@@ -830,7 +764,7 @@ function addToCart(product) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Load header, footer, and logo when DOM is ready
+// Load header, footer, modal, and logo when DOM is ready
 document.addEventListener("DOMContentLoaded", function() {
     // Load the header
     fetch('header.html')
@@ -848,9 +782,50 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Error loading footer:', error));
 
+    // Load the modal
+    fetch('modal.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('modal-placeholder').innerHTML = data;
+            // Ensure any functionality related to the modal is called after it has been loaded
+            initializeModalFunctionality();  // Call any functions that depend on the modal here
+        })
+        .catch(error => console.error('Error loading modal:', error));
+
     // Call updateLogo() to fetch and display the user's logo immediately upon page load
     updateLogo();
 });
+
+function initializeModalFunctionality() {
+    // Initialize any modal-specific functionality here, if necessary.
+    // This ensures the modal elements exist before interacting with them.
+
+    // For example, set up event listeners for the modal
+    document.getElementById("roll-tag").addEventListener("change", toggleImageOptions);
+
+    const closeButtons = document.querySelectorAll(".close");
+    closeButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const modal = button.closest(".modal");
+            if (modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
+
+    const submitModalButton = document.querySelector(".submit-modal-button");
+    if (submitModalButton) {
+        submitModalButton.addEventListener("click", submitDetails);
+    }
+
+    // Ensure that the image selection is interactive
+    const imageOptions = document.querySelectorAll('.image-option img');
+    imageOptions.forEach(img => {
+        img.addEventListener("click", function() {
+            selectImage(img.id);
+        });
+    });
+}
 </script>
 
 </body>
