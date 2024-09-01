@@ -101,7 +101,7 @@
             }
 
             const orderDetailsElement = document.getElementById('orderDetails');
-            orderDetailsElement.innerHTML = orderDetails.quantities || 'N/A';
+            orderDetailsElement.innerText = orderDetails.quantities || 'N/A';
 
             document.getElementById('totalPrice').innerText = orderDetails.totalPrice || '0.00';
             document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
@@ -112,4 +112,5 @@
     </script>
 </body>
 </html>
+
 
