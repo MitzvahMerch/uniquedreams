@@ -364,7 +364,8 @@ paypal.Buttons({
     createOrder: function(data, actions) {
         const cart = getCartData();  // Assuming this function retrieves the cart data
         const productDetails = cart.map(product => {
-            return `SKU:${product.sku}, Color:${product.color}, Sizes:${formatSizeQuantities(product.sizes)}`;
+            // Construct the description without HTML tags
+            return `SKU:${product.sku}, Color:${product.color}, Sizes:${formatSizeQuantities(product.sizes)}, StoreID: WriteOcassion`;
         }).join(' | ');
 
         return actions.order.create({
@@ -372,7 +373,7 @@ paypal.Buttons({
                 amount: {
                     value: totalCost.toFixed(2)
                 },
-                description: productDetails
+                description: productDetails  // Pass the clean description
             }]
         });
     },
@@ -401,7 +402,7 @@ paypal.Buttons({
         });
     }
 }).render('#paypal-button-container');
-    }
+
 
     function initializeCountdown() {
         function updateTimer() {
