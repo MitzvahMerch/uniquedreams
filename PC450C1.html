@@ -932,7 +932,7 @@ function addToCart(product) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Load header, footer, and logo when DOM is ready
+// Load header, footer, modal, and logo when DOM is ready
 document.addEventListener("DOMContentLoaded", function() {
     // Load the header
     fetch('header.html')
@@ -950,9 +950,50 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Error loading footer:', error));
 
+    // Load the modal
+    fetch('modal.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('modal-placeholder').innerHTML = data;
+            // Ensure any functionality related to the modal is called after it has been loaded
+            initializeModalFunctionality();  // Call any functions that depend on the modal here
+        })
+        .catch(error => console.error('Error loading modal:', error));
+
     // Call updateLogo() to fetch and display the user's logo immediately upon page load
     updateLogo();
 });
+
+function initializeModalFunctionality() {
+    // Initialize any modal-specific functionality here, if necessary.
+    // This ensures the modal elements exist before interacting with them.
+
+    // For example, set up event listeners for the modal
+    document.getElementById("roll-tag").addEventListener("change", toggleImageOptions);
+
+    const closeButtons = document.querySelectorAll(".close");
+    closeButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const modal = button.closest(".modal");
+            if (modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
+
+    const submitModalButton = document.querySelector(".submit-modal-button");
+    if (submitModalButton) {
+        submitModalButton.addEventListener("click", submitDetails);
+    }
+
+    // Ensure that the image selection is interactive
+    const imageOptions = document.querySelectorAll('.image-option img');
+    imageOptions.forEach(img => {
+        img.addEventListener("click", function() {
+            selectImage(img.id);
+        });
+    });
+}
 </script>
 
 </body>
