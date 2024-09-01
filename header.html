@@ -1,87 +1,24 @@
 <header>
     <div class="header-container">
-        <a href="https://nyxevents.com/" class="planner-logo-link">
+        <a href="/" class="planner-logo-link">
             <div class="logo">
-                <img src="Images/NYXLogo.png" alt="Logo" id="planner-logo-image">
+                <img src="Images/writeocassionlogo.png" alt="Logo" id="planner-logo-image">
             </div>
         </a>
         <nav>
             <ul class="nav-links">
-                <li><a href="https://mitzvahmerch.github.io/WriteOcassio/">Home</a></li>
-                <li><a href="https://mitzvahmerch.github.io/WriteOcassio/LogoPage.html">Logo</a></li>
-                <li><a href="https://mitzvahmerch.github.io/WriteOcassio/ApparelPage.html">Merch</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="LogoPage.html">Logo</a></li>
+                <li><a href="ApparelPage.html">Merch</a></li>
             </ul>
         </nav>
-        <a href="" class="mm-logo-link">
+        <a href="https://writeocassion.mitzvah-merch.com" class="mm-logo-link">
             <div class="logo">
                 <img src="Images/MMLogo.png" alt="MM Logo" id="mm-logo-image">
             </div>
         </a>
     </div>
-
-    <script>
-        // Function to get the subdomain
-        function getSubdomain() {
-            const host = window.location.hostname;
-            const subdomain = host.split('.')[0]; // Get the first part of the hostname
-            return subdomain;
-        }
-
-        // Function to set the planner logo and link based on the subdomain
-        function setPlannerLogoAndLink() {
-            const subdomain = getSubdomain();
-            const plannerLogo = document.getElementById('planner-logo-image');
-            const plannerLink = document.querySelector('.planner-logo-link');
-
-            // Define the logos and links for each subdomain
-            const plannerData = {
-                'nyxevents': {
-                    logo: 'Images/NYXLogo.png',
-                    link: 'https://nyxevents.com/'
-                },
-                'uniquedreams': {
-                    logo: 'Images/uniquedreamslogo.png',
-                    link: 'https://uniquedreams.net/'
-                },
-                'writeocassion': {
-                    logo: 'Images/writeocassionlogo.png',
-                    link: 'https://writeoccasionmd.com/'
-                },
-                'popcolorevents': {
-                    logo: 'Images/popcolorevents.png',
-                    link: 'https://popcolorevents.com/'
-                },
-                'limelightevents': {
-                    logo: 'Images/limelightevents.png',
-                    link: 'https://www.limelighteventgroup.com/'
-                }
-            };
-
-            // Set the logo and link based on the subdomain, or use a default
-            if (plannerData[subdomain]) {
-                plannerLogo.src = plannerData[subdomain].logo;
-                plannerLink.href = plannerData[subdomain].link;
-            } else {
-                plannerLogo.src = 'Images/DefaultPlannerLogo.png';
-                plannerLink.href = 'https://mitzvah-merch.com'; // Default link if subdomain doesn't match
-            }
-        }
-
-        // Function to set the Mitzvah Merch logo link based on the subdomain
-        function setMMLogoLink() {
-            const subdomain = getSubdomain();
-            const mmLink = document.querySelector('.mm-logo-link');
-
-            // Set the link for the Mitzvah Merch logo to the subdomain-specific URL
-            mmLink.href = `https://${subdomain}.mitzvah-merch.com`;
-        }
-
-        // Call the functions when the page loads
-        window.onload = function() {
-            setPlannerLogoAndLink();
-            setMMLogoLink();
-        };
-    </script>
 </header>
+
 
 
