@@ -368,7 +368,7 @@
 
                 const cart = getCartData();
                 const productDetails = cart.map(product => {
-                    return `SKU:${product.sku}, Color:${product.color}, Sizes:${formatSizeQuantities(product.sizes)}, StoreID: WriteOcassion`;
+                    return `SKU:${product.sku}, Color:${product.color}, Sizes:${formatSizeQuantities(product.sizes)}, StoreID: UniqueDreams`;
                 }).join(' | ');
 
                 return actions.order.create({
