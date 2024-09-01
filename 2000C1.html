@@ -310,7 +310,7 @@ h1.product-title {
     <!-- Main Content -->
     <div class="product-container">
         <div class="image-container">
-            <img id="product-image" src="29MC1/29M_cyberpink_flat_front.png" alt="Product Image">
+            <img id="product-image" src="2000C1/2000_heliconia_flat_front.png" alt="Product Image">
             <div id="logo-placeholder" class="logo-placeholder">
                 <img id="logo-image" src="" alt="Logo"> <!-- Updated to use dynamic source -->
             </div>
@@ -318,48 +318,41 @@ h1.product-title {
 
         <div class="controls-container">
             <h1 class="product-title">Best Value Tee</h1> <!-- Product Title Changed to Header -->
-            <div class="sku-text">29MC1</div> <!-- SKU Text Added -->
+            <div class="sku-text">2000C1</div> <!-- SKU Text Added -->
 
 <div class="controls">
     <label for="color-selection">Color:</label>
     <select id="color-selection" onchange="updateColor()">
-        <option value="ClassicPink" selected>🟪 Classic Pink</option>
-        <option value="AquaticBlue">🔵 Aquatic Blue</option>
-        <option value="Ash">⬜ Ash</option>
-        <option value="AthleticHthr">⬛ Athletic Heather</option>
+        <option value="Heliconia" selected>🟪 Heliconia</option>
         <option value="Black">⬛ Black</option>
-        <option value="BlackHeather">⬛ Black Heather</option>
-        <option value="BurntOrange">🟧 Burnt Orange</option>
-        <option value="CaliforniaBlue">🔵 California Blue</option>
-        <option value="Cardinal">🟥 Cardinal</option>
-        <option value="CharcoalGrey">⬛ Charcoal Grey</option>
-        <option value="ColumbiaBlue">🔵 Columbia Blue</option>
-        <option value="CyberPink">🟪 Cyber Pink</option>
-        <option value="DeepPurple">🟪 Deep Purple</option>
-        <option value="ForestGreen">🟩 Forest Green</option>
+        <option value="CardinalRed">🟥 Cardinal Red</option>
+        <option value="CarolinaBlue">🔵 Carolina Blue</option>
+        <option value="Charcoal">⬛ Charcoal</option>
+        <option value="CherryRed">🟥 Cherry Red</option>
+        <option value="Daisy">🟨 Daisy</option>
+        <option value="Forest">🟩 Forest</option>
         <option value="Gold">🟨 Gold</option>
-        <option value="IslandYellow">🟨 Island Yellow</option>
-        <option value="Jade">🟩 Jade</option>
-        <option value="Kelly">🟩 Kelly</option>
-        <option value="Kiwi">🟩 Kiwi</option>
+        <option value="Ash">⬜ Ash</option>
+        <option value="IndigoBlue">🔵 Indigo Blue</option>
+        <option value="Iris">🟪 Iris</option>
+        <option value="IrishGreen">🟩 Irish Green</option>
+        <option value="JadeDome">🟩 Jade Dome</option>
+        <option value="KellyGreen">🟩 Kelly Green</option>
         <option value="LightBlue">🟦 Light Blue</option>
+        <option value="LightPink">🟪 Light Pink</option>
+        <option value="Lime">🟩 Lime</option>
         <option value="Maroon">🟥 Maroon</option>
-        <option value="MilitaryGreen">🟩 Military Green</option>
+        <option value="MintGreen">🟩 Mint Green</option>
         <option value="Navy">🔵 Navy</option>
-        <option value="NeonGreen">🟩 Neon Green</option>
-        <option value="NeonPink">🟪 Neon Pink</option>
-        <option value="NeonYellow">🟨 Neon Yellow</option>
-        <option value="Oxford">⬛ Oxford</option>
+        <option value="Orange">🟧 Orange</option>
+        <option value="Purple">🟪 Purple</option>
+        <option value="Red">🟥 Red</option>
         <option value="Royal">🔵 Royal</option>
-        <option value="SafetyGreen">🟩 Safety Green</option>
         <option value="SafetyOrange">🟧 Safety Orange</option>
-        <option value="Silver">⬜ Silver</option>
-        <option value="TennesseeOrange">🟧 Tennessee Orange</option>
-        <option value="TrueRed">🟥 True Red</option>
-        <option value="VintageHeatherBlue">🔵 Vintage Heather Blue</option>
-        <option value="VintageHeatherMaroon">🟥 Vintage Heather Maroon</option>
-        <option value="VintageHeatherNavy">🔵 Vintage Heather Navy</option>
-        <option value="VintageHeatherRed">🟥 Vintage Heather Red</option>
+        <option value="SafetyGreen">🟩 Safety Green</option>
+        <option value="SafetyPink">🟪 Safety Pink</option>
+        <option value="SportyGrey">⬜ Sporty Grey</option>
+        <option value="Sapphire">🔵 Sapphire</option>
         <option value="White">⬜ White</option>
     </select>
 </div>
@@ -427,7 +420,7 @@ h1.product-title {
     </div>
 
     <div class="product-description">
-        Jerzees Heavyweight blend, 50/50 cotton/poly (preshrunk) 1x1 rib knit crew collar Seamless body with set-in sleeves Double-needle coverstitched on front neck Shoulder-to-shoulder taping
+       Gildan's ultra cotton; 6-ounce, 100% US cotton, Non-topstitched, classic width, rib collar, Taped neck and shoulders, Classic fit, seamless body Recycled.
     </div>
 
     <!-- Modal for additional information -->
@@ -524,164 +517,140 @@ async function updateLogo() {
 window.onload = updateLogo;
 
 // Initialize frontImageSrc and backImageSrc with the default values
-let frontImageSrc = '29MC1/29M_cyberpink_flat_front.png';
-let backImageSrc = '29MC1/29M_cyberpink_flat_back.png';
+let frontImageSrc = '2000C1/2000_heliconia_flat_front.png';
+let backImageSrc = '2000C1/2000_heliconia_flat_back.png';
 
 function updateColor() {
     const color = document.getElementById('color-selection').value;
 
     switch (color) {
-        case 'Black':
-            frontImageSrc = '29MC1/29M_black_flat_front.png';
-            backImageSrc = '29MC1/29M_black_flat_back.png';
-            break;
-        case 'AquaticBlue':
-            frontImageSrc = '29MC1/29M_aquaticblue_flat_front.png';
-            backImageSrc = '29MC1/29M_aquaticblue_flat_back.png';
-            break;
         case 'Ash':
-            frontImageSrc = '29MC1/29M_ash_flat_front.png';
-            backImageSrc = '29MC1/29M_ash_flat_back.png';
+            frontImageSrc = '2000C1/2000_ash_flat_front.png';
+            backImageSrc = '2000C1/2000_ash_flat_back.png';
             break;
-        case 'AthleticHthr':
-            frontImageSrc = '29MC1/29M_athleticheather_flat_front.png';
-            backImageSrc = '29MC1/29M_athleticheather_flat_back.png';
+        case 'Black':
+            frontImageSrc = '2000C1/2000_black_flat_front.png';
+            backImageSrc = '2000C1/2000_black_flat_back.png';
             break;
-        case 'BlackHeather':
-            frontImageSrc = '29MC1/29M_blackheather_flat_front.png';
-            backImageSrc = '29MC1/29M_blackheather_flat_back.png';
+        case 'CardinalRed':
+            frontImageSrc = '2000C1/2000_cardinalred_flat_front.png';
+            backImageSrc = '2000C1/2000_cardinalred_flat_back.png';
             break;
-        case 'BurntOrange':
-            frontImageSrc = '29MC1/29M_burntorange_flat_front.png';
-            backImageSrc = '29MC1/29M_burntorange_flat_back.png';
+        case 'CarolinaBlue':
+            frontImageSrc = '2000C1/2000_carolinablue_flat_front.png';
+            backImageSrc = '2000C1/2000_carolinablue_flat_back.png';
             break;
-        case 'CaliforniaBlue':
-            frontImageSrc = '29MC1/29M_californiablue_flat_front.png';
-            backImageSrc = '29MC1/29M_californiablue_flat_back.png';
+        case 'Charcoal':
+            frontImageSrc = '2000C1/2000_charcoal_flat_front.png';
+            backImageSrc = '2000C1/2000_charcoal_flat_back.png';
             break;
-        case 'Cardinal':
-            frontImageSrc = '29MC1/29M_cardinal_flat_front.png';
-            backImageSrc = '29MC1/29M_cardinal_flat_back.png';
+        case 'CherryRed':
+            frontImageSrc = '2000C1/2000_cherryred_flat_front.png';
+            backImageSrc = '2000C1/2000_cherryred_flat_back.png';
             break;
-        case 'CharcoalGrey':
-            frontImageSrc = '29MC1/29M_charcoalgrey_flat_front.png';
-            backImageSrc = '29MC1/29M_charcoalgrey_flat_back.png';
+        case 'Daisy':
+            frontImageSrc = '2000C1/2000_daisy_flat_front.png';
+            backImageSrc = '2000C1/2000_daisy_flat_back.png';
             break;
-        case 'ColumbiaBlue':
-            frontImageSrc = '29MC1/29M_columbiablue_flat_front.png';
-            backImageSrc = '29MC1/29M_columbiablue_flat_back.png';
-            break;
-        case 'CyberPink':
-            frontImageSrc = '29MC1/29M_cyberpink_flat_front.png';
-            backImageSrc = '29MC1/29M_cyberpink_flat_back.png';
-            break;
-        case 'DeepPurple':
-            frontImageSrc = '29MC1/29M_deeppurple_flat_front.png';
-            backImageSrc = '29MC1/29M_deeppurple_flat_back.png';
-            break;
-        case 'ForestGreen':
-            frontImageSrc = '29MC1/29M_forestgreen_flat_front.png';
-            backImageSrc = '29MC1/29M_forestgreen_flat_back.png';
+        case 'Forest':
+            frontImageSrc = '2000C1/2000_forest_flat_front.png';
+            backImageSrc = '2000C1/2000_forest_flat_back.png';
             break;
         case 'Gold':
-            frontImageSrc = '29MC1/29M_gold_flat_front.png';
-            backImageSrc = '29MC1/29M_gold_flat_back.png';
+            frontImageSrc = '2000C1/2000_gold_flat_front.png';
+            backImageSrc = '2000C1/2000_gold_flat_back.png';
             break;
-        case 'IslandYellow':
-            frontImageSrc = '29MC1/29M_islandyellow_flat_front.png';
-            backImageSrc = '29MC1/29M_islandyellow_flat_back.png';
+        case 'Heliconia':
+            frontImageSrc = '2000C1/2000_heliconia_flat_front.png';
+            backImageSrc = '2000C1/2000_heliconia_flat_back.png';
             break;
-        case 'Jade':
-            frontImageSrc = '29MC1/29M_jade_flat_front.png';
-            backImageSrc = '29MC1/29M_jade_flat_back.png';
+        case 'IndigoBlue':
+            frontImageSrc = '2000C1/2000_indigioblue_flat_front.png';
+            backImageSrc = '2000C1/2000_indigioblue_flat_back.png';
             break;
-        case 'Kelly':
-            frontImageSrc = '29MC1/29M_kelly_flat_front.png';
-            backImageSrc = '29MC1/29M_kelly_flat_back.png';
+        case 'Iris':
+            frontImageSrc = '2000C1/2000_iris_flat_front.png';
+            backImageSrc = '2000C1/2000_iris_flat_back.png';
             break;
-        case 'Kiwi':
-            frontImageSrc = '29MC1/29M_kiwi_flat_front.png';
-            backImageSrc = '29MC1/29M_kiwi_flat_back.png';
+        case 'IrishGreen':
+            frontImageSrc = '2000C1/2000_irishgreen_flat_front.png';
+            backImageSrc = '2000C1/2000_irishgreen_flat_back.png';
+            break;
+        case 'JadeDome':
+            frontImageSrc = '2000C1/2000_jadedome_flat_front.png';
+            backImageSrc = '2000C1/2000_jadedome_flat_back.png';
+            break;
+        case 'KellyGreen':
+            frontImageSrc = '2000C1/2000_kellygreen_flat_front.png';
+            backImageSrc = '2000C1/2000_kellygreen_flat_back.png';
             break;
         case 'LightBlue':
-            frontImageSrc = '29MC1/29M_lightblue_flat_front.png';
-            backImageSrc = '29MC1/29M_lightblue_flat_back.png';
+            frontImageSrc = '2000C1/2000_lightblue_flat_front.png';
+            backImageSrc = '2000C1/2000_lightblue_flat_back.png';
+            break;
+        case 'LightPink':
+            frontImageSrc = '2000C1/2000_lightpink_flat_front.png';
+            backImageSrc = '2000C1/2000_lightpink_flat_back.png';
+            break;
+        case 'Lime':
+            frontImageSrc = '2000C1/2000_lime_flat_front.png';
+            backImageSrc = '2000C1/2000_lime_flat_back.png';
             break;
         case 'Maroon':
-            frontImageSrc = '29MC1/29M_maroon_flat_front.png';
-            backImageSrc = '29MC1/29M_maroon_flat_back.png';
+            frontImageSrc = '2000C1/2000_maroon_flat_front.png';
+            backImageSrc = '2000C1/2000_maroon_flat_back.png';
             break;
-        case 'MilitaryGreen':
-            frontImageSrc = '29MC1/29M_militarygreen_flat_front.png';
-            backImageSrc = '29MC1/29M_militarygreen_flat_back.png';
+        case 'MintGreen':
+            frontImageSrc = '2000C1/2000_mintgreen_flat_front.png';
+            backImageSrc = '2000C1/2000_mintgreen_flat_back.png';
             break;
         case 'Navy':
-            frontImageSrc = '29MC1/29M_navy_flat_front.png';
-            backImageSrc = '29MC1/29M_navy_flat_back.png';
+            frontImageSrc = '2000C1/2000_navy_flat_front.png';
+            backImageSrc = '2000C1/2000_navy_flat_back.png';
             break;
-        case 'NeonGreen':
-            frontImageSrc = '29MC1/29m_neongreen_flat_front.png';
-            backImageSrc = '29MC1/29m_neongreen_flat_back.png';
+        case 'Orange':
+            frontImageSrc = '2000C1/2000_orange_flat_front.png';
+            backImageSrc = '2000C1/2000_orange_flat_back.png';
             break;
-        case 'NeonPink':
-            frontImageSrc = '29MC1/29m_neonpink_flat_front.png';
-            backImageSrc = '29MC1/29m_neonpink_flat_back.png';
+        case 'Purple':
+            frontImageSrc = '2000C1/2000_purple_flat_front.png';
+            backImageSrc = '2000C1/2000_purple_flat_back.png';
             break;
-        case 'NeonYellow':
-            frontImageSrc = '29MC1/29M_neonyellow_flat_front.png';
-            backImageSrc = '29MC1/29M_neonyellow_flat_back.png';
-            break;
-        case 'Oxford':
-            frontImageSrc = '29MC1/29M_oxford_flat_front.png';
-            backImageSrc = '29MC1/29M_oxford_flat_back.png';
+        case 'Red':
+            frontImageSrc = '2000C1/2000_red_flat_front.png';
+            backImageSrc = '2000C1/2000_red_flat_back.png';
             break;
         case 'Royal':
-            frontImageSrc = '29MC1/29M_royal_flat_front.png';
-            backImageSrc = '29MC1/29M_royal_flat_back.png';
+            frontImageSrc = '2000C1/2000_royal_flat_front.png';
+            backImageSrc = '2000C1/2000_royal_flat_back.png';
             break;
         case 'SafetyGreen':
-            frontImageSrc = '29MC1/29M_safetygreen_flat_front.png';
-            backImageSrc = '29MC1/29m_safetygreen_flat_back.png';
+            frontImageSrc = '2000C1/2000_safetygreen_flat_front.png';
+            backImageSrc = '2000C1/2000_safetygreen_flat_back.png';
             break;
         case 'SafetyOrange':
-            frontImageSrc = '29MC1/29M_safetyorange_flat_front.png';
-            backImageSrc = '29MC1/29M_safetyorange_flat_back.png';
+            frontImageSrc = '2000C1/2000_safetyorange_flat_front.png';
+            backImageSrc = '2000C1/2000_safetyorange_flat_back.png';
             break;
-        case 'Silver':
-            frontImageSrc = '29MC1/29M_silver_flat_front.png';
-            backImageSrc = '29MC1/29M_silver_flat_back.png';
+        case 'SafetyPink':
+            frontImageSrc = '2000C1/2000_safetypink_flat_front.png';
+            backImageSrc = '2000C1/2000_safetypink_flat_back.png';
             break;
-        case 'TennesseeOrange':
-            frontImageSrc = '29MC1/29M_tennesseeorange_flat_front.png';
-            backImageSrc = '29MC1/29M_tennesseeorange_flat_back.png';
+        case 'Sapphire':
+            frontImageSrc = '2000C1/2000_sapphire_flat_front.png';
+            backImageSrc = '2000C1/2000_sapphire_flat_back.png';
             break;
-        case 'TrueRed':
-            frontImageSrc = '29MC1/29M_truered_flat_front.png';
-            backImageSrc = '29MC1/29M_truered_flat_back.png';
-            break;
-        case 'VintageHeatherBlue':
-            frontImageSrc = '29MC1/29M_vintageheatherblue_flat_front.png';
-            backImageSrc = '29MC1/29M_vintageheatherblue_flat_back.png';
-            break;
-        case 'VintageHeatherMaroon':
-            frontImageSrc = '29MC1/29M_vintageheathermaroon_flat_front.png';
-            backImageSrc = '29MC1/29M_vintageheathermaroon_flat_back.png';
-            break;
-        case 'VintageHeatherNavy':
-            frontImageSrc = '29MC1/29M_vintageheathernavy_flat_front.png';
-            backImageSrc = '29MC1/29M_vintageheathernavy_flat_back.png';
-            break;
-        case 'VintageHeatherRed':
-            frontImageSrc = '29MC1/29M_vintageheatherred_flat_front.png';
-            backImageSrc = '29MC1/29M_vintageheatherred_flat_back.png';
+        case 'SportGrey':
+            frontImageSrc = '2000C1/2000_sportgrey_flat_front.png';
+            backImageSrc = '2000C1/2000_sportgrey_flat_back.png';
             break;
         case 'White':
-            frontImageSrc = '29MC1/29M_white_flat_front.png';
-            backImageSrc = '29MC1/29M_white_flat_back.png';
+            frontImageSrc = '2000C1/2000_white_flat_front.png';
+            backImageSrc = '2000C1/2000_white_flat_back.png';
             break;
         default:
-            frontImageSrc = '29MC1/29M_cyberpink_flat_front.png';
-            backImageSrc = '29MC1/29MC1/29M_cyberpink_flat_back.png';
+            frontImageSrc = '2000C1/2000_heliconia_flat_front.png';
+            backImageSrc = '2000C1/2000_heliconia_flat_back.png';
             break;
     }
 
