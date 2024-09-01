@@ -360,58 +360,59 @@
         document.getElementById('paypal-button-container').innerHTML = '';
 
         // Re-render the PayPal button with updated total cost
-paypal.Buttons({
-    createOrder: function(data, actions) {
-        const cart = getCartData();  // Assuming this function retrieves the cart data
-        const productDetails = cart.map(product => {
-            // Construct the description without HTML tags
-            return `SKU:${product.sku}, Color:${product.color}, Sizes:${formatSizeQuantities(product.sizes)}, StoreID: WriteOcassion`;
-        }).join(' | ');
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                const cart = getCartData();  // Assuming this function retrieves the cart data
+                const productDetails = cart.map(product => {
+                    // Construct the description without HTML tags
+                    return `SKU:${product.sku}, Color:${product.color}, Sizes:${formatSizeQuantities(product.sizes)}, StoreID: WriteOcassion`;
+                }).join(' | ');
 
-        return actions.order.create({
-            purchase_units: [{
-                amount: {
-                    value: totalCost.toFixed(2)
-                },
-                description: productDetails  // Pass the clean description
-            }]
-        });
-    },
-    onApprove: async function(data, actions) {
-        try {
-            // Fetch a new order number from the API endpoint
-            const response = await fetch('/generateOrderNumber');
-            const { orderNumber } = await response.json();
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalCost.toFixed(2)
+                        },
+                        description: productDetails  // Pass the clean description
+                    }]
+                });
+            },
+            onApprove: async function(data, actions) {
+                try {
+                    // Fetch a new order number from the API endpoint
+                    const response = await fetch('/generateOrderNumber');
+                    const { orderNumber } = await response.json();
 
-            return actions.order.capture().then(function(details) {
-                // Log payment details and shipping address
-                console.log('Payment details:', details);
-                console.log('Shipping Address:', details.payer.address);
+                    return actions.order.capture().then(function(details) {
+                        // Log payment details and shipping address
+                        console.log('Payment details:', details);
+                        console.log('Shipping Address:', details.payer.address);
 
-                // Store order details including address, delivery date, and store ID
-                const orderDetails = {
-                    orderNumber: orderNumber,  // Save the generated order number
-                    storeId: 'WriteOcassion', // Hardcoded Store ID
-                    quantities: cart.map(product => `${product.title}: ${product.sizes ? formatSizeQuantities(product.sizes) : 'N/A'}`).join(', '),
-                    totalPrice: totalCost.toFixed(2),
-                    rollTagCost: cart.reduce((total, product) => total + parseFloat(product.rollTagCost || 0), 0).toFixed(2),
-                    deliveryDate: getDeliveryDate(),
-                    shippingAddress: `${details.payer.address.address_line_1}, ${details.payer.address.admin_area_2}, ${details.payer.address.admin_area_1}, ${details.payer.address.postal_code}, ${details.payer.address.country_code}`
-                };
-                localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
-                localStorage.setItem('orderNumber', orderNumber);  // Store order number
+                        // Store order details including address, delivery date, and store ID
+                        const orderDetails = {
+                            orderNumber: orderNumber,  // Save the generated order number
+                            storeId: 'WriteOcassion', // Hardcoded Store ID
+                            quantities: cart.map(product => `${product.title}: ${product.sizes ? formatSizeQuantities(product.sizes) : 'N/A'}`).join(', '),
+                            totalPrice: totalCost.toFixed(2),
+                            rollTagCost: cart.reduce((total, product) => total + parseFloat(product.rollTagCost || 0), 0).toFixed(2),
+                            deliveryDate: getDeliveryDate(),
+                            shippingAddress: `${details.payer.address.address_line_1}, ${details.payer.address.admin_area_2}, ${details.payer.address.admin_area_1}, ${details.payer.address.postal_code}, ${details.payer.address.country_code}`
+                        };
+                        localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+                        localStorage.setItem('orderNumber', orderNumber);  // Store order number
 
-                // Delay the redirection slightly to ensure data is stored
-                setTimeout(function() {
-                    // Redirect to a confirmation page
-                    window.location.href = 'confirmation.html';
-                }, 1000); // 1-second delay
-            });
-        } catch (error) {
-            console.error('Error fetching order number:', error);
-        }
+                        // Delay the redirection slightly to ensure data is stored
+                        setTimeout(function() {
+                            // Redirect to a confirmation page
+                            window.location.href = 'confirmation.html';
+                        }, 1000); // 1-second delay
+                    });
+                } catch (error) {
+                    console.error('Error fetching order number:', error);
+                }
+            }
+        }).render('#paypal-button-container');
     }
-}).render('#paypal-button-container');
 
     function initializeCountdown() {
         function updateTimer() {
@@ -458,6 +459,7 @@ paypal.Buttons({
     updateDisplay();
     initializeCountdown();
 </script>
+
 </body>
 </html>
 
