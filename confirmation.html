@@ -81,35 +81,40 @@
         </div>
     </div>
 
-    <script>
-        // Retrieve order details from localStorage
-        const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
-        const orderNumber = localStorage.getItem('orderNumber');  // Use the stored order number
+<script>
+    // Retrieve order details from localStorage
+    const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || {};
+    const orderNumber = localStorage.getItem('orderNumber');  // Use the stored order number
 
-        // Update the confirmation page with order details
-        function updateConfirmationPage() {
-            if (orderNumber) {
-                document.getElementById('orderNumber').innerText = `Order Number: ${orderNumber}`;
-            } else {
-                document.getElementById('orderNumber').innerText = 'Order number not found. Please check your email for confirmation.';
-                return;
-            }
-
-            if (!orderDetails || Object.keys(orderDetails).length === 0) {
-                document.getElementById('orderDetails').innerText = 'Order details not found. Please check your email for confirmation.';
-                return;
-            }
-
-            const orderDetailsElement = document.getElementById('orderDetails');
-            orderDetailsElement.innerText = orderDetails.quantities || 'N/A';
-
-            document.getElementById('totalPrice').innerText = orderDetails.totalPrice || '0.00';
-            document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
+    // Update the confirmation page with order details
+    function updateConfirmationPage() {
+        if (orderNumber) {
+            document.getElementById('orderNumber').innerText = `Order Number: ${orderNumber}`;
+        } else {
+            document.getElementById('orderNumber').innerText = 'Order number not found. Please check your email for confirmation.';
+            return;
         }
 
-        // Call the function to update the page
-        updateConfirmationPage();
-    </script>
+        if (!orderDetails || Object.keys(orderDetails).length === 0) {
+            document.getElementById('orderDetails').innerText = 'Order details not found. Please check your email for confirmation.';
+            return;
+        }
+
+        // Log order details to the console for debugging
+        console.log(orderDetails);
+
+        // Update the order details element with quantities (use innerHTML to correctly render any HTML tags)
+        const orderDetailsElement = document.getElementById('orderDetails');
+        orderDetailsElement.innerHTML = orderDetails.quantities || 'N/A';
+
+        // Update other order information
+        document.getElementById('totalPrice').innerText = orderDetails.totalPrice || '0.00';
+        document.getElementById('deliveryDate').innerText = orderDetails.deliveryDate || 'N/A';
+    }
+
+    // Call the function to update the page
+    updateConfirmationPage();
+</script>
 </body>
 </html>
 
