@@ -280,18 +280,18 @@
     }
 
     // Function to format size quantities and calculate total quantity
-    function formatSizeQuantities(sizes) {
-        if (!sizes) {
-            return `<strong>Total: 0</strong>`; // or return an empty string if you prefer
-        }
-
-        const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
-        const formattedSizes = Object.entries(sizes)
-            .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
-            .join(', ');
-
-        return `${formattedSizes}, <strong>Total: ${totalQuantity}</strong>`;
+function formatSizeQuantities(sizes) {
+    if (!sizes) {
+        return `Total: 0`; // or return an empty string if you prefer
     }
+
+    const totalQuantity = Object.values(sizes).reduce((sum, quantity) => sum + quantity, 0);
+    const formattedSizes = Object.entries(sizes)
+        .map(([size, quantity]) => `${size.toUpperCase()}: ${quantity}`)
+        .join(', ');
+
+    return `${formattedSizes}, Total: ${totalQuantity}`;
+}
 
     function calculateTurnaroundDays(now) {
         const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
